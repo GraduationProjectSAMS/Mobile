@@ -30,8 +30,7 @@ class ServerFailure extends Failure {
         return ServerFailure(AppStrings.sendTimeoutFromApiServer);
       case DioExceptionType.unknown:
         return ServerFailure(AppStrings.somethingWentWrongTryAgain);
-      default:
-        return ServerFailure(AppStrings.somethingWentWrongTryAgain);
+
     }
   }
 

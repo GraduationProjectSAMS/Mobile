@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../features/authentication/presentation/screens/login_screen.dart';
 import '../../../features/authentication/presentation/screens/sign_up_screen.dart';
+import '../../../features/home/presentation/screens/home_layout.dart';
 
 abstract class AppRoutes {
   static const login = '/';
@@ -9,6 +10,7 @@ abstract class AppRoutes {
   static const splashRoute = '/splash';
   static const onBoardingRoute = '/onBoarding';
   static const signUpRoute = '/signUp';
+  static const homeLayout = '/homeLayout';
 }
 
 abstract class RouteGenerator {
@@ -18,6 +20,10 @@ abstract class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case AppRoutes.signUpRoute:
         return MaterialPageRoute(builder: (_) => SignUpScreen());
+        case AppRoutes.homeLayout:
+        return MaterialPageRoute(
+
+            builder: (_) => HomeLayout());
       default:
         return _errorRoute();
     }

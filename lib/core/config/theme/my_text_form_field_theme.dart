@@ -20,7 +20,7 @@ abstract class TextFormTheme {
     ),
     focusedErrorBorder:
         TextFormTheme.setOutlineInputBorder(color: AppColors.red, width: 2),
-    errorStyle: AppStyles.textStyle15.copyWith(color: AppColors.red),
+    errorStyle: AppStyles.textStyle15.copyWith(color: AppColors.red, fontSize: 12.sp),
   );
 
   static OutlineInputBorder setOutlineInputBorder(

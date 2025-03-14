@@ -3,12 +3,14 @@ import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 
 import '../../utilities/resources/app_colors.dart';
 import 'buttons_theme.dart';
+import 'my_bottom_navigation_bar_theme.dart';
 import 'my_text_form_field_theme.dart';
 
 abstract class AppTheme {
   static ThemeData lightTheme = ThemeData.light().copyWith(
     splashColor: AppColors.white,
     primaryColor: AppColors.primaryColor,
+    bottomNavigationBarTheme: MyBottomNavigationBarTheme.light,
     colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
     splashFactory: InkSplash.splashFactory,
     scaffoldBackgroundColor: AppColors.white,

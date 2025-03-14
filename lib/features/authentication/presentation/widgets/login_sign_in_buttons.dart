@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/utilities/services/dependency_injection_service.dart';
 
+import '../../../../core/config/routes/app_route.dart';
 import '../../../../core/utilities/resources/app_strings.dart';
 import '../../../../core/widgets/height_sized_box.dart';
 import '../../../../core/widgets/my_button_widget.dart';
@@ -14,7 +16,9 @@ class LoginSignInButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        MyButton(onPressed: () {}, text: AppStrings.login),
+        MyButton(onPressed: () {
+          context.navigateAndRemoveUntil(pageName: AppRoutes.homeLayout);
+        }, text: AppStrings.login),
         HeightSizedBox(height: 2),
         GoogleLoginButton(
           onTap: () async {
