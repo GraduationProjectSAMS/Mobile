@@ -1,3 +1,3 @@
-abstract class AuthenticationRemoteRepo{
-  Future <String> loginWithGoogle();
+abstract class AuthenticationRemoteRepo {
+  Future<String> loginWithGoogle();
 }

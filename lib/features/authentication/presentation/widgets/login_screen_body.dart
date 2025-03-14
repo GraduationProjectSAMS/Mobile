@@ -6,13 +6,16 @@ import 'package:graduation_project/core/widgets/height_sized_box.dart';
 import 'package:graduation_project/features/authentication/presentation/widgets/is_user_sign_in_widget.dart';
 import 'package:graduation_project/features/authentication/presentation/widgets/login_remember_me_with_check_box.dart';
 import 'package:graduation_project/features/authentication/presentation/widgets/welcome_text.dart';
+
 import '../../../../core/config/routes/app_route.dart';
 import 'login_sign_in_buttons.dart';
 import 'login_text_form_fields.dart';
 
 class LoginScreenBody extends StatelessWidget {
   const LoginScreenBody({super.key});
-  static const space= 2.0;
+
+  static const space = 2.0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,15 +36,14 @@ class LoginScreenBody extends StatelessWidget {
             HeightSizedBox(height: 1),
             LoginSignInButtons(),
             HeightSizedBox(height: 1.5),
-            IsUserSignInWidget(isLogin: false, onTap: () {
-              context.navigateTo( pageName: AppRoutes.signUpRoute);
-
-            }),
+            IsUserSignInWidget(
+                isLogin: false,
+                onTap: () {
+                  context.navigateTo(pageName: AppRoutes.signUpRoute);
+                }),
           ],
         ),
       ),
     ));
   }
 }
-
-

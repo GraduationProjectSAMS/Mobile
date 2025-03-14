@@ -10,43 +10,41 @@ import 'is_user_sign_in_widget.dart';
 
 class SignupScreenBody extends StatelessWidget {
   const SignupScreenBody({super.key});
-static const space= 2.0;
+
+  static const space = 2.0;
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Center(
+    return SafeArea(
+        child: Center(
       child: SingleChildScrollView(
-       child:    Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // User Name Field
-                WelcomeText(
-                    text1: AppStrings.registerAccount,
-                    text2: AppStrings.signUpMassage),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // User Name Field
+              WelcomeText(
+                  text1: AppStrings.registerAccount,
+                  text2: AppStrings.signUpMassage),
 
-                HeightSizedBox(height: 6),
-                SignUpTextForms(),
+              HeightSizedBox(height: 6),
+              SignUpTextForms(),
 
-                HeightSizedBox(height: space,),
-                SignUpButtons(),
-                HeightSizedBox(height: 1.5),
-                IsUserSignInWidget(isLogin: true, onTap: () {
-                  context.pop();
-                }),
-
-              ],
-            ),
+              HeightSizedBox(
+                height: space,
+              ),
+              SignUpButtons(),
+              HeightSizedBox(height: 1.5),
+              IsUserSignInWidget(
+                  isLogin: true,
+                  onTap: () {
+                    context.pop();
+                  }),
+            ],
           ),
+        ),
       ),
     ));
   }
 }
-
-
-
-
-
-
-
-

@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
+
 import '../resources/app_constants.dart';
 import 'cache_service.dart';
 
-class DioInterceptor extends Interceptor{
+class DioInterceptor extends Interceptor {
   static bool isDialogShowing = false;
+
   const DioInterceptor();
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     CacheService.token = CacheService.getData(key: AppConstants.token);
@@ -25,5 +28,5 @@ class DioInterceptor extends Interceptor{
     //   }
     //   super.onError(err, handler);
     // }
-
-  }}
+  }
+}

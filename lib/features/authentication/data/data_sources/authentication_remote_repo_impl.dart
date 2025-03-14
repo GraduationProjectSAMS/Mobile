@@ -5,18 +5,11 @@ class AuthenticationRemoteRepoImpl implements AuthenticationRemoteRepo {
   final GoogleSignInService _googleSignInService;
 
   AuthenticationRemoteRepoImpl(this._googleSignInService);
+
   @override
-  Future<String> loginWithGoogle() async{
-    final response= await _googleSignInService.signIn();
-final tokenId= response?.idToken;
-return tokenId??'';
-
+  Future<String> loginWithGoogle() async {
+    final response = await _googleSignInService.signIn();
+    final tokenId = response?.idToken;
+    return tokenId ?? '';
   }
-
-
-
-
-
-
-
 }

@@ -6,23 +6,24 @@ import '../../../../core/utilities/resources/app_strings.dart';
 import '../../../../core/utilities/services/validator_service.dart';
 import '../../../../core/widgets/my_text_form_field.dart';
 
-
-
 class LoginPasswordTextForm extends StatefulWidget {
   final bool hidePassword; // Whether the password is hidden
   final Widget? suffixIcon; // Custom suffix icon
   final Widget? prefixIcon; // Custom prefix icon
   final String? hintText; // Hint text for the text field
   final ValueChanged<String?>? onSave; // Callback for text changes
- final  Iterable<String>? autofillHints;
- final TextEditingController? controller;
+  final Iterable<String>? autofillHints;
+  final TextEditingController? controller;
+
   const LoginPasswordTextForm({
     super.key,
     this.hidePassword = true, // Default to hiding password
     this.suffixIcon,
     this.prefixIcon,
     this.hintText,
-    this.onSave, this.autofillHints, this.controller,
+    this.onSave,
+    this.autofillHints,
+    this.controller,
   });
 
   @override
@@ -41,22 +42,21 @@ class MyTextFormFieldState extends State<LoginPasswordTextForm> {
   @override
   Widget build(BuildContext context) {
     return MyTextFormField(
-      controller:widget.controller ,
+      controller: widget.controller,
       onSaved: widget.onSave,
       autofillHints: widget.autofillHints,
       validator: ValidatorService.passwordValidator,
       prefixIcon: Icon(Icons.lock_outline),
       labelText: AppStrings.passwordLabelText,
       hintText: AppStrings.passwordHintText,
-     hidePassword:   widget.hidePassword ? !_isPasswordVisible : false, //
+      hidePassword: widget.hidePassword ? !_isPasswordVisible : false,
+      //
       suffixIcon: widget.hidePassword
           ? PasswordSuffixIconWidget(
-        isShowPassword: _isPasswordVisible,
-        onTap: _togglePasswordVisibility,
-      )
-          : widget.suffixIcon,// Toggle password visibility
-
-
+              isShowPassword: _isPasswordVisible,
+              onTap: _togglePasswordVisibility,
+            )
+          : widget.suffixIcon, // Toggle password visibility
     );
   }
 }
@@ -76,10 +76,9 @@ class PasswordSuffixIconWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Icon(
-        isShowPassword ? CupertinoIcons.eye : CupertinoIcons.eye_slash,
-        color: Colors.grey,
-        size: 25.sp
-      ),
+          isShowPassword ? CupertinoIcons.eye : CupertinoIcons.eye_slash,
+          color: Colors.grey,
+          size: 25.sp),
     );
   }
 }

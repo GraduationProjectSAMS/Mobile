@@ -11,13 +11,10 @@ class SignUpTextForms extends StatelessWidget {
     super.key,
   });
 
-
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-
         MyTextFormField(
           validator: ValidatorService.userNameValidator,
           prefixIcon: Icon(Icons.person_outline),

@@ -13,9 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.login,
-   onGenerateRoute: RouteGenerator.generateRoute,
+      onGenerateRoute: RouteGenerator.generateRoute,
       theme: AppTheme.lightTheme,
-
     );
   }
 }

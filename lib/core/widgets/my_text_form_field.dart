@@ -16,10 +16,11 @@ class MyTextFormField extends StatelessWidget {
     this.enabled,
     this.readOnly = false,
     this.autofocus = false,
-    this.autofillHints, this.onSaved,
+    this.autofillHints,
+    this.onSaved,
   });
 
-  final String ?hintText;
+  final String? hintText;
   final String? labelText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -28,37 +29,35 @@ class MyTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final TextInputType keyboardType;
-  final VoidCallback ? suffixIconOnPressed;
+  final VoidCallback? suffixIconOnPressed;
   final bool? enabled;
   final bool readOnly;
   final bool autofocus;
- final Iterable<String>? autofillHints;
+  final Iterable<String>? autofillHints;
   final void Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       readOnly: readOnly,
-
-      autofillHints:autofillHints ,
+      autofillHints: autofillHints,
       enabled: enabled,
-      autofocus:autofocus ,
+      autofocus: autofocus,
       onTapOutside: (event) {
         FocusManager.instance.primaryFocus?.unfocus();
       },
-      keyboardType:keyboardType ,
+      keyboardType: keyboardType,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: controller,
       validator: validator,
       onChanged: onChanged,
-      onSaved:onSaved ,
+      onSaved: onSaved,
       obscureText: hidePassword,
       decoration: InputDecoration(
           hintText: hintText,
           labelText: labelText,
           prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon
-      ),
+          suffixIcon: suffixIcon),
     );
   }
 }

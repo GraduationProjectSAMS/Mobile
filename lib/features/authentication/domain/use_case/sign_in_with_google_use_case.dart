@@ -3,7 +3,7 @@ import 'package:graduation_project/features/authentication/domain/repo/authentic
 
 import '../../../../core/errors/failure.dart';
 
-class SignInWithGoogleUseCase{
+class SignInWithGoogleUseCase {
   final AuthenticationRepo _authenticationRepo;
 
   SignInWithGoogleUseCase(this._authenticationRepo);

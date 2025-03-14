@@ -7,8 +7,10 @@ import '../../../../core/utilities/resources/app_styles.dart';
 
 class GoogleLoginButton extends StatelessWidget {
   const GoogleLoginButton({super.key, required this.onTap, required this.text});
-final VoidCallback onTap;
-final String text;
+
+  final VoidCallback onTap;
+  final String text;
+
   @override
   Widget build(BuildContext context) {
     return MaterialButton(

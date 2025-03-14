@@ -1,10 +1,13 @@
 import 'dart:developer';
+
 import 'package:dio/dio.dart';
+
 import '../utilities/resources/app_strings.dart';
 import 'failure.dart';
 
 class ServerFailure extends Failure {
   final int? statusCode;
+
   ServerFailure(super.errorMessage, {this.statusCode});
 
   factory ServerFailure.fromDioError(DioException dioException) {
@@ -14,9 +17,11 @@ class ServerFailure extends Failure {
       case DioExceptionType.receiveTimeout:
         return ServerFailure(AppStrings.receiveTimeoutFromApiServer);
       case DioExceptionType.badCertificate:
-        return ServerFailure( AppStrings.incorrectCertificate);
+        return ServerFailure(AppStrings.incorrectCertificate);
       case DioExceptionType.badResponse:
-        return ServerFailure.fromResponse( dioException.response?.statusCode??0, dioException.response?.data);
+        return ServerFailure.fromResponse(
+            dioException.response?.statusCode ?? 0,
+            dioException.response?.data);
       case DioExceptionType.cancel:
         return ServerFailure(AppStrings.cancelFromApiServer);
       case DioExceptionType.connectionError:
@@ -24,20 +29,22 @@ class ServerFailure extends Failure {
       case DioExceptionType.sendTimeout:
         return ServerFailure(AppStrings.sendTimeoutFromApiServer);
       case DioExceptionType.unknown:
-        return  ServerFailure(AppStrings.somethingWentWrongTryAgain);
+        return ServerFailure(AppStrings.somethingWentWrongTryAgain);
       default:
         return ServerFailure(AppStrings.somethingWentWrongTryAgain);
     }
   }
 
   factory ServerFailure.fromResponse(int errorNumber, dynamic response) {
-
     log("********************************************************************");
-   log(response["message"].toString());
+    log(response["message"].toString());
     log("**********************************************************************");
-    if (errorNumber == 400 || errorNumber == 401 || errorNumber == 403 || errorNumber ==422) {
-
-      return ServerFailure(response["message"].toString(),statusCode: errorNumber);
+    if (errorNumber == 400 ||
+        errorNumber == 401 ||
+        errorNumber == 403 ||
+        errorNumber == 422) {
+      return ServerFailure(response["message"].toString(),
+          statusCode: errorNumber);
     } else if (errorNumber == 404) {
       return ServerFailure(AppStrings.methodNotFound);
     } else if (errorNumber == 500) {

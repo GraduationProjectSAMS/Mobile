@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/utilities/resources/app_strings.dart';
 import '../../../../core/utilities/services/validator_service.dart';
 import '../../../../core/widgets/height_sized_box.dart';
@@ -22,7 +23,9 @@ class LoginTextFormFields extends StatelessWidget {
             hintText: AppStrings.emailHintText,
           ),
           HeightSizedBox(height: 2),
-          LoginPasswordTextForm(autofillHints: [AutofillHints.password],),
+          LoginPasswordTextForm(
+            autofillHints: [AutofillHints.password],
+          ),
         ],
       ),
     );

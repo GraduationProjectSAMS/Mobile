@@ -19,8 +19,7 @@ abstract class AppTheme {
               fontSize: 26.0,
               fontWeight: FontWeight.bold,
               color: AppColors.black),
-          bodyLarge:
-              const TextStyle(fontSize: 14.0, color: AppColors.black),
+          bodyLarge: const TextStyle(fontSize: 14.0, color: AppColors.black),
         )
         .apply(
           fontFamily: AppConstants.englishFont,

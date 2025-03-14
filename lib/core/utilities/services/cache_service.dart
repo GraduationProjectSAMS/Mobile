@@ -1,13 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheService {
-
   static late SharedPreferences _sharedPreferences;
-  static String ?token;
+  static String? token;
+
   static Future<void> init() async {
     _sharedPreferences = await SharedPreferences.getInstance();
   }
-
 
   static dynamic getData({required String key}) {
     return _sharedPreferences.get(key);
@@ -28,13 +27,13 @@ class CacheService {
       return await _sharedPreferences.setDouble(key, value);
     }
     return null;
-
   }
-  static Future<bool?> removeData({required String key})async{
+
+  static Future<bool?> removeData({required String key}) async {
     return await _sharedPreferences.remove(key);
   }
-  static Future<bool?> clear()async{
+
+  static Future<bool?> clear() async {
     return await _sharedPreferences.clear();
   }
 }
-

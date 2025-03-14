@@ -18,10 +18,11 @@ class LoginSignInButtons extends StatelessWidget {
         HeightSizedBox(height: 2),
         GoogleLoginButton(
           onTap: () async {
-          await getIt.get<SignInWithGoogleUseCase>().call();
+            await getIt.get<SignInWithGoogleUseCase>().call();
           },
           text: AppStrings.signInWithGoogle,
-        ),],
+        ),
+      ],
     );
   }
 }
