@@ -1,68 +1,76 @@
 abstract class AppStrings {
   /// Failure strings
-  static const String checkConnection = "Check Internet Connection";
-  static const String connectionTimeoutFromApiServer =
+  static const  checkConnection = "Check Internet Connection";
+  static const  connectionTimeoutFromApiServer =
       "Connection time out from ApiServer";
-  static const String receiveTimeoutFromApiServer =
+  static const  receiveTimeoutFromApiServer =
       "Receive timeout from ApiServer";
-  static const String incorrectCertificate = "An incorrect certificate";
-  static const String cancelFromApiServer = "Request canceled";
-  static const String sendTimeoutFromApiServer = "Send timeout from ApiServer";
-  static const String somethingWentWrongTryAgain =
+  static const  incorrectCertificate = "An incorrect certificate";
+  static const  cancelFromApiServer = "Request canceled";
+  static const  sendTimeoutFromApiServer = "Send timeout from ApiServer";
+  static const  somethingWentWrongTryAgain =
       "Oops, something went wrong. Please try again later";
-  static const String methodNotFound = "Method not found";
-  static const String internalServerError = "Internal server error";
-  static const String oopsTryAgain = "Oops, try again";
+  static const  methodNotFound = "Method not found";
+  static const  internalServerError = "Internal server error";
+  static const  oopsTryAgain = "Oops, try again";
 
   /// route strings
-  static const String noRoute = "noRoute Found";
+  static const  noRoute = "noRoute Found";
 
   /// login screen strings
   /// onboarding screen strings
-  static const String skip = "Skip";
-  static const String next = "Next";
+  static const  skip = "Skip";
+  static const  next = "Next";
   static const signInWithGoogle = "Sign in with Google";
   static const signUpWithGoogle = "Sign Up with Google";
-  static const String onboardingTitle1 = "E Shopping";
-  static const String onboardingTitle2 = "Delivery on the way";
-  static const String onboardingTitle3 = "Delivery Arrived";
-  static const String onboardingSubTitle1 = "Explore top products and offers";
-  static const String onboardingSubTitle2 = "Get your order by speed delivery";
-  static const String onboardingSubTitle3 = "Order is arrived at your Place";
-  static const String welcomeBack = "Welcome Back";
-  static const String loginMassage =
+  static const  onboardingTitle1 = "E Shopping";
+  static const  onboardingTitle2 = "Delivery on the way";
+  static const  onboardingTitle3 = "Delivery Arrived";
+  static const  onboardingSubTitle1 = "Explore top products and offers";
+  static const  onboardingSubTitle2 = "Get your order by speed delivery";
+  static const  onboardingSubTitle3 = "Order is arrived at your Place";
+  /// auth
+  static const  welcomeBack = "Welcome Back";
+  static const  loginMassage =
       "Sign in with your email and password or continue with Google";
-  static const String emailHintText = "Enter your email";
-  static const String emailLabelText = "Email";
-  static const String nameHintText = "Enter your name";
-  static const String searchLabelText = "Search";
-  static const String searchHintText = "Search here";
-  static const String nameLabelText = "Name";
-  static const String passwordHintText = "Enter your password";
-  static const String passwordLabelText = "password";
-  static const String forgotPassword = "Forget Password";
-  static const String login = "Sign In";
-  static const String signUp = "Sign Up";
-  static const String rememberMe = "Remember Me";
-  static const String haveAccount = "already have an account?";
-  static const String noAccount = "Don't Have an account?";
-  static const String continuePassword = "Continue";
-  static const String registerAccount = "Register Account";
-  static const String phoneNumberLabel = "phone number";
-  static const String phoneNumberHint = " Enter your phone number";
-  static const String loginSuccess = "Login Success";
-  static const String goodDay = "Good Day For Shopping";
-  static const String popularCategorises = "Popular Categorises";
-  static const String popularProducts = "Popular Products";
-  static const String viewAll = "View all";
-  static const String myAccount = "My Account";
-  static const String notification = "Notifications";
-  static const String logout = "Log Out";
-  static const String setting = "Setting";
-  static const String helpCenter = "HelpCenter";
-  static const String signUpMassage =
+  static const  emailHintText = "Enter your email";
+  static const  emailLabelText = "Email";
+  static const  nameHintText = "Enter your name";
+  static const  searchLabelText = "Search";
+  static const  searchHintText = "Search here";
+  static const  nameLabelText = "Name";
+  static const  passwordHintText = "Enter your password";
+  static const  passwordLabelText = "password";
+  static const  forgotPassword = "Forget Password";
+  static const  login = "Sign In";
+  static const  signUp = "Sign Up";
+  static const  rememberMe = "Remember Me";
+  static const  haveAccount = "already have an account?";
+  static const  noAccount = "Don't Have an account?";
+  static const  continuePassword = "Continue";
+  static const  registerAccount = "Register Account";
+  static const  phoneNumberLabel = "phone number";
+  static const  phoneNumberHint = " Enter your phone number";
+  static const  loginSuccess = "Login Success";
+  /// home
+  static const home = "Home";
+  static const products = "Products";
+  static const favorites = "Favorites";
+  static const profile = "Profile";
+  static const  offers = "Offers";
+  static const  goodDay = "Good Day For Shopping";
+
+  static const  popularCategorises = "Popular Categorises";
+  static const  popularProducts = "Popular Products";
+  static const  viewAll = "View all";
+  static const  myAccount = "My Account";
+  static const  notification = "Notifications";
+  static const  logout = "Log Out";
+  static const  setting = "Setting";
+  static const  helpCenter = "HelpCenter";
+  static const  signUpMassage =
       "Complete your details or continue with social media";
-  static const String forgotPasswordMassage =
+  static const  forgotPasswordMassage =
       "Please enter your email and we will send you a link to return to your account";
   static const noInternet = "NO INTERNET CONNECTION";
   static const update = "update";
@@ -72,15 +80,15 @@ abstract class AppStrings {
   static const addToCard = "Add To Card";
   static const logoutText = "Are you sure you want to log out";
   static const provideItLater = "we will provide it later";
-  static const String notFount = "NotFound";
-  static const String myCart = "My Cart";
+  static const  notFount = "NotFound";
+  static const  myCart = "My Cart";
 
-  static const String orderSubtotal = "Order Subtotal";
+  static const  orderSubtotal = "Order Subtotal";
 
-  static const String discount = "Discount";
-  static const String shipping = "Shipping";
-  static const String total = "Total";
-  static const String thankYou = "Thank you";
+  static const  discount = "Discount";
+  static const  shipping = "Shipping";
+  static const  total = "Total";
+  static const  thankYou = "Thank you";
 
-  static const String transactionSuccessful = "Your transaction was successful";
+  static const  transactionSuccessful = "Your transaction was successful";
 }

@@ -17,7 +17,6 @@ class LoginTextFormFields extends StatelessWidget {
           MyTextFormField(
             autofillHints: const [AutofillHints.email],
             validator: ValidatorService.emailValidator,
-            autofocus: true,
             prefixIcon: Icon(Icons.email_outlined),
             labelText: AppStrings.emailLabelText,
             hintText: AppStrings.emailHintText,

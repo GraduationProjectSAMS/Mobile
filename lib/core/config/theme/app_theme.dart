@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/config/theme/shimmer_theme_data.dart';
 import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 
 import '../../utilities/resources/app_colors.dart';
@@ -8,10 +9,14 @@ import 'my_text_form_field_theme.dart';
 
 abstract class AppTheme {
   static ThemeData lightTheme = ThemeData.light().copyWith(
+    extensions: [
+      ShimmerThemeData.light,
+    ],
     splashColor: AppColors.white,
-    primaryColor: AppColors.primaryColor,
-    bottomNavigationBarTheme: MyBottomNavigationBarTheme.light,
-    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+    primaryColor: AppColors.primary,
+    navigationBarTheme: MyBottomNavigationBarTheme.light,
+
+    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
     splashFactory: InkSplash.splashFactory,
     scaffoldBackgroundColor: AppColors.white,
     textTheme: ThemeData.light()

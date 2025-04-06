@@ -9,7 +9,7 @@ abstract class ButtonsTheme {
       ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: AppColors.primary,
       textStyle: AppStyles.textStyle14,
       foregroundColor: AppColors.white,
       minimumSize: const Size.fromHeight(

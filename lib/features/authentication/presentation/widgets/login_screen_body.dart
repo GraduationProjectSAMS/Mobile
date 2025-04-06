@@ -20,28 +20,30 @@ class LoginScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Center(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppConstants.kPadding),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            WelcomeText(
-              text1: AppStrings.welcomeBack,
-              text2: AppStrings.loginMassage,
-            ),
-            HeightSizedBox(height: 6),
-            LoginTextFormFields(),
-            HeightSizedBox(height: 1),
-            LoginRememberMeWithCheckBox(),
-            HeightSizedBox(height: 1),
-            LoginSignInButtons(),
-            HeightSizedBox(height: 1.5),
-            IsUserSignInWidget(
-                isLogin: false,
-                onTap: () {
-                  context.navigateTo(pageName: AppRoutes.signUpRoute);
-                }),
-          ],
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: AppConstants.kPadding),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              WelcomeText(
+                text1: AppStrings.welcomeBack,
+                text2: AppStrings.loginMassage,
+              ),
+              HeightSizedBox(height: 6),
+              LoginTextFormFields(),
+              HeightSizedBox(height: 1),
+              LoginRememberMeWithCheckBox(),
+              HeightSizedBox(height: 1),
+              LoginSignInButtons(),
+              HeightSizedBox(height: 1.5),
+              IsUserSignInWidget(
+                  isLogin: false,
+                  onTap: () {
+                    context.navigateTo(pageName: AppRoutes.signUpRoute);
+                  }),
+            ],
+          ),
         ),
       ),
     ));

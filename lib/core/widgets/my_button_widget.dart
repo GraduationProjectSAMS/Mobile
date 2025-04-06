@@ -31,7 +31,7 @@ class MyTextButton extends StatelessWidget {
         onPressed: onTap,
         child: Text(
           text,
-          style: AppStyles.textStyle12.copyWith(color: AppColors.primaryColor),
+          style: AppStyles.textStyle12.copyWith(color: AppColors.primary),
         ));
   }
 }

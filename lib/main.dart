@@ -5,6 +5,5 @@ import 'app/my_app.dart';
 
 void main() {
   setupDependencies();
-
   runApp(const MyApp());
 }

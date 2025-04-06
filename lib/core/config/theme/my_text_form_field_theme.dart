@@ -14,7 +14,7 @@ abstract class TextFormTheme {
     disabledBorder: TextFormTheme.setOutlineInputBorder(color: AppColors.black),
     enabledBorder: TextFormTheme.setOutlineInputBorder(color: AppColors.black),
     focusedBorder: TextFormTheme.setOutlineInputBorder(
-        color: AppColors.primaryColor, width: 2),
+        color: AppColors.primary, width: 2),
     errorBorder: TextFormTheme.setOutlineInputBorder(
       color: AppColors.red,
     ),

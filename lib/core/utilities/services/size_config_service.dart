@@ -4,6 +4,7 @@ abstract class SizeConfigService {
   static double width = 0, height = 0;
   static const maxMobileWidth = 600;
 
+
   static void init(BuildContext context) {
     Orientation orientation = MediaQuery.of(context).orientation;
     if (orientation == Orientation.landscape) {
@@ -31,6 +32,17 @@ abstract class SizeConfigService {
       return SizeConfigService.width / 400;
     } else {
       return SizeConfigService.width / 600;
+    }
+  }
+  static int setListCount(BuildContext context) {
+    final double width = MediaQuery.sizeOf(context).width;
+   if(width <600){
+      return 2;
+    }else if(width <1000){
+      return 3;
+   }
+    else {
+      return 4;
     }
   }
 }

@@ -11,7 +11,10 @@ final GetIt getIt = GetIt.instance;
 void setupDependencies() {
   /// Services
   getIt.registerLazySingleton<GoogleSignInService>(
-      () => GoogleSignInService(GoogleSignIn()));
+      () => GoogleSignInService(GoogleSignIn(
+          serverClientId: "734884605139-lcihq2dmt6osd3idolck1oaeee4uuci9.apps.googleusercontent.com",
+        scopes: ['email'],
+      )));
 
   /// Repositories
   getIt.registerLazySingleton<AuthenticationRepoImpl>(() =>
