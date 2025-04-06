@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/core/utilities/resources/app_assets.dart';
 import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/widgets/height_sized_box.dart';
@@ -26,6 +27,12 @@ class LoginScreenBody extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset(
+               AppAssets.appLogo,
+                height: 150.sp,
+                width: 150.sp,
+              ),
+              HeightSizedBox(height: 2),
               WelcomeText(
                 text1: AppStrings.welcomeBack,
                 text2: AppStrings.loginMassage,

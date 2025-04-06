@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../features/authentication/presentation/screens/login_screen.dart';
 import '../../../features/authentication/presentation/screens/sign_up_screen.dart';
 import '../../../features/home/presentation/screens/home_layout.dart';
+import '../../../features/product_details/presentation/screens/product_details_screen.dart';
 
 abstract class AppRoutes {
   static const login = '/';
@@ -11,6 +12,7 @@ abstract class AppRoutes {
   static const onBoardingRoute = '/onBoarding';
   static const signUpRoute = '/signUp';
   static const homeLayout = '/homeLayout';
+  static const productDetails = '/productDetails';
 }
 
 abstract class RouteGenerator {
@@ -24,6 +26,9 @@ abstract class RouteGenerator {
         return MaterialPageRoute(
 
             builder: (_) => HomeLayout());
+        case AppRoutes.productDetails:
+        return MaterialPageRoute(
+            builder: (_) => ProductDetailsScreen());
       default:
         return _errorRoute();
     }

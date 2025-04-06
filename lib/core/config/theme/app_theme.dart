@@ -18,7 +18,7 @@ abstract class AppTheme {
 
     colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
     splashFactory: InkSplash.splashFactory,
-    scaffoldBackgroundColor: AppColors.white,
+    scaffoldBackgroundColor: AppColors.offWhite,
     textTheme: ThemeData.light()
         .textTheme
         .copyWith(

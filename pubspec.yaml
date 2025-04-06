@@ -26,6 +26,7 @@ dependencies:
   cached_network_image: ^3.4.1
   skeletonizer: ^1.4.3
   flutter_staggered_animations: ^1.1.1
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -46,7 +47,7 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
-    - assets/json/
+    #- assets/json/
 
 
   fonts:

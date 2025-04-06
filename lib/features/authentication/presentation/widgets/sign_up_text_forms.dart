@@ -28,7 +28,6 @@ class SignUpTextForms extends StatelessWidget {
           labelText: AppStrings.emailLabelText,
           hintText: AppStrings.emailHintText,
         ),
-        SignUpTextForms(),
         HeightSizedBox(height: 2),
         LoginPasswordTextForm(),
       ],
