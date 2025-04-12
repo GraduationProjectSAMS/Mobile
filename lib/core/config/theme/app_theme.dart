@@ -12,10 +12,16 @@ abstract class AppTheme {
     extensions: [
       ShimmerThemeData.light,
     ],
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android:
+            FadeForwardsPageTransitionsBuilder(backgroundColor: Colors.white),
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      },
+    ),
     splashColor: AppColors.white,
     primaryColor: AppColors.primary,
     navigationBarTheme: MyBottomNavigationBarTheme.light,
-
     colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
     splashFactory: InkSplash.splashFactory,
     scaffoldBackgroundColor: AppColors.offWhite,

@@ -9,18 +9,21 @@ abstract class TextFormTheme {
     floatingLabelBehavior: FloatingLabelBehavior.always,
     suffixIconColor: AppColors.grey,
     prefixIconColor: AppColors.grey,
+    filled: true,
+    fillColor: AppColors.white,
     hintStyle: TextStyle(fontSize: 13.sp),
     labelStyle: AppStyles.textStyle14.copyWith(color: AppColors.black),
-    disabledBorder: TextFormTheme.setOutlineInputBorder(color: AppColors.black),
-    enabledBorder: TextFormTheme.setOutlineInputBorder(color: AppColors.black),
-    focusedBorder: TextFormTheme.setOutlineInputBorder(
-        color: AppColors.primary, width: 2),
+    disabledBorder: TextFormTheme.setOutlineInputBorder(color: AppColors.grey),
+    enabledBorder: TextFormTheme.setOutlineInputBorder(color: AppColors.grey),
+    focusedBorder:
+        TextFormTheme.setOutlineInputBorder(color: AppColors.primary, width: 2),
     errorBorder: TextFormTheme.setOutlineInputBorder(
       color: AppColors.red,
     ),
     focusedErrorBorder:
         TextFormTheme.setOutlineInputBorder(color: AppColors.red, width: 2),
-    errorStyle: AppStyles.textStyle15.copyWith(color: AppColors.red, fontSize: 12.sp),
+    errorStyle:
+        AppStyles.textStyle15.copyWith(color: AppColors.red, fontSize: 12.sp),
   );
 
   static OutlineInputBorder setOutlineInputBorder(

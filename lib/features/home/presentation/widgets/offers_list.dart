@@ -15,14 +15,18 @@ class OffersList extends StatelessWidget {
         child: ListView.separated(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 5),
           scrollDirection: Axis.horizontal,
-          itemBuilder: (BuildContext context, int index) =>ListItemAnimation(
+          itemBuilder: (BuildContext context, int index) => ListItemAnimation(
             index: index,
             isHorizontal: true,
             child: ProductItem(
-
               width: 20.hR,
             ),
-          ), separatorBuilder: ( _,  __) =>SizedBox(width: 5,), itemCount: 20,),
+          ),
+          separatorBuilder: (_, __) => SizedBox(
+            width: 5,
+          ),
+          itemCount: 20,
+        ),
       ),
     );
   }

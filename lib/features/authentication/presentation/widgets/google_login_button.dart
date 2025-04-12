@@ -16,6 +16,7 @@ class GoogleLoginButton extends StatelessWidget {
     return MaterialButton(
       onPressed: onTap,
       padding: EdgeInsets.symmetric(vertical: 10),
+      color: AppColors.white,
       shape: RoundedRectangleBorder(
         side: BorderSide(
           color: AppColors.grey,

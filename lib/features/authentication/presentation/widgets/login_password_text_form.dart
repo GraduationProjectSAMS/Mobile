@@ -11,9 +11,12 @@ class LoginPasswordTextForm extends StatefulWidget {
   final Widget? suffixIcon; // Custom suffix icon
   final Widget? prefixIcon; // Custom prefix icon
   final String? hintText; // Hint text for the text field
-  final ValueChanged<String?>? onSave; // Callback for text changes
+  final ValueChanged<String?>? onSaved; // Callback for text changes
   final Iterable<String>? autofillHints;
   final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final void Function(String)? onFieldSubmitted;
+  final TextInputAction? textInputAction;
 
   const LoginPasswordTextForm({
     super.key,
@@ -21,9 +24,12 @@ class LoginPasswordTextForm extends StatefulWidget {
     this.suffixIcon,
     this.prefixIcon,
     this.hintText,
-    this.onSave,
+    this.onSaved,
     this.autofillHints,
     this.controller,
+    this.focusNode,
+    this.onFieldSubmitted,
+    this.textInputAction,
   });
 
   @override
@@ -42,8 +48,12 @@ class MyTextFormFieldState extends State<LoginPasswordTextForm> {
   @override
   Widget build(BuildContext context) {
     return MyTextFormField(
+      focusNode: widget.focusNode,
+      textInputAction: widget.textInputAction,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      keyboardType: TextInputType.visiblePassword,
       controller: widget.controller,
-      onSaved: widget.onSave,
+      onSaved: widget.onSaved,
       autofillHints: widget.autofillHints,
       validator: ValidatorService.passwordValidator,
       prefixIcon: Icon(Icons.lock_outline),

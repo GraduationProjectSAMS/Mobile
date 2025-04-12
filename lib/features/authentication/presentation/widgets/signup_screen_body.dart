@@ -30,7 +30,6 @@ class SignupScreenBody extends StatelessWidget {
 
               HeightSizedBox(height: 6),
               SignUpTextForms(),
-
               HeightSizedBox(
                 height: space,
               ),

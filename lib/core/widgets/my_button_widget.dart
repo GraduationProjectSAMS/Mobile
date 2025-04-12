@@ -8,19 +8,36 @@ import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 import '../utilities/resources/icon_broken.dart';
 
 class MyButton extends StatelessWidget {
-  const MyButton({super.key, required this.onPressed, required this.text});
+  const MyButton(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      this.isLoading = false});
 
+  final bool isLoading;
   final VoidCallback onPressed;
   final String text;
+
+  Widget get loading => SizedBox(
+        height: 20,
+        width: 20,
+        child: const Center(
+          child: CircularProgressIndicator(
+            color: AppColors.white,
+          ),
+        ),
+      );
+
+  Widget get textWidget => Text(
+        text,
+        style: AppStyles.textStyle18,
+      );
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: AppStyles.textStyle18,
-        ));
+        onPressed: isLoading ? () {} : onPressed,
+        child: isLoading ? loading : textWidget);
   }
 }
 
@@ -62,7 +79,7 @@ class MyBackButtonLightMode extends StatelessWidget {
       elevation: 3,
       child: GestureDetector(
         onTap: onTap ??
-                () {
+            () {
               Feedback.forTap(context);
               context.pop();
             },
@@ -128,13 +145,14 @@ class ButtonWidget extends StatelessWidget {
 
   final Color? color;
   final IconData? icon;
-  final double ? borderRadius;
+  final double? borderRadius;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,shape:  RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(borderRadius?? 15)),
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 15)),
       ),
       child: SizedBox(
         height: height,
@@ -142,62 +160,60 @@ class ButtonWidget extends StatelessWidget {
         child: ElevatedButton(
           onPressed: isLoading ? () {} : onPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: color,shape:  RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(borderRadius?? 15)),
+            backgroundColor: color,
+            shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.all(Radius.circular(borderRadius ?? 15)),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
           ),
           child: isTextFitted
               ? FittedBox(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  label,
-                  style: TextStyle(
-                    color: labelColor ?? AppColors.white,
-                    fontSize: labelFontSize ??
-                        14.sp,
-                    fontWeight: FontWeight.w500,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        label,
+                        style: TextStyle(
+                          color: labelColor ?? AppColors.white,
+                          fontSize: labelFontSize ?? 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      if (isShowArrow)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                          child: Icon(
+                            icon ?? Icons.arrow_forward,
+                            color: Colors.white,
+                            size: 20.sp,
+                          ),
+                        ),
+                    ],
                   ),
-                ),
-                if (isShowArrow)
-                  Padding(
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 5.0),
-                    child: Icon(
-                      icon ?? Icons.arrow_forward,
-                      color: Colors.white,
-                      size: 20.sp,
-                    ),
-                  ),
-              ],
-            ),
-          )
+                )
               : Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                label,
-                style: TextStyle(
-                  color: labelColor ?? AppColors.white,
-                  fontSize:
-                  labelFontSize ?? 14.sp,
-                  fontWeight: FontWeight.w500,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      label,
+                      style: TextStyle(
+                        color: labelColor ?? AppColors.white,
+                        fontSize: labelFontSize ?? 14.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    if (isShowArrow)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        child: Icon(
+                          icon ?? Icons.arrow_forward,
+                          color: Colors.white,
+                          size: 20.sp,
+                        ),
+                      ),
+                  ],
                 ),
-              ),
-              if (isShowArrow)
-                Padding(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 5.0),
-                  child: Icon(
-                    icon ?? Icons.arrow_forward,
-                    color: Colors.white,
-                    size: 20.sp,
-                  ),
-                ),
-            ],
-          ),
         ),
       ),
     );

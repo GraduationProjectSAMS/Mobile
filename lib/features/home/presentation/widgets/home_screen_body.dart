@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/features/home/presentation/widgets/offers_list.dart';
+
 import 'banner_list_with_indicator.dart';
 import 'home_app_bar.dart';
 import 'home_text_title.dart';
@@ -11,10 +12,11 @@ class HomeScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [  Padding(
-        padding: const EdgeInsets.all(20),
-        child: HomeAppBar(),
-      ),
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: HomeAppBar(),
+        ),
         Expanded(
           child: SingleChildScrollView(
             child: Column(
@@ -22,18 +24,16 @@ class HomeScreenBody extends StatelessWidget {
               children: [
                 BannerListWithIndicator(),
                 HomeTextTitle(
-                title:   'Newly Added',
-                        ),
+                  title: 'Newly Added',
+                ),
                 NewlyAddedList(),
                 HomeTextTitle(
-                 title:  'Offers',
-
+                  title: 'Offers',
                 ),
                 OffersList(),
                 SizedBox(
                   height: 20,
                 )
-
               ],
             ),
           ),
@@ -42,4 +42,3 @@ class HomeScreenBody extends StatelessWidget {
     );
   }
 }
-

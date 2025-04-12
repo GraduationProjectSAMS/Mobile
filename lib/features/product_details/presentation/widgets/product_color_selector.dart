@@ -44,7 +44,6 @@ class _ProductColorSelectorState extends State<ProductColorSelector> {
               border: isSelected
                   ? Border.all(color: Colors.brown.shade800, width: 2)
                   : null,
-
             ),
             child: CircleAvatar(
               radius: 12,

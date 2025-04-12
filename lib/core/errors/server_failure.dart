@@ -30,13 +30,12 @@ class ServerFailure extends Failure {
         return ServerFailure(AppStrings.sendTimeoutFromApiServer);
       case DioExceptionType.unknown:
         return ServerFailure(AppStrings.somethingWentWrongTryAgain);
-
     }
   }
 
   factory ServerFailure.fromResponse(int errorNumber, dynamic response) {
     log("********************************************************************");
-    log(response["message"].toString());
+    log(response.toString());
     log("**********************************************************************");
     if (errorNumber == 400 ||
         errorNumber == 401 ||

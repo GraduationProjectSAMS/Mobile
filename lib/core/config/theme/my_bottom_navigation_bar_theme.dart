@@ -3,10 +3,9 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 
 import '../../utilities/resources/app_colors.dart';
 
-class MyBottomNavigationBarTheme{
+class MyBottomNavigationBarTheme {
   static var light = NavigationBarThemeData(
-    backgroundColor:AppColors.white,
-
+    backgroundColor: AppColors.white,
     labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
     labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
       if (states.contains(WidgetState.selected)) {

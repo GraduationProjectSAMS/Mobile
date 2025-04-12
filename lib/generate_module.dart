@@ -96,7 +96,8 @@ class ${formattedClassName}ScreenBody extends StatelessWidget {
   generateFiles(files);
   updateDependencyInjection(formattedClassName, formattedFileName);
 
-  print('✅ Module "$moduleName" structure has been generated and registered successfully!');
+  print(
+      '✅ Module "$moduleName" structure has been generated and registered successfully!');
 }
 
 void createFolders(List<String> folders) {
@@ -154,11 +155,13 @@ import 'package:learnovia_mobile/features/$fileName/data/repositories/${fileName
 
   // Insert new imports at the top of the file if they don't already exist
   if (!content.contains(newImports.trim())) {
-    content = content.replaceFirst('import \'package:dio/dio.dart\';', 'import \'package:dio/dio.dart\';\n$newImports');
+    content = content.replaceFirst('import \'package:dio/dio.dart\';',
+        'import \'package:dio/dio.dart\';\n$newImports');
   }
 
   // Find the last `getIt.registerLazySingleton` statement
-  RegExp lastRepoRegistration = RegExp(r'getIt\.registerLazySingleton<.*>\(.*\);');
+  RegExp lastRepoRegistration =
+      RegExp(r'getIt\.registerLazySingleton<.*>\(.*\);');
   Iterable<RegExpMatch> matches = lastRepoRegistration.allMatches(content);
 
   if (matches.isNotEmpty) {
@@ -170,15 +173,18 @@ import 'package:learnovia_mobile/features/$fileName/data/repositories/${fileName
   getIt.registerLazySingleton<${className}RepoImpl>(()=> ${className}RepoImpl(${className}RemoteRepoImpl(getIt.get<ApiService>())));''';
 
     // Insert the new repository registration after the last one found
-    content = '${content.substring(0, insertPosition)}\n$newRepoRegistration${content.substring(insertPosition)}';
+    content =
+        '${content.substring(0, insertPosition)}\n$newRepoRegistration${content.substring(insertPosition)}';
   } else {
     // Fallback: If no `getIt.registerLazySingleton` is found, add at the end of the setup method
     String newRepoRegistration = '''
   getIt.registerLazySingleton<${className}RepoImpl>(()=> ${className}RepoImpl(${className}RemoteRepoImpl(getIt.get<ApiService>())));''';
 
-    content = content.replaceFirst('void setup() {', 'void setup() {\n$newRepoRegistration');
+    content = content.replaceFirst(
+        'void setup() {', 'void setup() {\n$newRepoRegistration');
   }
 
   file.writeAsStringSync(content);
-  print('🔗 Registered ${className}RepoImpl and added imports in dependency_injection.dart');
+  print(
+      '🔗 Registered ${className}RepoImpl and added imports in dependency_injection.dart');
 }

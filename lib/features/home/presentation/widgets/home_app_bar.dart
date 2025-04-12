@@ -8,42 +8,54 @@ import '../../../../core/utilities/resources/app_strings.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
-static const icons = [IconBroken.Notification,
-  IconBroken.Heart,
-  IconBroken.Buy
-];
-static const titles = [
-  AppStrings.notification,
-  AppStrings.favorites,
-  AppStrings.myCart,
-];
+
+  static const icons = [
+    IconBroken.Notification,
+    IconBroken.Heart,
+    IconBroken.Buy
+  ];
+  static const titles = [
+    AppStrings.notification,
+    AppStrings.favorites,
+    AppStrings.myCart,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset(AppAssets.appLogo,
-        height: 50.sp,
+        Image.asset(
+          AppAssets.appLogo,
+          height: 50.sp,
           width: 50.sp,
         ),
         Spacer(),
-      ...List.generate(icons.length, (index)=>AppBarIconItem(icon: icons[index],onPressed: (){},tooltip: titles[index],))
-
+        ...List.generate(
+            icons.length,
+            (index) => AppBarIconItem(
+                  icon: icons[index],
+                  onPressed: () {},
+                  tooltip: titles[index],
+                ))
       ],
     );
   }
 }
+
 class AppBarIconItem extends StatelessWidget {
-  const AppBarIconItem({super.key, required this.icon, required this.onPressed, this.tooltip});
-final IconData icon;
-final VoidCallback onPressed;
-final String? tooltip ;
+  const AppBarIconItem(
+      {super.key, required this.icon, required this.onPressed, this.tooltip});
+
+  final IconData icon;
+  final VoidCallback onPressed;
+  final String? tooltip;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: IconButton(
-tooltip:tooltip ,
-
+        tooltip: tooltip,
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all(AppColors.offPrimary),
           shape: WidgetStateProperty.all(
@@ -52,7 +64,10 @@ tooltip:tooltip ,
             ),
           ),
         ),
-        icon: Icon(icon,size: 28.sp,),
+        icon: Icon(
+          icon,
+          size: 28.sp,
+        ),
         onPressed: onPressed,
       ),
     );

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/utilities/services/dependency_injection_service.dart';
+import 'package:graduation_project/features/authentication/presentation/manager/login_cubit/login_cubit.dart';
 
+import '../../domain/use_case/login_with_email_and_password_use_case.dart';
+import '../../domain/use_case/sign_in_with_google_use_case.dart';
 import '../widgets/login_screen_body.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -7,8 +12,13 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: LoginScreenBody(),
+    return BlocProvider(
+      create: (context) => LoginCubit(
+          getIt.get<LoginWithEmailAndPasswordUseCase>(),
+          getIt.get<SignInWithGoogleUseCase>()),
+      child: Scaffold(
+        body: LoginScreenBody(),
+      ),
     );
   }
 }

@@ -99,24 +99,30 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 //   }
 // }
 class MyCachedNetworkImage extends StatelessWidget {
-  const MyCachedNetworkImage({super.key, required this.imageUrl, this.fit, this.borderRadius, this.width, this.height});
-   final String imageUrl;
-   final double? width;
+  const MyCachedNetworkImage(
+      {super.key,
+      required this.imageUrl,
+      this.fit,
+      this.borderRadius,
+      this.width,
+      this.height});
+
+  final String imageUrl;
+  final double? width;
   final double? height;
   final BoxFit? fit;
-   final BorderRadius? borderRadius;
+  final BorderRadius? borderRadius;
+
   @override
   Widget build(BuildContext context) {
-    if(imageUrl.isEmpty){
+    if (imageUrl.isEmpty) {
       return Container(
         width: width ?? double.infinity,
-        height: height??double.infinity,
-
+        height: height ?? double.infinity,
         decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: borderRadius ?? BorderRadius.circular(10),
         ),
-
       );
     }
     return CachedNetworkImage(
@@ -138,12 +144,12 @@ class MyCachedNetworkImage extends StatelessWidget {
           ),
         ),
       ),
-      progressIndicatorBuilder: (context, url, downloadProgress) =>
-          Center(
-            child: CircularProgressIndicator(
-              value: downloadProgress.progress,
-            ),
-          ),
-      imageUrl:imageUrl, );
+      progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+        child: CircularProgressIndicator(
+          value: downloadProgress.progress,
+        ),
+      ),
+      imageUrl: imageUrl,
+    );
   }
 }

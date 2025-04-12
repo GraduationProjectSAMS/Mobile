@@ -1,4 +1,10 @@
+import 'package:flutter/cupertino.dart';
+import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/core/utilities/resources/app_constants.dart';
+import 'package:graduation_project/features/authentication/domain/entity/login_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../config/routes/app_route.dart';
 
 class CacheService {
   static late SharedPreferences _sharedPreferences;
@@ -35,5 +41,13 @@ class CacheService {
 
   static Future<bool?> clear() async {
     return await _sharedPreferences.clear();
+  }
+
+  static void saveTokenThenGoHome(BuildContext context, LoginEntity entity) {
+    setData(key: AppConstants.token, value: entity.token).then((value) {
+      if (value == true && context.mounted) {
+        context.navigateAndRemoveUntil(pageName: AppRoutes.homeLayout);
+      }
+    });
   }
 }

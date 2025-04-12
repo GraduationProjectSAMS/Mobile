@@ -13,28 +13,28 @@ class BannerListWithIndicator extends StatefulWidget {
 }
 
 class BannerListWithIndicatorState extends State<BannerListWithIndicator> {
-  late final ValueNotifier<int>  _currentIndex ;
+  late final ValueNotifier<int> _currentIndex;
+
   late final CarouselSliderController _carouselController;
 
-   final List<String> images = [
-     "https://img.freepik.com/free-vector/flat-furniture-sale-landing-page-with-photo_23-2148926583.jpg?ga=GA1.1.1888007192.1743253587&semt=ais_hybrid",
-     'https://img.freepik.com/premium-vector/furniture-banner-promotion-social-media-cover-design-modern-minimalist-template_602747-162.jpg?ga=GA1.1.1888007192.1743253587&semt=ais_hybrid',
-     'https://img.freepik.com/free-vector/organic-flat-furniture-sale-banner-with-photo_23-2148931229.jpg?ga=GA1.1.1888007192.1743253587&semt=ais_hybrid',
+  final List<String> images = [
+    "https://img.freepik.com/free-vector/flat-furniture-sale-landing-page-with-photo_23-2148926583.jpg?ga=GA1.1.1888007192.1743253587&semt=ais_hybrid",
+    'https://img.freepik.com/premium-vector/furniture-banner-promotion-social-media-cover-design-modern-minimalist-template_602747-162.jpg?ga=GA1.1.1888007192.1743253587&semt=ais_hybrid',
+    'https://img.freepik.com/free-vector/organic-flat-furniture-sale-banner-with-photo_23-2148931229.jpg?ga=GA1.1.1888007192.1743253587&semt=ais_hybrid',
     "https://img.freepik.com/premium-psd/website-shoppers-showing-woman-with-tablet-bag_1130490-123.jpg?ga=GA1.1.1888007192.1743253587&semt=ais_hybrid",
-     'https://img.freepik.com/free-vector/flat-design-horizontal-banner-template_23-2149719802.jpg?ga=GA1.1.1888007192.1743253587&semt=ais_hybrid',
-        'https://img.freepik.com/free-vector/flat-horizontal-banner-template-black-friday-sale_23-2150852978.jpg?ga=GA1.1.1888007192.1743253587&semt=ais_hybrid',
-
-
+    'https://img.freepik.com/free-vector/flat-design-horizontal-banner-template_23-2149719802.jpg?ga=GA1.1.1888007192.1743253587&semt=ais_hybrid',
+    'https://img.freepik.com/free-vector/flat-horizontal-banner-template-black-friday-sale_23-2150852978.jpg?ga=GA1.1.1888007192.1743253587&semt=ais_hybrid',
   ];
 
   @override
   void initState() {
     super.initState();
     _carouselController = CarouselSliderController();
-   _currentIndex = ValueNotifier<int>(0);
+    _currentIndex = ValueNotifier<int>(0);
   }
+
   @override
-  dispose(){
+  dispose() {
     _currentIndex.dispose();
 
     super.dispose();
@@ -63,7 +63,8 @@ class BannerListWithIndicatorState extends State<BannerListWithIndicator> {
             },
           ),
           itemCount: images.length,
-          itemBuilder: (BuildContext context, int index, int realIndex) => Padding(
+          itemBuilder: (BuildContext context, int index, int realIndex) =>
+              Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Card(
               child: MyCachedNetworkImage(
@@ -86,14 +87,15 @@ class BannerListWithIndicatorState extends State<BannerListWithIndicator> {
                     _carouselController.animateToPage(index);
                   },
                   child: AnimatedContainer(
-              curve: Curves.easeInOut,
-                    width:    12.sp,
-                    height:   12.sp,
-                    margin: const EdgeInsets.all( 4.0),
+                    curve: Curves.easeInOut,
+                    width: 12.sp,
+                    height: 12.sp,
+                    margin: const EdgeInsets.all(4.0),
                     duration: const Duration(milliseconds: 300),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: current == index ? AppColors.primary : AppColors.grey,
+                      color:
+                          current == index ? AppColors.primary : AppColors.grey,
                     ),
                   ),
                 );
@@ -105,5 +107,3 @@ class BannerListWithIndicatorState extends State<BannerListWithIndicator> {
     );
   }
 }
-
-

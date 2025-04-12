@@ -28,7 +28,7 @@ class LoginScreenBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-               AppAssets.appLogo,
+                AppAssets.appLogo,
                 height: 150.sp,
                 width: 150.sp,
               ),

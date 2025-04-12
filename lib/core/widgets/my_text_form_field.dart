@@ -18,6 +18,9 @@ class MyTextFormField extends StatelessWidget {
     this.autofocus = false,
     this.autofillHints,
     this.onSaved,
+    this.focusNode,
+    this.onFieldSubmitted,
+    this.textInputAction,
   });
 
   final String? hintText;
@@ -35,6 +38,9 @@ class MyTextFormField extends StatelessWidget {
   final bool autofocus;
   final Iterable<String>? autofillHints;
   final void Function(String?)? onSaved;
+  final FocusNode? focusNode;
+  final void Function(String)? onFieldSubmitted;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +48,7 @@ class MyTextFormField extends StatelessWidget {
       readOnly: readOnly,
       autofillHints: autofillHints,
       enabled: enabled,
+      focusNode: focusNode,
       autofocus: autofocus,
       onTapOutside: (event) {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -50,6 +57,8 @@ class MyTextFormField extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: controller,
       validator: validator,
+      textInputAction: textInputAction,
+      onFieldSubmitted: onFieldSubmitted,
       onChanged: onChanged,
       onSaved: onSaved,
       obscureText: hidePassword,

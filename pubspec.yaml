@@ -27,6 +27,7 @@ dependencies:
   skeletonizer: ^1.4.3
   flutter_staggered_animations: ^1.1.1
   flutter_rating_bar: ^4.0.1
+  fluttertoast: ^8.2.12
 
 dev_dependencies:
   flutter_test:

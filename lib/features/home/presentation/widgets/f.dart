@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class SearchExample extends StatefulWidget {
   const SearchExample({super.key});
 
@@ -31,13 +32,13 @@ class _SearchExampleState extends State<SearchExample> {
             viewHintText: 'Search for a fruit...',
             // onSubmitted is called when the user submits the search.
             onSubmitted: (String fruit) {
-
-            FocusScope.of(context).unfocus();
+              FocusScope.of(context).unfocus();
               // Optionally update your state based on the submission.
             },
             // The suggestionsBuilder now receives a SearchController.
             // Use controller.text to get the current search input.
-            suggestionsBuilder: (BuildContext context, SearchController controller) async {
+            suggestionsBuilder:
+                (BuildContext context, SearchController controller) async {
               final String query = controller.text;
               // Sample list of fruit suggestions.
               final List<String> fruits = [
@@ -49,7 +50,8 @@ class _SearchExampleState extends State<SearchExample> {
               ];
               // Filter the fruits list based on the input query (case-insensitive).
               final List<String> filteredFruits = fruits
-                  .where((fruit) => fruit.toLowerCase().contains(query.toLowerCase()))
+                  .where((fruit) =>
+                      fruit.toLowerCase().contains(query.toLowerCase()))
                   .toList();
               // Return each suggestion as a ListTile.
               return filteredFruits.map((fruit) {

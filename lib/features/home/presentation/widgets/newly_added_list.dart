@@ -10,7 +10,7 @@ class NewlyAddedList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  AnimationLimiter(
+    return AnimationLimiter(
       child: SizedBox(
         height: 28.hR,
         child: ListView.separated(

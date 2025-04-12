@@ -5,7 +5,9 @@ class ProductCounter extends StatefulWidget {
   final int initialValue;
   final ValueChanged<int> onChanged;
 
-  const ProductCounter({Key? key, this.initialValue = 1, required this.onChanged}) : super(key: key);
+  const ProductCounter(
+      {Key? key, this.initialValue = 1, required this.onChanged})
+      : super(key: key);
 
   @override
   State<ProductCounter> createState() => _ProductCounterState();
@@ -48,7 +50,7 @@ class _ProductCounterState extends State<ProductCounter> {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Text(
               '$_count',
-              style:  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
             ),
           ),
           _buildIconButton(Icons.add, _increment),
@@ -62,7 +64,7 @@ class _ProductCounterState extends State<ProductCounter> {
       onTap: onPressed,
       borderRadius: BorderRadius.circular(20),
       child: Container(
-        margin:  const EdgeInsets.symmetric(vertical: 4),
+        margin: const EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),

@@ -22,13 +22,10 @@ abstract class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case AppRoutes.signUpRoute:
         return MaterialPageRoute(builder: (_) => SignUpScreen());
-        case AppRoutes.homeLayout:
-        return MaterialPageRoute(
-
-            builder: (_) => HomeLayout());
-        case AppRoutes.productDetails:
-        return MaterialPageRoute(
-            builder: (_) => ProductDetailsScreen());
+      case AppRoutes.homeLayout:
+        return MaterialPageRoute(builder: (_) => HomeLayout());
+      case AppRoutes.productDetails:
+        return MaterialPageRoute(builder: (_) => ProductDetailsScreen());
       default:
         return _errorRoute();
     }

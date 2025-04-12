@@ -16,14 +16,13 @@ class ProductList extends StatelessWidget {
       future: Future.delayed(Duration(seconds: 2)),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) =>
           Skeletonizer(
-            enabled: snapshot.connectionState != ConnectionState.done,
-            child: AnimationLimiter(
-                    child: GridView.builder(
+        enabled: snapshot.connectionState != ConnectionState.done,
+        child: AnimationLimiter(
+          child: GridView.builder(
             padding: EdgeInsets.symmetric(horizontal: 10),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: SizeConfigService.setListCount(context),
               mainAxisExtent: 30.hR,
-
               crossAxisSpacing: 5,
               mainAxisSpacing: 5,
             ),
@@ -31,9 +30,9 @@ class ProductList extends StatelessWidget {
                 index: index,
                 columnCount: SizeConfigService.setListCount(context),
                 child: ProductItem()),
-                    ),
-                  ),
           ),
+        ),
+      ),
     );
   }
 }

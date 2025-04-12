@@ -19,7 +19,6 @@ class FilterChipListScreenState extends State<FilterChipListScreen> {
     'Modern',
     'Classic',
     'Seats',
-
   ];
 
   // Set to hold selected filters
@@ -38,7 +37,6 @@ class FilterChipListScreenState extends State<FilterChipListScreen> {
           final isSelected = _selectedFilters.contains(filter);
 
           return FilterChip(
-
             backgroundColor: AppColors.white,
             surfaceTintColor: Colors.transparent,
             label: Text(filter),
@@ -59,7 +57,12 @@ class FilterChipListScreenState extends State<FilterChipListScreen> {
             selectedColor: AppColors.primary,
             checkmarkColor: AppColors.white,
           );
-        }, separatorBuilder: (BuildContext context, int index) { return SizedBox(width: 10,); },
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(
+            width: 10,
+          );
+        },
       ),
     );
   }

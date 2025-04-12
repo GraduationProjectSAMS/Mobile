@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
@@ -228,7 +227,6 @@ class ProductDetailsScreenBody extends StatelessWidget {
                     size: 24.sp,
                   ),
                 ),
-
               ],
             ),
           ],

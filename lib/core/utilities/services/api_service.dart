@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:graduation_project/core/utilities/resources/app_endpoints.dart';
 
 import 'dio_interceptor.dart';
 
@@ -10,6 +11,7 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     };
+    _dio.options.baseUrl = AppEndpoints.baseUrl; // Replace with your base URL
     _dio.interceptors.add(const DioInterceptor());
     _dio.options.receiveTimeout = const Duration(seconds: 25);
   }
