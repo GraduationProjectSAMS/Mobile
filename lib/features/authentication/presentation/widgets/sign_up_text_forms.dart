@@ -36,7 +36,6 @@ class _SignUpTextFormsState extends State<SignUpTextForms> {
           MyTextFormField(
             keyboardType: TextInputType.name,
             onSaved: cubit.setName,
-            validator: ValidatorService.userNameValidator,
             prefixIcon: const Icon(Icons.person_outline),
             labelText: AppStrings.nameLabelText,
             hintText: AppStrings.nameHintText,

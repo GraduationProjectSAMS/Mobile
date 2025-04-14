@@ -64,7 +64,10 @@ class MyTextFormField extends StatelessWidget {
       obscureText: hidePassword,
       decoration: InputDecoration(
           hintText: hintText,
-          labelText: labelText,
+          label: Text(
+            labelText ?? "",
+            maxLines: 1,
+          ),
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon),
     );
