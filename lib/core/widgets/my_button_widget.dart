@@ -12,7 +12,7 @@ class MyButton extends StatelessWidget {
       {super.key,
       required this.onPressed,
       required this.text,
-      this.isLoading = false});
+      this.isLoading = true});
 
   final bool isLoading;
   final VoidCallback onPressed;
@@ -22,8 +22,9 @@ class MyButton extends StatelessWidget {
         height: 20,
         width: 20,
         child: const Center(
-          child: CircularProgressIndicator(
-            color: AppColors.white,
+          child: CircularProgressIndicator.adaptive(
+            backgroundColor: AppColors.white,
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
           ),
         ),
       );

@@ -60,7 +60,7 @@ abstract class AppStrings {
   static const profile = "Profile";
   static const offers = "Offers";
   static const goodDay = "Good Day For Shopping";
-
+static const newlyAdded= "Newly Added";
   static const popularCategorises = "Popular Categorises";
   static const popularProducts = "Popular Products";
   static const viewAll = "View all";

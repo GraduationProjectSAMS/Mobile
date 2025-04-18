@@ -1,12 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/utilities/resources/app_strings.dart';
+import 'package:graduation_project/core/utilities/resources/app_styles.dart';
+import 'package:graduation_project/core/widgets/custom_search_bar.dart';
+import 'package:graduation_project/core/widgets/height_sized_box.dart';
 
-class AddToCardScreenBody extends StatelessWidget {
-  const AddToCardScreenBody({super.key});
+import 'offers_bloc_builder.dart';
+
+class OffersScreenBody extends StatelessWidget {
+  const OffersScreenBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Add to Card"),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            AppStrings.offers,
+            style: AppStyles.textStyle20,
+          ),
+          HeightSizedBox(height: 1),
+          CustomSearchBar(),
+          HeightSizedBox(height: 1),
+          Expanded(child: OffersBlocBuilder())
+        ],
+      ),
     );
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/features/home/presentation/widgets/offers_list.dart';
+import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 
 import 'banner_list_with_indicator.dart';
 import 'home_app_bar.dart';
+import 'home_offers_bloc_builder.dart';
+import 'home_product_bloc_builder.dart';
 import 'home_text_title.dart';
-import 'newly_added_list.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
@@ -24,13 +25,13 @@ class HomeScreenBody extends StatelessWidget {
               children: [
                 BannerListWithIndicator(),
                 HomeTextTitle(
-                  title: 'Newly Added',
+                  title: AppStrings.newlyAdded,
                 ),
-                NewlyAddedList(),
+                HomeProductBlocBuilder(),
                 HomeTextTitle(
-                  title: 'Offers',
+                  title: AppStrings.offers,
                 ),
-                OffersList(),
+                HomeOffersBlocBuilder(),
                 SizedBox(
                   height: 20,
                 )

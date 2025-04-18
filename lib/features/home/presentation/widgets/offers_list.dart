@@ -1,31 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
-import 'package:graduation_project/core/utilities/functions/staggered_animations.dart';
 import 'package:graduation_project/features/home/presentation/widgets/product_item.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
+import '../../../../core/utilities/functions/staggered_animations.dart';
+import '../../../../core/utilities/services/size_config_service.dart';
+import '../../domain/entities/product_entity.dart';
 
 class OffersList extends StatelessWidget {
-  const OffersList({super.key});
+  const OffersList(
+      {super.key, required this.productsList, this.isLoading = false});
+
+  final List<ProductEntity> productsList;
+  final bool isLoading;
+
+  List<ProductEntity> get products {
+    return isLoading ? productsWaiting : productsList;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return AnimationLimiter(
-      child: SizedBox(
-        height: 28.hR,
-        child: ListView.separated(
-          padding: const EdgeInsets.fromLTRB(16, 0, 16, 5),
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (BuildContext context, int index) => ListItemAnimation(
-            index: index,
-            isHorizontal: true,
-            child: ProductItem(
-              width: 20.hR,
-            ),
+    return Skeletonizer(
+      enabled: isLoading,
+      child: AnimationLimiter(
+        child: GridView.builder(
+          itemCount: products.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: SizeConfigService.setListCount(context),
+            mainAxisExtent: 30.hR,
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 5,
           ),
-          separatorBuilder: (_, __) => SizedBox(
-            width: 5,
-          ),
-          itemCount: 20,
+          itemBuilder: (BuildContext context, int index) => GideItemAnimation(
+              index: index,
+              columnCount: SizeConfigService.setListCount(context),
+              child: ProductItem(
+                model: products[index],
+              )),
         ),
       ),
     );

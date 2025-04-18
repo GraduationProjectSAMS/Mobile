@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/utilities/resources/app_colors.dart';
+import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
-import 'package:graduation_project/core/utilities/resources/icon_broken.dart';
+import 'package:graduation_project/features/home/presentation/widgets/product_bloc_builder.dart';
 
-import 'ddd.dart';
-import 'product_list.dart';
+import '../../../../core/widgets/custom_search_bar.dart';
+import 'filter_chip_list_screen.dart';
 
-class FavoritesScreenBody extends StatelessWidget {
-  const FavoritesScreenBody({super.key});
+class ProductsScreenBody extends StatelessWidget {
+  const ProductsScreenBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,29 +20,14 @@ class FavoritesScreenBody extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Products',
+                AppStrings.products,
                 style: AppStyles.textStyle20,
               ),
               SizedBox(
                 height: 10,
               ),
-              SearchBar(
-                backgroundColor: WidgetStateProperty.all(AppColors.white),
-                surfaceTintColor: WidgetStateProperty.all(Colors.transparent),
+              CustomSearchBar(
                 hintText: 'Search for products',
-                trailing: [
-                  Icon(Icons.close),
-                ],
-                leading: Icon(IconBroken.Search),
-                constraints: BoxConstraints(
-                  minHeight: 50,
-                ),
-                onTapOutside: (_) {
-                  FocusScope.of(context).unfocus();
-                },
-                shape: WidgetStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                )),
               ),
             ],
           ),
@@ -51,7 +36,7 @@ class FavoritesScreenBody extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Expanded(child: ProductList()),
+        Expanded(child: ProductBlocBuilder()),
       ],
     );
   }

@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/core/utilities/functions/staggered_animations.dart';
+import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
 import 'package:graduation_project/features/home/presentation/widgets/product_item.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../core/utilities/functions/staggered_animations.dart';
-import '../../domain/entities/product_entity.dart';
+class HomeOffersList extends StatelessWidget {
+  const HomeOffersList(
+      {super.key, required this.offersList, this.isLoading = false});
 
-class NewlyAddedList extends StatelessWidget {
-  const NewlyAddedList(
-      {super.key, required this.productsList, this.isLoading = false});
-
+  final List<ProductEntity> offersList;
   final bool isLoading;
 
-  final List<ProductEntity> productsList;
-
-  List<ProductEntity> get products {
-    return isLoading ? productsWaiting : productsList;
-  }
+  List<ProductEntity> get offers => isLoading ? productsWaiting : offersList;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +26,17 @@ class NewlyAddedList extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 5),
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) => ListItemAnimation(
-              isHorizontal: true,
               index: index,
+              isHorizontal: true,
               child: ProductItem(
-                height: 29.hR,
                 width: 20.hR,
-                model: products[index],
+                model: offers[index],
               ),
             ),
             separatorBuilder: (_, __) => SizedBox(
               width: 5,
             ),
-            itemCount: products.length,
+            itemCount: offers.length,
           ),
         ),
       ),

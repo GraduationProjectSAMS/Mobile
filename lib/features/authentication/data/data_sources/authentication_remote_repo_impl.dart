@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:graduation_project/core/utilities/resources/app_endpoints.dart';
 import 'package:graduation_project/core/utilities/services/api_service.dart';
 import 'package:graduation_project/features/authentication/domain/entity/login_entity.dart';
@@ -15,7 +16,7 @@ class AuthenticationRemoteRepoImpl implements AuthenticationRemoteRepo {
   @override
   Future<String> loginWithGoogle() async {
     final response = await _googleSignInService.signIn();
-    final tokenId = response?.idToken;
+    final tokenId = response?.accessToken;
     return tokenId ?? '';
   }
 
@@ -48,6 +49,21 @@ class AuthenticationRemoteRepoImpl implements AuthenticationRemoteRepo {
         'email': email,
         'password': password,
       },
+    );
+
+    final model = LoginModel.fromJson(response.data);
+    final loginEntity = model.data as LoginEntity;
+    return loginEntity;
+  }
+
+  @override
+  Future<LoginEntity> sendGoogleTokenToBackEnd({required String googleToken})async {
+
+    final response = await _apiService.postData(
+      endPoint: AppEndpoints.loginWithGoogle,
+    formData: {
+      "access_token": googleToken,
+    },
     );
 
     final model = LoginModel.fromJson(response.data);

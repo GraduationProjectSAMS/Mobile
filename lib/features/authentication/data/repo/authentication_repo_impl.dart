@@ -59,4 +59,17 @@ class AuthenticationRepoImpl implements AuthenticationRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
+  @override
+  Future<Either<Failure, LoginEntity>> sendGoogleTokenToBackEnd({required String googleToken}) async{
+    try {
+      final response =
+      await _authenticationRemoteRepo.sendGoogleTokenToBackEnd(googleToken: googleToken);
+      return Right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(e.toString()));
+    }
+  }
 }

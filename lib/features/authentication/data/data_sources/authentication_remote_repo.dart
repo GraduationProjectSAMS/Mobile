@@ -13,4 +13,5 @@ abstract class AuthenticationRemoteRepo {
   });
 
   Future<String> loginWithGoogle();
+  Future<LoginEntity> sendGoogleTokenToBackEnd({required String googleToken });
 }

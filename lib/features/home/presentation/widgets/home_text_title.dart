@@ -11,9 +11,21 @@ class HomeTextTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.only(start: 22, top: 5, bottom: 5),
-      child: Text(
-        title,
-        style: AppStyles.textStyle20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: AppStyles.textStyle18.copyWith(fontWeight: FontWeight.w600),
+          ),
+          TextButton.icon(
+              icon: Text("view all"),
+              onPressed: () {},
+              label: Icon(
+                Icons.arrow_right,
+                size: 20,
+              )),
+        ],
       ),
     );
   }

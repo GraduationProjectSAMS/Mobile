@@ -9,13 +9,13 @@ import '../manager/signup_cubit/signup_cubit.dart';
 import 'login_password_text_form.dart';
 
 class SignUpTextForms extends StatefulWidget {
-  const SignUpTextForms({Key? key}) : super(key: key);
+  const SignUpTextForms({super.key});
 
   @override
-  _SignUpTextFormsState createState() => _SignUpTextFormsState();
+  SignUpTextFormsState createState() => SignUpTextFormsState();
 }
 
-class _SignUpTextFormsState extends State<SignUpTextForms> {
+class SignUpTextFormsState extends State<SignUpTextForms> {
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
@@ -30,7 +30,7 @@ class _SignUpTextFormsState extends State<SignUpTextForms> {
   Widget build(BuildContext context) {
     final cubit = context.read<SignupCubit>();
     return Form(
-      key: cubit.key,
+      key: cubit.formKey,
       child: Column(
         children: [
           MyTextFormField(
@@ -39,6 +39,7 @@ class _SignUpTextFormsState extends State<SignUpTextForms> {
             prefixIcon: const Icon(Icons.person_outline),
             labelText: AppStrings.nameLabelText,
             hintText: AppStrings.nameHintText,
+            validator: ValidatorService.userNameValidator,
             textInputAction: TextInputAction.next,
             onFieldSubmitted: (_) {
               // When user submits the first field, move to the second

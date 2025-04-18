@@ -3,13 +3,15 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/utilities/resources/app_colors.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 import 'package:graduation_project/core/widgets/my_cached_network_image.dart';
+import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/config/routes/app_route.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key, this.width, this.height});
+  const ProductItem({super.key, this.width, this.height, required this.model});
 
+  final ProductEntity model;
   final double? width;
   final double? height;
 
@@ -36,9 +38,7 @@ class ProductItem extends StatelessWidget {
                   child: Stack(
                     children: [
                       MyCachedNetworkImage(
-                          fit: BoxFit.fill,
-                          imageUrl:
-                              "https://images.pexels.com/photos/3757055/pexels-photo-3757055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"),
+                          fit: BoxFit.fill, imageUrl: model.imageUrl),
                       Positioned(
                         top: 5,
                         right: 5,
@@ -62,7 +62,7 @@ class ProductItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      'Sofa with Pillows',
+                      model.name,
                       style: AppStyles.textStyle15
                           .copyWith(fontWeight: FontWeight.bold),
                       maxLines: 1,
@@ -71,13 +71,14 @@ class ProductItem extends StatelessWidget {
                     SizedBox(
                       height: 5,
                     ),
-                    Text(
-                      'Product Description',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          AppStyles.textStyle12.copyWith(color: AppColors.grey),
-                    ),
+                    if (model.description.isNotEmpty)
+                      Text(
+                        model.description,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppStyles.textStyle12
+                            .copyWith(color: AppColors.grey),
+                      ),
                     SizedBox(
                       height: 5,
                     ),
@@ -87,10 +88,23 @@ class ProductItem extends StatelessWidget {
                           child: FittedBox(
                             alignment: AlignmentDirectional.topStart,
                             fit: BoxFit.scaleDown,
-                            child: Text(
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'EGP ',
+                                    style: AppStyles
+                                        .textStyle14, // Smaller font for EGP
+                                  ),
+                                  TextSpan(
+                                    text: '${model.price}',
+                                    style: AppStyles.textStyle18.copyWith(
+                                        fontWeight: FontWeight
+                                            .w600), // Original font for price
+                                  ),
+                                ],
+                              ),
                               maxLines: 1,
-                              '\$ 1000',
-                              style: AppStyles.textStyle20,
                             ),
                           ),
                         ),

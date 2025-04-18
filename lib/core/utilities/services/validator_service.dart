@@ -34,12 +34,12 @@ abstract class ValidatorService {
   }
 
   static String? userNameValidator(String? value) {
-    bool nameValid = RegExp(r"^[a-zA-Z]+$").hasMatch(value ?? "");
+    bool nameValid = RegExp(r"^[a-zA-Z0-9 ]+$").hasMatch(value ?? "");
     if (value?.isEmpty == true) {
       return "Name must have value";
     }
     if (!nameValid) {
-      return 'Enter a Valid Name';
+      return 'Enter a Valid Name ';
     } else {
       return null;
     }

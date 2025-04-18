@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/utilities/resources/icon_broken.dart';
+import 'package:graduation_project/core/utilities/services/dependency_injection_service.dart';
+import 'package:graduation_project/features/home/domain/use_cases/get_offers_use_case.dart';
+import 'package:graduation_project/features/home/presentation/manager/offers_cubit/offers_cubit.dart';
 import 'package:graduation_project/features/home/presentation/screens/home_screen.dart';
+import 'package:graduation_project/features/home/presentation/screens/products_screen.dart';
 import 'package:graduation_project/features/profile/presentation/screens/profile_screen.dart';
 
 import '../../../../core/utilities/resources/app_colors.dart';
-import 'add_to_card_screen.dart';
-import 'favorites_screen.dart';
+import '../../domain/use_cases/get_products_use_case.dart';
+import '../manager/products_cubit/product_cubit.dart';
+import 'offers_screen.dart';
 
 class HomeLayout extends StatelessWidget {
   const HomeLayout({super.key});
@@ -14,7 +20,16 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// why i make this because i will make all
-    return HomeLayoutBody();
+    return MultiBlocProvider(providers: [
+      BlocProvider(
+        create: (context) =>
+            ProductCubit(getIt.get<GetProductsUseCase>())..getProducts(),
+      ),
+      BlocProvider(
+        create: (context) =>
+            OffersCubit(getIt.get<GetOffersUseCase>())..getOffers(),
+      ),
+    ], child: HomeLayoutBody());
   }
 }
 
@@ -41,8 +56,8 @@ class _HomeLayoutBodyState extends State<HomeLayoutBody> {
   ];
   final List<Widget> _screens = [
     HomeScreen(),
-    FavoritesScreen(),
-    AddToCardScreen(),
+    ProductsScreen(),
+    OffersScreen(),
     ProfileScreen(),
   ];
 

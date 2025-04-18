@@ -21,7 +21,7 @@ class SignUpButtons extends StatelessWidget {
             final cubit = context.read<SignupCubit>();
             return MyButton(
                 isLoading: state is SignupLoading,
-                onPressed: cubit.onTapSignUp,
+                onPressed: cubit.signup,
                 text: AppStrings.signUp);
           },
           listener: (BuildContext context, SignupStates state) {
@@ -34,9 +34,7 @@ class SignUpButtons extends StatelessWidget {
         ),
         HeightSizedBox(height: 2),
         GoogleLoginButton(
-          onTap: () {
-            // Handle Google sign in
-          },
+          onTap: context.read<SignupCubit>().signInWithGoogle,
           text: AppStrings.signUpWithGoogle,
         ),
       ],

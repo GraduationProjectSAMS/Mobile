@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:logger/logger.dart';
 
 import '../utilities/resources/app_strings.dart';
 import 'failure.dart';
@@ -34,9 +35,7 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int errorNumber, dynamic response) {
-    log("********************************************************************");
-    log(response.toString());
-    log("**********************************************************************");
+    Logger().e(response);
     if (errorNumber == 400 ||
         errorNumber == 401 ||
         errorNumber == 403 ||

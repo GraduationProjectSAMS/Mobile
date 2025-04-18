@@ -105,6 +105,7 @@ class MyCachedNetworkImage extends StatelessWidget {
       this.fit,
       this.borderRadius,
       this.width,
+      this.isOval = false,
       this.height});
 
   final String imageUrl;
@@ -112,6 +113,7 @@ class MyCachedNetworkImage extends StatelessWidget {
   final double? height;
   final BoxFit? fit;
   final BorderRadius? borderRadius;
+  final bool isOval;
 
   @override
   Widget build(BuildContext context) {
@@ -126,6 +128,9 @@ class MyCachedNetworkImage extends StatelessWidget {
       );
     }
     return CachedNetworkImage(
+      useOldImageOnUrlChange: true,
+      width: width ?? double.infinity,
+      height: height,
       errorWidget: (context, url, error) => Center(
         child: Icon(
           Icons.image_not_supported_outlined,
@@ -133,23 +138,35 @@ class MyCachedNetworkImage extends StatelessWidget {
           size: 25.sp,
         ),
       ),
-      imageBuilder: (context, imageProvider) => Container(
-        width: width ?? double.infinity,
-        height: height,
-        decoration: BoxDecoration(
-          borderRadius: borderRadius ?? BorderRadius.circular(10),
-          image: DecorationImage(
-            image: imageProvider,
-            fit: fit ?? BoxFit.cover,
+      imageBuilder: (context, imageProvider) {
+        if (isOval) {
+          return ClipOval(child: buildImageDesign(imageProvider));
+        }
+        return buildImageDesign(imageProvider);
+      },
+      progressIndicatorBuilder: (context, url, downloadProgress) {
+        if (downloadProgress.progress == null) return SizedBox.shrink();
+        return Center(
+          child: CircularProgressIndicator(
+            value: downloadProgress.progress,
           ),
-        ),
-      ),
-      progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-        child: CircularProgressIndicator(
-          value: downloadProgress.progress,
-        ),
-      ),
+        );
+      },
       imageUrl: imageUrl,
+    );
+  }
+
+  Container buildImageDesign(ImageProvider<Object> imageProvider) {
+    return Container(
+      width: width ?? double.infinity,
+      height: height,
+      decoration: BoxDecoration(
+        borderRadius: borderRadius ?? BorderRadius.circular(10),
+        image: DecorationImage(
+          image: imageProvider,
+          fit: fit ?? BoxFit.cover,
+        ),
+      ),
     );
   }
 }
