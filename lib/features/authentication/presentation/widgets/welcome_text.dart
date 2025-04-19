@@ -10,6 +10,7 @@ class WelcomeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Text(
@@ -17,7 +18,7 @@ class WelcomeText extends StatelessWidget {
           text1,
           style: AppStyles.textStyle20,
         ),
-        SizedBox(
+        const SizedBox(
           height: 2,
         ),
         Text(

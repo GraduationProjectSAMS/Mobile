@@ -18,6 +18,9 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+     hoverColor: AppColors.offPrimary,
+
+      borderRadius: BorderRadius.circular(10),
       onTap: () {
         context.navigateTo(pageName: AppRoutes.productDetails);
       },
@@ -46,7 +49,7 @@ class ProductItem extends StatelessWidget {
                           child: CircleAvatar(
                             radius: 18.sp,
                             backgroundColor: AppColors.white.withOpacity(0.5),
-                            child: Icon(
+                            child: const Icon(
                               Icons.favorite_border,
                             ),
                           ),
@@ -68,7 +71,7 @@ class ProductItem extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     if (model.description.isNotEmpty)
@@ -79,7 +82,7 @@ class ProductItem extends StatelessWidget {
                         style: AppStyles.textStyle12
                             .copyWith(color: AppColors.grey),
                       ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Row(
@@ -108,7 +111,7 @@ class ProductItem extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Skeleton.shade(
@@ -119,7 +122,7 @@ class ProductItem extends StatelessWidget {
                                 color: AppColors.primary,
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.add,
                                 color: AppColors.white,
                               ),

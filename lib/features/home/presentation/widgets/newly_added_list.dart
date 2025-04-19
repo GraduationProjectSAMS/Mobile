@@ -38,7 +38,7 @@ class NewlyAddedList extends StatelessWidget {
                 model: products[index],
               ),
             ),
-            separatorBuilder: (_, __) => SizedBox(
+            separatorBuilder: (_, __) => const SizedBox(
               width: 5,
             ),
             itemCount: products.length,

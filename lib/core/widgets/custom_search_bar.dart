@@ -25,10 +25,10 @@ class CustomSearchBar extends StatelessWidget {
       onChanged: onChanged,
       onSubmitted: onSubmitted,
       trailing:  [
-        IconButton( onPressed: ontTapClose, icon: Icon(Icons.close),),
+        IconButton( onPressed: ontTapClose, icon: const Icon(Icons.close),),
       ],
 
-      leading: Icon(IconBroken.Search),
+      leading: const Icon(IconBroken.Search),
       constraints: BoxConstraints(minHeight: minHeight),
       onTapOutside: (_) =>  FocusScope.of(context).unfocus(),
       shape: WidgetStateProperty.all(

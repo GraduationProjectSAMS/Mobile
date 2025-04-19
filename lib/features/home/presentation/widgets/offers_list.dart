@@ -5,7 +5,6 @@ import 'package:graduation_project/features/home/presentation/widgets/product_it
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/utilities/functions/staggered_animations.dart';
-import '../../../../core/utilities/services/size_config_service.dart';
 import '../../domain/entities/product_entity.dart';
 
 class OffersList extends StatelessWidget {
@@ -27,14 +26,14 @@ class OffersList extends StatelessWidget {
         child: GridView.builder(
           itemCount: products.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: SizeConfigService.setListCount(context),
+            crossAxisCount: context.gridCount,
             mainAxisExtent: 30.hR,
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
           ),
           itemBuilder: (BuildContext context, int index) => GideItemAnimation(
               index: index,
-              columnCount: SizeConfigService.setListCount(context),
+              columnCount: context.gridCount,
               child: ProductItem(
                 model: products[index],
               )),

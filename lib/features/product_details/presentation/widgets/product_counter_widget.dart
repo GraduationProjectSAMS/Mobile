@@ -6,8 +6,7 @@ class ProductCounter extends StatefulWidget {
   final ValueChanged<int> onChanged;
 
   const ProductCounter(
-      {Key? key, this.initialValue = 1, required this.onChanged})
-      : super(key: key);
+      {super.key, this.initialValue = 1, required this.onChanged});
 
   @override
   State<ProductCounter> createState() => _ProductCounterState();

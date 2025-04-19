@@ -59,7 +59,7 @@ class FilterChipListScreenState extends State<FilterChipListScreen> {
           );
         },
         separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(
+          return const SizedBox(
             width: 10,
           );
         },

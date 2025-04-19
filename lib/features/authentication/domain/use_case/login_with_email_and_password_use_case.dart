@@ -13,7 +13,7 @@ class LoginWithEmailAndPasswordUseCase {
     required String email,
     required String password,
   }) async {
-    return await _authenticationRepo.loginWithEmailAndPassword(
+    return _authenticationRepo.loginWithEmailAndPassword(
       email: email,
       password: password,
     );

@@ -20,15 +20,15 @@ class ProductDetailsScreenBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MyBackButtonLightMode(),
-            SizedBox(
+            const MyBackButtonLightMode(),
+            const SizedBox(
               height: 10,
             ),
-            MyCachedNetworkImage(
+            const MyCachedNetworkImage(
                 height: 200,
                 fit: BoxFit.fill,
                 imageUrl:
-                    "https://images.pexels.com/photos/3757055/pexels-photo-3757055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"),
+                    'https://images.pexels.com/photos/3757055/pexels-photo-3757055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
             const SizedBox(
               height: 20,
             ),
@@ -54,7 +54,7 @@ class ProductDetailsScreenBody extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Text(
@@ -85,11 +85,10 @@ class ProductDetailsScreenBody extends StatelessWidget {
                     Icons.star,
                     color: Colors.amber,
                   ),
-                  itemCount: 5,
                   itemSize: 20.sp,
                   unratedColor: AppColors.grey.withOpacity(0.3),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(
@@ -99,7 +98,7 @@ class ProductDetailsScreenBody extends StatelessWidget {
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w600),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(
@@ -109,7 +108,7 @@ class ProductDetailsScreenBody extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(
@@ -119,14 +118,14 @@ class ProductDetailsScreenBody extends StatelessWidget {
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w600),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Divider(
               color: AppColors.black.withOpacity(0.3),
               thickness: 1,
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(
@@ -142,32 +141,31 @@ class ProductDetailsScreenBody extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: AppStyles.textStyle14.copyWith(color: AppColors.grey),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ProductColorSelector(
-                  availableColors: [
+                  availableColors: const [
                     Color(0xFFC2C0C0), // light gray
                     Color(0xFF6B4F3B), // brown
                     Color(0xFF3A3A3A), // dark gray
                   ],
-                  initialColor: Color(0xFFC2C0C0),
+                  initialColor: const Color(0xFFC2C0C0),
                   onColorSelected: (color) {
                     print('Selected color: $color');
                   },
                 ),
                 ProductCounter(
-                  initialValue: 1,
                   onChanged: (value) {
                     // Handle the value change
                   },
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -181,11 +179,11 @@ class ProductDetailsScreenBody extends StatelessWidget {
                     borderRadius: 50,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: AppColors.white,
                     shape: BoxShape.circle,
@@ -204,11 +202,11 @@ class ProductDetailsScreenBody extends StatelessWidget {
                     size: 24.sp,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: AppColors.white,
                     shape: BoxShape.circle,

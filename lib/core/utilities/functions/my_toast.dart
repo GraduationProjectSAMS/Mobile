@@ -11,7 +11,6 @@ void myToast({
       msg: msg!,
       toastLength: toastLength ?? Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
       backgroundColor: toastColor(state),
       textColor: Colors.white,
       fontSize: 13.0.sp,

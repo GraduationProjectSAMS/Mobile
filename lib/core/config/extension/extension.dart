@@ -3,7 +3,7 @@ import 'package:graduation_project/core/utilities/services/size_config_service.d
 
 extension NavigateToExtension on BuildContext {
   Future navigateTo({required String pageName, Object? arguments}) async =>
-      await Navigator.of(this).pushNamed(pageName, arguments: arguments);
+      Navigator.of(this).pushNamed(pageName, arguments: arguments);
 }
 
 extension NavigatorPopExtension on BuildContext {

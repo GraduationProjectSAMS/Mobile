@@ -11,7 +11,7 @@ class DioInterceptor extends Interceptor {
     CacheService.token = CacheService.getData(key: AppConstants.token);
 
     if (CacheService.token != null) {
-      options.headers["Authorization"] = "Bearer ${CacheService.token}";
+      options.headers['Authorization'] = 'Bearer ${CacheService.token}';
     }
     super.onRequest(options, handler);
 

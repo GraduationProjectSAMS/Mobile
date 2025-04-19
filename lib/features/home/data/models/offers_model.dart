@@ -44,8 +44,8 @@ class OffersData {
   ProductEntity get toEntity => ProductEntity(
       id: id?.toInt() ?? 0,
       name: title.toString(),
-      description: "",
+      description: '',
       price: double.tryParse(price.toString()) ?? 1,
       imageUrl: AppConstants.kNullProductImage,
-      quantity: "");
+      quantity: '');
 }

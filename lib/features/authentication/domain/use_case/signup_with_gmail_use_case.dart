@@ -14,7 +14,7 @@ class SignupWithGmailUseCase {
     required String email,
     required String password,
   }) async {
-    return await _authenticationRepo.signUp(
+    return _authenticationRepo.signUp(
       name: name,
       email: email,
       password: password,

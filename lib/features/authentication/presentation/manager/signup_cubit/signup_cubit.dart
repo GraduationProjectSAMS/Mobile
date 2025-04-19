@@ -36,15 +36,15 @@ class SignupCubit extends Cubit<SignupStates> {
   }
 
   void setName(String? value) {
-    name = value ?? "";
+    name = value ?? '';
   }
 
   void setEmail(String? value) {
-    email = value ?? "";
+    email = value ?? '';
   }
 
   void setPassword(String? value) {
-    password = value ?? "";
+    password = value ?? '';
   }
 
 

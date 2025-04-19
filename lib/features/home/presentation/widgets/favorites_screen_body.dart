@@ -23,20 +23,20 @@ class ProductsScreenBody extends StatelessWidget {
                 AppStrings.products,
                 style: AppStyles.textStyle20,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              CustomSearchBar(
+              const CustomSearchBar(
                 hintText: 'Search for products',
               ),
             ],
           ),
         ),
-        FilterChipListScreen(),
-        SizedBox(
+        const FilterChipListScreen(),
+        const SizedBox(
           height: 10,
         ),
-        Expanded(child: ProductBlocBuilder()),
+        const Expanded(child: ProductBlocBuilder()),
       ],
     );
   }

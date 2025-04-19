@@ -14,6 +14,6 @@ class GoogleSignInService {
   }
 
   Future<GoogleSignInAccount?> signOut() async {
-    return await _googleSignIn.signOut();
+    return _googleSignIn.signOut();
   }
 }

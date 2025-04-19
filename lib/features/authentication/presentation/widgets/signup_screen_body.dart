@@ -24,17 +24,17 @@ class SignupScreenBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // User Name Field
-              WelcomeText(
+              const WelcomeText(
                   text1: AppStrings.registerAccount,
                   text2: AppStrings.signUpMassage),
 
-              HeightSizedBox(height: 6),
-              SignUpTextForms(),
-              HeightSizedBox(
+              const HeightSizedBox(height: 6),
+              const SignUpTextForms(),
+              const HeightSizedBox(
                 height: space,
               ),
-              SignUpButtons(),
-              HeightSizedBox(height: 1.5),
+              const SignUpButtons(),
+              const HeightSizedBox(height: 1.5),
               IsUserSignInWidget(
                   isLogin: true,
                   onTap: () {

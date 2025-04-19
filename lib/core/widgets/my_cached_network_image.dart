@@ -145,7 +145,7 @@ class MyCachedNetworkImage extends StatelessWidget {
         return buildImageDesign(imageProvider);
       },
       progressIndicatorBuilder: (context, url, downloadProgress) {
-        if (downloadProgress.progress == null) return SizedBox.shrink();
+        if (downloadProgress.progress == null) return const SizedBox.shrink();
         return Center(
           child: CircularProgressIndicator(
             value: downloadProgress.progress,

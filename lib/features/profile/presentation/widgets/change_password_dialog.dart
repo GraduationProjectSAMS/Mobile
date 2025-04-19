@@ -19,7 +19,7 @@ void showChangePasswordDialog(BuildContext context) {
       return StatefulBuilder(
         builder: (context, setState) => AlertDialog(
 
-          title: Center(child: const Text("Change Password", style: TextStyle(fontSize: 20))),
+          title: const Center(child: Text('Change Password', style: TextStyle(fontSize: 20))),
           content: SingleChildScrollView(
             child: SizedBox(
               width: 100.wR,
@@ -29,7 +29,7 @@ void showChangePasswordDialog(BuildContext context) {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     MyTextFormField(
-                      hintText: "Old Password",
+                      hintText: 'Old Password',
                       controller: oldPasswordController,
                       hidePassword: hideOld,
                       prefixIcon: const Icon(Icons.lock),
@@ -39,14 +39,14 @@ void showChangePasswordDialog(BuildContext context) {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Enter old password";
+                          return 'Enter old password';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 12),
                     MyTextFormField(
-                      hintText: "New Password",
+                      hintText: 'New Password',
                       controller: newPasswordController,
                       hidePassword: hideNew,
                       prefixIcon: const Icon(Icons.lock_outline),
@@ -56,14 +56,14 @@ void showChangePasswordDialog(BuildContext context) {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Enter new password";
+                          return 'Enter new password';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 12),
                     MyTextFormField(
-                      hintText: "Confirm New Password",
+                      hintText: 'Confirm New Password',
                       controller: confirmPasswordController,
                       hidePassword: hideConfirm,
                       prefixIcon: const Icon(Icons.lock_outline),
@@ -73,10 +73,10 @@ void showChangePasswordDialog(BuildContext context) {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Confirm your new password";
+                          return 'Confirm your new password';
                         }
                         if (value != newPasswordController.text) {
-                          return "Passwords do not match";
+                          return 'Passwords do not match';
                         }
                         return null;
                       },
@@ -89,7 +89,7 @@ void showChangePasswordDialog(BuildContext context) {
           actions: [
             ButtonWidget(
               height: 38,
-              label: "Change",
+              label: 'Change',
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   // Proceed with password change logic
@@ -100,7 +100,7 @@ void showChangePasswordDialog(BuildContext context) {
             ),
             Center(
               child: TextButton(
-                child: const Text("Cancel"),
+                child: const Text('Cancel'),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ),

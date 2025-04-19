@@ -65,7 +65,7 @@ class MyTextFormField extends StatelessWidget {
       decoration: InputDecoration(
           hintText: hintText,
           label: Text(
-            labelText ?? "",
+            labelText ?? '',
             maxLines: 1,
           ),
           prefixIcon: prefixIcon,

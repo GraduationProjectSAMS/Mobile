@@ -7,7 +7,7 @@ void changeUserNameDialog(BuildContext context) {
   final formKey = GlobalKey<FormState>();
   final oldPasswordController = TextEditingController();
 
-  bool hideOld = true;
+  const bool hideOld = true;
 
   showDialog(
     context: context,
@@ -15,7 +15,7 @@ void changeUserNameDialog(BuildContext context) {
       return StatefulBuilder(
         builder: (context, setState) => AlertDialog(
 
-          title: Center(child: const Text("Change Username", style: TextStyle(fontSize: 20))),
+          title: const Center(child: Text('Change Username', style: TextStyle(fontSize: 20))),
           content: SingleChildScrollView(
             child: SizedBox(
               width: 100.wR,
@@ -25,13 +25,13 @@ void changeUserNameDialog(BuildContext context) {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     MyTextFormField(
-                      hintText: "Username",
+                      hintText: 'Username',
                       controller: oldPasswordController,
                       hidePassword: hideOld,
                       prefixIcon: const Icon(Icons.person),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Enter Username";
+                          return 'Enter Username';
                         }
                         return null;
                       },
@@ -44,7 +44,7 @@ void changeUserNameDialog(BuildContext context) {
           actions: [
             ButtonWidget(
               height: 38,
-              label: "Change",
+              label: 'Change',
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   // Proceed with password change logic
@@ -55,7 +55,7 @@ void changeUserNameDialog(BuildContext context) {
             ),
             Center(
               child: TextButton(
-                child: const Text("Cancel"),
+                child: const Text('Cancel'),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ),

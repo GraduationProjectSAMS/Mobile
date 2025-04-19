@@ -6,11 +6,11 @@ class ProductColorSelector extends StatefulWidget {
   final ValueChanged<Color> onColorSelected;
 
   const ProductColorSelector({
-    Key? key,
+    super.key,
     required this.availableColors,
     this.initialColor,
     required this.onColorSelected,
-  }) : super(key: key);
+  });
 
   @override
   State<ProductColorSelector> createState() => _ProductColorSelectorState();

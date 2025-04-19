@@ -18,7 +18,7 @@ class Data extends LoginEntity {
     this.name,
     this.username,
     this.modelToken,
-  }) : super(token: modelToken ?? "", id: modeId?.toInt() ?? 0);
+  }) : super(token: modelToken ?? '', id: modeId?.toInt() ?? 0);
 
   factory Data.fromJson(dynamic json) {
     return Data(

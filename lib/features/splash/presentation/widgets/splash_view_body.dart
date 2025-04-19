@@ -8,31 +8,31 @@ class SplashViewBody extends StatelessWidget {
     return Column(
       children: [
         //
-        FractionallySizedBox(),
+        const FractionallySizedBox(),
         // make grid paper
-        GridPaper(),
-        LongPressDraggable(
-          feedback: Text("data"),
-          child: Text("data"),
+        const GridPaper(),
+        const LongPressDraggable(
+          feedback: Text('data'),
+          child: Text('data'),
         ),
-        ModalBarrier(),
-        NavigationBar(destinations: []),
+        const ModalBarrier(),
+        NavigationBar(destinations: const []),
 
         /// to behave as row then coulam
-        OverflowBar(),
+        const OverflowBar(),
         // to make the child overflow the parent
-        OverflowBox(),
+        const OverflowBox(),
         // same as container but with decoration
-        PhysicalModel(
+        const PhysicalModel(
           color: Colors.red,
         ),
-        PhysicalShape(
+        const PhysicalShape(
           clipper: ShapeBorderClipper(shape: RoundedRectangleBorder()),
           color: Colors.red,
         ),
 
         // RangeSlider(values: values, onChanged: onChanged)
-        TabPageSelector(),
+        const TabPageSelector(),
       ],
     );
   }

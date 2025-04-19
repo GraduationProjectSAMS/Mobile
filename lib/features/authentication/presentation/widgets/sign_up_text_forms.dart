@@ -46,7 +46,7 @@ class SignUpTextFormsState extends State<SignUpTextForms> {
               FocusScope.of(context).requestFocus(_emailFocusNode);
             },
           ),
-          HeightSizedBox(height: 2),
+          const HeightSizedBox(height: 2),
           MyTextFormField(
             focusNode: _emailFocusNode,
             // Assign the email focus node
@@ -62,7 +62,7 @@ class SignUpTextFormsState extends State<SignUpTextForms> {
               FocusScope.of(context).requestFocus(_passwordFocusNode);
             },
           ),
-          HeightSizedBox(height: 2),
+          const HeightSizedBox(height: 2),
           LoginPasswordTextForm(
             focusNode: _passwordFocusNode, // Assign the password focus node
             onSaved: cubit.setPassword,

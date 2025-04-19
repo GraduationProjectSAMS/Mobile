@@ -25,23 +25,23 @@ class AuthenticationCubit extends Cubit<AuthenticationStates> {
   String signupPassword = '';
 
   void setLoginEmail(String? value) {
-    loginEmail = value ?? "";
+    loginEmail = value ?? '';
   }
 
   void setLoginPassword(String? value) {
-    loginPassword = value ?? "";
+    loginPassword = value ?? '';
   }
 
   void setSignupName(String? value) {
-    signupName = value ?? "";
+    signupName = value ?? '';
   }
 
   void setSignupEmail(String? value) {
-    signupEmail = value ?? "";
+    signupEmail = value ?? '';
   }
 
   void setSignupPassword(String? value) {
-    signupPassword = value ?? "";
+    signupPassword = value ?? '';
   }
 
   Future<void> loginWithEmailAndPassword() async {

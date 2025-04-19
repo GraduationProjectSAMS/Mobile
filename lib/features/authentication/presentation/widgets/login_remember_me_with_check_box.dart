@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 
 import '../../../../core/utilities/resources/app_strings.dart';
 import '../../../../core/widgets/my_button_widget.dart';
@@ -11,9 +12,9 @@ class LoginRememberMeWithCheckBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        LoginCheckBox(),
-        Text(AppStrings.rememberMe),
-        Spacer(),
+        const LoginCheckBox(),
+        Text(AppStrings.rememberMe,style: AppStyles.textStyle14,),
+        const Spacer(),
         MyTextButton(
           onTap: () {
             // Handle forgot password

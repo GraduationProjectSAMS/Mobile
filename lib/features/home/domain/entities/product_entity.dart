@@ -25,7 +25,7 @@ class ProductEntity {
         description: 'test description',
         price: 0.0,
         imageUrl: '',
-        quantity: " test",
+        quantity: ' test',
       );
 }
 

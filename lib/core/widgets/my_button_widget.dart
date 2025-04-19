@@ -18,10 +18,10 @@ class MyButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
 
-  Widget get loading => SizedBox(
+  Widget get loading => const SizedBox(
         height: 20,
         width: 20,
-        child: const Center(
+        child: Center(
           child: CircularProgressIndicator.adaptive(
             backgroundColor: AppColors.white,
             valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
@@ -166,7 +166,7 @@ class ButtonWidget extends StatelessWidget {
               borderRadius:
                   BorderRadius.all(Radius.circular(borderRadius ?? 15)),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
           ),
           child: isTextFitted
               ? FittedBox(

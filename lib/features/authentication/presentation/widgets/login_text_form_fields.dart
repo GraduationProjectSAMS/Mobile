@@ -14,6 +14,7 @@ class LoginTextFormFields extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<LoginCubit>();
+
     return AutofillGroup(
       child: Form(
         key: cubit.formKey,
@@ -24,14 +25,14 @@ class LoginTextFormFields extends StatelessWidget {
               keyboardType: TextInputType.emailAddress,
               autofillHints: const [AutofillHints.email],
               validator: ValidatorService.emailValidator,
-              prefixIcon: Icon(Icons.email_outlined),
+              prefixIcon: const Icon(Icons.email_outlined),
               labelText: AppStrings.emailLabelText,
               hintText: AppStrings.emailHintText,
             ),
-            HeightSizedBox(height: 2),
+            const HeightSizedBox(height: 2),
             LoginPasswordTextForm(
               onSaved: cubit.savePassword,
-              autofillHints: [AutofillHints.password],
+              autofillHints: const [AutofillHints.password],
             ),
           ],
         ),

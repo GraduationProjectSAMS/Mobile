@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
@@ -40,7 +39,7 @@ class ServerFailure extends Failure {
         errorNumber == 401 ||
         errorNumber == 403 ||
         errorNumber == 422) {
-      return ServerFailure(response["message"].toString(),
+      return ServerFailure(response['message'].toString(),
           statusCode: errorNumber);
     } else if (errorNumber == 404) {
       return ServerFailure(AppStrings.methodNotFound);

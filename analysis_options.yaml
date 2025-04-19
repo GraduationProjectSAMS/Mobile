@@ -10,6 +10,7 @@
 include: package:flutter_lints/flutter.yaml
 
 linter:
+
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
   # included above or to enable additional rules. A list of all available lints
@@ -21,6 +22,41 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
+    prefer_const_constructors: true
+    prefer_const_literals_to_create_immutables: true
+    prefer_const_declarations: true
+
+    # ✅ Avoid rebuilding widgets unnecessarily
+    use_key_in_widget_constructors: true
+    prefer_final_fields: true
+    prefer_final_locals: true
+
+    # ✅ Avoid expensive operations in build methods
+    avoid_unnecessary_containers: true
+    avoid_redundant_argument_values: true
+
+    # ✅ Improve readability and minor performance
+    prefer_collection_literals: true
+    prefer_spread_collections: true
+    prefer_interpolation_to_compose_strings: true
+
+    # ✅ Best practice for async code – avoid performance problems
+
+    unnecessary_await_in_return: true
+
+    # ✅ Minor performance boosts
+    prefer_single_quotes: true
+    avoid_print: true # consider using `logger` instead for better control
+
+    # ✅ Avoid excessive rebuilds or unnecessary allocations
+    no_logic_in_create_state: true
+    avoid_init_to_null: true
+    unnecessary_lambdas: true
+    unnecessary_this: true
+
+    # ✅ For large widget trees
+    sized_box_for_whitespace: true
+    use_full_hex_values_for_flutter_colors: true
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 

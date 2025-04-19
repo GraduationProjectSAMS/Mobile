@@ -9,6 +9,6 @@ class SignInWithGoogleUseCase {
   SignInWithGoogleUseCase(this._authenticationRepo);
 
   Future<Either<Failure, String>> call() async {
-    return await _authenticationRepo.signInWithGoogle();
+    return _authenticationRepo.signInWithGoogle();
   }
 }

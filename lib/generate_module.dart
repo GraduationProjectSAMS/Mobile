@@ -2,7 +2,7 @@ import 'dart:io';
 
 void main() {
   stdout.write('Enter module name (e.g., chat_logs): ');
-  String? moduleName = stdin.readLineSync();
+  final String? moduleName = stdin.readLineSync();
   if (moduleName == null || moduleName.isEmpty) {
     print('❌ Module name cannot be empty.');
     return;
@@ -122,8 +122,8 @@ void generateFiles(Map<String, String> files) {
 
 // Converts "chat_logs" to "Chatlogs"
 String normalizeClassName(String name) {
-  List<String> parts = name.split('_');
-  return parts.map((e) => e[0].toUpperCase() + e.substring(1)).join('');
+  final List<String> parts = name.split('_');
+  return parts.map((e) => e[0].toUpperCase() + e.substring(1)).join();
 }
 
 // Converts "chat_logs" to "chat_logs"
@@ -149,7 +149,7 @@ void updateDependencyInjection(String className, String fileName) {
   }
 
   // Prepare import statements
-  String newImports = '''
+  final String newImports = '''
 import 'package:learnovia_mobile/features/$fileName/data/data_sources/${fileName}_remote_repo_impl.dart';
 import 'package:learnovia_mobile/features/$fileName/data/repositories/${fileName}_repo_impl.dart';''';
 
@@ -160,16 +160,16 @@ import 'package:learnovia_mobile/features/$fileName/data/repositories/${fileName
   }
 
   // Find the last `getIt.registerLazySingleton` statement
-  RegExp lastRepoRegistration =
+  final RegExp lastRepoRegistration =
       RegExp(r'getIt\.registerLazySingleton<.*>\(.*\);');
-  Iterable<RegExpMatch> matches = lastRepoRegistration.allMatches(content);
+  final Iterable<RegExpMatch> matches = lastRepoRegistration.allMatches(content);
 
   if (matches.isNotEmpty) {
-    RegExpMatch lastMatch = matches.last;
-    int insertPosition = lastMatch.end;
+    final RegExpMatch lastMatch = matches.last;
+    final int insertPosition = lastMatch.end;
 
     // Prepare the new repository registration
-    String newRepoRegistration = '''
+    final String newRepoRegistration = '''
   getIt.registerLazySingleton<${className}RepoImpl>(()=> ${className}RepoImpl(${className}RemoteRepoImpl(getIt.get<ApiService>())));''';
 
     // Insert the new repository registration after the last one found
@@ -177,7 +177,7 @@ import 'package:learnovia_mobile/features/$fileName/data/repositories/${fileName
         '${content.substring(0, insertPosition)}\n$newRepoRegistration${content.substring(insertPosition)}';
   } else {
     // Fallback: If no `getIt.registerLazySingleton` is found, add at the end of the setup method
-    String newRepoRegistration = '''
+    final String newRepoRegistration = '''
   getIt.registerLazySingleton<${className}RepoImpl>(()=> ${className}RepoImpl(${className}RemoteRepoImpl(getIt.get<ApiService>())));''';
 
     content = content.replaceFirst(

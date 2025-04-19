@@ -56,7 +56,7 @@ class MyTextFormFieldState extends State<LoginPasswordTextForm> {
       onSaved: widget.onSaved,
       autofillHints: widget.autofillHints,
       validator: ValidatorService.passwordValidator,
-      prefixIcon: Icon(Icons.lock_outline),
+      prefixIcon: const Icon(Icons.lock_outline),
       labelText: AppStrings.passwordLabelText,
       hintText: AppStrings.passwordHintText,
       hidePassword: widget.hidePassword ? !_isPasswordVisible : false,

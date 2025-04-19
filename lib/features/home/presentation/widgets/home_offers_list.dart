@@ -33,7 +33,7 @@ class HomeOffersList extends StatelessWidget {
                 model: offers[index],
               ),
             ),
-            separatorBuilder: (_, __) => SizedBox(
+            separatorBuilder: (_, __) => const SizedBox(
               width: 5,
             ),
             itemCount: offers.length,

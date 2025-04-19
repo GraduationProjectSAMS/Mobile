@@ -23,7 +23,7 @@ class LoginScreenBody extends StatelessWidget {
         child: Center(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppConstants.kPadding),
+          padding: const EdgeInsets.symmetric(horizontal: AppConstants.kPadding),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -32,18 +32,18 @@ class LoginScreenBody extends StatelessWidget {
                 height: 150.sp,
                 width: 150.sp,
               ),
-              HeightSizedBox(height: 2),
-              WelcomeText(
+              const HeightSizedBox(height: 2),
+              const WelcomeText(
                 text1: AppStrings.welcomeBack,
                 text2: AppStrings.loginMassage,
               ),
-              HeightSizedBox(height: 6),
-              LoginTextFormFields(),
-              HeightSizedBox(height: 1),
-              LoginRememberMeWithCheckBox(),
-              HeightSizedBox(height: 1),
-              LoginSignInButtons(),
-              HeightSizedBox(height: 1.5),
+              const HeightSizedBox(height: 6),
+              const LoginTextFormFields(),
+              const HeightSizedBox(height: 1),
+              const LoginRememberMeWithCheckBox(),
+              const HeightSizedBox(height: 1),
+              const LoginSignInButtons(),
+              const HeightSizedBox(height: 1.5),
               IsUserSignInWidget(
                   isLogin: false,
                   onTap: () {

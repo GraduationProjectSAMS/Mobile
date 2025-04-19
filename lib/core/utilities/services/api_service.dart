@@ -24,7 +24,7 @@ class ApiService {
     if (timeOutSeconds != null) {
       _dio.options.receiveTimeout = Duration(seconds: timeOutSeconds);
     }
-    return await _dio.get(endPoint, queryParameters: data);
+    return _dio.get(endPoint, queryParameters: data);
   }
 
   Future<Response> postData({
@@ -42,7 +42,7 @@ class ApiService {
       _dio.options.sendTimeout = const Duration(minutes: 20);
     }
 
-    return await _dio.post(
+    return _dio.post(
       endPoint,
       queryParameters: data,
       data: formData,
@@ -63,7 +63,7 @@ class ApiService {
     if (timeOutSeconds != null) {
       _dio.options.sendTimeout = Duration(seconds: timeOutSeconds);
     }
-    return await _dio.patch(
+    return _dio.patch(
       endPoint,
       queryParameters: data,
       data: formData,
@@ -78,7 +78,7 @@ class ApiService {
     Options? options,
     Map<String, dynamic>? data,
   }) async {
-    return await _dio.delete(
+    return _dio.delete(
       endPoint,
       queryParameters: data,
       data: formData,

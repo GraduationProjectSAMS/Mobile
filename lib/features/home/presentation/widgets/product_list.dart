@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
-import 'package:graduation_project/core/utilities/services/size_config_service.dart';
 import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
 import 'package:graduation_project/features/home/presentation/widgets/product_item.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -26,16 +25,16 @@ class ProductList extends StatelessWidget {
       child: AnimationLimiter(
         child: GridView.builder(
           itemCount: products.length,
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: SizeConfigService.setListCount(context),
+            crossAxisCount: context.gridCount,
             mainAxisExtent: 30.hR,
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
           ),
           itemBuilder: (BuildContext context, int index) => GideItemAnimation(
               index: index,
-              columnCount: SizeConfigService.setListCount(context),
+              columnCount: context.gridCount,
               child: ProductItem(
                 model: products[index],
               )),

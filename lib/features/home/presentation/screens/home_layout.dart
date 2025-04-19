@@ -29,7 +29,7 @@ class HomeLayout extends StatelessWidget {
         create: (context) =>
             OffersCubit(getIt.get<GetOffersUseCase>())..getOffers(),
       ),
-    ], child: HomeLayoutBody());
+    ], child: const HomeLayoutBody());
   }
 }
 
@@ -55,10 +55,10 @@ class _HomeLayoutBodyState extends State<HomeLayoutBody> {
     AppStrings.profile,
   ];
   final List<Widget> _screens = [
-    HomeScreen(),
-    ProductsScreen(),
-    OffersScreen(),
-    ProfileScreen(),
+    const HomeScreen(),
+    const ProductsScreen(),
+    const OffersScreen(),
+    const ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -74,7 +74,7 @@ class _HomeLayoutBodyState extends State<HomeLayoutBody> {
       backgroundColor: AppColors.offWhite,
       body: SafeArea(
         child: AnimatedSwitcher(
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           child: _screens[_selectedIndex],
         ),
       ),

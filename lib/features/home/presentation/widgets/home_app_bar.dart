@@ -29,7 +29,7 @@ class HomeAppBar extends StatelessWidget {
           height: 50.sp,
           width: 50.sp,
         ),
-        Spacer(),
+        const Spacer(),
         ...List.generate(
             icons.length,
             (index) => AppBarIconItem(

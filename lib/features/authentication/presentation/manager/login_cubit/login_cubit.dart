@@ -39,11 +39,11 @@ class LoginCubit extends Cubit<LoginStates> {
   }
 
   void saveEmail(String? value) {
-    email = value ?? "";
+    email = value ?? '';
   }
 
   void savePassword(String? value) {
-    password = value ?? "";
+    password = value ?? '';
   }
 
   Future<void> signInWithGoogle() async {

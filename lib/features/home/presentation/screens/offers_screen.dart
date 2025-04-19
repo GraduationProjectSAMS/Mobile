@@ -7,6 +7,6 @@ class OffersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OffersScreenBody();
+    return const OffersScreenBody();
   }
 }

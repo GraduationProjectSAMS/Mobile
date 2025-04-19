@@ -28,6 +28,8 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   flutter_rating_bar: ^4.0.1
   fluttertoast: ^8.2.12
+  # only for windows
+  window_manager: ^0.4.3
 
 dev_dependencies:
   flutter_test:

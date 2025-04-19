@@ -19,13 +19,13 @@ abstract class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutes.login:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
       case AppRoutes.signUpRoute:
-        return MaterialPageRoute(builder: (_) => SignUpScreen());
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case AppRoutes.homeLayout:
-        return MaterialPageRoute(builder: (_) => HomeLayout());
+        return MaterialPageRoute(builder: (_) => const HomeLayout());
       case AppRoutes.productDetails:
-        return MaterialPageRoute(builder: (_) => ProductDetailsScreen());
+        return MaterialPageRoute(builder: (_) => const ProductDetailsScreen());
       default:
         return _errorRoute();
     }
@@ -35,9 +35,9 @@ abstract class RouteGenerator {
     return MaterialPageRoute(builder: (_) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Error'),
+          title: const Text('Error'),
         ),
-        body: Center(
+        body: const Center(
           child: Text('ERROR'),
         ),
       );

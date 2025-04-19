@@ -1,23 +1,23 @@
 abstract class ValidatorService {
   static String? emailValidator(String? value) {
-    bool emailValid = RegExp(
+    final bool emailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(value ?? "");
+        .hasMatch(value ?? '');
     if (value?.isEmpty == true) {
-      return "Email must have value";
+      return 'Email must have value';
     }
 
-    if (value?.contains("@") == false) {
+    if (value?.contains('@') == false) {
       return "invalid email '@' is missing";
     }
-    if (value?.split("@").length != 2) {
-      return "invalid email";
+    if (value?.split('@').length != 2) {
+      return 'invalid email';
     }
-    if (value?.contains(".") == false) {
-      return " invalid email dot is missing";
+    if (value?.contains('.') == false) {
+      return ' invalid email dot is missing';
     }
     if (!emailValid) {
-      return "invalid email";
+      return 'invalid email';
     } else {
       return null;
     }
@@ -25,18 +25,18 @@ abstract class ValidatorService {
 
   static String? passwordValidator(String? value) {
     if (value?.isEmpty == true) {
-      return "Password must have value";
+      return 'Password must have value';
     } else if ((value?.length ?? 0) <= 4) {
-      return "Password to short ";
+      return 'Password to short ';
     } else {
       return null;
     }
   }
 
   static String? userNameValidator(String? value) {
-    bool nameValid = RegExp(r"^[a-zA-Z0-9 ]+$").hasMatch(value ?? "");
+    final bool nameValid = RegExp(r'^[a-zA-Z0-9 ]+$').hasMatch(value ?? '');
     if (value?.isEmpty == true) {
-      return "Name must have value";
+      return 'Name must have value';
     }
     if (!nameValid) {
       return 'Enter a Valid Name ';
@@ -46,9 +46,9 @@ abstract class ValidatorService {
   }
 
   static String? phoneNumberValidator(String? value) {
-    bool phoneValid = RegExp(r"^\d+$").hasMatch(value ?? "");
+    final bool phoneValid = RegExp(r'^\d+$').hasMatch(value ?? '');
     if (value?.isEmpty == true) {
-      return "phone must have value";
+      return 'phone must have value';
     }
     if (!phoneValid) {
       return 'Enter a Valid phone';

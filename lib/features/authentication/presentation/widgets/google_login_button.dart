@@ -15,7 +15,7 @@ class GoogleLoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: onTap,
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       color: AppColors.white,
       shape: RoundedRectangleBorder(
         side: BorderSide(
@@ -28,7 +28,7 @@ class GoogleLoginButton extends StatelessWidget {
         children: [
           Image.asset(AppAssets.googleLogo,
               height: 25.sp, width: 25.sp, fit: BoxFit.cover),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Text(

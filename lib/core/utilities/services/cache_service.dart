@@ -21,26 +21,26 @@ class CacheService {
   static Future<bool?> setData(
       {required String key, required dynamic value}) async {
     if (value is bool) {
-      return await _sharedPreferences.setBool(key, value);
+      return _sharedPreferences.setBool(key, value);
     }
     if (value is String) {
-      return await _sharedPreferences.setString(key, value);
+      return _sharedPreferences.setString(key, value);
     }
     if (value is int) {
-      return await _sharedPreferences.setInt(key, value);
+      return _sharedPreferences.setInt(key, value);
     }
     if (value is double) {
-      return await _sharedPreferences.setDouble(key, value);
+      return _sharedPreferences.setDouble(key, value);
     }
     return null;
   }
 
   static Future<bool?> removeData({required String key}) async {
-    return await _sharedPreferences.remove(key);
+    return _sharedPreferences.remove(key);
   }
 
   static Future<bool?> clear() async {
-    return await _sharedPreferences.clear();
+    return _sharedPreferences.clear();
   }
 
   static void saveTokenThenGoHome(BuildContext context, LoginEntity entity) {

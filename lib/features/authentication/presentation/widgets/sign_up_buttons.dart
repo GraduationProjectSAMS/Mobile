@@ -32,7 +32,7 @@ class SignUpButtons extends StatelessWidget {
             }
           },
         ),
-        HeightSizedBox(height: 2),
+        const HeightSizedBox(height: 2),
         GoogleLoginButton(
           onTap: context.read<SignupCubit>().signInWithGoogle,
           text: AppStrings.signUpWithGoogle,

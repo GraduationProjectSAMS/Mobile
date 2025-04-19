@@ -15,17 +15,17 @@ class OffersScreenBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Text(
             AppStrings.offers,
             style: AppStyles.textStyle20,
           ),
-          HeightSizedBox(height: 1),
-          CustomSearchBar(),
-          HeightSizedBox(height: 1),
-          Expanded(child: OffersBlocBuilder())
+          const HeightSizedBox(height: 1),
+          const CustomSearchBar(),
+          const HeightSizedBox(height: 1),
+          const Expanded(child: OffersBlocBuilder())
         ],
       ),
     );

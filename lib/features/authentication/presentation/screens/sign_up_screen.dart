@@ -18,7 +18,7 @@ class SignUpScreen extends StatelessWidget {
         getIt.get<SignupWithGmailUseCase>(),
         getIt.get<SignInWithGoogleUseCase>(), getIt.get<SendGoogleTokenToBackEndUseCase>(),
       ),
-      child: Scaffold(
+      child: const Scaffold(
         body: SignupScreenBody(),
       ),
     );

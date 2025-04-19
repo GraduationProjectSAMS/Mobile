@@ -10,18 +10,18 @@ class HomeTextTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.only(start: 22, top: 5, bottom: 5),
+      padding: const EdgeInsetsDirectional.only(start: 22, top: 5, bottom: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
-            style: AppStyles.textStyle18.copyWith(fontWeight: FontWeight.w600),
+            style: AppStyles.textStyle18.copyWith(fontWeight: FontWeight.w600,),
           ),
           TextButton.icon(
-              icon: Text("view all"),
+              icon: const Text('view all'),
               onPressed: () {},
-              label: Icon(
+              label: const Icon(
                 Icons.arrow_right,
                 size: 20,
               )),

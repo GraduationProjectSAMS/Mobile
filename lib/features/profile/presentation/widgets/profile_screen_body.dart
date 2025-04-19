@@ -10,9 +10,9 @@ class ProfileScreenBody extends StatelessWidget {
   const ProfileScreenBody({super.key});
 
   static List<String> menuItems = [
-    "Change Username",
-    "Change Password",
-    "Logout",
+    'Change Username',
+    'Change Password',
+    'Logout',
   ];
   static List<IconData> menuIcons = [
     Icons.person,
@@ -33,7 +33,6 @@ class ProfileScreenBody extends StatelessWidget {
             EdgeInsets.only(right: 20.0, left: 20.0, bottom: 15.0, top: 9.hR),
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               MyCachedNetworkImage(
 
@@ -41,14 +40,14 @@ class ProfileScreenBody extends StatelessWidget {
                 height: 120.sp,
                 width: 120.sp,
                 imageUrl:
-                    "https://firebasestorage.googleapis.com/v0/b/social-vape.appspot.com/o/r2eN3MVrYKZBLkIUq9529uAjHLm2%2FuserProfilePhoto%2Fimage_cropper_1692455002427.jpg?alt=media&token=8e2e1db9-de01-42ff-8e60-39e0d0a9abae",
+                    'https://firebasestorage.googleapis.com/v0/b/social-vape.appspot.com/o/r2eN3MVrYKZBLkIUq9529uAjHLm2%2FuserProfilePhoto%2Fimage_cropper_1692455002427.jpg?alt=media&token=8e2e1db9-de01-42ff-8e60-39e0d0a9abae',
                 fit: BoxFit.cover,
               ),
               const SizedBox(
                 height: 10,
               ),
               Text(
-                "Shady Hisham",
+                'Shady Hisham',
                 style: TextStyle(
                   fontSize: 19.sp,
                   fontWeight: FontWeight.w600,
@@ -58,7 +57,7 @@ class ProfileScreenBody extends StatelessWidget {
                 height: 2,
               ),
               Text(
-                "shady.hesham@gmail.com",
+                'shady.hesham@gmail.com',
                 style: TextStyle(
                   fontSize: 14.sp,
                   color: Colors.black54,
@@ -90,7 +89,7 @@ class ProfileScreenBody extends StatelessWidget {
                           width: 3,
                         ),
                         Text(
-                          "Favorites",
+                          'Favorites',
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: Colors.black54,
@@ -108,7 +107,7 @@ class ProfileScreenBody extends StatelessWidget {
                           width: 5,
                         ),
                         Text(
-                          "12",
+                          '12',
                           style: TextStyle(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w600,
@@ -129,7 +128,7 @@ class ProfileScreenBody extends StatelessWidget {
                     child: Row(
                       children: [
                         ImageIcon(
-                          AssetImage("assets/images/purchase-order.png"),
+                          const AssetImage('assets/images/purchase-order.png'),
                           color: Colors.green,
                           size: 25.sp,
                         ),
@@ -137,7 +136,7 @@ class ProfileScreenBody extends StatelessWidget {
                           width: 3,
                         ),
                         Text(
-                          "Past Orders",
+                          'Past Orders',
                           style: TextStyle(
                             fontSize: 13.sp,
                             color: Colors.black54,
@@ -155,7 +154,7 @@ class ProfileScreenBody extends StatelessWidget {
                           width: 5,
                         ),
                         Text(
-                          "12",
+                          '12',
                           style: TextStyle(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w600,

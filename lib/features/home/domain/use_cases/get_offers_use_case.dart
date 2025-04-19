@@ -10,6 +10,6 @@ class GetOffersUseCase {
   GetOffersUseCase(this._homeRepo);
 
   Future<Either<Failure, List<ProductEntity>>> getOffers() async {
-    return await _homeRepo.getOffers();
+    return _homeRepo.getOffers();
   }
 }
