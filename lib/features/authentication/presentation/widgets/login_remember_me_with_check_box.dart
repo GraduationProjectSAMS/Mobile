@@ -13,7 +13,10 @@ class LoginRememberMeWithCheckBox extends StatelessWidget {
     return Row(
       children: <Widget>[
         const LoginCheckBox(),
-        Text(AppStrings.rememberMe,style: AppStyles.textStyle14,),
+        Text(
+          AppStrings.rememberMe,
+          style: AppStyles.defaultStyle,
+        ),
         const Spacer(),
         MyTextButton(
           onTap: () {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/widgets/my_button_widget.dart';
+
 import '../../../../core/widgets/my_text_form_field.dart';
 
 void showChangePasswordDialog(BuildContext context) {
@@ -18,8 +19,8 @@ void showChangePasswordDialog(BuildContext context) {
     builder: (context) {
       return StatefulBuilder(
         builder: (context, setState) => AlertDialog(
-
-          title: const Center(child: Text('Change Password', style: TextStyle(fontSize: 20))),
+          title: const Center(
+              child: Text('Change Password', style: TextStyle(fontSize: 20))),
           content: SingleChildScrollView(
             child: SizedBox(
               width: 100.wR,
@@ -34,7 +35,8 @@ void showChangePasswordDialog(BuildContext context) {
                       hidePassword: hideOld,
                       prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
-                        icon: Icon(!hideOld ? Icons.visibility : Icons.visibility_off),
+                        icon: Icon(
+                            !hideOld ? Icons.visibility : Icons.visibility_off),
                         onPressed: () => setState(() => hideOld = !hideOld),
                       ),
                       validator: (value) {
@@ -51,7 +53,8 @@ void showChangePasswordDialog(BuildContext context) {
                       hidePassword: hideNew,
                       prefixIcon: const Icon(Icons.lock_outline),
                       suffixIcon: IconButton(
-                        icon: Icon(!hideNew ? Icons.visibility : Icons.visibility_off),
+                        icon: Icon(
+                            !hideNew ? Icons.visibility : Icons.visibility_off),
                         onPressed: () => setState(() => hideNew = !hideNew),
                       ),
                       validator: (value) {
@@ -68,8 +71,11 @@ void showChangePasswordDialog(BuildContext context) {
                       hidePassword: hideConfirm,
                       prefixIcon: const Icon(Icons.lock_outline),
                       suffixIcon: IconButton(
-                        icon: Icon(!hideConfirm ? Icons.visibility : Icons.visibility_off),
-                        onPressed: () => setState(() => hideConfirm = !hideConfirm),
+                        icon: Icon(!hideConfirm
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () =>
+                            setState(() => hideConfirm = !hideConfirm),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {

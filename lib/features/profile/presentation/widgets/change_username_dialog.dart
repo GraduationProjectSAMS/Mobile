@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/widgets/my_button_widget.dart';
+
 import '../../../../core/widgets/my_text_form_field.dart';
 
 void changeUserNameDialog(BuildContext context) {
@@ -14,8 +15,8 @@ void changeUserNameDialog(BuildContext context) {
     builder: (context) {
       return StatefulBuilder(
         builder: (context, setState) => AlertDialog(
-
-          title: const Center(child: Text('Change Username', style: TextStyle(fontSize: 20))),
+          title: const Center(
+              child: Text('Change Username', style: TextStyle(fontSize: 20))),
           content: SingleChildScrollView(
             child: SizedBox(
               width: 100.wR,

@@ -16,7 +16,9 @@ class HomeTextTitle extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppStyles.textStyle18.copyWith(fontWeight: FontWeight.w600,),
+            style: AppStyles.textStyle18.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
           ),
           TextButton.icon(
               icon: const Text('view all'),

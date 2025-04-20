@@ -11,7 +11,7 @@ class SendGoogleTokenToBackEndUseCase {
 
   Future<Either<Failure, LoginEntity>> call({
     required String googleToken,
-  })async{
+  }) async {
     return _authenticationRepo.sendGoogleTokenToBackEnd(
       googleToken: googleToken,
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/core/utilities/services/size_config_service.dart';
 
 import '../../../../core/utilities/resources/app_assets.dart';
 import '../../../../core/utilities/resources/app_colors.dart';
@@ -13,6 +14,7 @@ class GoogleLoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (SizeConfigService.isDesktop) return const SizedBox();
     return MaterialButton(
       onPressed: onTap,
       padding: const EdgeInsets.symmetric(vertical: 10),

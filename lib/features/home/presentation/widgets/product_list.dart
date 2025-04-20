@@ -28,7 +28,7 @@ class ProductList extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: context.gridCount,
-            mainAxisExtent: 30.hR,
+            mainAxisExtent: 250.sp,
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
           ),

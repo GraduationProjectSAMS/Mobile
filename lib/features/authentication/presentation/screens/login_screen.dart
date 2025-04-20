@@ -13,27 +13,14 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return BlocProvider(
-
       create: (context) => LoginCubit(
-          getIt.get<LoginWithEmailAndPasswordUseCase>(),
-          getIt.get<SignInWithGoogleUseCase>(),
+        getIt.get<LoginWithEmailAndPasswordUseCase>(),
+        getIt.get<SignInWithGoogleUseCase>(),
         getIt.get<SendGoogleTokenToBackEndUseCase>(),
-
       ),
-      child: Scaffold(
-        body: LayoutBuilder(
-          builder: (context, constraints) {
-          // print("mediaWidth: ${MediaQuery.of(context).size.width}");
-          //   print("mediaHeight: ${MediaQuery.of(context).size.height}");
-          //   print("sizeConfgWidth: ${SizeConfigService.width}");
-          //   print("sizeConfgHeight: ${SizeConfigService.height}");
-
-            return  const LoginScreenBody();
-          }
-        ),
+      child: const Scaffold(
+        body: LoginScreenBody(),
       ),
     );
   }

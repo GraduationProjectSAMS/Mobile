@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/config/routes/app_route.dart';
+import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/core/widgets/my_cached_network_image.dart';
 
+import '../../../../core/utilities/services/cache_service.dart';
 import 'change_password_dialog.dart';
 import 'change_username_dialog.dart';
 
@@ -35,7 +37,6 @@ class ProfileScreenBody extends StatelessWidget {
           child: Column(
             children: [
               MyCachedNetworkImage(
-
                 isOval: true,
                 height: 120.sp,
                 width: 120.sp,
@@ -193,12 +194,15 @@ class ProfileScreenBody extends StatelessWidget {
                         icon: menuIcons[index],
                         title: menuItems[index],
                         color: menuColors[index],
-                        onTap: () {
+                        onTap: () async {
                           if (index == 0) {
                             changeUserNameDialog(context);
                           } else if (index == 1) {
                             showChangePasswordDialog(context);
                           } else if (index == 2) {
+                            await CacheService.removeData(
+                                key: AppConstants.token);
+                            if (!context.mounted) return;
                             context.navigateAndRemoveUntil(
                                 pageName: AppRoutes.login);
                           }

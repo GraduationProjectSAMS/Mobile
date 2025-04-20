@@ -18,8 +18,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-     hoverColor: AppColors.offPrimary,
-
+      hoverColor: AppColors.offPrimary,
       borderRadius: BorderRadius.circular(10),
       onTap: () {
         context.navigateTo(pageName: AppRoutes.productDetails);

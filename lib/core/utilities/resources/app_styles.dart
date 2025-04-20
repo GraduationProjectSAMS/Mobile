@@ -9,5 +9,6 @@ abstract class AppStyles {
   static TextStyle get textStyle18 => TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400);
   static TextStyle get textStyle20 => TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600);
   static TextStyle get textStyle30 => TextStyle(fontSize: 30.sp, fontWeight: FontWeight.w700);
+  static TextStyle get defaultStyle  => TextStyle(fontSize: 12.sp, fontWeight:FontWeight.w400);
 
 }

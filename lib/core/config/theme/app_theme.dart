@@ -17,6 +17,9 @@ abstract class AppTheme {
         TargetPlatform.android:
             FadeForwardsPageTransitionsBuilder(backgroundColor: Colors.white),
         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.macOS:
+            FadeForwardsPageTransitionsBuilder(backgroundColor: Colors.white),
+        TargetPlatform.windows:FadeForwardsPageTransitionsBuilder(backgroundColor: Colors.white),
       },
     ),
     splashColor: AppColors.white,

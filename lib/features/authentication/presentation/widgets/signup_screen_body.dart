@@ -1,49 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/config/extension/extension.dart';
-import 'package:graduation_project/core/utilities/resources/app_strings.dart';
-import 'package:graduation_project/core/widgets/height_sized_box.dart';
-import 'package:graduation_project/features/authentication/presentation/widgets/sign_up_buttons.dart';
-import 'package:graduation_project/features/authentication/presentation/widgets/sign_up_text_forms.dart';
-import 'package:graduation_project/features/authentication/presentation/widgets/welcome_text.dart';
-
-import 'is_user_sign_in_widget.dart';
+import 'package:graduation_project/features/authentication/presentation/screens/authentication_adaptive_lay_out.dart';
+import 'package:graduation_project/features/authentication/presentation/widgets/signup_disk_top_layout.dart';
+import 'package:graduation_project/features/authentication/presentation/widgets/signup_mobile_layout.dart';
 
 class SignupScreenBody extends StatelessWidget {
   const SignupScreenBody({super.key});
 
-  static const space = 2.0;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Center(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // User Name Field
-              const WelcomeText(
-                  text1: AppStrings.registerAccount,
-                  text2: AppStrings.signUpMassage),
-
-              const HeightSizedBox(height: 6),
-              const SignUpTextForms(),
-              const HeightSizedBox(
-                height: space,
-              ),
-              const SignUpButtons(),
-              const HeightSizedBox(height: 1.5),
-              IsUserSignInWidget(
-                  isLogin: true,
-                  onTap: () {
-                    context.pop();
-                  }),
-            ],
-          ),
-        ),
-      ),
+        child: AuthenticationAdaptiveLayOut(
+      mobileLayOut: (BuildContext context) => const SignupMobileLayout(),
+      desktopLayOut: (BuildContext context) => const SignupDiskTopLayout(),
     ));
   }
 }

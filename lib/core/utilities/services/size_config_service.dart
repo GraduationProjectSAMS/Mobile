@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 
-abstract class SizeConfigService with WidgetsBindingObserver  {
+abstract class SizeConfigService   {
   static double  width = 0, height = 0;
   static const maxMobileWidth = 550;
   static const maxTabletWidth = 1000;

@@ -16,7 +16,8 @@ class SignUpScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignupCubit(
         getIt.get<SignupWithGmailUseCase>(),
-        getIt.get<SignInWithGoogleUseCase>(), getIt.get<SendGoogleTokenToBackEndUseCase>(),
+        getIt.get<SignInWithGoogleUseCase>(),
+        getIt.get<SendGoogleTokenToBackEndUseCase>(),
       ),
       child: const Scaffold(
         body: SignupScreenBody(),

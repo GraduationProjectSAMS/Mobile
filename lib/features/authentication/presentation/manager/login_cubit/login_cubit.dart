@@ -9,15 +9,13 @@ import '../../../domain/use_case/sign_in_with_google_use_case.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
-  LoginCubit(
-      this._loginWithEmailAndPasswordUseCase, this._signInWithGoogleUseCase,
-
-      this._sendGoogleTokenToBackEndUseCase)
+  LoginCubit(this._loginWithEmailAndPasswordUseCase,
+      this._signInWithGoogleUseCase, this._sendGoogleTokenToBackEndUseCase)
       : super(LoginInitial());
   final LoginWithEmailAndPasswordUseCase _loginWithEmailAndPasswordUseCase;
 
   final SignInWithGoogleUseCase _signInWithGoogleUseCase;
-  final SendGoogleTokenToBackEndUseCase _sendGoogleTokenToBackEndUseCase ;
+  final SendGoogleTokenToBackEndUseCase _sendGoogleTokenToBackEndUseCase;
 
   final formKey = GlobalKey<FormState>();
   String email = '';
@@ -51,14 +49,15 @@ class LoginCubit extends Cubit<LoginStates> {
     final result = await _signInWithGoogleUseCase.call();
     result.fold(
       (failure) => emit(LoginError(failure.errorMessage)),
-      (token) async{
+      (token) async {
         await sendGoogleTokenToBackEnd(token);
       },
     );
   }
-  Future<void> sendGoogleTokenToBackEnd(String googleToken) async {
 
-    final result = await _sendGoogleTokenToBackEndUseCase.call(googleToken: googleToken);
+  Future<void> sendGoogleTokenToBackEnd(String googleToken) async {
+    final result =
+        await _sendGoogleTokenToBackEndUseCase.call(googleToken: googleToken);
     result.fold(
       (failure) => emit(LoginError(failure.errorMessage)),
       (loginEntity) => emit(LoginSuccess(loginEntity)),
