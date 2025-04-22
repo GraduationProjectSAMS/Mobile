@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/add_product/presentation/screens/add_product_screen.dart';
 import '../../../features/authentication/presentation/screens/login_screen.dart';
 import '../../../features/authentication/presentation/screens/sign_up_screen.dart';
 import '../../../features/home/presentation/screens/home_layout.dart';
@@ -13,6 +14,7 @@ abstract class AppRoutes {
   static const signUpRoute = '/signUp';
   static const homeLayout = '/homeLayout';
   static const productDetails = '/productDetails';
+  static const addProduct = '/addProduct';
 }
 
 abstract class RouteGenerator {
@@ -26,6 +28,8 @@ abstract class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const HomeLayout());
       case AppRoutes.productDetails:
         return MaterialPageRoute(builder: (_) => const ProductDetailsScreen());
+        case AppRoutes.addProduct:
+        return MaterialPageRoute(builder: (_) => const AddProductScreen());
       default:
         return _errorRoute();
     }

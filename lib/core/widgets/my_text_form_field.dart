@@ -21,12 +21,16 @@ class MyTextFormField extends StatelessWidget {
     this.focusNode,
     this.onFieldSubmitted,
     this.textInputAction,
+    this.maxLines,
+    this.minLines,
+    this.suffix,
   });
 
   final String? hintText;
   final String? labelText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final Widget? suffix;
   final bool hidePassword;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
@@ -42,9 +46,15 @@ class MyTextFormField extends StatelessWidget {
   final void Function(String)? onFieldSubmitted;
   final TextInputAction? textInputAction;
 
+  // max min lines
+  final int? maxLines;
+  final int? minLines;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
+      minLines: minLines,
       readOnly: readOnly,
       autofillHints: autofillHints,
       enabled: enabled,
@@ -63,13 +73,15 @@ class MyTextFormField extends StatelessWidget {
       onSaved: onSaved,
       obscureText: hidePassword,
       decoration: InputDecoration(
-          hintText: hintText,
-          label: Text(
-            labelText ?? '',
-            maxLines: 1,
-          ),
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon),
+        hintText: hintText,
+        label: Text(
+          labelText ?? '',
+          maxLines: 1,
+        ),
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        suffix: suffix
+      ),
     );
   }
 }

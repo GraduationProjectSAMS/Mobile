@@ -56,4 +56,12 @@ abstract class ValidatorService {
       return null;
     }
   }
+
+  static String? emptyValidator(String? value) {
+    if (value?.isEmpty == true) {
+      return 'Enter a Value';
+    } else {
+      return null;
+    }
+  }
 }

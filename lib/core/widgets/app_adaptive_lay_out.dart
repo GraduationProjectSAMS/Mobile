@@ -11,7 +11,6 @@ class AppAdaptiveLayOut extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      print(constraints.maxWidth);
       if (constraints.maxWidth < SizeConfigService.maxMobileWidth)  {
         return mobileLayOut(context);
       }  else {
