@@ -5,4 +5,5 @@ abstract class AppEndpoints {
   static const loginWithGoogle = 'auth/google/callback';
   static const getProducts = 'products';
   static const getOffers = 'offers';
+  static const addToFavorite = 'wishlists';
 }

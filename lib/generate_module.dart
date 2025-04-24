@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+
 void main() {
   stdout.write('Enter module name (e.g., chat_logs): ');
   final String? moduleName = stdin.readLineSync();
   if (moduleName == null || moduleName.isEmpty) {
-    print('❌ Module name cannot be empty.');
+    debugPrint('❌ Module name cannot be empty.');
     return;
   }
 
@@ -96,14 +98,14 @@ class ${formattedClassName}ScreenBody extends StatelessWidget {
   generateFiles(files);
   updateDependencyInjection(formattedClassName, formattedFileName);
 
-  print(
+  debugPrint(
       '✅ Module "$moduleName" structure has been generated and registered successfully!');
 }
 
 void createFolders(List<String> folders) {
   for (var folder in folders) {
     Directory(folder).createSync(recursive: true);
-    print('📂 Created folder: $folder');
+    debugPrint('📂 Created folder: $folder');
   }
 }
 
@@ -113,9 +115,9 @@ void generateFiles(Map<String, String> files) {
     if (!file.existsSync()) {
       file.createSync();
       file.writeAsStringSync(content);
-      print('📝 Created: $filePath');
+      debugPrint('📝 Created: $filePath');
     } else {
-      print('⚠️ File already exists: $filePath');
+      debugPrint('⚠️ File already exists: $filePath');
     }
   });
 }
@@ -136,7 +138,7 @@ void updateDependencyInjection(String className, String fileName) {
   final file = File(filePath);
 
   if (!file.existsSync()) {
-    print('⚠️ dependency_injection.dart not found, skipping registration.');
+    debugPrint('⚠️ dependency_injection.dart not found, skipping registration.');
     return;
   }
 
@@ -144,7 +146,7 @@ void updateDependencyInjection(String className, String fileName) {
 
   // Check if the repository is already registered
   if (content.contains('${className}RepoImpl')) {
-    print('⚠️ Repository already registered in dependency_injection.dart.');
+    debugPrint('⚠️ Repository already registered in dependency_injection.dart.');
     return;
   }
 
@@ -185,6 +187,6 @@ import 'package:learnovia_mobile/features/$fileName/data/repositories/${fileName
   }
 
   file.writeAsStringSync(content);
-  print(
+  debugPrint(
       '🔗 Registered ${className}RepoImpl and added imports in dependency_injection.dart');
 }

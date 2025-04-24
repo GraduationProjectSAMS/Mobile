@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 
 import 'banner_list_with_indicator.dart';
-import 'home_app_bar.dart';
 import 'home_offers_bloc_builder.dart';
 import 'home_product_bloc_builder.dart';
 import 'home_text_title.dart';
@@ -14,10 +13,6 @@ class HomeScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        Padding(
-          padding: EdgeInsets.all(20),
-          child: HomeAppBar(),
-        ),
         Expanded(
           child: SingleChildScrollView(
             child: Column(

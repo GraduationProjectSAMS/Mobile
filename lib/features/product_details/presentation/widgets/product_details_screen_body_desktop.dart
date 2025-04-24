@@ -24,7 +24,7 @@ class ProductDetailsScreenBodyDesktop extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const MyBackButtonLightMode(),
+                  const MyBackButton(),
                   const Spacer(flex: 9,),
                   MyCachedNetworkImage(
                       height: 60.hR,

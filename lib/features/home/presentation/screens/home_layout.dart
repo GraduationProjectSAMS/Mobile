@@ -5,6 +5,9 @@ import 'package:graduation_project/core/widgets/app_adaptive_lay_out.dart';
 import 'package:graduation_project/features/home/domain/use_cases/get_offers_use_case.dart';
 import 'package:graduation_project/features/home/presentation/manager/offers_cubit/offers_cubit.dart';
 
+import '../../../favorites/domain/use_cases/add_to_favorites_use_case.dart';
+import '../../../favorites/domain/use_cases/get_favorites_use_case.dart';
+import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 import '../../domain/use_cases/get_products_use_case.dart';
 import '../manager/products_cubit/product_cubit.dart';
 import '../widgets/desktop_body_layout.dart';
@@ -26,6 +29,12 @@ class HomeLayout extends StatelessWidget {
             create: (context) =>
                 OffersCubit(getIt.get<GetOffersUseCase>())..getOffers(),
           ),
+          BlocProvider(
+            create: (context) => AddFavoriteCubit(
+                addToFavoritesUseCase: getIt.get<AddToFavoritesUseCase>(),
+                getFavoritesUseCase: getIt.get<GetFavoritesUseCase>())
+              ..getFavorites(),
+          )
         ],
         child: AppAdaptiveLayOut(
           mobileLayOut: (BuildContext context) => const HomeMobileBodyLayout(),

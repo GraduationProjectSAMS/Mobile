@@ -11,23 +11,25 @@ class OffersScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 20,
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                AppStrings.offers,
+                style: AppStyles.textStyle20,
+              ),
+              const HeightSizedBox(height: 1),
+              const CustomSearchBar(),
+            ],
           ),
-          Text(
-            AppStrings.offers,
-            style: AppStyles.textStyle20,
-          ),
-          const HeightSizedBox(height: 1),
-          const CustomSearchBar(),
-          const HeightSizedBox(height: 1),
-          const Expanded(child: OffersBlocBuilder())
-        ],
-      ),
+        ),
+        const HeightSizedBox(height: 1),
+        const Expanded(child: OffersBlocBuilder())
+      ],
     );
   }
 }

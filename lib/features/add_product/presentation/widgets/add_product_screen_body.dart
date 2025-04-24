@@ -24,7 +24,7 @@ class AddProductScreenBody extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(15, 10, 0, 0),
             child: Row(
               children: [
-                MyBackButtonLightMode(),
+                MyBackButton(),
                 SizedBox(
                   width: 20,
                 ),

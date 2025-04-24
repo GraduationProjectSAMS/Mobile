@@ -59,8 +59,8 @@ class MyTextButton extends StatelessWidget {
   }
 }
 
-class MyBackButtonLightMode extends StatelessWidget {
-  const MyBackButtonLightMode({
+class MyBackButton extends StatelessWidget {
+  const MyBackButton({
     super.key,
     this.onTap,
     this.height,

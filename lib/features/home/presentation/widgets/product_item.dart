@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/utilities/resources/app_colors.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
@@ -7,6 +8,7 @@ import 'package:graduation_project/features/home/domain/entities/product_entity.
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/config/routes/app_route.dart';
+import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({super.key, this.width, this.height, required this.model});
@@ -15,6 +17,7 @@ class ProductItem extends StatelessWidget {
   final double? width;
   final double? height;
 
+  @override
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -45,12 +48,45 @@ class ProductItem extends StatelessWidget {
                         top: 5,
                         right: 5,
                         child: Skeleton.ignore(
-                          child: CircleAvatar(
-                            radius: 18.sp,
-                            backgroundColor: AppColors.white.withOpacity(0.5),
-                            child: const Icon(
-                              Icons.favorite_border,
-                            ),
+                          child:
+                              BlocBuilder<AddFavoriteCubit, AddFavoriteStates>(
+                            builder: (context, state) {
+                              final cubit = context.read<AddFavoriteCubit>();
+                              final isFavorite = cubit.productsKeys[
+                                      '${model.id}${model.type}'] ??
+                                  false;
+
+                              return InkWell(
+                                onTap: () => cubit.toggleFavoriteBackEnd(model),
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.white
+                                        .withAlpha(isFavorite ? 255 : 100),
+                                  ),
+                                  width: 36.sp,
+                                  height: 36.sp,
+                                  child: Center(
+                                    child: AnimatedSwitcher(
+                                      duration:
+                                          const Duration(milliseconds: 250),
+                                      transitionBuilder: (child, animation) =>
+                                          ScaleTransition(
+                                              scale: animation, child: child),
+                                      child: Icon(
+                                        isFavorite
+                                            ? Icons.favorite
+                                            : Icons.favorite_border,
+                                        key: ValueKey(isFavorite),
+                                        color: isFavorite ? Colors.red : null,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
                       ),

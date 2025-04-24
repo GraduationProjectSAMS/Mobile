@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/utilities/resources/icon_broken.dart';
+import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
+import 'package:graduation_project/features/home/presentation/manager/offers_cubit/offers_cubit.dart';
+import 'package:graduation_project/features/home/presentation/manager/products_cubit/product_cubit.dart';
 import 'package:graduation_project/features/home/presentation/screens/home_screen.dart';
 import 'package:graduation_project/features/home/presentation/screens/products_screen.dart';
 import 'package:graduation_project/features/profile/presentation/screens/profile_screen.dart';
+import 'package:nested/nested.dart';
 
 import '../../../../core/utilities/resources/app_colors.dart';
+import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 import '../screens/offers_screen.dart';
+import 'home_app_bar.dart';
 
 class HomeMobileBodyLayout extends StatefulWidget {
   const HomeMobileBodyLayout({super.key});
@@ -43,54 +50,96 @@ class _HomeMobileBodyLayoutState extends State<HomeMobileBodyLayout> {
     });
   }
 
+  void _syncProductsToManagement(
+      BuildContext context, List<ProductEntity> products) {
+    final productManagementCubit = BlocProvider.of<AddFavoriteCubit>(context);
+    productManagementCubit.productsKeys.addAll(
+      products.asMap().map(
+            (key, value) =>
+                MapEntry('${value.id}${value.type}', value.isFavorite),
+          ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.offWhite,
-      body: SafeArea(
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          child: _screens[_selectedIndex],
-        ),
-      ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _selectedIndex,
-        onDestinationSelected: _onItemTapped,
-        destinations: List.generate(
-          icons.length,
-          (index) => NavigationDestination(
-            icon: Icon(icons[index], size: 28),
-            selectedIcon: Icon(
-              icons[index],
-              size: 30,
-              color: AppColors.primary,
+    return MultiBlocListener(
+      listeners: listeners,
+      child: Scaffold(
+        backgroundColor: AppColors.offWhite,
+        body: SafeArea(
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: Column(
+              children: [
+                if (_selectedIndex != 3)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                    child: HomeAppBar(),
+                  ),
+                Expanded(child: _screens[_selectedIndex])
+              ],
             ),
-            label: titles[index],
           ),
         ),
-        // destinations: const [
-        //   NavigationDestination(
-        //     icon: Icon(IconBroken.Home, size: 28),
-        //     selectedIcon: Icon(IconBroken.Home,  size: 30,color: AppColors.primaryColor,),
-        //     label: 'Home',
-        //   ),
-        //   NavigationDestination(
-        //     icon: Icon(IconBroken.Bag, size: 28),
-        //     selectedIcon: Icon(IconBroken.Bag,  size: 30,color: AppColors.primaryColor,),
-        //     label: 'products',
-        //   ),
-        //   NavigationDestination(
-        //     icon: Icon(IconBroken.Discount, size: 28),
-        //     selectedIcon: Icon(IconBroken.Discount,  size: 30,color: AppColors.primaryColor),
-        //     label: 'Cart',
-        //   ),
-        //   NavigationDestination(
-        //     icon: Icon(IconBroken.Profile, size: 28,),
-        //     selectedIcon: Icon(IconBroken.Profile, size: 30,color: AppColors.primaryColor),
-        //     label: 'Profile',
-        //   ),
-        // ],
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _selectedIndex,
+          onDestinationSelected: _onItemTapped,
+          destinations: List.generate(
+            icons.length,
+            (index) => NavigationDestination(
+              icon: Icon(icons[index], size: 28),
+              selectedIcon: Icon(
+                icons[index],
+                size: 30,
+                color: AppColors.primary,
+              ),
+              label: titles[index],
+            ),
+          ),
+          // destinations: const [
+          //   NavigationDestination(
+          //     icon: Icon(IconBroken.Home, size: 28),
+          //     selectedIcon: Icon(IconBroken.Home,  size: 30,color: AppColors.primaryColor,),
+          //     label: 'Home',
+          //   ),
+          //   NavigationDestination(
+          //     icon: Icon(IconBroken.Bag, size: 28),
+          //     selectedIcon: Icon(IconBroken.Bag,  size: 30,color: AppColors.primaryColor,),
+          //     label: 'products',
+          //   ),
+          //   NavigationDestination(
+          //     icon: Icon(IconBroken.Discount, size: 28),
+          //     selectedIcon: Icon(IconBroken.Discount,  size: 30,color: AppColors.primaryColor),
+          //     label: 'Cart',
+          //   ),
+          //   NavigationDestination(
+          //     icon: Icon(IconBroken.Profile, size: 28,),
+          //     selectedIcon: Icon(IconBroken.Profile, size: 30,color: AppColors.primaryColor),
+          //     label: 'Profile',
+          //   ),
+          // ],
+        ),
       ),
     );
+  }
+
+  List<SingleChildWidget> get listeners {
+    return [
+      BlocListener<ProductCubit, ProductStates>(
+        listener: (context, state) {
+          if (state is ProductSuccessStates) {
+            _syncProductsToManagement(context, state.products);
+          }
+        },
+      ),
+      BlocListener<OffersCubit, OffersStates>(
+        listener: (context, state) {
+          if (state is OffersSuccessState) {
+            _syncProductsToManagement(context, state.products);
+          }
+        },
+      ),
+    ];
   }
 }
