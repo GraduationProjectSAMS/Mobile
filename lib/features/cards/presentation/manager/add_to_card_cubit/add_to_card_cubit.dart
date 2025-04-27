@@ -71,7 +71,7 @@ class AddToCardCubit extends Cubit<AddToCardStates> {
     final key = '$productId$type';
 
     // If already at max quantity, stop
-    if ((productsCards[key] ?? 0) >= model.quantity) {
+    if ((productsCards[key] ?? 0) >= model.maxQuantity) {
       myToast(msg: AppStrings.maxQuantity, state: ToastStates.normal);
       return false;
     }
@@ -102,7 +102,7 @@ class AddToCardCubit extends Cubit<AddToCardStates> {
     }, (cards) {
       selectedCards = {for (var card in cards) '${card.id}${card.type}': card};
       productsCards = {
-        for (var card in cards) '${card.id}${card.type}': card.quantity
+        for (var card in cards) '${card.id}${card.type}': card.carQuantity
       };
       emit(GetCardSuccess(cards));
     });

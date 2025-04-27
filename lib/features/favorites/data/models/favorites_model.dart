@@ -31,6 +31,7 @@ class FavoritesData {
     this.name,
     this.theme,
     this.imageUrl,
+    this.maxQuantity,
   });
 
   FavoritesData.fromJson(dynamic json) {
@@ -42,6 +43,8 @@ class FavoritesData {
     name = json['name'];
     theme = json['theme'];
     imageUrl = json['image_url'];
+    maxQuantity = json['max_quantity'];
+
   }
 
   num? id;
@@ -49,9 +52,11 @@ class FavoritesData {
   String? description;
   String? price;
   num? quantity;
+  num? maxQuantity;
   String? name;
   String? theme;
   String? imageUrl;
+
 
   ProductEntity get toEntity {
     return ProductEntity(
@@ -59,7 +64,8 @@ class FavoritesData {
       type: type == 'offer' ? AppConstants.offers : AppConstants.products,
       description: description.toString(),
       price: double.tryParse(price.toString()) ?? 1,
-      quantity: quantity?.toInt() ?? 0,
+      maxQuantity:   maxQuantity?.toInt() ?? quantity?.toInt() ?? 0,
+      carQuantity: quantity?.toInt() ?? 0,
       name: name.toString(),
       isFavorite: true,
       imageUrl: AppConstants.kNullProductImage,

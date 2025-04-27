@@ -92,11 +92,11 @@ class MyBackButton extends StatelessWidget {
               width: height ?? 38.sp,
               height: width ?? 38.sp,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.white.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(50),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.green.withOpacity(0.6),
+                    color: Colors.green.withValues(alpha: 0.6),
                     blurRadius: 20,
                     spreadRadius: 1,
                     offset: const Offset(0, 3),

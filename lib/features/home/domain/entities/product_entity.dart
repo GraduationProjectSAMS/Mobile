@@ -9,7 +9,8 @@ class ProductEntity {
   final String description;
   final double price;
   final String imageUrl;
-  final int quantity;
+  final int maxQuantity;
+  final int carQuantity;
   final bool isFavorite;
   final String type;
 
@@ -19,9 +20,10 @@ class ProductEntity {
     required this.description,
     required this.price,
     required this.imageUrl,
-    required this.quantity,
+    required this.maxQuantity,
     required this.isFavorite,
     required this.type,
+    this.carQuantity = 0,
   });
 
   factory ProductEntity.loading() => const ProductEntity(
@@ -32,7 +34,7 @@ class ProductEntity {
         description: 'test description',
         price: 0.0,
         imageUrl: '',
-        quantity: 0,
+        maxQuantity: 0,
       );
 }
 

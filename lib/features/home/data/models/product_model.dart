@@ -67,6 +67,6 @@ class ProductData {
         description: description.toString(),
         price: double.tryParse(price.toString()) ?? 0.0,
         imageUrl: AppConstants.kNullProductImage,
-        quantity: quantity?.toInt() ?? 0,
+        maxQuantity: quantity?.toInt() ?? 0,
       );
 }
