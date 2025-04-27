@@ -1,3 +1,8 @@
+import 'package:dartz/dartz.dart';
+import 'package:graduation_project/features/profile/domain/entities/user_entity.dart';
+
+import '../../../../core/errors/failure.dart';
+
 abstract class ProfileRepo {
-  // Define methods here
+  Future<Either<Failure, UserEntity>> getProfileData();
 }

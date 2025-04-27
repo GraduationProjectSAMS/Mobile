@@ -14,8 +14,11 @@ class OffersCubit extends Cubit<OffersStates> {
   List<ProductEntity> homeOffers = [];
 
   Future<void> getOffers() async {
-    emit(OffersLoadingState());
-    final result = await _getOffersUseCase.getOffers();
+    if(state is  !OffersLoadingState) {
+      emit(OffersLoadingState());
+    }
+
+    final result = await _getOffersUseCase.call();
     result.fold(
       (failure) => emit(OffersErrorState(failure.errorMessage)),
       (offers) {
@@ -28,5 +31,11 @@ class OffersCubit extends Cubit<OffersStates> {
         emit(OffersSuccessState(offers));
       },
     );
+  }
+  void viewAllOffers() {
+    if(state is OffersSuccessState) {
+      emit(ViewAllOffersStates());
+    }
+
   }
 }

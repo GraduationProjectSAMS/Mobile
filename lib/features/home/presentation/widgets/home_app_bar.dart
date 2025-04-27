@@ -7,6 +7,7 @@ import 'package:graduation_project/core/utilities/resources/app_colors.dart';
 import 'package:graduation_project/core/utilities/resources/icon_broken.dart';
 
 import '../../../../core/utilities/resources/app_strings.dart';
+import '../../../cards/presentation/manager/add_to_card_cubit/add_to_card_cubit.dart';
 import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -42,13 +43,29 @@ class HomeAppBar extends StatelessWidget {
                 return AppBarIconItem(
                   icon: icons[index],
                   onPressed: () {
-                    cubit.getFavorites();
                     context.navigateTo(
                         pageName: AppRoutes.favorites,
                         arguments: (context: context));
                   },
                   tooltip: titles[index],
                   count: cubit.favoritesCount,
+                );
+              },
+            );
+
+          }
+          if (index == 2) {
+            return BlocBuilder<AddToCardCubit, AddToCardStates>(
+              builder: (context, state) {
+                final cubit = BlocProvider.of<AddToCardCubit>(context);
+                return AppBarIconItem(
+                  icon: icons[index],
+                  onPressed: () {
+
+             context.navigateTo(pageName: AppRoutes.cart,arguments: (context: context));
+                  },
+                  tooltip: titles[index],
+                  count: cubit.cardsCount,
                 );
               },
             );

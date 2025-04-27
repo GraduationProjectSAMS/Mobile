@@ -64,6 +64,9 @@ static const newlyAdded= 'Newly Added';
   static const popularCategorises = 'Popular Categorises';
   static const popularProducts = 'Popular Products';
   static const viewAll = 'View all';
+  static const exitApp='Are you sure you want to exit the app?';
+  static const no = 'No';
+  static const yes = 'Yes';
   static const myAccount = 'My Account';
   static const notification = 'Notifications';
   static const logout = 'Log Out';
@@ -90,6 +93,6 @@ static const newlyAdded= 'Newly Added';
   static const shipping = 'Shipping';
   static const total = 'Total';
   static const thankYou = 'Thank you';
-
+static const maxQuantity = 'You have reached the maximum quantity';
   static const transactionSuccessful = 'Your transaction was successful';
 }

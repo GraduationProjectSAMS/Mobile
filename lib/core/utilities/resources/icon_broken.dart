@@ -1,3 +1,4 @@
+// ignore_for_file: type=lint
 // Place fonts/icons.ttf in your fonts/ directory and
 // add the following to your pubspec.yaml
 // flutter:

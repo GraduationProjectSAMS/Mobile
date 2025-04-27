@@ -16,3 +16,6 @@ final class OffersErrorState extends OffersStates {
 
   OffersErrorState(this.message);
 }
+final class ViewAllOffersStates extends OffersStates {
+
+}

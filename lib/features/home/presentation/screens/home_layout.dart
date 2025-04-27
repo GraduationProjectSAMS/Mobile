@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/utilities/services/dependency_injection_service.dart';
 import 'package:graduation_project/core/widgets/app_adaptive_lay_out.dart';
+import 'package:graduation_project/features/cards/presentation/manager/add_to_card_cubit/add_to_card_cubit.dart';
 import 'package:graduation_project/features/home/domain/use_cases/get_offers_use_case.dart';
 import 'package:graduation_project/features/home/presentation/manager/offers_cubit/offers_cubit.dart';
 
+import '../../../cards/domain/use_cases/add_to_card_use_case.dart';
+import '../../../cards/domain/use_cases/delete_card_use_case.dart';
+import '../../../cards/domain/use_cases/get_cards_use_case.dart';
 import '../../../favorites/domain/use_cases/add_to_favorites_use_case.dart';
 import '../../../favorites/domain/use_cases/get_favorites_use_case.dart';
 import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
@@ -34,11 +38,17 @@ class HomeLayout extends StatelessWidget {
                 addToFavoritesUseCase: getIt.get<AddToFavoritesUseCase>(),
                 getFavoritesUseCase: getIt.get<GetFavoritesUseCase>())
               ..getFavorites(),
-          )
+          ),
+          BlocProvider(
+            create: (context) => AddToCardCubit(
+              deleteCardUseCase: getIt.get<DeleteCardUseCase>(),
+                addToCardUseCase: getIt.get<AddToCardUseCase>(),
+                getCardsUseCase: getIt.get<GetCardsUseCase>())..getCards(),
+          ),
         ],
         child: AppAdaptiveLayOut(
           mobileLayOut: (BuildContext context) => const HomeMobileBodyLayout(),
           desktopLayOut: (BuildContext context) => const DesktopBodyLayout(),
-        ));
+        ),);
   }
 }

@@ -16,3 +16,4 @@ final class ProductErrorStates extends ProductStates {
 
   ProductErrorStates(this.errorMessage);
 }
+final class ViewAllProductsStates extends ProductStates {}

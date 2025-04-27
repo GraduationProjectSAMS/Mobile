@@ -4,6 +4,7 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/utilities/resources/app_colors.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 import 'package:graduation_project/core/widgets/my_cached_network_image.dart';
+import 'package:graduation_project/features/cards/presentation/manager/add_to_card_cubit/add_to_card_cubit.dart';
 import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -150,18 +151,53 @@ class ProductItem extends StatelessWidget {
                           width: 10,
                         ),
                         Skeleton.shade(
-                          child: InkWell(
-                            child: Container(
-                              padding: EdgeInsets.all(5.sp),
-                              decoration: BoxDecoration(
-                                color: AppColors.primary,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: const Icon(
-                                Icons.add,
-                                color: AppColors.white,
-                              ),
-                            ),
+                          child: BlocBuilder<AddToCardCubit, AddToCardStates>(
+                            builder: (context, state) {
+                              final cubit = context.read<AddToCardCubit>();
+                              final key = '${model.id}${model.type}';
+                              final isInCard =
+                                  cubit.productsCards.containsKey(key);
+
+                              return InkWell(
+                                onTap: () => cubit.updateCart(model: model),
+                                child: Container(
+                                  height: 32.sp,
+                                  width: 32.sp,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.primary,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: AnimatedSwitcher(
+                                    duration: const Duration(milliseconds: 300),
+                                    transitionBuilder: (child, animation) {
+                                      return ScaleTransition(
+                                        scale: animation,
+                                        child: child,
+                                      );
+                                    },
+                                    child: isInCard
+                                        ? FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                            child: Text(
+                                              maxLines: 1,
+                                              cubit.productsCards[key]
+                                                  .toString(),
+                                              key: ValueKey(
+                                                  'count_${cubit.productsCards[key]}'),
+                                              // important!
+                                              style: AppStyles.textStyle18.copyWith(color: AppColors.white)
+                                            ),
+                                          )
+                                        : const Icon(
+                                            Icons.add,
+                                            color: AppColors.white,
+                                            key: ValueKey(
+                                                'add_icon'), // important!
+                                          ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         )
                       ],

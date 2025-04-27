@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/features/authentication/domain/entity/login_entity.dart';
@@ -9,6 +10,7 @@ import '../../config/routes/app_route.dart';
 class CacheService {
   static late SharedPreferences _sharedPreferences;
   static String? token;
+  static int ? userId;
 
   static Future<void> init() async {
     _sharedPreferences = await SharedPreferences.getInstance();
@@ -43,9 +45,14 @@ class CacheService {
     return _sharedPreferences.clear();
   }
 
-  static void saveTokenThenGoHome(BuildContext context, LoginEntity entity) {
-    setData(key: AppConstants.token, value: entity.token).then((value) {
-      if (value == true && context.mounted) {
+  static void cacheDataThenGoHome(BuildContext context, LoginEntity entity) {
+    Future.wait([setData(key: AppConstants.token, value: entity.token),
+      setData(key: AppConstants.userId, value: entity.id)
+
+    ])
+        .then((value) {
+      if (value.every((element) => element == true) && context.mounted) {
+        TextInput.finishAutofillContext();
         context.navigateAndRemoveUntil(pageName: AppRoutes.homeLayout);
       }
     });

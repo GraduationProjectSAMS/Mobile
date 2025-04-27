@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
 
   String get initialRoute {
     CacheService.token = CacheService.getData(key: AppConstants.token);
+    CacheService.userId = CacheService.getData(key: AppConstants.userId);
     if (CacheService.token != null) {
       return AppRoutes.homeLayout;
     } else {
@@ -20,7 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
 
     return AppSizConfig(
       child: MaterialApp(

@@ -1,5 +1,6 @@
 
 import 'package:dio/dio.dart';
+import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:logger/logger.dart';
 
 import '../utilities/resources/app_strings.dart';
@@ -13,7 +14,7 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromDioError(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerFailure(AppStrings.connectionTimeoutFromApiServer);
+        return ServerFailure(AppStrings.connectionTimeoutFromApiServer,statusCode: AppConstants.connectionTimeoutCode);
       case DioExceptionType.receiveTimeout:
         return ServerFailure(AppStrings.receiveTimeoutFromApiServer);
       case DioExceptionType.badCertificate:

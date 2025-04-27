@@ -6,4 +6,6 @@ abstract class AppEndpoints {
   static const getProducts = 'products';
   static const getOffers = 'offers';
   static const addToFavorite = 'wishlists';
+  static const addToCart = 'carts';
+  static const profile ='users';
 }
