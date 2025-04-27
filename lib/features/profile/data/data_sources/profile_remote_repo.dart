@@ -2,5 +2,4 @@ import 'package:graduation_project/features/profile/domain/entities/user_entity.
 
 abstract class ProfileRemoteRepo {
   Future<UserEntity> getUserData();
-
 }

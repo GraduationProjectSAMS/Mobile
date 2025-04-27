@@ -14,7 +14,7 @@ class OffersCubit extends Cubit<OffersStates> {
   List<ProductEntity> homeOffers = [];
 
   Future<void> getOffers() async {
-    if(state is  !OffersLoadingState) {
+    if (state is! OffersLoadingState) {
       emit(OffersLoadingState());
     }
 
@@ -32,10 +32,10 @@ class OffersCubit extends Cubit<OffersStates> {
       },
     );
   }
+
   void viewAllOffers() {
-    if(state is OffersSuccessState) {
+    if (state is OffersSuccessState) {
       emit(ViewAllOffersStates());
     }
-
   }
 }

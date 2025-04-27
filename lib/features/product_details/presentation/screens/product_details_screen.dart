@@ -9,10 +9,12 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: AppAdaptiveLayOut(
-        mobileLayOut: (BuildContext context) => const ProductDetailsScreenBody(),
-        desktopLayOut: (BuildContext context) => const ProductDetailsScreenBodyDesktop(),
+        mobileLayOut: (BuildContext context) =>
+            const ProductDetailsScreenBody(),
+        desktopLayOut: (BuildContext context) =>
+            const ProductDetailsScreenBodyDesktop(),
       ),
     );
   }

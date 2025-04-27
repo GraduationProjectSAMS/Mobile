@@ -16,7 +16,6 @@ class CardsScreenBody extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
             child: MyAppBar(title: AppStrings.myCart),
           ),
-
           Expanded(child: CardBlocBuilder()),
         ],
       ),

@@ -5,13 +5,16 @@ import '../../../../core/utilities/resources/app_styles.dart';
 
 class HomeTextTitle extends StatelessWidget {
   const HomeTextTitle({super.key, required this.title, required this.onTap});
-final VoidCallback onTap;
+
+  final VoidCallback onTap;
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 22, ),
+      padding: const EdgeInsetsDirectional.only(
+        start: 22,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -22,7 +25,10 @@ final VoidCallback onTap;
             ),
           ),
           TextButton.icon(
-              icon:  Text(AppStrings.viewAll,style: AppStyles.defaultStyle,),
+              icon: Text(
+                AppStrings.viewAll,
+                style: AppStyles.defaultStyle,
+              ),
               onPressed: onTap,
               label: const Icon(
                 Icons.arrow_right,

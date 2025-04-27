@@ -37,7 +37,7 @@ class _ProductCounterState extends State<ProductCounter> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(0.18),
+        color: Colors.grey.withValues(alpha: 0.18),
         borderRadius: BorderRadius.circular(20),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -69,7 +69,7 @@ class _ProductCounterState extends State<ProductCounter> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
+              color: Colors.grey.withValues(alpha: 0.5),
               blurRadius: 2,
               spreadRadius: 1,
               offset: const Offset(0, 2),

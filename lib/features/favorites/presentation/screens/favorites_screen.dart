@@ -14,17 +14,15 @@ class FavoritesScreen extends StatelessWidget {
       BuildContext context,
     });
     return MultiBlocProvider(
-      providers: [
-        BlocProvider.value(
-          value: arg.context.read<AddFavoriteCubit>()..getFavorites(),
-        ),
-        BlocProvider.value(
-          value: arg.context.read<AddToCardCubit>()..getCards()
-        ),
-      ],
-      child: const Scaffold(
-        body: FavoritesScreenBody(),
-      )
-    );
+        providers: [
+          BlocProvider.value(
+            value: arg.context.read<AddFavoriteCubit>()..getFavorites(),
+          ),
+          BlocProvider.value(
+              value: arg.context.read<AddToCardCubit>()..getCards()),
+        ],
+        child: const Scaffold(
+          body: FavoritesScreenBody(),
+        ));
   }
 }

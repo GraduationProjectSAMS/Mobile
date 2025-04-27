@@ -131,7 +131,9 @@ class CardItem extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                onPressed: () =>context.read<AddToCardCubit>().updateCart(model: model,isAdd: false),
+                                onPressed: () => context
+                                    .read<AddToCardCubit>()
+                                    .updateCart(model: model, isAdd: false),
                                 icon: const Icon(
                                   Icons.remove,
                                   size: 20,
@@ -165,7 +167,9 @@ class CardItem extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                onPressed: () =>context.read<AddToCardCubit>().updateCart(model: model),
+                                onPressed: () => context
+                                    .read<AddToCardCubit>()
+                                    .updateCart(model: model),
                                 icon: const Icon(
                                   Icons.add,
                                   size: 20,

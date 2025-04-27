@@ -177,16 +177,18 @@ class ProductItem extends StatelessWidget {
                                     },
                                     child: isInCard
                                         ? FittedBox(
-                                      fit: BoxFit.scaleDown,
+                                            fit: BoxFit.scaleDown,
                                             child: Text(
-                                              maxLines: 1,
-                                              cubit.productsCards[key]
-                                                  .toString(),
-                                              key: ValueKey(
-                                                  'count_${cubit.productsCards[key]}'),
-                                              // important!
-                                              style: AppStyles.textStyle18.copyWith(color: AppColors.white)
-                                            ),
+                                                maxLines: 1,
+                                                cubit.productsCards[key]
+                                                    .toString(),
+                                                key: ValueKey(
+                                                    'count_${cubit.productsCards[key]}'),
+                                                // important!
+                                                style: AppStyles.textStyle18
+                                                    .copyWith(
+                                                        color:
+                                                            AppColors.white)),
                                           )
                                         : const Icon(
                                             Icons.add,

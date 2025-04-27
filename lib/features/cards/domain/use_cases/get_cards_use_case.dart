@@ -7,10 +7,9 @@ import '../repositories/cards_repo.dart';
 class GetCardsUseCase {
   final CardsRepo _cardsRepo;
 
-
   GetCardsUseCase(this._cardsRepo);
 
-  Future<Either<Failure, List<ProductEntity>>> call()async{
-    return  _cardsRepo.getCards();
+  Future<Either<Failure, List<ProductEntity>>> call() async {
+    return _cardsRepo.getCards();
   }
 }

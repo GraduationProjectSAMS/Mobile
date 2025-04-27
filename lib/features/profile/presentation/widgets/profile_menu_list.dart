@@ -26,7 +26,6 @@ class ProfileMenuList extends StatelessWidget {
 
   const ProfileMenuList({
     super.key,
-
   });
 
   @override
@@ -38,7 +37,7 @@ class ProfileMenuList extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 5),
           ),
@@ -48,7 +47,7 @@ class ProfileMenuList extends StatelessWidget {
         children: [
           ...List.generate(
             menuItems.length,
-                (index) => ProfileMenuItem(
+            (index) => ProfileMenuItem(
               icon: menuIcons[index],
               title: menuItems[index],
               color: menuColors[index],
@@ -70,6 +69,7 @@ class ProfileMenuList extends StatelessWidget {
     );
   }
 }
+
 class ProfileMenuItem extends StatelessWidget {
   final IconData icon;
   final String title;

@@ -16,15 +16,18 @@ class LoginTextFormFields extends StatefulWidget {
 }
 
 class _LoginTextFormFieldsState extends State<LoginTextFormFields> {
- late final  LoginCubit _cubit ;
-  late final  FocusNode _passwordFocusNode ;
-@override
+  late final LoginCubit _cubit;
+
+  late final FocusNode _passwordFocusNode;
+
+  @override
   void initState() {
     super.initState();
     _cubit = context.read<LoginCubit>();
     _passwordFocusNode = FocusNode();
   }
- @override
+
+  @override
   dispose() {
     _passwordFocusNode.dispose();
     super.dispose();
@@ -32,7 +35,6 @@ class _LoginTextFormFieldsState extends State<LoginTextFormFields> {
 
   @override
   Widget build(BuildContext context) {
-
     return AutofillGroup(
       child: Form(
         key: _cubit.formKey,
@@ -54,7 +56,7 @@ class _LoginTextFormFieldsState extends State<LoginTextFormFields> {
             const HeightSizedBox(height: 2),
             LoginPasswordTextForm(
               focusNode: _passwordFocusNode,
-              onFieldSubmitted: (_)=> _cubit.loginWithEmailAndPassword(),
+              onFieldSubmitted: (_) => _cubit.loginWithEmailAndPassword(),
               onSaved: _cubit.savePassword,
               autofillHints: const [AutofillHints.password],
             ),

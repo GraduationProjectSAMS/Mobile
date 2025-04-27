@@ -16,14 +16,14 @@ class ProfileStatsFields extends StatelessWidget {
         ProfileStatItem(
           icon: Icons.favorite_border,
           color: Colors.red,
-          backgroundColor: Colors.red.withOpacity(0.3),
+          backgroundColor: Colors.red.withValues(alpha: 0.3),
           label: AppStrings.favorites,
           value: context.read<AddFavoriteCubit>().favoritesCount.toString(),
         ),
         ProfileStatItem(
           iconAsset: 'assets/images/purchase-order.png',
           color: Colors.green,
-          backgroundColor: Colors.green.withOpacity(0.3),
+          backgroundColor: Colors.green.withValues(alpha: 0.3),
           label: 'Past Orders',
           value: '12',
         ),
@@ -31,6 +31,7 @@ class ProfileStatsFields extends StatelessWidget {
     );
   }
 }
+
 class ProfileStatItem extends StatelessWidget {
   final IconData? icon;
   final String? iconAsset;
@@ -67,7 +68,8 @@ class ProfileStatItem extends StatelessWidget {
           const SizedBox(width: 10),
           Container(width: 1, height: 20, color: Colors.black54),
           const SizedBox(width: 5),
-          Text(value, style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600)),
+          Text(value,
+              style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600)),
         ],
       ),
     );

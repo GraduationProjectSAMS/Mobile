@@ -12,27 +12,31 @@ import '../../../domain/use_cases/add_to_card_use_case.dart';
 part 'add_to_card_state.dart';
 
 class AddToCardCubit extends Cubit<AddToCardStates> {
-  AddToCardCubit( {required AddToCardUseCase addToCardUseCase,
+  AddToCardCubit({
+    required AddToCardUseCase addToCardUseCase,
     required GetCardsUseCase getCardsUseCase,
     required DeleteCardUseCase deleteCardUseCase,
-  })
-      : _addToCardUseCase = addToCardUseCase,
+  })  : _addToCardUseCase = addToCardUseCase,
         _getCardsUseCase = getCardsUseCase,
         _deleteCardUseCase = deleteCardUseCase,
         super(AddToCardInitial());
   final AddToCardUseCase _addToCardUseCase;
-  final GetCardsUseCase _getCardsUseCase ;
-  final DeleteCardUseCase _deleteCardUseCase ;
+  final GetCardsUseCase _getCardsUseCase;
+
+  final DeleteCardUseCase _deleteCardUseCase;
+
   Map<String, int> productsCards = {};
   Map<String, ProductEntity> selectedCards = {};
 
-  Future<void> updateCart({required ProductEntity model, bool isAdd = true}) async {
+  Future<void> updateCart(
+      {required ProductEntity model, bool isAdd = true}) async {
     final productId = model.id;
     final type = model.type;
     final key = '$productId$type';
 
     // Try updating the UI first
-    final canUpdate = isAdd ? incrementCardUI(model) : decrementFromCardUI(model);
+    final canUpdate =
+        isAdd ? incrementCardUI(model) : decrementFromCardUI(model);
 
     // If cannot update, stop here
     if (!canUpdate) return;
@@ -47,14 +51,14 @@ class AddToCardCubit extends Cubit<AddToCardStates> {
     );
 
     result.fold(
-          (failure) {
+      (failure) {
         // Rollback UI change if API failed
         isAdd ? decrementFromCardUI(model) : incrementCardUI(model);
 
         myToast(msg: failure.errorMessage, state: ToastStates.error);
         emit(AddToCardError(failure.errorMessage));
       },
-          (cards) {
+      (cards) {
         Logger().i('success');
         // optionally emit success state here
       },
@@ -88,30 +92,27 @@ class AddToCardCubit extends Cubit<AddToCardStates> {
 
     productsCards[key] = (productsCards[key] ?? 0) - 1;
 
-
-
     return true; // true means "continue"
   }
-  Future<void> getCards() async {
 
+  Future<void> getCards() async {
     final result = await _getCardsUseCase.call();
     result.fold((failure) {
       emit(GetCardError(failure.errorMessage));
     }, (cards) {
-      selectedCards = {
-        for (var card in cards) '${card.id}${card.type}': card
-      };
+      selectedCards = {for (var card in cards) '${card.id}${card.type}': card};
       productsCards = {
         for (var card in cards) '${card.id}${card.type}': card.quantity
       };
       emit(GetCardSuccess(cards));
     });
   }
+
   Future<void> deleteCard(ProductEntity model) async {
     final productId = model.id;
     final type = model.type;
     final key = '$productId$type';
-    final quantity = productsCards[key]??1 ;
+    final quantity = productsCards[key] ?? 1;
     deleteCardFromUi(model);
     emit(AddToCardLoading());
     final result = await _deleteCardUseCase(
@@ -126,17 +127,18 @@ class AddToCardCubit extends Cubit<AddToCardStates> {
       },
       (cards) {
         Logger().i('success');
-
       },
     );
   }
-  void  addDeletedItemToUi(ProductEntity model,int quantity) {
+
+  void addDeletedItemToUi(ProductEntity model, int quantity) {
     final productId = model.id;
     final type = model.type;
     final key = '$productId$type';
     productsCards[key] = (productsCards[key] ?? 0) + quantity;
     selectedCards[key] = model;
   }
+
   void deleteCardFromUi(ProductEntity model) {
     final productId = model.id;
     final type = model.type;
@@ -144,6 +146,7 @@ class AddToCardCubit extends Cubit<AddToCardStates> {
     productsCards.remove(key);
     selectedCards.remove(key);
   }
+
   int get cardsCount {
     return selectedCards.length;
   }

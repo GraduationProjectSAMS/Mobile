@@ -41,7 +41,7 @@ class Data {
   String? createdAt;
   String? updatedAt;
 
-  UserEntity get toEntity  {
+  UserEntity get toEntity {
     return UserEntity(
       id: id?.toInt() ?? 0,
       name: name.toString(),

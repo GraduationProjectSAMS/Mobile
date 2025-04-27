@@ -105,7 +105,6 @@ class _HomeMobileBodyLayoutState extends State<HomeMobileBodyLayout> {
                 label: titles[index],
               ),
             ),
-
           ),
         ),
       ),
@@ -135,11 +134,11 @@ class _HomeMobileBodyLayoutState extends State<HomeMobileBodyLayout> {
         listener: (context, state) {
           if (state is OffersSuccessState) {
             _syncProductsToManagement(context, state.products);
-          }else if (state is ViewAllOffersStates) {
+          } else if (state is ViewAllOffersStates) {
             setState(() {
               _selectedIndex = 2;
             });
-                }
+          }
         },
       ),
     ];

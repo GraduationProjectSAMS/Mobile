@@ -34,7 +34,7 @@ class SignUpTextFormsState extends State<SignUpTextForms> {
       child: Column(
         children: [
           MyTextFormField(
-            autofillHints:  const [AutofillHints.newUsername],
+            autofillHints: const [AutofillHints.newUsername],
             keyboardType: TextInputType.name,
             onSaved: cubit.setName,
             prefixIcon: const Icon(Icons.person_outline),
@@ -67,12 +67,12 @@ class SignUpTextFormsState extends State<SignUpTextForms> {
           const HeightSizedBox(height: 2),
           LoginPasswordTextForm(
             autofillHints: const [AutofillHints.newPassword],
-            focusNode: _passwordFocusNode, // Assign the password focus node
+            focusNode: _passwordFocusNode,
+            // Assign the password focus node
             onSaved: cubit.setPassword,
             textInputAction: TextInputAction.done,
-            onFieldSubmitted: (_) =>cubit.signup(),
-              // Optionally submit the form here or perform other actions
-
+            onFieldSubmitted: (_) => cubit.signup(),
+            // Optionally submit the form here or perform other actions
           ),
         ],
       ),

@@ -17,7 +17,7 @@ class ProductDetailsScreenBodyDesktop extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           children: [
-             Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -25,13 +25,17 @@ class ProductDetailsScreenBodyDesktop extends StatelessWidget {
                     height: 10,
                   ),
                   const MyBackButton(),
-                  const Spacer(flex: 9,),
+                  const Spacer(
+                    flex: 9,
+                  ),
                   MyCachedNetworkImage(
                       height: 60.hR,
                       fit: BoxFit.fill,
                       imageUrl:
-                      'https://images.pexels.com/photos/3757055/pexels-photo-3757055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
-                  const Spacer(flex: 10,),
+                          'https://images.pexels.com/photos/3757055/pexels-photo-3757055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
+                  const Spacer(
+                    flex: 10,
+                  ),
                 ],
               ),
             ),
@@ -103,7 +107,8 @@ class ProductDetailsScreenBodyDesktop extends StatelessWidget {
                                 color: Colors.amber,
                               ),
                               itemSize: 20.sp,
-                              unratedColor: AppColors.grey.withOpacity(0.3),
+                              unratedColor:
+                                  AppColors.grey.withValues(alpha: 0.3),
                             ),
                             const SizedBox(
                               width: 5,
@@ -120,8 +125,8 @@ class ProductDetailsScreenBodyDesktop extends StatelessWidget {
                             ),
                             Text(
                               '(100)',
-                              style: AppStyles.textStyle14
-                                  .copyWith(color: AppColors.grey, fontSize: 13.sp),
+                              style: AppStyles.textStyle14.copyWith(
+                                  color: AppColors.grey, fontSize: 13.sp),
                             ),
                           ],
                         ),
@@ -131,7 +136,7 @@ class ProductDetailsScreenBodyDesktop extends StatelessWidget {
                         Text(
                           '300 x 200 cm, 100 cm Height',
                           style: AppStyles.textStyle14.copyWith(
-                              color: AppColors.black.withOpacity(0.6),
+                              color: AppColors.black.withValues(alpha: 0.6),
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                         ),
@@ -139,7 +144,7 @@ class ProductDetailsScreenBodyDesktop extends StatelessWidget {
                           height: 5,
                         ),
                         Divider(
-                          color: AppColors.black.withOpacity(0.3),
+                          color: AppColors.black.withValues(alpha: 0.3),
                           thickness: 1,
                         ),
                         const SizedBox(
@@ -156,8 +161,8 @@ class ProductDetailsScreenBodyDesktop extends StatelessWidget {
                           'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here',
                           maxLines: 6,
                           overflow: TextOverflow.ellipsis,
-                          style:
-                              AppStyles.textStyle14.copyWith(color: AppColors.grey),
+                          style: AppStyles.textStyle14
+                              .copyWith(color: AppColors.grey),
                         ),
                         const Expanded(
                           child: SizedBox(

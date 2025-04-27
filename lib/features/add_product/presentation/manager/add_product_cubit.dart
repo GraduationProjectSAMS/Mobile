@@ -8,17 +8,18 @@ part 'add_product_state.dart';
 
 class AddProductCubit extends Cubit<AddProductState> {
   AddProductCubit() : super(AddProductInitial());
+
   static AddProductCubit instance(context) => BlocProvider.of(context);
 
   TextEditingController productNameController = TextEditingController();
-  TextEditingController productDescriptionController =
-      TextEditingController();
+  TextEditingController productDescriptionController = TextEditingController();
   TextEditingController productPriceController = TextEditingController();
   TextEditingController lengthController = TextEditingController();
   TextEditingController widthController = TextEditingController();
   TextEditingController heightController = TextEditingController();
   String? selectedCategory;
-  String? selectedAesthetics ;
+  String? selectedAesthetics;
+
   String? selectedRoom;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();

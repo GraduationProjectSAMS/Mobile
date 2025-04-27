@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
@@ -32,10 +30,10 @@ class ProductCubit extends Cubit<ProductStates> {
       },
     );
   }
+
   void viewAllProducts() {
-    if(state is ProductSuccessStates) {
+    if (state is ProductSuccessStates) {
       emit(ViewAllProductsStates());
     }
-
   }
 }

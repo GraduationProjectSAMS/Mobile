@@ -12,9 +12,5 @@ class UserEntity {
   });
 
   factory UserEntity.loading() => const UserEntity(
-        id: 0,
-        name: 'test name',
-        email: 'test email',
-        image:''
-      );
+      id: 0, name: 'test name', email: 'test email', image: '');
 }

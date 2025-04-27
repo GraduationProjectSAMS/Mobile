@@ -2,7 +2,10 @@ import 'package:graduation_project/features/home/domain/entities/product_entity.
 
 abstract class CardsRemoteRepo {
   Future<void> addToCard(
-      {required dynamic productId, required String type,  int quantity =1});
+      {required dynamic productId, required String type, int quantity = 1});
+
   Future<List<ProductEntity>> getCards();
-  Future<void> removeFromCard({required dynamic productId, required String type});
+
+  Future<void> removeFromCard(
+      {required dynamic productId, required String type});
 }

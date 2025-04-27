@@ -34,8 +34,7 @@ class HomeAppBar extends StatelessWidget {
           width: 50.sp,
         ),
         const Spacer(),
-        ...List.generate(
-            icons.length, (index) {
+        ...List.generate(icons.length, (index) {
           if (index == 1) {
             return BlocBuilder<AddFavoriteCubit, AddFavoriteStates>(
               builder: (context, state) {
@@ -52,7 +51,6 @@ class HomeAppBar extends StatelessWidget {
                 );
               },
             );
-
           }
           if (index == 2) {
             return BlocBuilder<AddToCardCubit, AddToCardStates>(
@@ -61,8 +59,9 @@ class HomeAppBar extends StatelessWidget {
                 return AppBarIconItem(
                   icon: icons[index],
                   onPressed: () {
-
-             context.navigateTo(pageName: AppRoutes.cart,arguments: (context: context));
+                    context.navigateTo(
+                        pageName: AppRoutes.cart,
+                        arguments: (context: context));
                   },
                   tooltip: titles[index],
                   count: cubit.cardsCount,

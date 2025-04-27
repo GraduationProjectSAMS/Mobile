@@ -23,15 +23,13 @@ class HomeScreenBody extends StatelessWidget {
               children: [
                 const BannerListWithIndicator(),
                 HomeTextTitle(
-                    title: AppStrings.newlyAdded, onTap: context
-                    .read<ProductCubit>()
-                    .viewAllProducts,
-
-
+                  title: AppStrings.newlyAdded,
+                  onTap: context.read<ProductCubit>().viewAllProducts,
                 ),
                 const HomeProductBlocBuilder(),
                 HomeTextTitle(
-                  title: AppStrings.offers, onTap: context.read<OffersCubit>().viewAllOffers,
+                  title: AppStrings.offers,
+                  onTap: context.read<OffersCubit>().viewAllOffers,
                 ),
                 const HomeOffersBlocBuilder(),
                 const SizedBox(

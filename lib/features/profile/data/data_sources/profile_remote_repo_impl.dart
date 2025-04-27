@@ -12,12 +12,12 @@ class ProfileRemoteRepoImpl implements ProfileRemoteRepo {
   ProfileRemoteRepoImpl(this.apiService);
 
   @override
-  Future<UserEntity> getUserData() async{
-    final response = await apiService.getData(endPoint: '${AppEndpoints.profile}/${CacheService.userId}');
-final model = UserModel.fromJson(response?.data);
-final entity = model.data?.toEntity;
-    return entity??UserEntity.loading();
-
+  Future<UserEntity> getUserData() async {
+    final response = await apiService.getData(
+        endPoint: '${AppEndpoints.profile}/${CacheService.userId}');
+    final model = UserModel.fromJson(response?.data);
+    final entity = model.data?.toEntity;
+    return entity ?? UserEntity.loading();
   }
 
 // Implement methods here

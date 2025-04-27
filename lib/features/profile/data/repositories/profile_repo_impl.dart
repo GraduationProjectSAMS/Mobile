@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-
 import 'package:graduation_project/core/errors/failure.dart';
-
 import 'package:graduation_project/features/profile/domain/entities/user_entity.dart';
 
 import '../../../../core/errors/server_failure.dart';
@@ -15,7 +13,7 @@ class ProfileRepoImpl implements ProfileRepo {
   ProfileRepoImpl(this.remoteRepo);
 
   @override
-  Future<Either<Failure, UserEntity>> getProfileData()async {
+  Future<Either<Failure, UserEntity>> getProfileData() async {
     try {
       final response = await remoteRepo.getUserData();
       return Right(response);
@@ -25,8 +23,5 @@ class ProfileRepoImpl implements ProfileRepo {
       }
       return Left(ServerFailure(e.toString()));
     }
-    }
   }
-
-
-
+}

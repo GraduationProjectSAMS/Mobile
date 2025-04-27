@@ -46,97 +46,98 @@ class AddProductScreenBody extends StatelessWidget {
                     builder: (context, state) {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(70, 70, 0, 70),
-                        child: cubit.pickedImage == null ? DottedBorder(
-                          color: Colors.grey[500]!,
-                          borderType: BorderType.RRect,
-                          radius: const Radius.circular(10),
-                          dashPattern: const [5, 5, 5, 5],
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image(
-                                  image: const AssetImage(
-                                    'assets/images/gallery.png',
+                        child: cubit.pickedImage == null
+                            ? DottedBorder(
+                                color: Colors.grey[500]!,
+                                borderType: BorderType.RRect,
+                                radius: const Radius.circular(10),
+                                dashPattern: const [5, 5, 5, 5],
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image(
+                                        image: const AssetImage(
+                                          'assets/images/gallery.png',
+                                        ),
+                                        height: 65.sp,
+                                        width: 65.sp,
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Column(
+                                        children: [
+                                          Text(
+                                            '• Please add clear image of the product',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          Text(
+                                            '• The image should be in JPG or PNG format',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          Text(
+                                            '• Maximum file size is 3MB',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      FloatingActionButton(
+                                        onPressed: cubit.pickSingleImage,
+                                        mini: true,
+                                        shape: const CircleBorder(),
+                                        foregroundColor: AppColors.primary,
+                                        backgroundColor: Colors.lightGreen,
+                                        child: Icon(
+                                          Icons.add,
+                                          size: 20.sp,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  height: 65.sp,
-                                  width: 65.sp,
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Column(
+                              )
+                            : Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
-                                      '• Please add clear image of the product',
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: Colors.grey,
+                                    Container(
+                                      constraints: BoxConstraints(
+                                        maxHeight: 60.hR,
+                                      ),
+                                      child: Image.file(
+                                        cubit.pickedImage!,
                                       ),
                                     ),
-                                    Text(
-                                      '• The image should be in JPG or PNG format',
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: Colors.grey,
-                                      ),
+                                    const SizedBox(
+                                      height: 10,
                                     ),
-                                    Text(
-                                      '• Maximum file size is 3MB',
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: Colors.grey,
+                                    // remove image text button
+                                    TextButton(
+                                      onPressed: cubit.removeImage,
+                                      child: Text(
+                                        'Remove Image',
+                                        style: TextStyle(
+                                          fontSize: 12.sp,
+                                          color: Colors.red,
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                FloatingActionButton(
-                                  onPressed: cubit.pickSingleImage,
-                                  mini: true,
-                                  shape: const CircleBorder(),
-                                  foregroundColor: AppColors.primary,
-                                  backgroundColor: Colors.lightGreen,
-                                  child: Icon(
-                                    Icons.add,
-                                    size: 20.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ) : Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                constraints: BoxConstraints(
-                                  maxHeight: 60.hR,
-                                ),
-                                child: Image.file(
-                                  cubit.pickedImage!,
-
-                                ),
                               ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              // remove image text button
-                              TextButton(
-                                onPressed: cubit.removeImage,
-                                child: Text(
-                                  'Remove Image',
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       );
                     },
                   ),
@@ -324,9 +325,7 @@ class AddProductScreenBody extends StatelessWidget {
                         const Spacer(),
                         ButtonWidget(
                           label: 'Add Product',
-                          onPressed: () {
-
-                          },
+                          onPressed: () {},
                           width: double.infinity,
                           height: 37.sp,
                           labelFontSize: 13.sp,

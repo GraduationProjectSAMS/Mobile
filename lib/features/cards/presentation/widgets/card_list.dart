@@ -8,7 +8,8 @@ import '../../../../core/utilities/functions/staggered_animations.dart';
 import '../../../home/domain/entities/product_entity.dart';
 
 class CardList extends StatelessWidget {
-  const CardList({super.key, required this.productsList, required this.isLoading});
+  const CardList(
+      {super.key, required this.productsList, required this.isLoading});
 
   final List<ProductEntity> productsList;
   final bool isLoading;

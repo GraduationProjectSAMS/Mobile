@@ -17,7 +17,7 @@ class AppExitDialogContent extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 25.sp,
-          backgroundColor:  Colors.red ,
+          backgroundColor: Colors.red,
           child: Icon(
             Icons.close,
             color: Colors.white,
@@ -25,18 +25,25 @@ class AppExitDialogContent extends StatelessWidget {
           ),
         ),
         const HeightSizedBox(height: 3),
-         Text(AppStrings.exitApp,style: AppStyles.textStyle14,),
+        Text(
+          AppStrings.exitApp,
+          style: AppStyles.textStyle14,
+        ),
         const HeightSizedBox(height: 3),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            MyTextButton(onTap: ()=> context.pop(),
-
-             text: AppStrings.no,),
-             const MyTextButton(onTap: SystemNavigator.pop,
-              text: AppStrings.yes,),
+            MyTextButton(
+              onTap: () => context.pop(),
+              text: AppStrings.no,
+            ),
+            const MyTextButton(
+              onTap: SystemNavigator.pop,
+              text: AppStrings.yes,
+            ),
           ],
         ),
-      ],);
+      ],
+    );
   }
 }

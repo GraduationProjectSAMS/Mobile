@@ -9,9 +9,10 @@ class AddToCardUseCase {
   AddToCardUseCase(this._cardsRepo);
 
   Future<Either<Failure, void>> call(
-      {required dynamic productId, required String type, int quantity = 1})async{
-    return  _cardsRepo.addToCard(
+      {required dynamic productId,
+      required String type,
+      int quantity = 1}) async {
+    return _cardsRepo.addToCard(
         productId: productId, type: type, quantity: quantity);
   }
-
 }
