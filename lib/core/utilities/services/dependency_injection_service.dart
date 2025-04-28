@@ -9,7 +9,6 @@ import 'package:graduation_project/features/favorites/data/repositories/favorite
 import 'package:graduation_project/features/home/data/data_sources/home_remote_repo_impl.dart';
 import 'package:graduation_project/features/profile/data/data_sources/profile_remote_repo_impl.dart';
 import 'package:graduation_project/features/profile/data/repositories/profile_repo_impl.dart';
-
 import '../../../features/authentication/data/data_sources/authentication_remote_repo_impl.dart';
 import '../../../features/authentication/data/repo/authentication_repo_impl.dart';
 import '../../../features/authentication/domain/use_case/login_with_email_and_password_use_case.dart';
@@ -26,6 +25,8 @@ import '../../../features/favorites/domain/use_cases/get_favorites_use_case.dart
 import '../../../features/home/domain/use_cases/get_offers_use_case.dart';
 import '../../../features/home/domain/use_cases/get_products_use_case.dart';
 import '../../../features/profile/domain/use_cases/get_profile_data_use_case.dart';
+import '../../../features/profile/domain/use_cases/logout_form_google_use_case.dart';
+import '../../../features/profile/domain/use_cases/logout_use_case.dart';
 import 'google_sign_in_service.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -53,7 +54,7 @@ void setupDependencies() {
 
   getIt.registerLazySingleton<ProfileRepoImpl>(
           () => ProfileRepoImpl(
-          ProfileRemoteRepoImpl(getIt.get<ApiService>())));
+          ProfileRemoteRepoImpl(getIt.get<ApiService>(),getIt.get<GoogleSignInService>())));
   /// Use Cases
   getIt.registerLazySingleton<SignInWithGoogleUseCase>(
       () => SignInWithGoogleUseCase(getIt.get<AuthenticationRepoImpl>()));
@@ -79,5 +80,9 @@ void setupDependencies() {
           () => DeleteCardUseCase(getIt.get<CardsRepoImpl>()));
   getIt.registerLazySingleton<GetProfileDataUseCase>(
           () => GetProfileDataUseCase(getIt.get<ProfileRepoImpl>()));
+  getIt.registerLazySingleton<LogoutFormGoogleUseCase>(
+          () => LogoutFormGoogleUseCase(getIt.get<ProfileRepoImpl>()));
+  getIt.registerLazySingleton<LogoutUseCase>(
+          () => LogoutUseCase(getIt.get<ProfileRepoImpl>()));
 
 }

@@ -53,7 +53,7 @@ class AddToCardCubit extends Cubit<AddToCardStates> {
     result.fold(
       (failure) {
         // Rollback UI change if API failed
-        isAdd ? decrementFromCardUI(model) : incrementCardUI(model);
+        isAdd ? decrementFromCardUI(model,true) : incrementCardUI(model);
 
         myToast(msg: failure.errorMessage, state: ToastStates.error);
         emit(AddToCardError(failure.errorMessage));
@@ -83,12 +83,17 @@ class AddToCardCubit extends Cubit<AddToCardStates> {
     return true;
   }
 
-  bool decrementFromCardUI(ProductEntity model) {
+  bool decrementFromCardUI(ProductEntity model,[bool isError = false]) {
     final productId = model.id;
     final type = model.type;
     final key = '$productId$type';
 
-    if (productsCards[key] == 1) return false; // false means "stop"
+    if (productsCards[key] == 1 ){
+      if (isError) {
+        deleteCardFromUi(model);
+      }
+      return false;
+    }  // false means "stop"
 
     productsCards[key] = (productsCards[key] ?? 0) - 1;
 

@@ -11,4 +11,6 @@ abstract class AppConstants {
   static const offers = 'offers';
   static const products = 'products';
   static const connectionTimeoutCode = 504;
+  static const unAuthorizedCode = 401;
+
 }

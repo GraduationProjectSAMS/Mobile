@@ -18,6 +18,7 @@ import '../../domain/use_cases/get_products_use_case.dart';
 import '../manager/products_cubit/product_cubit.dart';
 import '../widgets/desktop_body_layout.dart';
 import '../widgets/home_mobile_body_layout.dart';
+import 'home_adaptive_lay_out.dart';
 
 class HomeLayout extends StatelessWidget {
   const HomeLayout({super.key});
@@ -53,7 +54,7 @@ class HomeLayout extends StatelessWidget {
               ProfileCubit(getIt.get<GetProfileDataUseCase>())..getUserData(),
         )
       ],
-      child: AppAdaptiveLayOut(
+      child: HomeAdaptiveLayOut(
         mobileLayOut: (BuildContext context) => const HomeMobileBodyLayout(),
         desktopLayOut: (BuildContext context) => const DesktopBodyLayout(),
       ),
