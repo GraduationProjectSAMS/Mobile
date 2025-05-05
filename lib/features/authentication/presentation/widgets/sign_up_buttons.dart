@@ -28,7 +28,7 @@ class SignUpButtons extends StatelessWidget {
             if (state is SignupError) {
               myToast(msg: state.error, state: ToastStates.error);
             } else if (state is SignupSuccess) {
-              CacheService.saveTokenThenGoHome(context, state.entity);
+              CacheService.cacheDataThenGoHome(context, state.entity);
             }
           },
         ),

@@ -11,7 +11,7 @@ class ProductDetailsImageWithAppBar extends StatelessWidget {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MyBackButtonLightMode(),
+        MyBackButton(),
         SizedBox(
           height: 10,
         ),

@@ -8,20 +8,44 @@ import '../../../../core/widgets/my_text_form_field.dart';
 import '../manager/login_cubit/login_cubit.dart';
 import 'login_password_text_form.dart';
 
-class LoginTextFormFields extends StatelessWidget {
+class LoginTextFormFields extends StatefulWidget {
   const LoginTextFormFields({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final cubit = context.read<LoginCubit>();
+  State<LoginTextFormFields> createState() => _LoginTextFormFieldsState();
+}
 
+class _LoginTextFormFieldsState extends State<LoginTextFormFields> {
+  late final LoginCubit _cubit;
+
+  late final FocusNode _passwordFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _cubit = context.read<LoginCubit>();
+    _passwordFocusNode = FocusNode();
+  }
+
+  @override
+  dispose() {
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return AutofillGroup(
       child: Form(
-        key: cubit.formKey,
+        key: _cubit.formKey,
         child: Column(
           children: [
             MyTextFormField(
-              onSaved: cubit.saveEmail,
+              onFieldSubmitted: (_) {
+                // When user submits the first field, move to the second
+                FocusScope.of(context).requestFocus(_passwordFocusNode);
+              },
+              onSaved: _cubit.saveEmail,
               keyboardType: TextInputType.emailAddress,
               autofillHints: const [AutofillHints.email],
               validator: ValidatorService.emailValidator,
@@ -31,7 +55,9 @@ class LoginTextFormFields extends StatelessWidget {
             ),
             const HeightSizedBox(height: 2),
             LoginPasswordTextForm(
-              onSaved: cubit.savePassword,
+              focusNode: _passwordFocusNode,
+              onFieldSubmitted: (_) => _cubit.loginWithEmailAndPassword(),
+              onSaved: _cubit.savePassword,
               autofillHints: const [AutofillHints.password],
             ),
           ],

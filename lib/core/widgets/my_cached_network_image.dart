@@ -99,14 +99,15 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 //   }
 // }
 class MyCachedNetworkImage extends StatelessWidget {
-  const MyCachedNetworkImage(
-      {super.key,
-      required this.imageUrl,
-      this.fit,
-      this.borderRadius,
-      this.width,
-      this.isOval = false,
-      this.height});
+  const MyCachedNetworkImage({
+    super.key,
+    required this.imageUrl,
+    this.width,
+    this.height,
+    this.fit,
+    this.borderRadius,
+    this.isOval = false,
+  });
 
   final String imageUrl;
   final double? width;
@@ -117,56 +118,64 @@ class MyCachedNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (imageUrl.isEmpty) {
-      return Container(
-        width: width ?? double.infinity,
-        height: height ?? double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.grey[300],
-          borderRadius: borderRadius ?? BorderRadius.circular(10),
-        ),
-      );
+    final isEmptyImage = imageUrl.isEmpty;
+
+    if (isEmptyImage) {
+      return _buildPlaceholder();
     }
+
     return CachedNetworkImage(
-      useOldImageOnUrlChange: true,
+      imageUrl: imageUrl,
       width: width ?? double.infinity,
       height: height,
-      errorWidget: (context, url, error) => Center(
-        child: Icon(
-          Icons.image_not_supported_outlined,
-          color: Colors.grey[300],
-          size: 25.sp,
-        ),
-      ),
-      imageBuilder: (context, imageProvider) {
-        if (isOval) {
-          return ClipOval(child: buildImageDesign(imageProvider));
-        }
-        return buildImageDesign(imageProvider);
-      },
-      progressIndicatorBuilder: (context, url, downloadProgress) {
-        if (downloadProgress.progress == null) return const SizedBox.shrink();
-        return Center(
-          child: CircularProgressIndicator(
-            value: downloadProgress.progress,
-          ),
-        );
-      },
-      imageUrl: imageUrl,
+      useOldImageOnUrlChange: true,
+      imageBuilder: (context, imageProvider) => _buildImage(imageProvider),
+      errorWidget: (context, url, error) => _buildErrorIcon(),
+      progressIndicatorBuilder: (context, url, downloadProgress) =>
+          _buildProgressIndicator(downloadProgress.progress),
     );
   }
 
-  Container buildImageDesign(ImageProvider<Object> imageProvider) {
+  Widget _buildPlaceholder() {
+    final container = _buildContainer(color: Colors.grey[300]);
+    return isOval ? ClipOval(child: container) : container;
+  }
+
+  Widget _buildImage(ImageProvider<Object> imageProvider) {
+    final container = _buildContainer(
+      imageProvider: imageProvider,
+    );
+    return isOval ? ClipOval(child: container) : container;
+  }
+
+  Widget _buildContainer({ImageProvider<Object>? imageProvider, Color? color}) {
     return Container(
       width: width ?? double.infinity,
-      height: height,
+      height: height ?? double.infinity,
       decoration: BoxDecoration(
+        color: color,
         borderRadius: borderRadius ?? BorderRadius.circular(10),
-        image: DecorationImage(
-          image: imageProvider,
-          fit: fit ?? BoxFit.cover,
-        ),
+        image: imageProvider != null
+            ? DecorationImage(image: imageProvider, fit: fit ?? BoxFit.cover)
+            : null,
       ),
+    );
+  }
+
+  Widget _buildErrorIcon() {
+    return Center(
+      child: Icon(
+        Icons.image_not_supported_outlined,
+        color: Colors.grey[300],
+        size: 25.sp,
+      ),
+    );
+  }
+
+  Widget _buildProgressIndicator(double? progress) {
+    if (progress == null) return const SizedBox.shrink();
+    return Center(
+      child: CircularProgressIndicator(value: progress),
     );
   }
 }

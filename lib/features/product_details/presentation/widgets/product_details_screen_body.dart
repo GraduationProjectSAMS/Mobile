@@ -85,7 +85,7 @@ class ProductDetailsScreenBody extends StatelessWidget {
                           color: Colors.amber,
                         ),
                         itemSize: 20.sp,
-                        unratedColor: AppColors.grey.withOpacity(0.3),
+                        unratedColor: AppColors.grey.withValues(alpha: 0.3),
                       ),
                       const SizedBox(
                         width: 5,
@@ -113,7 +113,7 @@ class ProductDetailsScreenBody extends StatelessWidget {
                   Text(
                     '300 x 200 cm, 100 cm Height',
                     style: AppStyles.textStyle14.copyWith(
-                        color: AppColors.black.withOpacity(0.6),
+                        color: AppColors.black.withValues(alpha: 0.6),
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w600),
                   ),
@@ -121,7 +121,7 @@ class ProductDetailsScreenBody extends StatelessWidget {
                     height: 5,
                   ),
                   Divider(
-                    color: AppColors.black.withOpacity(0.3),
+                    color: AppColors.black.withValues(alpha: 0.3),
                     thickness: 1,
                   ),
                   const SizedBox(
@@ -193,7 +193,7 @@ class ProductDetailsScreenBody extends StatelessWidget {
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: AppColors.black.withOpacity(0.5),
+                              color: AppColors.black.withValues(alpha: 0.5),
                               blurRadius: 4,
                               spreadRadius: 1,
                               offset: const Offset(0, 3),
@@ -216,7 +216,7 @@ class ProductDetailsScreenBody extends StatelessWidget {
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: AppColors.black.withOpacity(0.5),
+                              color: AppColors.black.withValues(alpha: 0.5),
                               blurRadius: 4,
                               spreadRadius: 1,
                               offset: const Offset(0, 3),

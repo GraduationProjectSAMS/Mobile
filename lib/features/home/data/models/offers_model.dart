@@ -27,6 +27,9 @@ class OffersData {
     this.title,
     this.price,
     this.photoUrl,
+    this.description,
+    this.quantity,
+    this.isProductInFavorite,
   });
 
   OffersData.fromJson(dynamic json) {
@@ -34,18 +37,26 @@ class OffersData {
     title = json['title'];
     price = json['price'];
     photoUrl = json['photo_url'];
+    description = json['description'];
+    quantity = json['quantity'];
+    isProductInFavorite = json['in_wish_list'];
   }
 
   num? id;
   String? title;
   String? price;
   String? photoUrl;
+  String? description;
+  num? quantity;
+  bool? isProductInFavorite;
 
   ProductEntity get toEntity => ProductEntity(
+      isFavorite: isProductInFavorite ?? false,
+      type: AppConstants.offers,
       id: id?.toInt() ?? 0,
       name: title.toString(),
-      description: '',
+      description: description.toString(),
       price: double.tryParse(price.toString()) ?? 1,
       imageUrl: AppConstants.kNullProductImage,
-      quantity: '');
+      maxQuantity: quantity?.toInt() ?? 0);
 }

@@ -1,5 +1,6 @@
 import 'package:graduation_project/features/home/data/models/offers_model.dart';
 
+import '../../../favorites/data/models/favorites_model.dart';
 import '../../data/models/product_model.dart';
 
 class ProductEntity {
@@ -8,7 +9,10 @@ class ProductEntity {
   final String description;
   final double price;
   final String imageUrl;
-  final String quantity;
+  final int maxQuantity;
+  final int carQuantity;
+  final bool isFavorite;
+  final String type;
 
   const ProductEntity({
     required this.id,
@@ -16,16 +20,21 @@ class ProductEntity {
     required this.description,
     required this.price,
     required this.imageUrl,
-    required this.quantity,
+    required this.maxQuantity,
+    required this.isFavorite,
+    required this.type,
+    this.carQuantity = 0,
   });
 
   factory ProductEntity.loading() => const ProductEntity(
+        isFavorite: false,
+        type: '',
         id: 0,
         name: 'test name',
         description: 'test description',
         price: 0.0,
         imageUrl: '',
-        quantity: ' test',
+        maxQuantity: 0,
       );
 }
 
@@ -37,6 +46,11 @@ extension ProductModelMapper on List<ProductData>? {
 }
 
 extension OfferModelMapper on List<OffersData>? {
+  List<ProductEntity> get toEntityList =>
+      this?.map((e) => e.toEntity).toList() ?? [];
+}
+
+extension FavoritesDataMapper on List<FavoritesData>? {
   List<ProductEntity> get toEntityList =>
       this?.map((e) => e.toEntity).toList() ?? [];
 }

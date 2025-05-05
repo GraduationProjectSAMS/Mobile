@@ -28,7 +28,7 @@ class LoginSignInButtons extends StatelessWidget {
             if (state is LoginError) {
               myToast(msg: state.error, state: ToastStates.error);
             } else if (state is LoginSuccess) {
-              CacheService.saveTokenThenGoHome(context, state.entity);
+              CacheService.cacheDataThenGoHome(context, state.entity);
             }
           },
         ),

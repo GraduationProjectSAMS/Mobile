@@ -1,3 +1,5 @@
+import 'package:graduation_project/features/profile/domain/entities/user_entity.dart';
+
 abstract class ProfileRemoteRepo {
-  // Define remote data source methods here
+  Future<UserEntity> getUserData();
 }

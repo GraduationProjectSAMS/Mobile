@@ -25,6 +25,7 @@ class OffersList extends StatelessWidget {
       child: AnimationLimiter(
         child: GridView.builder(
           itemCount: products.length,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: context.gridCount,
             mainAxisExtent: 30.hR,

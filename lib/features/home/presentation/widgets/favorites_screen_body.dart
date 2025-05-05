@@ -14,10 +14,9 @@ class ProductsScreenBody extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(
-            20,
-          ),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 AppStrings.products,

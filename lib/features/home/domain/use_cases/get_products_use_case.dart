@@ -9,7 +9,7 @@ class GetProductsUseCase {
 
   GetProductsUseCase(this._homeRepo);
 
-  Future<Either<Failure, List<ProductEntity>>> getProducts() async {
+  Future<Either<Failure, List<ProductEntity>>> call() async {
     return _homeRepo.getProducts();
   }
 }

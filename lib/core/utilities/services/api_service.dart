@@ -14,6 +14,7 @@ class ApiService {
     _dio.options.baseUrl = AppEndpoints.baseUrl; // Replace with your base URL
     _dio.interceptors.add(const DioInterceptor());
     _dio.options.receiveTimeout = const Duration(seconds: 25);
+    _dio.options.connectTimeout = const Duration(seconds: 25);
   }
 
   Future<Response?> getData({

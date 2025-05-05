@@ -21,7 +21,7 @@ class MyTextFormField extends StatelessWidget {
     this.focusNode,
     this.onFieldSubmitted,
     this.textInputAction,
-    this.maxLines,
+    this.maxLines=1,
     this.minLines,
     this.suffix,
   });
@@ -47,7 +47,7 @@ class MyTextFormField extends StatelessWidget {
   final TextInputAction? textInputAction;
 
   // max min lines
-  final int? maxLines;
+  final int maxLines;
   final int? minLines;
 
   @override

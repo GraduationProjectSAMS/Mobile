@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 
 import '../../../../core/utilities/resources/app_styles.dart';
 
 class HomeTextTitle extends StatelessWidget {
-  const HomeTextTitle({super.key, required this.title});
+  const HomeTextTitle({super.key, required this.title, required this.onTap});
 
+  final VoidCallback onTap;
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 22, top: 5, bottom: 5),
+      padding: const EdgeInsetsDirectional.only(
+        start: 22,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -21,8 +25,11 @@ class HomeTextTitle extends StatelessWidget {
             ),
           ),
           TextButton.icon(
-              icon: const Text('view all'),
-              onPressed: () {},
+              icon: Text(
+                AppStrings.viewAll,
+                style: AppStyles.defaultStyle,
+              ),
+              onPressed: onTap,
               label: const Icon(
                 Icons.arrow_right,
                 size: 20,

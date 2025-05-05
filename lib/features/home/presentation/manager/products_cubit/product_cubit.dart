@@ -15,16 +15,25 @@ class ProductCubit extends Cubit<ProductStates> {
   List<ProductEntity> homeProducts = [];
 
   Future<void> getProducts() async {
-    emit(ProductLoadingStates());
-    final result = await _getProductsUseCase.getProducts();
+    if (state is! ProductLoadingStates) {
+      emit(ProductLoadingStates());
+    }
+    final result = await _getProductsUseCase.call();
     result.fold(
       (failure) => emit(ProductErrorStates(failure.errorMessage)),
       (products) {
         this.products = products;
         homeProducts = products.sublist(
             0, this.products.length > 5 ? 5 : this.products.length);
-        emit(ProductSuccessStates());
+
+        emit(ProductSuccessStates(products));
       },
     );
+  }
+
+  void viewAllProducts() {
+    if (state is ProductSuccessStates) {
+      emit(ViewAllProductsStates());
+    }
   }
 }
