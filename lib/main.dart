@@ -14,7 +14,6 @@ void main() async {
     CacheService.init(),
     DesktopWindowService.init(),
   ]);
-
   runApp( const MyApp());
 }
 

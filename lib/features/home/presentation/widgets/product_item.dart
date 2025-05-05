@@ -9,23 +9,25 @@ import 'package:graduation_project/features/home/domain/entities/product_entity.
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/config/routes/app_route.dart';
+import '../../../../core/utilities/functions/dd.dart';
 import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key, this.width, this.height, required this.model});
+  const ProductItem({super.key, this.width, this.height, required this.entity});
 
-  final ProductEntity model;
+  final ProductEntity entity;
   final double? width;
   final double? height;
 
   @override
   @override
   Widget build(BuildContext context) {
+
     return InkWell(
       hoverColor: AppColors.offPrimary,
       borderRadius: BorderRadius.circular(10),
       onTap: () {
-        context.navigateTo(pageName: AppRoutes.productDetails);
+        context.navigateTo(pageName: AppRoutes.productDetails,arguments: (entity: entity,context :context));
       },
       child: Card(
         elevation: 3,
@@ -43,8 +45,11 @@ class ProductItem extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Stack(
                     children: [
-                      MyCachedNetworkImage(
-                          fit: BoxFit.fill, imageUrl: model.imageUrl),
+                      Hero(
+                        tag: getHeroTag(context,'${entity.id}${entity.type}'),
+                        child:     MyCachedNetworkImage(
+                            fit: BoxFit.fill, imageUrl: entity.imageUrl),
+                      ),
                       Positioned(
                         top: 5,
                         right: 5,
@@ -54,11 +59,11 @@ class ProductItem extends StatelessWidget {
                             builder: (context, state) {
                               final cubit = context.read<AddFavoriteCubit>();
                               final isFavorite = cubit.productsKeys[
-                                      '${model.id}${model.type}'] ??
+                                      '${entity.id}${entity.type}'] ??
                                   false;
 
                               return InkWell(
-                                onTap: () => cubit.toggleFavoriteBackEnd(model),
+                                onTap: () => cubit.toggleFavoriteBackEnd(entity),
                                 child: AnimatedContainer(
                                   duration: const Duration(milliseconds: 300),
                                   curve: Curves.easeInOut,
@@ -101,7 +106,7 @@ class ProductItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      model.name,
+                      entity.name,
                       style: AppStyles.textStyle15
                           .copyWith(fontWeight: FontWeight.bold),
                       maxLines: 1,
@@ -110,9 +115,9 @@ class ProductItem extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    if (model.description.isNotEmpty)
+                    if (entity.description.isNotEmpty)
                       Text(
-                        model.description,
+                        entity.description,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: AppStyles.textStyle12
@@ -136,7 +141,7 @@ class ProductItem extends StatelessWidget {
                                         .textStyle14, // Smaller font for EGP
                                   ),
                                   TextSpan(
-                                    text: '${model.price}',
+                                    text: '${entity.price}',
                                     style: AppStyles.textStyle18.copyWith(
                                         fontWeight: FontWeight
                                             .w600), // Original font for price
@@ -154,12 +159,12 @@ class ProductItem extends StatelessWidget {
                           child: BlocBuilder<AddToCardCubit, AddToCardStates>(
                             builder: (context, state) {
                               final cubit = context.read<AddToCardCubit>();
-                              final key = '${model.id}${model.type}';
+                              final key = '${entity.id}${entity.type}';
                               final isInCard =
                                   cubit.productsCards.containsKey(key);
 
                               return InkWell(
-                                onTap: () => cubit.updateCart(model: model),
+                                onTap: () => cubit.updateCart(model: entity),
                                 child: Container(
                                   height: 32.sp,
                                   width: 32.sp,

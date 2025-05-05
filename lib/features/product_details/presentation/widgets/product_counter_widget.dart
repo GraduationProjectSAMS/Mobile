@@ -1,38 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 
-class ProductCounter extends StatefulWidget {
-  final int initialValue;
-  final ValueChanged<int> onChanged;
+class ProductCounter extends StatelessWidget {
+
 
   const ProductCounter(
-      {super.key, this.initialValue = 1, required this.onChanged});
-
-  @override
-  State<ProductCounter> createState() => _ProductCounterState();
-}
-
-class _ProductCounterState extends State<ProductCounter> {
-  late int _count;
-
-  @override
-  void initState() {
-    super.initState();
-    _count = widget.initialValue;
-  }
-
-  void _increment() {
-    setState(() => _count++);
-    widget.onChanged(_count);
-  }
-
-  void _decrement() {
-    if (_count > 1) {
-      setState(() => _count--);
-      widget.onChanged(_count);
-    }
-  }
-
+      {super.key, required this.title, required this.onAdd, required this.onRemove, });
+final String title;
+  final VoidCallback onAdd;
+  final VoidCallback onRemove;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,15 +20,15 @@ class _ProductCounterState extends State<ProductCounter> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _buildIconButton(Icons.remove, _decrement),
+          _buildIconButton(Icons.remove, onRemove),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Text(
-              '$_count',
+              title,
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
             ),
           ),
-          _buildIconButton(Icons.add, _increment),
+          _buildIconButton(Icons.add, onAdd),
         ],
       ),
     );

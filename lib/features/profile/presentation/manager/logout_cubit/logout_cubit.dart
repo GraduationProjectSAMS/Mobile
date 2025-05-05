@@ -9,9 +9,7 @@ part 'logout_state.dart';
 class LogoutCubit extends Cubit<LogoutStates> {
   LogoutCubit({
     required LogoutUseCase logoutUseCase,
-
-  })  :
-        _logoutUseCase = logoutUseCase,
+  })  : _logoutUseCase = logoutUseCase,
         super(LogoutInitialState());
   final LogoutUseCase _logoutUseCase;
 

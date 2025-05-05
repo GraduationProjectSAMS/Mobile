@@ -1,6 +1,7 @@
 import 'package:graduation_project/core/utilities/resources/app_endpoints.dart';
 import 'package:graduation_project/core/utilities/services/api_service.dart';
 import 'package:graduation_project/features/authentication/domain/entity/login_entity.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../core/utilities/services/google_sign_in_service.dart';
 import '../models/login_model.dart';
@@ -16,6 +17,7 @@ class AuthenticationRemoteRepoImpl implements AuthenticationRemoteRepo {
   Future<String> loginWithGoogle() async {
     final response = await _googleSignInService.signIn();
     final tokenId = response?.accessToken;
+    Logger().i('Google Token: $tokenId');
     return tokenId ?? '';
   }
 

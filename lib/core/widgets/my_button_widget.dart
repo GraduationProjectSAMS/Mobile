@@ -8,39 +8,55 @@ import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 import '../utilities/resources/icon_broken.dart';
 
 class MyButton extends StatelessWidget {
-  const MyButton(
-      {super.key,
-      required this.onPressed,
-      required this.text,
-      this.isLoading = true});
+  const MyButton({
+    super.key,
+    required this.onPressed,
+    required this.text,
+    this.isLoading = false,
+    this.height,
+    this.width,
+    this.color,
+  });
 
   final bool isLoading;
   final VoidCallback onPressed;
   final String text;
+  final double? height;
+  final double? width;
+  final Color? color;
 
   Widget get loading => const SizedBox(
-        height: 20,
-        width: 20,
-        child: Center(
-          child: CircularProgressIndicator.adaptive(
-            backgroundColor: AppColors.white,
-            valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
-          ),
-        ),
-      );
+    height: 20,
+    width: 20,
+    child: Center(
+      child: CircularProgressIndicator.adaptive(
+        backgroundColor: AppColors.white,
+        valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
+      ),
+    ),
+  );
 
   Widget get textWidget => Text(
-        text,
-        style: AppStyles.textStyle18,
-      );
+    text,
+    style: AppStyles.textStyle18,
+  );
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return SizedBox(
+      height: height,
+      width: width,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color, // Set custom background color if provided
+        ),
         onPressed: isLoading ? () {} : onPressed,
-        child: isLoading ? loading : textWidget);
+        child: isLoading ? loading : textWidget,
+      ),
+    );
   }
 }
+
 
 class MyTextButton extends StatelessWidget {
   const MyTextButton({super.key, required this.onTap, required this.text});

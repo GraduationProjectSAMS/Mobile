@@ -13,14 +13,7 @@ class ProductRating extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Modern, Seats',
-          style: AppStyles.textStyle14.copyWith(
-            color: Colors.green.shade800,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+
         Row(
           children: [
             RatingBarIndicator(

@@ -47,44 +47,47 @@ class ShowLogoutDialogContent extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           BlocConsumer<LogoutCubit, LogoutStates>(
-            builder: (context, state) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  if (state is LogoutLoadingState)
-                    const Center(
-                      child: CircularProgressIndicator(),
-                    )else
-               ...[   MyTextButton(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    text: AppStrings.cancel,
-                  ),
-                  MyTextButton(
-                    onTap: () {
-                      context.read<LogoutCubit>().logout();
-                    },
-                    text: AppStrings.logout,
-                  ),]
-                ],
-              );
-            }, listener: listener
-          )
+              builder: (context, state) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    if (state is LogoutLoadingState)
+                      const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    else ...[
+                      MyTextButton(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        text: AppStrings.cancel,
+                      ),
+                      MyTextButton(
+                        onTap: () {
+                          context.read<LogoutCubit>().logout();
+                        },
+                        text: AppStrings.logout,
+                      ),
+                    ]
+                  ],
+                );
+              },
+              listener: listener)
         ],
       ),
     );
   }
-void  listener(BuildContext context, LogoutStates state) async {
-  if (shouldForceLogout(state)) {
-    await appLogout();
-    if (!context.mounted) return;
-    context.navigateAndRemoveUntil(pageName: AppRoutes.login);
-  } else if (state is LogoutErrorState) {
 
-    myToast(msg: state.error.errorMessage, state: ToastStates.error);
+  void listener(BuildContext context, LogoutStates state) async {
+    if (shouldForceLogout(state)) {
+      await appLogout();
+      if (!context.mounted) return;
+      context.navigateAndRemoveUntil(pageName: AppRoutes.login);
+    } else if (state is LogoutErrorState) {
+      myToast(msg: state.error.errorMessage, state: ToastStates.error);
+    }
   }
-  }
+
   bool shouldForceLogout(LogoutStates state) {
     if (state is LogoutSuccessState) {
       return true;

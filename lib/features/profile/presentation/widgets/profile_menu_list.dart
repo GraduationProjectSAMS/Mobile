@@ -15,7 +15,6 @@ class ProfileMenuList extends StatelessWidget {
     Icons.person,
     Icons.lock,
     Icons.logout,
-
   ];
   static List<Color> menuColors = [
     Colors.black,
@@ -56,7 +55,7 @@ class ProfileMenuList extends StatelessWidget {
                 } else if (index == 1) {
                   showChangePasswordDialog(context);
                 } else if (index == 2) {
-                 showLogoutDialog(context);
+                  showLogoutDialog(context);
                 }
               },
             ),

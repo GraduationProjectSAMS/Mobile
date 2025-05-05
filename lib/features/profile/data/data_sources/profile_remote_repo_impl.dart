@@ -10,13 +10,13 @@ import 'profile_remote_repo.dart';
 
 class ProfileRemoteRepoImpl implements ProfileRemoteRepo {
   final ApiService apiService;
-final GoogleSignInService googleSignInService;
+  final GoogleSignInService googleSignInService;
+
   ProfileRemoteRepoImpl(this.apiService, this.googleSignInService);
 
   @override
   Future<UserEntity> getUserData() async {
- CacheService.userId =
-         CacheService.getData(key: AppConstants.userId);
+    CacheService.userId = CacheService.getData(key: AppConstants.userId);
     final response = await apiService.getData(
         endPoint: '${AppEndpoints.profile}/${CacheService.userId}');
     final model = UserModel.fromJson(response?.data);
@@ -25,14 +25,12 @@ final GoogleSignInService googleSignInService;
   }
 
   @override
-  Future<void> logout() async{
-    await apiService.postData(
-        endPoint: AppEndpoints.logout);
-
+  Future<void> logout() async {
+    await apiService.postData(endPoint: AppEndpoints.logout);
   }
 
   @override
-  Future<void> logoutFromGoogle()async {
+  Future<void> logoutFromGoogle() async {
     await googleSignInService.signOut();
   }
 

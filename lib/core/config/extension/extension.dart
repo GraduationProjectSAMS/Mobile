@@ -7,7 +7,7 @@ extension NavigateToExtension on BuildContext {
 }
 
 extension NavigatorPopExtension on BuildContext {
-  pop({bool result = false}) => Navigator.of(this).pop(result);
+  pop({ result = false}) => Navigator.of(this).pop(result);
 }
 
 extension NavigateReplacementExtension on BuildContext {

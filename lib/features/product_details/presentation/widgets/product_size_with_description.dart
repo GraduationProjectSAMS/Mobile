@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
 
 import '../../../../core/utilities/resources/app_colors.dart';
 import '../../../../core/utilities/resources/app_styles.dart';
@@ -9,6 +10,7 @@ class ProductSizeWithDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arg = context.productDetailsArgs;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -38,7 +40,7 @@ class ProductSizeWithDescription extends StatelessWidget {
           ),
         ),
         Text(
-          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout...',
+          arg.entity.description,
           maxLines: 10,
           overflow: TextOverflow.ellipsis,
           style: AppStyles.textStyle14.copyWith(color: AppColors.grey),

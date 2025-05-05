@@ -2,12 +2,6 @@
 import 'dart:developer';
 
 import 'dart:io';
-
-
-
-
-
-
 void main() {
   stdout.write('Enter module name (e.g., chat_logs): ');
   final String? moduleName = stdin.readLineSync();

@@ -8,7 +8,7 @@ class LogoutFormGoogleUseCase {
 
   LogoutFormGoogleUseCase(this._profileRepo);
 
-  Future<Either<Failure, void>> call()async{
+  Future<Either<Failure, void>> call() async {
     return _profileRepo.logoutFromGoogle();
   }
 }

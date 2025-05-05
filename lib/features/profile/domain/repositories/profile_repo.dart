@@ -5,6 +5,8 @@ import '../../../../core/errors/failure.dart';
 
 abstract class ProfileRepo {
   Future<Either<Failure, UserEntity>> getProfileData();
+
   Future<Either<Failure, void>> logout();
+
   Future<Either<Failure, void>> logoutFromGoogle();
 }

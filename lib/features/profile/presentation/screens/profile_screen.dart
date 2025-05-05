@@ -12,8 +12,9 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LogoutCubit(logoutUseCase: getIt.get<LogoutUseCase>(),
-          ),
+      create: (context) => LogoutCubit(
+        logoutUseCase: getIt.get<LogoutUseCase>(),
+      ),
       child: const Scaffold(
         body: ProfileScreenBody(),
       ),

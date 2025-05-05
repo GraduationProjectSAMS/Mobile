@@ -12,6 +12,7 @@ class ProductDetailsScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return const SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
