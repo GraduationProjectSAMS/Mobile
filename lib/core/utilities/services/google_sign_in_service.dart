@@ -10,6 +10,7 @@ class GoogleSignInService {
   Future<GoogleSignInAuthentication?> signIn() async {
     final googleUser = await _googleSignIn.signIn();
     final googleAuth = await googleUser?.authentication;
+
     return googleAuth;
   }
 

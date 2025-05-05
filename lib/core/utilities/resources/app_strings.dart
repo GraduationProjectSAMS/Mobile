@@ -28,6 +28,7 @@ abstract class AppStrings {
   static const onboardingSubTitle1 = 'Explore top products and offers';
   static const onboardingSubTitle2 = 'Get your order by speed delivery';
   static const onboardingSubTitle3 = 'Order is arrived at your Place';
+  static const payment = 'Payment';
 
   /// auth
   static const welcomeBack = 'Welcome Back';
@@ -69,7 +70,7 @@ static const newlyAdded= 'Newly Added';
   static const yes = 'Yes';
   static const myAccount = 'My Account';
   static const notification = 'Notifications';
-  static const logout = 'Log Out';
+  static const logout = 'LogOut';
   static const setting = 'Setting';
   static const helpCenter = 'HelpCenter';
   static const signUpMassage =
@@ -88,11 +89,22 @@ static const newlyAdded= 'Newly Added';
   static const myCart = 'My Cart';
 
   static const orderSubtotal = 'Order Subtotal';
-
+/// payment
   static const discount = 'Discount';
   static const shipping = 'Shipping';
+  static const payNow = 'Pay Now';
   static const total = 'Total';
+  static const visa = 'Visa';
+  static const cash = 'Cash';
   static const thankYou = 'Thank you';
 static const maxQuantity = 'You have reached the maximum quantity';
   static const transactionSuccessful = 'Your transaction was successful';
+  static const country = 'Country';
+  static const streetName = 'StreetName';
+  static const floorWithApartment = 'Floor, apartment';
+  static const buildingNumber = 'Building Number';
+  static const addLocationOnMap = 'Add Location on Map';
+  static const apartment = 'Apartment';
+  static const notes = 'Notes';
+
 }

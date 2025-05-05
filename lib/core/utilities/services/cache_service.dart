@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/features/authentication/domain/entity/login_entity.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../config/routes/app_route.dart';
@@ -53,6 +54,8 @@ class CacheService {
         .then((value) {
       if (value.every((element) => element == true) && context.mounted) {
         TextInput.finishAutofillContext();
+        Logger().i('Token: ${entity.token}');
+        Logger().i('id: ${entity.id}');
         context.navigateAndRemoveUntil(pageName: AppRoutes.homeLayout);
       }
     });

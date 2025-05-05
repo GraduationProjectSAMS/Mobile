@@ -22,7 +22,7 @@ class AddFavoriteCubit extends Cubit<AddFavoriteStates> {
   Map<String, ProductEntity> selectedProducts = {};
 
   Future<void> getFavorites() async {
-    if (selectedProducts.isEmpty) emit(AddFavoriteLoading());
+
 
     final result = await _getFavoritesUseCase.call();
     result.fold((failure) {

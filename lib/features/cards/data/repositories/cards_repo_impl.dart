@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:graduation_project/core/errors/failure.dart';
 
-import '../../../../core/errors/server_failure.dart';
 import '../../../home/domain/entities/product_entity.dart';
 import '../../domain/repositories/cards_repo.dart';
 import '../data_sources/cards_remote_repo.dart';
@@ -20,10 +18,7 @@ class CardsRepoImpl implements CardsRepo {
           productId: productId, type: type, quantity: quantity);
       return const Right(null);
     } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(e.toString()));
+      return Left(appServerFailure(e));
     }
   }
 
@@ -33,10 +28,7 @@ class CardsRepoImpl implements CardsRepo {
       final cards = await remoteRepo.getCards();
       return Right(cards);
     } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(e.toString()));
+      return Left(appServerFailure(e));
     }
   }
 
@@ -47,10 +39,7 @@ class CardsRepoImpl implements CardsRepo {
       await remoteRepo.removeFromCard(productId: productId, type: type);
       return const Right(null);
     } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(e.toString()));
+      return Left(appServerFailure(e));
     }
   }
 // Implement repository methods here

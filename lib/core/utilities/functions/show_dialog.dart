@@ -28,7 +28,7 @@ Future<T?> showAppDialog<T>({
     barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
 
     transitionDuration: duration,
-    pageBuilder: (context, animation, secondaryAnimation) {
+    pageBuilder: (_, __, ___) {
       return AlertDialog.adaptive(
         content: child,
       );

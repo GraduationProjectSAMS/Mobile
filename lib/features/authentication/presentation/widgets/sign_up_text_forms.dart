@@ -29,52 +29,55 @@ class SignUpTextFormsState extends State<SignUpTextForms> {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<SignupCubit>();
-    return Form(
-      key: cubit.formKey,
-      child: Column(
-        children: [
-          MyTextFormField(
-            autofillHints: const [AutofillHints.newUsername],
-            keyboardType: TextInputType.name,
-            onSaved: cubit.setName,
-            prefixIcon: const Icon(Icons.person_outline),
-            labelText: AppStrings.nameLabelText,
-            hintText: AppStrings.nameHintText,
-            validator: ValidatorService.userNameValidator,
-            textInputAction: TextInputAction.next,
-            onFieldSubmitted: (_) {
-              // When user submits the first field, move to the second
-              FocusScope.of(context).requestFocus(_emailFocusNode);
-            },
-          ),
-          const HeightSizedBox(height: 2),
-          MyTextFormField(
-            autofillHints: const [AutofillHints.newUsername],
-            focusNode: _emailFocusNode,
-            // Assign the email focus node
-            keyboardType: TextInputType.emailAddress,
-            onSaved: cubit.setEmail,
-            validator: ValidatorService.emailValidator,
-            prefixIcon: const Icon(Icons.email_outlined),
-            labelText: AppStrings.emailLabelText,
-            hintText: AppStrings.emailHintText,
-            textInputAction: TextInputAction.next,
-            onFieldSubmitted: (_) {
-              // When user submits the second field, move to the third
-              FocusScope.of(context).requestFocus(_passwordFocusNode);
-            },
-          ),
-          const HeightSizedBox(height: 2),
-          LoginPasswordTextForm(
-            autofillHints: const [AutofillHints.newPassword],
-            focusNode: _passwordFocusNode,
-            // Assign the password focus node
-            onSaved: cubit.setPassword,
-            textInputAction: TextInputAction.done,
-            onFieldSubmitted: (_) => cubit.signup(),
-            // Optionally submit the form here or perform other actions
-          ),
-        ],
+    return AutofillGroup(
+
+      child: Form(
+        key: cubit.formKey,
+        child: Column(
+          children: [
+            MyTextFormField(
+              autofillHints: const [AutofillHints.newUsername],
+              keyboardType: TextInputType.name,
+              onSaved: cubit.setName,
+              prefixIcon: const Icon(Icons.person_outline),
+              labelText: AppStrings.nameLabelText,
+              hintText: AppStrings.nameHintText,
+              validator: ValidatorService.userNameValidator,
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) {
+                // When user submits the first field, move to the second
+                FocusScope.of(context).requestFocus(_emailFocusNode);
+              },
+            ),
+            const HeightSizedBox(height: 2),
+            MyTextFormField(
+              autofillHints: const [AutofillHints.newUsername],
+              focusNode: _emailFocusNode,
+              // Assign the email focus node
+              keyboardType: TextInputType.emailAddress,
+              onSaved: cubit.setEmail,
+              validator: ValidatorService.emailValidator,
+              prefixIcon: const Icon(Icons.email_outlined),
+              labelText: AppStrings.emailLabelText,
+              hintText: AppStrings.emailHintText,
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) {
+                // When user submits the second field, move to the third
+                FocusScope.of(context).requestFocus(_passwordFocusNode);
+              },
+            ),
+            const HeightSizedBox(height: 2),
+            LoginPasswordTextForm(
+              autofillHints: const [AutofillHints.newPassword],
+              focusNode: _passwordFocusNode,
+              // Assign the password focus node
+              onSaved: cubit.setPassword,
+              textInputAction: TextInputAction.done,
+              onFieldSubmitted: (_) => cubit.signup(),
+              // Optionally submit the form here or perform other actions
+            ),
+          ],
+        ),
       ),
     );
   }

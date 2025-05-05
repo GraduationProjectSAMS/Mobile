@@ -36,7 +36,7 @@ class ProductList extends StatelessWidget {
               index: index,
               columnCount: context.gridCount,
               child: ProductItem(
-                model: products[index],
+                entity: products[index],
               )),
         ),
       ),

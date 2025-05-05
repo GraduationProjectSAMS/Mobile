@@ -28,6 +28,7 @@ class AppExitDialogContent extends StatelessWidget {
         Text(
           AppStrings.exitApp,
           style: AppStyles.textStyle14,
+          textAlign: TextAlign.center,
         ),
         const HeightSizedBox(height: 3),
         Row(

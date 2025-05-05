@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../../../../core/errors/server_failure.dart';
 import '../../../home/domain/entities/product_entity.dart';
 import '../../domain/repositories/favorites_repo.dart';
 import '../data_sources/favorites_remote_repo.dart';
@@ -19,10 +17,7 @@ class FavoritesRepoImpl implements FavoritesRepo {
       await remoteRepo.addToFavorite(productId: productId, type: type);
       return const Right(null);
     } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(e.toString()));
+      return Left(appServerFailure(e));
     }
   }
 
@@ -32,10 +27,7 @@ class FavoritesRepoImpl implements FavoritesRepo {
       final favorites = await remoteRepo.getFavorites();
       return Right(favorites);
     } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(e.toString()));
+      return Left(appServerFailure(e));
     }
   }
 }

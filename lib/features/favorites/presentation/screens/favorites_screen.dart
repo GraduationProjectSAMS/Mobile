@@ -13,6 +13,7 @@ class FavoritesScreen extends StatelessWidget {
     final arg = ModalRoute.of(context)?.settings.arguments as ({
       BuildContext context,
     });
+
     return MultiBlocProvider(
         providers: [
           BlocProvider.value(

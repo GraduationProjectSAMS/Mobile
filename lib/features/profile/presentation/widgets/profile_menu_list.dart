@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/features/profile/presentation/widgets/show_logout_dialog_content.dart';
 
-import '../../../../core/config/routes/app_route.dart';
-import '../../../../core/utilities/resources/app_constants.dart';
-import '../../../../core/utilities/services/cache_service.dart';
 import 'change_password_dialog.dart';
 import 'change_username_dialog.dart';
 
@@ -57,9 +55,7 @@ class ProfileMenuList extends StatelessWidget {
                 } else if (index == 1) {
                   showChangePasswordDialog(context);
                 } else if (index == 2) {
-                  await CacheService.removeData(key: AppConstants.token);
-                  if (!context.mounted) return;
-                  context.navigateAndRemoveUntil(pageName: AppRoutes.login);
+                  showLogoutDialog(context);
                 }
               },
             ),

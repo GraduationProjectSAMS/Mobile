@@ -40,7 +40,7 @@ class ServerFailure extends Failure {
         errorNumber == 401 ||
         errorNumber == 403 ||
         errorNumber == 422) {
-      return ServerFailure(response['message'].toString(),
+      return ServerFailure(response['error']??response['message'].toString(),
           statusCode: errorNumber);
     } else if (errorNumber == 404) {
       return ServerFailure(AppStrings.methodNotFound);

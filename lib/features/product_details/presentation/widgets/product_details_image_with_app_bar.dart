@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
 
 import '../../../../core/widgets/my_button_widget.dart';
 import '../../../../core/widgets/my_cached_network_image.dart';
@@ -8,18 +9,22 @@ class ProductDetailsImageWithAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    final arg = context.productDetailsArgs;
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MyBackButton(),
-        SizedBox(
+        const MyBackButton(),
+        const SizedBox(
           height: 10,
         ),
-        MyCachedNetworkImage(
-            height: 200,
-            fit: BoxFit.fill,
-            imageUrl:
-                'https://images.pexels.com/photos/3757055/pexels-photo-3757055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
+        Hero(
+          tag: '${arg.entity.id}${arg.entity.type}',
+          child: MyCachedNetworkImage(
+              height: 200,
+              fit: BoxFit.fill,
+              imageUrl:
+                  arg.entity.imageUrl),
+        ),
       ],
     );
   }

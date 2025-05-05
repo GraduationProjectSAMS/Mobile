@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:graduation_project/core/errors/failure.dart';
 
 import '../../../../core/errors/server_failure.dart';
@@ -35,10 +34,7 @@ class AuthenticationRepoImpl implements AuthenticationRepo {
       );
       return Right(response);
     } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(e.toString()));
+      return Left(appServerFailure(e));
     }
   }
 
@@ -53,10 +49,7 @@ class AuthenticationRepoImpl implements AuthenticationRepo {
       );
       return Right(response);
     } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(e.toString()));
+      return Left(appServerFailure(e));
     }
   }
 
@@ -68,10 +61,7 @@ class AuthenticationRepoImpl implements AuthenticationRepo {
           googleToken: googleToken);
       return Right(response);
     } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(e.toString()));
+      return Left(appServerFailure(e));
     }
   }
 }

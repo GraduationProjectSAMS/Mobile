@@ -35,7 +35,7 @@ class NewlyAddedList extends StatelessWidget {
               child: ProductItem(
                 height: 29.hR,
                 width: 20.hR,
-                model: products[index],
+                entity: products[index],
               ),
             ),
             separatorBuilder: (_, __) => const SizedBox(

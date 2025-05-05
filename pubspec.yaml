@@ -29,9 +29,13 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   fluttertoast: ^8.2.12
   image_picker: ^1.1.2
+  dotted_border: ^2.1.0
   # only for windows
   window_manager: ^0.4.3
-  dotted_border: ^2.1.0
+    # this used for map
+  google_maps_flutter: ^2.12.1
+  geolocator: ^14.0.0
+  geocoding: ^3.0.0
 
 
 dev_dependencies:
