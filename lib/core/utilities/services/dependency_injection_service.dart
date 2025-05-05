@@ -4,6 +4,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:graduation_project/core/utilities/services/api_service.dart';
 import 'package:graduation_project/features/home/data/data_sources/home_remote_repo_impl.dart';
 
+import '../../../features/add_product/data/data_sources/add_product_remote_repo_impl.dart';
+import '../../../features/add_product/data/repositories/add_product_repo_impl.dart';
 import '../../../features/authentication/data/data_sources/authentication_remote_repo_impl.dart';
 import '../../../features/authentication/data/repo/authentication_repo_impl.dart';
 import '../../../features/authentication/domain/use_case/login_with_email_and_password_use_case.dart';
@@ -30,6 +32,9 @@ void setupDependencies() {
 
   getIt.registerLazySingleton<HomeRepoImpl>(
       () => HomeRepoImpl(HomeRemoteRepoImpl(getIt.get<ApiService>())));
+
+  getIt.registerLazySingleton<AddProductRepoImpl>(() =>
+      AddProductRepoImpl(AddProductRemoteRepoImpl(getIt.get<ApiService>())));
 
   /// Use Cases
   getIt.registerLazySingleton<SignInWithGoogleUseCase>(

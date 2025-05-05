@@ -5,7 +5,7 @@ import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 
 abstract class TextFormTheme {
-  static  double get fontSize => 16.sp;
+  static  double get fontSize => 14.sp;
   static InputDecorationTheme inputDecorationLightTheme = InputDecorationTheme(
     floatingLabelBehavior: FloatingLabelBehavior.always,
     suffixIconColor: AppColors.grey,
@@ -24,7 +24,7 @@ abstract class TextFormTheme {
     focusedErrorBorder:
         TextFormTheme.setOutlineInputBorder(color: AppColors.red, width: 2),
     errorStyle:
-        AppStyles.textStyle15.copyWith(color: AppColors.red, fontSize: fontSize),
+        AppStyles.textStyle15.copyWith(color: AppColors.red, fontSize: 12.5.sp),
   );
 
   static OutlineInputBorder setOutlineInputBorder(

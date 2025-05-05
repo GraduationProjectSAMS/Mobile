@@ -45,7 +45,7 @@ class AddProductScreenBody extends StatelessWidget {
                   child: BlocBuilder<AddProductCubit, AddProductState>(
                     builder: (context, state) {
                       return Padding(
-                        padding: const EdgeInsets.fromLTRB(70, 70, 0, 70),
+                        padding: const EdgeInsets.fromLTRB(50, 50, 0, 50),
                         child: cubit.pickedImage == null ? DottedBorder(
                           color: Colors.grey[500]!,
                           borderType: BorderType.RRect,
@@ -147,7 +147,7 @@ class AddProductScreenBody extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 70.0, horizontal: 20),
+                        vertical: 50.0, horizontal: 20),
                     child: Column(
                       children: [
                         MyTextFormField(
@@ -322,11 +322,24 @@ class AddProductScreenBody extends StatelessWidget {
                           ],
                         ),
                         const Spacer(),
+                          BlocBuilder<AddProductCubit, AddProductState>(
+                            builder: (context, state) {
+                              if(state is AddProductLoading){
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8.0),
+                                  child: LinearProgressIndicator(
+                                    color: AppColors.primary,
+                                    backgroundColor: Colors.grey[300],
+                                  ),
+                                );
+                              }
+                              return const SizedBox();
+                            },
+                          ),
                         ButtonWidget(
                           label: 'Add Product',
-                          onPressed: () {
-
-                          },
+                          onPressed: cubit.addProduct,
                           width: double.infinity,
                           height: 37.sp,
                           labelFontSize: 13.sp,

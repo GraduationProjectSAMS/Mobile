@@ -1,3 +1,6 @@
+
 abstract class AddProductRemoteRepo {
-  // Define remote data source methods here
+  Future<void> addProduct({
+    required Map<String,dynamic> data,
+  });
 }

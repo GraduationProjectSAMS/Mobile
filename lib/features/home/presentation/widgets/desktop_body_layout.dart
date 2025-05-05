@@ -10,6 +10,31 @@ class DesktopBodyLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: const BoxDecoration(color: AppColors.primary),
+              child: Text(
+                'Admin Dashboard',
+                style: TextStyle(
+                  color: AppColors.white,
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout,color: Colors.red,),
+              title: const Text('Logout',style: TextStyle(color: Colors.red),),
+              onTap: () {
+                context.navigateTo(pageName: AppRoutes.login);
+              },
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           Padding(
@@ -17,6 +42,16 @@ class DesktopBodyLayout extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Builder(builder: (context) {
+                  return IconButton(
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                      icon: Icon(
+                        Icons.menu,
+                        size: 32.sp,
+                      ));
+                }),
                 const Text(
                   'All Products',
                   style: TextStyle(
