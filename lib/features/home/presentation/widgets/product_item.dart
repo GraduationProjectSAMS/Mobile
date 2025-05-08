@@ -9,16 +9,16 @@ import 'package:graduation_project/features/home/domain/entities/product_entity.
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/config/routes/app_route.dart';
-import '../../../../core/utilities/functions/dd.dart';
 import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key, this.width, this.height, required this.entity});
+  const ProductItem({super.key, this.width, this.height, required this.entity,  this.isAdmin=false,  this.enableHeroTag=true});
 
   final ProductEntity entity;
   final double? width;
   final double? height;
-
+  final bool enableHeroTag;
+  final bool isAdmin ;
   @override
   @override
   Widget build(BuildContext context) {
@@ -45,11 +45,15 @@ class ProductItem extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Stack(
                     children: [
+                      if (enableHeroTag)
                       Hero(
-                        tag: getHeroTag(context,'${entity.id}${entity.type}'),
+                        tag: '${entity.id}${entity.type}',
                         child:     MyCachedNetworkImage(
                             fit: BoxFit.fill, imageUrl: entity.imageUrl),
-                      ),
+                      )else
+                        MyCachedNetworkImage(
+                            fit: BoxFit.fill, imageUrl: entity.imageUrl),
+                      if(!isAdmin)
                       Positioned(
                         top: 5,
                         right: 5,
@@ -155,6 +159,7 @@ class ProductItem extends StatelessWidget {
                         const SizedBox(
                           width: 10,
                         ),
+                        if(!isAdmin)
                         Skeleton.shade(
                           child: BlocBuilder<AddToCardCubit, AddToCardStates>(
                             builder: (context, state) {

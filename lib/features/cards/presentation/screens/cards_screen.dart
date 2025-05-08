@@ -18,8 +18,11 @@ class CardsScreen extends StatelessWidget {
         BlocProvider.value(value: arg.context.read<AddToCardCubit>()),
         BlocProvider.value(value: arg.context.read<AddFavoriteCubit>()),
       ],
-      child:  const Scaffold(
+      child: const Scaffold(
+
         body: CardsScreenBody(),
+
+
       ),
     );
   }

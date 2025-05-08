@@ -3,6 +3,7 @@ import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/widgets/my_app_bar.dart';
 
 import 'card_bloc_builder.dart';
+import 'card_pay_now_button.dart';
 
 class CardsScreenBody extends StatelessWidget {
   const CardsScreenBody({super.key});
@@ -17,6 +18,8 @@ class CardsScreenBody extends StatelessWidget {
             child: MyAppBar(title: AppStrings.myCart),
           ),
           Expanded(child: CardBlocBuilder()),
+          CardPayNowButton(),
+
         ],
       ),
     );

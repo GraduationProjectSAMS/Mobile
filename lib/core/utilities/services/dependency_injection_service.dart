@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:graduation_project/core/utilities/services/api_service.dart';
+import 'package:graduation_project/core/utilities/services/payment_api_service.dart';
 import 'package:graduation_project/features/cards/data/data_sources/cards_remote_repo_impl.dart';
 import 'package:graduation_project/features/cards/data/repositories/cards_repo_impl.dart';
 import 'package:graduation_project/features/favorites/data/data_sources/favorites_remote_repo_impl.dart';
@@ -24,6 +25,9 @@ import '../../../features/home/data/repositories/home_repo_impl.dart';
 import '../../../features/favorites/domain/use_cases/get_favorites_use_case.dart';
 import '../../../features/home/domain/use_cases/get_offers_use_case.dart';
 import '../../../features/home/domain/use_cases/get_products_use_case.dart';
+import '../../../features/payment/data/data_sources/payment_remote_repo_impl.dart';
+import '../../../features/payment/data/repositories/payment_repo_impl.dart';
+import '../../../features/payment/domain/use_cases/get_pay_mob_client_key_use_case.dart';
 import '../../../features/profile/domain/use_cases/get_profile_data_use_case.dart';
 import '../../../features/profile/domain/use_cases/logout_form_google_use_case.dart';
 import '../../../features/profile/domain/use_cases/logout_use_case.dart';
@@ -36,6 +40,7 @@ void setupDependencies() {
   getIt.registerLazySingleton<GoogleSignInService>(
       () => GoogleSignInService(GoogleSignIn()));
   getIt.registerLazySingleton<ApiService>(() => ApiService(Dio()));
+  getIt.registerLazySingleton<PaymentApiService>(() => PaymentApiService(Dio()));
 
   /// Repositories
   getIt.registerLazySingleton<AuthenticationRepoImpl>(() =>
@@ -55,6 +60,9 @@ void setupDependencies() {
   getIt.registerLazySingleton<ProfileRepoImpl>(
           () => ProfileRepoImpl(
           ProfileRemoteRepoImpl(getIt.get<ApiService>(),getIt.get<GoogleSignInService>())));
+  getIt.registerLazySingleton<PaymentRepoImpl>(
+          () => PaymentRepoImpl(
+          PaymentRemoteRepoImpl(getIt.get<PaymentApiService>())));
   /// Use Cases
   getIt.registerLazySingleton<SignInWithGoogleUseCase>(
       () => SignInWithGoogleUseCase(getIt.get<AuthenticationRepoImpl>()));
@@ -84,5 +92,7 @@ void setupDependencies() {
           () => LogoutFormGoogleUseCase(getIt.get<ProfileRepoImpl>()));
   getIt.registerLazySingleton<LogoutUseCase>(
           () => LogoutUseCase(getIt.get<ProfileRepoImpl>()));
+  getIt.registerLazySingleton<GetPayMobClientKeyUseCase>(
+          () => GetPayMobClientKeyUseCase(getIt.get<PaymentRepoImpl>()));
 
 }

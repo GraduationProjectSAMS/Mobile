@@ -7,6 +7,7 @@ import '../../../features/authentication/presentation/screens/login_screen.dart'
 import '../../../features/authentication/presentation/screens/sign_up_screen.dart';
 import '../../../features/favorites/presentation/screens/favorites_screen.dart';
 import '../../../features/home/presentation/screens/home_layout.dart';
+import '../../../features/payment/presentation/screens/pay_mob_card_screen.dart';
 import '../../../features/payment/presentation/screens/payment_screen.dart';
 import '../../../features/product_details/presentation/screens/product_details_screen.dart';
 
@@ -21,6 +22,7 @@ abstract class AppRoutes {
   static const cart = 'cart';
   static const payment = 'payment';
   static const paymentMap = 'paymentMap';
+  static const payMobCard = 'payMobCard';
 }
 
 abstract class RouteGenerator {
@@ -46,6 +48,8 @@ abstract class RouteGenerator {
         return MaterialPageRoute( settings: settings,  builder: (_) => const PaymentScreen());
       case AppRoutes.paymentMap:
         return MaterialPageRoute( settings: settings,  builder: (_) => const PaymentMapView());
+      case AppRoutes.payMobCard:
+        return MaterialPageRoute( settings: settings,  builder: (_) => const PayMobCardScreen());
       default:
         return _errorRoute();
     }

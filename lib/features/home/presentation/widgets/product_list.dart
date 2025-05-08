@@ -9,11 +9,12 @@ import '../../../../core/utilities/functions/staggered_animations.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList(
-      {super.key, required this.productsList, this.isLoading = false});
+      {super.key, required this.productsList, this.isLoading = false,  this.enableHeroTag=true,  this.isAdmin=false,});
 
   final List<ProductEntity> productsList;
   final bool isLoading;
-
+  final bool enableHeroTag;
+  final bool isAdmin ;
   List<ProductEntity> get products {
     return isLoading ? productsWaiting : productsList;
   }
@@ -36,6 +37,8 @@ class ProductList extends StatelessWidget {
               index: index,
               columnCount: context.gridCount,
               child: ProductItem(
+                enableHeroTag: enableHeroTag,
+                isAdmin: isAdmin,
                 entity: products[index],
               )),
         ),

@@ -38,7 +38,7 @@ class DesktopBodyLayout extends StatelessWidget {
             ),
           ),
           const Expanded(
-            child: ProductBlocBuilder(),
+            child: ProductBlocBuilder(isAdmin: true,),
           ),
         ],
       ),
