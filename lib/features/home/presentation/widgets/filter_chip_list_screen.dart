@@ -42,7 +42,7 @@ class FilterChipListScreenState extends State<FilterChipListScreen> {
             label: Text(filter),
             labelStyle: AppStyles.textStyle15.copyWith(
               color: isSelected ? AppColors.white : AppColors.black,
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+
             ),
             selected: isSelected,
             onSelected: (bool selected) {

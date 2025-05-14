@@ -17,6 +17,8 @@ abstract class AppEndpoints {
 static final payMobPublicKey=dotenv.env[AppConstants.payMobPublicKey]??'';
 static final paymentBaseUrl=dotenv.env[AppConstants.paymentBaseUrlKey]??'';
 static const clientSecretKey='v1/intention/';
+static const orders='orders';
+
 
 
 

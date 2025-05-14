@@ -1,6 +1,7 @@
 import 'package:graduation_project/features/home/data/models/offers_model.dart';
 
 import '../../../favorites/data/models/favorites_model.dart';
+import '../../../orders/data/models/order_products.dart';
 import '../../data/models/product_model.dart';
 
 class ProductEntity {
@@ -36,6 +37,14 @@ class ProductEntity {
         imageUrl: '',
         maxQuantity: 0,
       );
+  OrderProducts get toOrderProductsMode {
+    return OrderProducts(
+      id: id,
+      type: name,
+      quantity: carQuantity,
+      price: price.toString(),
+    );
+  }
 }
 
 final productsWaiting = List.filled(10, ProductEntity.loading());
@@ -51,6 +60,11 @@ extension OfferModelMapper on List<OffersData>? {
 }
 
 extension FavoritesDataMapper on List<FavoritesData>? {
+  List<ProductEntity> get toEntityList =>
+      this?.map((e) => e.toEntity).toList() ?? [];
+
+}
+extension OrderProductsMapper on List<OrderProducts>? {
   List<ProductEntity> get toEntityList =>
       this?.map((e) => e.toEntity).toList() ?? [];
 }

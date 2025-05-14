@@ -1,4 +1,4 @@
-class PayMobEntity{
+class PayMobEntity {
   final String viewUrl;
   final String clientSecretKey;
 

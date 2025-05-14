@@ -1,23 +1,21 @@
-
-
 import '../../domain/entities/pay_mob_entity.dart';
 
 class PayMobModel {
   PayMobModel({
-      this.paymentKeys, 
-      this.intentionOrderId, 
-      this.id, 
-      this.intentionDetail, 
-      this.clientSecret, 
-      this.paymentMethods, 
-      this.specialReference, 
-      this.extras, 
-      this.confirmed, 
-      this.status, 
-      this.created, 
-      this.cardDetail, 
-
-      this.object,});
+    this.paymentKeys,
+    this.intentionOrderId,
+    this.id,
+    this.intentionDetail,
+    this.clientSecret,
+    this.paymentMethods,
+    this.specialReference,
+    this.extras,
+    this.confirmed,
+    this.status,
+    this.created,
+    this.cardDetail,
+    this.object,
+  });
 
   PayMobModel.fromJson(dynamic json) {
     if (json['payment_keys'] != null) {
@@ -28,7 +26,9 @@ class PayMobModel {
     }
     intentionOrderId = json['intention_order_id'];
     id = json['id'];
-    intentionDetail = json['intention_detail'] != null ? IntentionDetail.fromJson(json['intention_detail']) : null;
+    intentionDetail = json['intention_detail'] != null
+        ? IntentionDetail.fromJson(json['intention_detail'])
+        : null;
     clientSecret = json['client_secret'];
     if (json['payment_methods'] != null) {
       paymentMethods = [];
@@ -45,6 +45,7 @@ class PayMobModel {
 
     object = json['object'];
   }
+
   List<PaymentKeys>? paymentKeys;
   num? intentionOrderId;
   String? id;
@@ -60,7 +61,7 @@ class PayMobModel {
 
   String? object;
 
-PayMobEntity get toEntity {
+  PayMobEntity get toEntity {
     return PayMobEntity(
       viewUrl: paymentKeys?.firstOrNull?.redirectionUrl ?? '',
       clientSecretKey: clientSecret ?? '',
@@ -70,29 +71,29 @@ PayMobEntity get toEntity {
 
 class Extras {
   Extras({
-      this.creationExtras, 
-      this.confirmationExtras,});
+    this.creationExtras,
+    this.confirmationExtras,
+  });
 
   Extras.fromJson(dynamic json) {
     creationExtras = json['creation_extras'];
     confirmationExtras = json['confirmation_extras'];
   }
+
   dynamic creationExtras;
   dynamic confirmationExtras;
-
-
-
 }
 
 class PaymentMethods {
   PaymentMethods({
-      this.integrationId, 
-      this.alias, 
-      this.name, 
-      this.methodType, 
-      this.currency, 
-      this.live, 
-      this.useCvcWithMoto,});
+    this.integrationId,
+    this.alias,
+    this.name,
+    this.methodType,
+    this.currency,
+    this.live,
+    this.useCvcWithMoto,
+  });
 
   PaymentMethods.fromJson(dynamic json) {
     integrationId = json['integration_id'];
@@ -103,6 +104,7 @@ class PaymentMethods {
     live = json['live'];
     useCvcWithMoto = json['use_cvc_with_moto'];
   }
+
   num? integrationId;
   dynamic alias;
   dynamic name;
@@ -110,48 +112,46 @@ class PaymentMethods {
   String? currency;
   bool? live;
   bool? useCvcWithMoto;
-
-
-
 }
 
 class IntentionDetail {
   IntentionDetail({
-      this.amount, 
-
-      this.currency, 
-      this.billingData,});
+    this.amount,
+    this.currency,
+    this.billingData,
+  });
 
   IntentionDetail.fromJson(dynamic json) {
     amount = json['amount'];
 
     currency = json['currency'];
-    billingData = json['billing_data'] != null ? BillingData.fromJson(json['billing_data']) : null;
+    billingData = json['billing_data'] != null
+        ? BillingData.fromJson(json['billing_data'])
+        : null;
   }
+
   num? amount;
 
   String? currency;
   BillingData? billingData;
-
-
-
 }
 
 class BillingData {
   BillingData({
-      this.apartment, 
-      this.floor, 
-      this.firstName, 
-      this.lastName, 
-      this.street, 
-      this.building, 
-      this.phoneNumber, 
-      this.shippingMethod, 
-      this.city, 
-      this.country, 
-      this.state, 
-      this.email, 
-      this.postalCode,});
+    this.apartment,
+    this.floor,
+    this.firstName,
+    this.lastName,
+    this.street,
+    this.building,
+    this.phoneNumber,
+    this.shippingMethod,
+    this.city,
+    this.country,
+    this.state,
+    this.email,
+    this.postalCode,
+  });
 
   BillingData.fromJson(dynamic json) {
     apartment = json['apartment'];
@@ -168,6 +168,7 @@ class BillingData {
     email = json['email'];
     postalCode = json['postal_code'];
   }
+
   String? apartment;
   String? floor;
   String? firstName;
@@ -181,20 +182,18 @@ class BillingData {
   String? state;
   String? email;
   String? postalCode;
-
-
-
 }
 
 class PaymentKeys {
   PaymentKeys({
-      this.integration, 
-      this.key, 
-      this.gatewayType, 
-      this.iframeId, 
-      this.orderId, 
-      this.redirectionUrl, 
-      this.saveCard,});
+    this.integration,
+    this.key,
+    this.gatewayType,
+    this.iframeId,
+    this.orderId,
+    this.redirectionUrl,
+    this.saveCard,
+  });
 
   PaymentKeys.fromJson(dynamic json) {
     integration = json['integration'];
@@ -205,6 +204,7 @@ class PaymentKeys {
     redirectionUrl = json['redirection_url'];
     saveCard = json['save_card'];
   }
+
   num? integration;
   String? key;
   String? gatewayType;
@@ -212,7 +212,4 @@ class PaymentKeys {
   num? orderId;
   String? redirectionUrl;
   bool? saveCard;
-
-
-
 }

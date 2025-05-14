@@ -29,7 +29,6 @@ class PaymentCubit extends Cubit<PaymentStates> {
       (failure) => emit(PaymentErrorState(failure.errorMessage)),
       (payMobEntity) {
         emit(PaymentSuccessState(payMobEntity));
-
       },
     );
   }

@@ -54,7 +54,7 @@ class PaymentInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final arg= ModalRoute.of(context)?.settings.arguments as ({
+    final arg = ModalRoute.of(context)?.settings.arguments as ({
       num totalPrice,
     });
     return Card(
@@ -65,7 +65,7 @@ class PaymentInfo extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
-        child:  Column(
+        child: Column(
           children: [
             PaymentInfoItem(
               title: 'Product Price',

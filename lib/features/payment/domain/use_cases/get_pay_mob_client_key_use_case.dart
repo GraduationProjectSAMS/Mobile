@@ -6,13 +6,13 @@ import '../entities/pay_mob_entity.dart';
 import '../repositories/payment_repo.dart';
 
 class GetPayMobClientKeyUseCase {
-final PaymentRepo _paymentRepo;
+  final PaymentRepo _paymentRepo;
 
   GetPayMobClientKeyUseCase(this._paymentRepo);
 
-    Future<Either<Failure, PayMobEntity>> call(
-        {required PayMobRequestModel payMobRequestModel}) async {
-      return  _paymentRepo.getPaymentSecretKey(
-          payMobRequestModel: payMobRequestModel);
-    }
+  Future<Either<Failure, PayMobEntity>> call(
+      {required PayMobRequestModel payMobRequestModel}) async {
+    return _paymentRepo.getPaymentSecretKey(
+        payMobRequestModel: payMobRequestModel);
+  }
 }

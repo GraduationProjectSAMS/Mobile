@@ -15,20 +15,18 @@ class PaymentRemoteRepoImpl implements PaymentRemoteRepo {
   PaymentRemoteRepoImpl(this.apiService);
 
   @override
-  Future<PayMobEntity> getPayMobSecretKey({required PayMobRequestModel payMobRequestModel}) async{
+  Future<PayMobEntity> getPayMobSecretKey(
+      {required PayMobRequestModel payMobRequestModel}) async {
     final response = await apiService.postData(
       endPoint: AppEndpoints.clientSecretKey,
       formData: json.encode(payMobRequestModel),
       options: Options(
-        headers: {'Authorization' : 'Bearer ${AppEndpoints.payMobSecretKey}'
-        },
-
+        headers: {'Authorization': 'Bearer ${AppEndpoints.payMobSecretKey}'},
       ),
     );
     final mode = PayMobModel.fromJson(response.data);
     final entity = mode.toEntity;
     return entity;
-
   }
 
 // Implement methods here

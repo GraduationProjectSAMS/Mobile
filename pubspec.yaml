@@ -36,8 +36,10 @@ dependencies:
   google_maps_flutter: ^2.12.1
   geolocator: ^14.0.0
   geocoding: ^3.0.0
-  flutter_inappwebview: ^6.1.5
+  webview_flutter: ^4.11.0
   flutter_dotenv: ^5.2.1
+  intl: ^0.20.2
+
 
 
 dev_dependencies:

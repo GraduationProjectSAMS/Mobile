@@ -8,6 +8,8 @@ import 'package:graduation_project/features/cards/data/repositories/cards_repo_i
 import 'package:graduation_project/features/favorites/data/data_sources/favorites_remote_repo_impl.dart';
 import 'package:graduation_project/features/favorites/data/repositories/favorites_repo_impl.dart';
 import 'package:graduation_project/features/home/data/data_sources/home_remote_repo_impl.dart';
+import 'package:graduation_project/features/orders/data/data_sources/orders_remote_repo_impl.dart';
+import 'package:graduation_project/features/orders/data/repositories/orders_repo_impl.dart';
 import 'package:graduation_project/features/profile/data/data_sources/profile_remote_repo_impl.dart';
 import 'package:graduation_project/features/profile/data/repositories/profile_repo_impl.dart';
 import '../../../features/authentication/data/data_sources/authentication_remote_repo_impl.dart';
@@ -25,6 +27,7 @@ import '../../../features/home/data/repositories/home_repo_impl.dart';
 import '../../../features/favorites/domain/use_cases/get_favorites_use_case.dart';
 import '../../../features/home/domain/use_cases/get_offers_use_case.dart';
 import '../../../features/home/domain/use_cases/get_products_use_case.dart';
+import '../../../features/orders/domain/use_cases/get_orders_use_case.dart';
 import '../../../features/payment/data/data_sources/payment_remote_repo_impl.dart';
 import '../../../features/payment/data/repositories/payment_repo_impl.dart';
 import '../../../features/payment/domain/use_cases/get_pay_mob_client_key_use_case.dart';
@@ -63,6 +66,9 @@ void setupDependencies() {
   getIt.registerLazySingleton<PaymentRepoImpl>(
           () => PaymentRepoImpl(
           PaymentRemoteRepoImpl(getIt.get<PaymentApiService>())));
+  getIt.registerLazySingleton<OrdersRepoImpl>(
+          () => OrdersRepoImpl(
+          OrdersRemoteRepoImpl(getIt.get<ApiService>())));
   /// Use Cases
   getIt.registerLazySingleton<SignInWithGoogleUseCase>(
       () => SignInWithGoogleUseCase(getIt.get<AuthenticationRepoImpl>()));
@@ -94,5 +100,7 @@ void setupDependencies() {
           () => LogoutUseCase(getIt.get<ProfileRepoImpl>()));
   getIt.registerLazySingleton<GetPayMobClientKeyUseCase>(
           () => GetPayMobClientKeyUseCase(getIt.get<PaymentRepoImpl>()));
+  getIt.registerLazySingleton<GetOrdersUseCase>(
+          () => GetOrdersUseCase(getIt.get<OrdersRepoImpl>()));
 
 }

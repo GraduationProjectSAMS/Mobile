@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 
 class ProductCounter extends StatelessWidget {
+  const ProductCounter({
+    super.key,
+    required this.title,
+    required this.onAdd,
+    required this.onRemove,
+  });
 
-
-  const ProductCounter(
-      {super.key, required this.title, required this.onAdd, required this.onRemove, });
-final String title;
+  final String title;
   final VoidCallback onAdd;
   final VoidCallback onRemove;
+
   @override
   Widget build(BuildContext context) {
     return Container(

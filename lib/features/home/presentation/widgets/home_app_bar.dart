@@ -16,12 +16,14 @@ class HomeAppBar extends StatelessWidget {
   static const icons = [
     IconBroken.Notification,
     IconBroken.Heart,
-    IconBroken.Buy
+    IconBroken.Buy,
+    Icons.local_shipping_outlined
   ];
   static const titles = [
     AppStrings.notification,
     AppStrings.favorites,
     AppStrings.myCart,
+    AppStrings.myOrders,
   ];
 
   @override
@@ -71,7 +73,13 @@ class HomeAppBar extends StatelessWidget {
           }
           return AppBarIconItem(
             icon: icons[index],
-            onPressed: () {},
+            onPressed: () {
+              if(index ==3){
+                context.navigateTo(
+                    pageName: AppRoutes.orders,
+                  );
+              }
+            },
             tooltip: titles[index],
           );
         })

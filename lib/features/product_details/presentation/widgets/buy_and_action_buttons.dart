@@ -4,6 +4,7 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
 
 import '../../../../core/utilities/resources/app_colors.dart';
+import '../../../../core/utilities/services/size_config_service.dart';
 import '../../../../core/widgets/my_button_widget.dart';
 import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 
@@ -12,6 +13,9 @@ class BuyAndActionButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (SizeConfigService.isDesktop) {
+      return const SizedBox();
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -83,5 +87,3 @@ class FavoriteActionIcon extends StatelessWidget {
     );
   }
 }
-
-

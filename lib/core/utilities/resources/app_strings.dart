@@ -87,6 +87,7 @@ static const newlyAdded= 'Newly Added';
   static const provideItLater = 'we will provide it later';
   static const notFount = 'NotFound';
   static const myCart = 'My Cart';
+  static const myOrders = 'My Orders';
 
   static const orderSubtotal = 'Order Subtotal';
 /// payment

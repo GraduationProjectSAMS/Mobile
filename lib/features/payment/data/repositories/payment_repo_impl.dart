@@ -13,15 +13,14 @@ class PaymentRepoImpl implements PaymentRepo {
 
   @override
   Future<Either<Failure, PayMobEntity>> getPaymentSecretKey(
-      {required PayMobRequestModel payMobRequestModel}) async{
+      {required PayMobRequestModel payMobRequestModel}) async {
     try {
-      final entity =await remoteRepo.getPayMobSecretKey(payMobRequestModel: payMobRequestModel);
+      final entity = await remoteRepo.getPayMobSecretKey(
+          payMobRequestModel: payMobRequestModel);
       return Right(entity);
     } on Exception catch (e) {
       return Left(appServerFailure(e));
     }
-
-
   }
 
 // Implement repository methods here

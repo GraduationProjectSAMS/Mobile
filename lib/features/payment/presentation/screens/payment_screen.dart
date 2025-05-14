@@ -12,7 +12,8 @@ class PaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PaymentCubit(getPayMobClientKeyUseCase: getIt.get<GetPayMobClientKeyUseCase>()),
+      create: (context) => PaymentCubit(
+          getPayMobClientKeyUseCase: getIt.get<GetPayMobClientKeyUseCase>()),
       child: const Scaffold(
         body: PaymentScreenBody(),
       ),

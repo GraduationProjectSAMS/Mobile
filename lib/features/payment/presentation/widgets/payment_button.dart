@@ -17,12 +17,15 @@ class PaymentButton extends StatelessWidget {
         final paymentCubit = context.read<PaymentCubit>();
         return MyButton(
             isLoading: state is PaymentLoadingState,
-            onPressed: paymentCubit.getPaymentKey, text: AppStrings.payNow);
-      }, listener: (BuildContext context, PaymentStates state) {
-        if(state is PaymentSuccessState){
-          context.navigateTo(pageName: AppRoutes.payMobCard,arguments: state.payMobEntity);
+            onPressed: paymentCubit.getPaymentKey,
+            text: AppStrings.payNow);
+      },
+      listener: (BuildContext context, PaymentStates state) {
+        if (state is PaymentSuccessState) {
+          context.navigateTo(
+              pageName: AppRoutes.payMobCard, arguments: state.payMobEntity);
         }
-    },
+      },
     );
   }
 }
