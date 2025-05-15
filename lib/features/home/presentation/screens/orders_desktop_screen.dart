@@ -15,14 +15,15 @@ class OrdersDesktopScreen extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: Row(
-
             children: [
               Text(
                 AppStrings.allOffers,
                 style: AppStyles.textStyle20,
               ),
               Spacer(),
-              OrderStatusSelector(onStatusSelected: (String?  value) {  },),
+              OrderStatusSelector(
+                onStatusSelected: (String? value) {},
+              ),
               Spacer(),
             ],
           ),

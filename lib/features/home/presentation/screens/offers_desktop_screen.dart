@@ -17,17 +17,18 @@ class OffersDesktopScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               Text(
+              Text(
                 AppStrings.allOffers,
                 style: AppStyles.textStyle20,
               ),
-             AddButton(text: AppStrings.addOffer, onPressed: (){})
+              AddButton(text: AppStrings.addOffer, onPressed: () {})
             ],
           ),
         ),
         const Expanded(
-          child: OffersBlocBuilder(isAdmin: true,)
-        ),
+            child: OffersBlocBuilder(
+          isAdmin: true,
+        )),
       ],
     );
   }

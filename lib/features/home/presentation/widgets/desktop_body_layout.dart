@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utilities/services/dependency_injection_service.dart';
-import '../../../orders/presentation/widgets/get_orders_bloc_builder.dart';
 import '../../../profile/presentation/manager/logout_cubit/logout_cubit.dart';
 import '../screens/offers_desktop_screen.dart';
 import '../screens/orders_desktop_screen.dart';
-import 'furniture_drawer.dart';
 import '../screens/products_desktop_screen.dart';
+import 'furniture_drawer.dart';
 
 class DesktopBodyLayout extends StatefulWidget {
   const DesktopBodyLayout({super.key});
@@ -21,7 +20,7 @@ class DesktopBodyLayoutState extends State<DesktopBodyLayout> {
   final _selectedIndex = ValueNotifier<int>(0);
 
   // your list of screens
-  final  _screens = [
+  final _screens = [
     Text(
       'Dashboard',
       style: TextStyle(

@@ -52,11 +52,11 @@ class HomeLayout extends StatelessWidget {
         BlocProvider(
           create: (BuildContext context) =>
               ProfileCubit(getIt.get<GetProfileDataUseCase>())..getUserData(),
-        ),   BlocProvider(
-          create: (context) =>
-          GetOrdersCubit(getOrdersUseCase: getIt.get())..getOrders(),
         ),
-
+        BlocProvider(
+          create: (context) =>
+              GetOrdersCubit(getOrdersUseCase: getIt.get())..getOrders(),
+        ),
       ],
       child: HomeAdaptiveLayOut(
         mobileLayOut: (BuildContext context) => const HomeMobileBodyLayout(),

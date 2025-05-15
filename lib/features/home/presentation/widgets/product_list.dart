@@ -8,13 +8,19 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/utilities/functions/staggered_animations.dart';
 
 class ProductList extends StatelessWidget {
-  const ProductList(
-      {super.key, required this.productsList, this.isLoading = false,  this.enableHeroTag=true,  this.isAdmin=false,});
+  const ProductList({
+    super.key,
+    required this.productsList,
+    this.isLoading = false,
+    this.enableHeroTag = true,
+    this.isAdmin = false,
+  });
 
   final List<ProductEntity> productsList;
   final bool isLoading;
   final bool enableHeroTag;
-  final bool isAdmin ;
+  final bool isAdmin;
+
   List<ProductEntity> get products {
     return isLoading ? productsWaiting : productsList;
   }

@@ -74,10 +74,10 @@ class HomeAppBar extends StatelessWidget {
           return AppBarIconItem(
             icon: icons[index],
             onPressed: () {
-              if(index ==3){
+              if (index == 3) {
                 context.navigateTo(
-                    pageName: AppRoutes.orders,
-                  );
+                  pageName: AppRoutes.orders,
+                );
               }
             },
             tooltip: titles[index],

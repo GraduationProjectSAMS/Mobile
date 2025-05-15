@@ -37,6 +37,7 @@ class ProductEntity {
         imageUrl: '',
         maxQuantity: 0,
       );
+
   OrderProducts get toOrderProductsMode {
     return OrderProducts(
       id: id,
@@ -62,8 +63,8 @@ extension OfferModelMapper on List<OffersData>? {
 extension FavoritesDataMapper on List<FavoritesData>? {
   List<ProductEntity> get toEntityList =>
       this?.map((e) => e.toEntity).toList() ?? [];
-
 }
+
 extension OrderProductsMapper on List<OrderProducts>? {
   List<ProductEntity> get toEntityList =>
       this?.map((e) => e.toEntity).toList() ?? [];

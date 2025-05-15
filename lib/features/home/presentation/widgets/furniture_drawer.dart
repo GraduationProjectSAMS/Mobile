@@ -37,7 +37,9 @@ class _FurnitureDrawerState extends State<FurnitureDrawer> {
         color: const Color(0xFF264733),
         child: Column(
           children: [
-            ProfileBlocBuilder(textColor: AppColors.white,),
+            ProfileBlocBuilder(
+              textColor: AppColors.white,
+            ),
             const SizedBox(height: 12),
             ListView.builder(
               shrinkWrap: true,
@@ -98,7 +100,6 @@ class _DrawerItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-
       color: selected ? Colors.white24 : Colors.transparent,
       borderRadius: BorderRadius.circular(10),
       child: ListTile(

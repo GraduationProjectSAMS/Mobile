@@ -8,13 +8,19 @@ import '../../../../core/utilities/functions/staggered_animations.dart';
 import '../../domain/entities/product_entity.dart';
 
 class OffersList extends StatelessWidget {
-  const OffersList(
-      {super.key, required this.productsList, this.isLoading = false,  this.enableHeroTag=true,  this.isAdmin=false,});
+  const OffersList({
+    super.key,
+    required this.productsList,
+    this.isLoading = false,
+    this.enableHeroTag = true,
+    this.isAdmin = false,
+  });
 
   final List<ProductEntity> productsList;
   final bool isLoading;
   final bool enableHeroTag;
-  final bool isAdmin ;
+  final bool isAdmin;
+
   List<ProductEntity> get products {
     return isLoading ? productsWaiting : productsList;
   }

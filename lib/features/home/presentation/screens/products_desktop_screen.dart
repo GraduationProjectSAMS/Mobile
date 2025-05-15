@@ -5,7 +5,6 @@ import 'package:graduation_project/core/widgets/add_button.dart';
 import 'package:graduation_project/features/home/presentation/widgets/product_bloc_builder.dart';
 
 import '../../../../core/config/routes/app_route.dart';
-import '../../../../core/utilities/resources/app_colors.dart';
 
 class ProductsDesktopScreen extends StatelessWidget {
   const ProductsDesktopScreen({super.key});
@@ -26,16 +25,18 @@ class ProductsDesktopScreen extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              AddButton(text: AppStrings.addProduct, onPressed: (){
-                context.navigateTo(pageName: AppRoutes.addProduct);
-
-              })
-
+              AddButton(
+                  text: AppStrings.addProduct,
+                  onPressed: () {
+                    context.navigateTo(pageName: AppRoutes.addProduct);
+                  })
             ],
           ),
         ),
         const Expanded(
-          child: ProductBlocBuilder(isAdmin: true,),
+          child: ProductBlocBuilder(
+            isAdmin: true,
+          ),
         ),
       ],
     );
