@@ -152,6 +152,7 @@ class AddProductScreenBody extends StatelessWidget {
                     child: Column(
                       children: [
                         MyTextFormField(
+                          hintText: 'Product Name',
                           labelText: 'Product Name',
                           controller: cubit.productNameController,
                           validator: ValidatorService.emptyValidator,

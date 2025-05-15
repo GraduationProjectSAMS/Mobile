@@ -7,11 +7,11 @@ import '../../../../core/widgets/my_cached_network_image.dart';
 
 class ProfileImageAndName extends StatelessWidget {
   const ProfileImageAndName(
-      {super.key, required this.userEntity, this.isLoading = false});
+      {super.key, required this.userEntity, this.isLoading = false, this.textColor});
 
   final UserEntity userEntity;
   final bool isLoading;
-
+final Color? textColor ;
   UserEntity get user {
     return isLoading ? UserEntity.loading() : userEntity;
   }
@@ -34,6 +34,7 @@ class ProfileImageAndName extends StatelessWidget {
             user.name,
             style: TextStyle(
               fontSize: 19.sp,
+              color: textColor,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -42,7 +43,7 @@ class ProfileImageAndName extends StatelessWidget {
             user.email,
             style: TextStyle(
               fontSize: 14.sp,
-              color: Colors.black54,
+              color: textColor?? Colors.black54,
             ),
           ),
         ],

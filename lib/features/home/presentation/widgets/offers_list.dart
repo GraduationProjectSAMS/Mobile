@@ -29,7 +29,7 @@ class OffersList extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: context.gridCount,
-            mainAxisExtent: 30.hR,
+            mainAxisExtent: 260.sp,
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
           ),
@@ -37,6 +37,8 @@ class OffersList extends StatelessWidget {
               index: index,
               columnCount: context.gridCount,
               child: ProductItem(
+                enableHeroTag: enableHeroTag,
+                isAdmin: isAdmin,
                 entity: products[index],
               )),
         ),

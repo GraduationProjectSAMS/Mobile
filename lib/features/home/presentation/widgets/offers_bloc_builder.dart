@@ -6,8 +6,9 @@ import 'package:graduation_project/features/home/presentation/widgets/offers_lis
 import '../../../../core/widgets/app_api_error_widget.dart';
 
 class OffersBlocBuilder extends StatelessWidget {
-  const OffersBlocBuilder({super.key});
-
+  const OffersBlocBuilder({ this.enableHeroTag=true,  this.isAdmin=false,super.key});
+  final bool enableHeroTag;
+  final bool isAdmin ;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OffersCubit, OffersStates>(
@@ -17,6 +18,8 @@ class OffersBlocBuilder extends StatelessWidget {
           return AppApiErrorWidget(errorMessage: state.message);
         }
         return OffersList(
+          isAdmin: isAdmin,
+          enableHeroTag: enableHeroTag,
           productsList: offersCubit.offers,
           isLoading: state is OffersLoadingState,
         );

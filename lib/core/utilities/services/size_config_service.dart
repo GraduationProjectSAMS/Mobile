@@ -27,7 +27,7 @@ static bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMac
     final double scaleFactor = getScaleFactor();
     final double responsiveFontSize = fontSize * scaleFactor;
     final double lowerLimit = fontSize * 0.7;
-    final double upperLimit = fontSize * 1.5;
+    final double upperLimit = fontSize * 1.4;
 
     return responsiveFontSize.clamp(lowerLimit, upperLimit);
   }
@@ -66,7 +66,7 @@ static bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMac
 //
 //     return responsiveWidth.clamp(lowerLimit, upperLimit);
 //   }
-  static int setListCount(BuildContext context) {
+  static int setGridCount(BuildContext context) {
     final double width = MediaQuery.sizeOf(context).width;
     if (width < 600) {
       return 2;
@@ -79,4 +79,5 @@ static bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMac
       return 5;
     }
   }
+
 }

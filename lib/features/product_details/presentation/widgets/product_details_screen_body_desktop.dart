@@ -85,8 +85,11 @@ class DiskTopProductDetailsImage extends StatelessWidget {
         ),
         Expanded(
           flex: 4,
-          child: MyCachedNetworkImage(
-              height: 60.hR, fit: BoxFit.fill, imageUrl: arg.entity.imageUrl),
+          child: Hero(
+            tag: '${arg.entity.id}${arg.entity.type}',
+            child: MyCachedNetworkImage(
+                height: 60.hR, fit: BoxFit.fill, imageUrl: arg.entity.imageUrl),
+          ),
         ),
         const Expanded(
           child: SizedBox(

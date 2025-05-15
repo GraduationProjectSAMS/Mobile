@@ -107,5 +107,11 @@ static const maxQuantity = 'You have reached the maximum quantity';
   static const addLocationOnMap = 'Add Location on Map';
   static const apartment = 'Apartment';
   static const notes = 'Notes';
+static const addProduct = 'Add Product';
+static const addOffer = 'Add Offer';
+static const allProducts = 'All Products';
+static const allOffers = 'All Offers';
+  static const allOrders = 'All Orders';
+
 
 }

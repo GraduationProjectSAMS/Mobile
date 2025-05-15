@@ -12,6 +12,7 @@ import '../../../cards/domain/use_cases/get_cards_use_case.dart';
 import '../../../favorites/domain/use_cases/add_to_favorites_use_case.dart';
 import '../../../favorites/domain/use_cases/get_favorites_use_case.dart';
 import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
+import '../../../orders/presentation/manager/get_orders_cubit/get_orders_cubit.dart';
 import '../../../profile/domain/use_cases/get_profile_data_use_case.dart';
 import '../../domain/use_cases/get_products_use_case.dart';
 import '../manager/products_cubit/product_cubit.dart';
@@ -51,7 +52,11 @@ class HomeLayout extends StatelessWidget {
         BlocProvider(
           create: (BuildContext context) =>
               ProfileCubit(getIt.get<GetProfileDataUseCase>())..getUserData(),
-        )
+        ),   BlocProvider(
+          create: (context) =>
+          GetOrdersCubit(getOrdersUseCase: getIt.get())..getOrders(),
+        ),
+
       ],
       child: HomeAdaptiveLayOut(
         mobileLayOut: (BuildContext context) => const HomeMobileBodyLayout(),
