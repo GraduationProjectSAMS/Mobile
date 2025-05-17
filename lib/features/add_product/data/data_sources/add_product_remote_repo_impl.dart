@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:graduation_project/core/utilities/resources/app_endpoints.dart';
 
 import 'add_product_remote_repo.dart';
@@ -12,7 +13,7 @@ class AddProductRemoteRepoImpl implements AddProductRemoteRepo {
   Future<void> addProduct({required Map<String, dynamic> data}) async {
     await apiService.postData(
       endPoint: AppEndpoints.getProducts,
-      formData: data,
+      formData: FormData.fromMap(data),
     );
   }
 }

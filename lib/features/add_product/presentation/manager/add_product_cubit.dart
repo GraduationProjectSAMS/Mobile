@@ -78,7 +78,10 @@ class AddProductCubit extends Cubit<AddProductState> {
       };
       final result = await addProductUseCase(data);
       result.fold(
-        (failure) => emit(AddProductError(failure.errorMessage)),
+        (failure) {
+          print(failure.errorMessage);
+          emit(AddProductError(failure.errorMessage));
+        },
         (success) => emit(AddProductSuccess()),
       );
     }

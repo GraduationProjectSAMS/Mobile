@@ -9,6 +9,8 @@ import 'package:graduation_project/features/favorites/data/repositories/favorite
 import 'package:graduation_project/features/home/data/data_sources/home_remote_repo_impl.dart';
 import 'package:graduation_project/features/profile/data/data_sources/profile_remote_repo_impl.dart';
 import 'package:graduation_project/features/profile/data/repositories/profile_repo_impl.dart';
+import '../../../features/add_product/data/data_sources/add_product_remote_repo_impl.dart';
+import '../../../features/add_product/data/repositories/add_product_repo_impl.dart';
 import '../../../features/authentication/data/data_sources/authentication_remote_repo_impl.dart';
 import '../../../features/authentication/data/repo/authentication_repo_impl.dart';
 import '../../../features/authentication/domain/use_case/login_with_email_and_password_use_case.dart';
@@ -51,7 +53,8 @@ void setupDependencies() {
   getIt.registerLazySingleton<CardsRepoImpl>(
           () => CardsRepoImpl(
               CardsRemoteRepoImpl(getIt.get<ApiService>())));
-
+  getIt.registerLazySingleton<AddProductRepoImpl>(() =>
+      AddProductRepoImpl(AddProductRemoteRepoImpl(getIt.get<ApiService>())));
   getIt.registerLazySingleton<ProfileRepoImpl>(
           () => ProfileRepoImpl(
           ProfileRemoteRepoImpl(getIt.get<ApiService>(),getIt.get<GoogleSignInService>())));
