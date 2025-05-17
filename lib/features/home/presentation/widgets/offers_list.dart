@@ -8,11 +8,18 @@ import '../../../../core/utilities/functions/staggered_animations.dart';
 import '../../domain/entities/product_entity.dart';
 
 class OffersList extends StatelessWidget {
-  const OffersList(
-      {super.key, required this.productsList, this.isLoading = false});
+  const OffersList({
+    super.key,
+    required this.productsList,
+    this.isLoading = false,
+    this.enableHeroTag = true,
+    this.isAdmin = false,
+  });
 
   final List<ProductEntity> productsList;
   final bool isLoading;
+  final bool enableHeroTag;
+  final bool isAdmin;
 
   List<ProductEntity> get products {
     return isLoading ? productsWaiting : productsList;
@@ -28,7 +35,7 @@ class OffersList extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: context.gridCount,
-            mainAxisExtent: 30.hR,
+            mainAxisExtent: 260.sp,
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
           ),
@@ -36,6 +43,8 @@ class OffersList extends StatelessWidget {
               index: index,
               columnCount: context.gridCount,
               child: ProductItem(
+                enableHeroTag: enableHeroTag,
+                isAdmin: isAdmin,
                 entity: products[index],
               )),
         ),

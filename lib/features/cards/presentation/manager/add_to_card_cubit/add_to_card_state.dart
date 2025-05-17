@@ -24,3 +24,6 @@ final class AddToCardError extends AddToCardStates {
 
   AddToCardError(this.errorMessage);
 }
+final class AddToCaredSuccess extends AddToCardStates {
+
+}

@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 import 'package:graduation_project/core/widgets/my_app_bar.dart';
-import 'package:graduation_project/core/widgets/my_button_widget.dart';
 import 'package:graduation_project/features/payment/presentation/widgets/payment_method_item.dart';
 
 import '../manager/payment_cubit/payment_cubit.dart';
 import 'location_forms.dart';
+import 'payment_button.dart';
 
 class PaymentScreenBody extends StatelessWidget {
   const PaymentScreenBody({super.key});
@@ -36,7 +36,7 @@ class PaymentScreenBody extends StatelessWidget {
                 const SizedBox(height: 20),
                 const PaymentInfo(),
                 const Expanded(child: SizedBox(height: 20)),
-                MyButton(onPressed: () {}, text: AppStrings.payNow),
+                const PaymentButton(),
                 const SizedBox(
                   height: 20,
                 )
@@ -54,6 +54,9 @@ class PaymentInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arg = ModalRoute.of(context)?.settings.arguments as ({
+      num totalPrice,
+    });
     return Card(
       elevation: 5,
       child: Container(
@@ -62,21 +65,21 @@ class PaymentInfo extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: const Column(
+        child: Column(
           children: [
             PaymentInfoItem(
               title: 'Product Price',
-              price: '100',
+              price: arg.totalPrice.toString(),
             ),
-            PaymentInfoItem(
+            const PaymentInfoItem(
               title: 'Shipping Price',
               price: '10',
             ),
-            PaymentInfoItem(
+            const PaymentInfoItem(
               title: ' discount',
               price: '0',
             ),
-            PaymentInfoItem(
+            const PaymentInfoItem(
               title: 'Total Price',
               price: '110',
             ),

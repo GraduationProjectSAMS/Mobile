@@ -6,7 +6,9 @@ import 'package:graduation_project/features/home/presentation/widgets/product_li
 import '../../../../core/widgets/app_api_error_widget.dart';
 
 class ProductBlocBuilder extends StatelessWidget {
-  const ProductBlocBuilder({super.key});
+  const ProductBlocBuilder({super.key, this.isAdmin = false});
+
+  final bool isAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class ProductBlocBuilder extends StatelessWidget {
           return AppApiErrorWidget(errorMessage: state.errorMessage);
         }
         return ProductList(
+          isAdmin: isAdmin,
           productsList: productCubit.products,
           isLoading: state is ProductLoadingStates,
         );

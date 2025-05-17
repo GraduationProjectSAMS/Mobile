@@ -20,10 +20,7 @@ class ProductDetailsImageWithAppBar extends StatelessWidget {
         Hero(
           tag: '${arg.entity.id}${arg.entity.type}',
           child: MyCachedNetworkImage(
-              height: 200,
-              fit: BoxFit.fill,
-              imageUrl:
-                  arg.entity.imageUrl),
+              height: 200, fit: BoxFit.fill, imageUrl: arg.entity.imageUrl),
         ),
       ],
     );

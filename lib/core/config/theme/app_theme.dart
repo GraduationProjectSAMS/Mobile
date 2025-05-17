@@ -22,6 +22,7 @@ abstract class AppTheme {
         TargetPlatform.windows:FadeForwardsPageTransitionsBuilder(backgroundColor: Colors.white),
       },
     ),
+    hoverColor: AppColors.primary.withValues( alpha: 0.1),
     splashColor: AppColors.white,
     primaryColor: AppColors.primary,
     navigationBarTheme: MyBottomNavigationBarTheme.light,

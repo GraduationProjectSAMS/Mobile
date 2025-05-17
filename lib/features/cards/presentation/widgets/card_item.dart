@@ -4,7 +4,6 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/features/cards/presentation/manager/add_to_card_cubit/add_to_card_cubit.dart';
 
 import '../../../../core/config/routes/app_route.dart';
-import '../../../../core/utilities/functions/dd.dart';
 import '../../../../core/utilities/resources/app_colors.dart';
 import '../../../../core/utilities/resources/app_styles.dart';
 import '../../../../core/widgets/my_cached_network_image.dart';
@@ -42,11 +41,8 @@ class CardItem extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Stack(
                     children: [
-                      Hero(
-                        tag: getHeroTag(context,'${model.id}${model.type}'),
-                        child: MyCachedNetworkImage(
-                            fit: BoxFit.fill, imageUrl: model.imageUrl),
-                      ),
+                      MyCachedNetworkImage(
+                          fit: BoxFit.fill, imageUrl: model.imageUrl),
                     ],
                   ),
                 ),

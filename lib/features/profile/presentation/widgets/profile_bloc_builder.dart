@@ -5,8 +5,8 @@ import 'package:graduation_project/features/profile/presentation/manager/profile
 import 'package:graduation_project/features/profile/presentation/widgets/profile_image_and_name.dart';
 
 class ProfileBlocBuilder extends StatelessWidget {
-  const ProfileBlocBuilder({super.key});
-
+  const ProfileBlocBuilder({super.key, this.textColor});
+  final Color? textColor ;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileStates>(
@@ -15,7 +15,8 @@ class ProfileBlocBuilder extends StatelessWidget {
         if (state is ProfileErrorState) {
           return AppApiErrorWidget(errorMessage: state.error);
         }
-        return ProfileImageAndName(
+        return ProfileImageAndName(textColor: textColor,
+
           userEntity: cubit.userEntity,
           isLoading: state is ProfileLoadingState,
         );

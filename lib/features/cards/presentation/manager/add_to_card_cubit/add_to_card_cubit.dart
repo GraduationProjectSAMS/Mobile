@@ -60,6 +60,7 @@ class AddToCardCubit extends Cubit<AddToCardStates> {
       },
       (cards) {
         Logger().i('success');
+        emit(AddToCaredSuccess());
         // optionally emit success state here
       },
     );
@@ -132,6 +133,7 @@ class AddToCardCubit extends Cubit<AddToCardStates> {
       },
       (cards) {
         Logger().i('success');
+        emit(AddToCaredSuccess());
       },
     );
   }
@@ -154,5 +156,15 @@ class AddToCardCubit extends Cubit<AddToCardStates> {
 
   int get cardsCount {
     return selectedCards.length;
+  }
+  num get totalPrice {
+    num total = 0;
+    for (var card in productsCards.entries) {
+      final product = selectedCards[card.key];
+      if (product != null) {
+        total += card.value * product.price;
+      }
+    }
+    return num.parse(total.toStringAsFixed(2));
   }
 }

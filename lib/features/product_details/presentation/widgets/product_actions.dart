@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/utilities/services/size_config_service.dart';
 import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
 import 'package:graduation_project/features/product_details/presentation/widgets/product_counter_widget.dart';
 
@@ -22,16 +23,14 @@ class ProductActions extends StatelessWidget {
             Color(0xFF3A3A3A),
           ],
           initialColor: const Color(0xFFC2C0C0),
-          onColorSelected: (color) {
-
-          },
+          onColorSelected: (color) {},
         ),
-        const CardActionButton(),
-
+        if (!SizeConfigService.isDesktop) const CardActionButton(),
       ],
     );
   }
 }
+
 class CardActionButton extends StatelessWidget {
   const CardActionButton({super.key});
 
@@ -48,7 +47,8 @@ class CardActionButton extends StatelessWidget {
           alignment: Alignment.center,
           firstChild: _buildAddButton(context, cubit, entity),
           secondChild: _buildProductCounter(context, cubit, entity, key),
-          crossFadeState: isInCard ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          crossFadeState:
+              isInCard ? CrossFadeState.showSecond : CrossFadeState.showFirst,
           duration: const Duration(milliseconds: 300),
           firstCurve: Curves.easeInOut,
           secondCurve: Curves.easeInOut,
@@ -58,7 +58,8 @@ class CardActionButton extends StatelessWidget {
     );
   }
 
-  Widget _buildProductCounter(BuildContext context, AddToCardCubit cubit, dynamic entity, String key) {
+  Widget _buildProductCounter(
+      BuildContext context, AddToCardCubit cubit, dynamic entity, String key) {
     return ProductCounter(
       key: ValueKey('counter_${cubit.productsCards[key]}'),
       title: '${cubit.productsCards[key]}',
@@ -67,11 +68,12 @@ class CardActionButton extends StatelessWidget {
     );
   }
 
-  Widget _buildAddButton(BuildContext context, AddToCardCubit cubit, dynamic entity) {
+  Widget _buildAddButton(
+      BuildContext context, AddToCardCubit cubit, dynamic entity) {
     return Card(
       shape: const CircleBorder(),
       elevation: 4,
-   shadowColor: AppColors.black,
+      shadowColor: AppColors.black,
       color: AppColors.white,
       child: Padding(
         padding: const EdgeInsets.all(8.0),

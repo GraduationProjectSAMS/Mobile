@@ -30,6 +30,7 @@ class ProductDetailsScreen extends StatelessWidget {
     );
   }
 }
+
 extension ModalRouteArgumentsExtension on BuildContext {
   ({ProductEntity entity, BuildContext context}) get productDetailsArgs {
     final args = ModalRoute.of(this)?.settings.arguments;

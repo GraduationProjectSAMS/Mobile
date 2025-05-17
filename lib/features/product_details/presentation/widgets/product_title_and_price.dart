@@ -11,16 +11,15 @@ class ProductTitleAndPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final arg = ModalRoute.of(context)?.settings.arguments as ({
-    ProductEntity entity,
-    StatelessElement context
+      ProductEntity entity,
+      StatelessElement context
     });
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           arg.entity.name,
-          style: AppStyles.textStyle18
-              .copyWith( fontWeight: FontWeight.bold),
+          style: AppStyles.textStyle18.copyWith(fontWeight: FontWeight.bold),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
@@ -63,7 +62,6 @@ class ProductTitleAndPrice extends StatelessWidget {
             )
           ],
         ),
-
       ],
     );
   }

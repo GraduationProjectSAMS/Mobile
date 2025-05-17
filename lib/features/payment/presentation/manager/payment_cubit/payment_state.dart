@@ -5,6 +5,20 @@ sealed class PaymentStates {}
 
 final class PaymentInitial extends PaymentStates {}
 
+final class PaymentLoadingState extends PaymentStates {}
+
+final class PaymentSuccessState extends PaymentStates {
+  final PayMobEntity payMobEntity;
+
+  PaymentSuccessState(this.payMobEntity);
+}
+
+final class PaymentErrorState extends PaymentStates {
+  final String errorMessage;
+
+  PaymentErrorState(this.errorMessage);
+}
+
 enum PaymentMethod {
   cash,
   visa,

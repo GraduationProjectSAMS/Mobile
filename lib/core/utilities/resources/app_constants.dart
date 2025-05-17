@@ -12,5 +12,11 @@ abstract class AppConstants {
   static const products = 'products';
   static const connectionTimeoutCode = 504;
   static const unAuthorizedCode = 401;
+  static const env = '.env';
+  static const baseUrlKey = 'baseUrl';
+  static const paymentBaseUrlKey ='paymentBaseUrl';
+  static const payMobPublicKey ='payMobPublicKey';
+  static const payMobSecretKey='payMobSecretKey';
+
 
 }

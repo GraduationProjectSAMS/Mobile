@@ -25,7 +25,7 @@ class FavoritesBlocBuilder extends StatelessWidget {
           isLoading: false,
           listEmptyWidget: EmptyFavoritesWidget.new,
           listWidget: (List<ProductEntity> list, bool isLoading) =>
-              ProductList(isLoading: isLoading, productsList: list),
+              ProductList(isLoading: isLoading, productsList: list,enableHeroTag: false,),
         );
       },
     );

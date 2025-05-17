@@ -1,3 +1,8 @@
+import '../../domain/entities/pay_mob_entity.dart';
+import '../models/pay_mob_request_model.dart';
+
 abstract class PaymentRemoteRepo {
-  // Define remote data source methods here
+  Future<PayMobEntity> getPayMobSecretKey({
+    required PayMobRequestModel payMobRequestModel,
+  });
 }

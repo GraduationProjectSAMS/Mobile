@@ -87,6 +87,7 @@ static const newlyAdded= 'Newly Added';
   static const provideItLater = 'we will provide it later';
   static const notFount = 'NotFound';
   static const myCart = 'My Cart';
+  static const myOrders = 'My Orders';
 
   static const orderSubtotal = 'Order Subtotal';
 /// payment
@@ -106,5 +107,11 @@ static const maxQuantity = 'You have reached the maximum quantity';
   static const addLocationOnMap = 'Add Location on Map';
   static const apartment = 'Apartment';
   static const notes = 'Notes';
+static const addProduct = 'Add Product';
+static const addOffer = 'Add Offer';
+static const allProducts = 'All Products';
+static const allOffers = 'All Offers';
+  static const allOrders = 'All Orders';
+
 
 }

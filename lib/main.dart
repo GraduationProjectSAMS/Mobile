@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:graduation_project/core/utilities/services/cache_service.dart';
 import 'package:graduation_project/core/utilities/services/dependency_injection_service.dart';
 import 'app/my_app.dart';
@@ -13,7 +14,10 @@ void main() async {
  await Future.wait([
     CacheService.init(),
     DesktopWindowService.init(),
+    dotenv.load(),
   ]);
+
+
   runApp( const MyApp());
 }
 
