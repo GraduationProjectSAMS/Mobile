@@ -54,6 +54,7 @@ class MyTextFormFieldState extends State<LoginPasswordTextForm> {
       keyboardType: TextInputType.visiblePassword,
       controller: widget.controller,
       onSaved: widget.onSaved,
+      maxLines: 1,
       autofillHints: widget.autofillHints,
       validator: ValidatorService.passwordValidator,
       prefixIcon: const Icon(Icons.lock_outline),

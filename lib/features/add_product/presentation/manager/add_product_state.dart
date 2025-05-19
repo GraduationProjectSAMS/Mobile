@@ -10,3 +10,13 @@ class AddProductImagePicked extends AddProductState {}
 class AddProductImageTooLarge extends AddProductState {}
 
 class AddProductImagePickCancelled extends AddProductState {}
+
+class AddProductLoading extends AddProductState {}
+
+class AddProductSuccess extends AddProductState {}
+
+class AddProductError extends AddProductState {
+  final String errorMessage;
+
+  AddProductError(this.errorMessage);
+}

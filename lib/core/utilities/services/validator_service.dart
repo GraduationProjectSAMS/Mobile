@@ -26,7 +26,7 @@ abstract class ValidatorService {
   static String? passwordValidator(String? value) {
     if (value?.isEmpty == true) {
       return 'Password must have value';
-    } else if ((value?.length ?? 0) <= 4) {
+    } else if ((value?.length ?? 0) <= 1) {
       return 'Password to short ';
     } else {
       return null;
