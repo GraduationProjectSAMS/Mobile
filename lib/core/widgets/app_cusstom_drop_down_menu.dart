@@ -57,7 +57,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
   void _showPopupMenu(BuildContext context) {
     final isRtl = Directionality.of(context) == TextDirection.rtl;
     final RenderBox renderBox =
-        _textFieldKey.currentContext!.findRenderObject() as RenderBox;
+    _textFieldKey.currentContext!.findRenderObject() as RenderBox;
     final Offset offset = renderBox.localToGlobal(Offset.zero);
     final Size size = renderBox.size;
 
@@ -74,19 +74,19 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       color: const Color(0xFFf3f3f2),
       position:
-          !isRtl
-              ? RelativeRect.fromLTRB(
-                offset.dx,
-                offset.dy + size.height,
-                offset.dx,
-                offset.dy,
-              )
-              : RelativeRect.fromLTRB(
-                offset.dx - (isRtl ? menuWidth - size.width : 0),
-                offset.dy + size.height,
-                offset.dx + (isRtl ? menuWidth : size.width),
-                offset.dy,
-              ),
+      !isRtl
+          ? RelativeRect.fromLTRB(
+        offset.dx,
+        offset.dy + size.height,
+        offset.dx,
+        offset.dy,
+      )
+          : RelativeRect.fromLTRB(
+        offset.dx - (isRtl ? menuWidth - size.width : 0),
+        offset.dy + size.height,
+        offset.dx + (isRtl ? menuWidth : size.width),
+        offset.dy,
+      ),
 
       items: [
         PopupMenuItem<String>(
@@ -104,7 +104,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
                   mainAxisSize: MainAxisSize.min,
                   children: List.generate(
                     widget.dropdownItems.length,
-                    (index) => PopupMenuItem<String>(
+                        (index) => PopupMenuItem<String>(
                       value: widget.dropdownItems[index],
 
                       child: Text(
@@ -163,7 +163,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
     _scrollController = ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.value != null) {
-         _controller.text = widget.value!;
+        _controller.text = widget.value!;
       }
     });
   }
@@ -177,7 +177,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return MyTextField(
+    return _MyTextField(
       key: _textFieldKey,
       onTap: () {
         if (!isLoading && widget.enabled) {
@@ -217,7 +217,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
   }
 }
 
-class MyTextField extends StatelessWidget {
+class _MyTextField extends StatelessWidget {
   final String? label;
   final String? hint;
   final String? initialValue;
@@ -253,7 +253,7 @@ class MyTextField extends StatelessWidget {
   final AutovalidateMode autoValidateMode;
   final bool autofocus;
 
-  const MyTextField({
+  const _MyTextField({
     this.label,
     this.hint,
     this.controller,

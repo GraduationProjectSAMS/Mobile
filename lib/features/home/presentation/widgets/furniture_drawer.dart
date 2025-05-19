@@ -6,7 +6,7 @@ import '../../../profile/presentation/widgets/profile_bloc_builder.dart';
 import '../../../profile/presentation/widgets/show_logout_dialog_content.dart';
 
 class FurnitureDrawer extends StatefulWidget {
-  const FurnitureDrawer({Key? key, this.onItemSelected}) : super(key: key);
+  const FurnitureDrawer({super.key, this.onItemSelected});
 
   /// Callback when an item is selected
   final void Function(int index)? onItemSelected;
@@ -37,7 +37,7 @@ class _FurnitureDrawerState extends State<FurnitureDrawer> {
         color: const Color(0xFF264733),
         child: Column(
           children: [
-            ProfileBlocBuilder(
+            const ProfileBlocBuilder(
               textColor: AppColors.white,
             ),
             const SizedBox(height: 12),
@@ -58,7 +58,7 @@ class _FurnitureDrawerState extends State<FurnitureDrawer> {
                 );
               },
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: _DrawerItemTile(

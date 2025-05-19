@@ -21,14 +21,14 @@ class DesktopBodyLayoutState extends State<DesktopBodyLayout> {
 
   // your list of screens
   final _screens = [
-    Text(
+    const Text(
       'Dashboard',
       style: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
       ),
     ),
-    ProductsDesktopScreen(),
+    const ProductsDesktopScreen(),
     const OffersDesktopScreen(),
     const OrdersDesktopScreen(),
   ];

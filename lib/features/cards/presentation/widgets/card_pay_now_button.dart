@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/config/routes/app_route.dart';
+import 'package:graduation_project/features/orders/data/models/order_products.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/utilities/resources/app_strings.dart';
@@ -26,7 +27,8 @@ class CardPayNowButton extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                   flex:addToCardCubit.totalPrice.toString().length> 8 ? 2 : 1,
+                    flex:
+                        addToCardCubit.totalPrice.toString().length > 8 ? 2 : 1,
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
@@ -42,12 +44,7 @@ class CardPayNowButton extends StatelessWidget {
                   ),
                   Expanded(
                       child: MyButton(
-                          onPressed: () {
-                            context.navigateTo(
-                              pageName: AppRoutes.payment,
-                              arguments: (totalPrice: addToCardCubit.totalPrice,),
-                            );
-                          },
+                          onPressed: () => onTapPayNow(addToCardCubit, context),
                           text: AppStrings.payNow)),
                 ],
               ),
@@ -57,6 +54,23 @@ class CardPayNowButton extends StatelessWidget {
           return const SizedBox.shrink();
         }
       },
+    );
+  }
+
+  void onTapPayNow(AddToCardCubit addToCardCubit, BuildContext context) {
+    final orderProducts =
+        addToCardCubit.selectedCards.values.toList().toOrderProductList;
+    final orderProductsWithQuantity = orderProducts.map((orderProduct) {
+      final quantity = addToCardCubit
+          .productsCards['${orderProduct.id}${orderProduct.type}'];
+      return orderProduct.copyWith(quantity: quantity);
+    }).toList();
+    context.navigateTo(
+      pageName: AppRoutes.payment,
+      arguments: (
+        totalPrice: addToCardCubit.totalPrice,
+        orderProducts: orderProductsWithQuantity,
+      ),
     );
   }
 }

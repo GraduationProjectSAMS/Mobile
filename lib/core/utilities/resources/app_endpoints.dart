@@ -18,6 +18,8 @@ static final payMobPublicKey=dotenv.env[AppConstants.payMobPublicKey]??'';
 static final paymentBaseUrl=dotenv.env[AppConstants.paymentBaseUrlKey]??'';
 static const clientSecretKey='v1/intention/';
 static const orders='orders';
+static const ordersSippingAddress='user/shipping-addresses';
+static const geOrdersSippingAddress='user/current-shipping-address';
 
 
 

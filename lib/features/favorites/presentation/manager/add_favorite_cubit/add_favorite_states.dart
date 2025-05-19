@@ -9,7 +9,6 @@ final class AddFavoriteLoading extends AddFavoriteStates {}
 
 final class AddFavoriteSuccess extends AddFavoriteStates {}
 
-
 final class AddFavoriteError extends AddFavoriteStates {
   final String errorMessage;
 

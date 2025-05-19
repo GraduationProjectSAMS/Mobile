@@ -11,6 +11,7 @@ class OrderEntity {
   final String shippingAddress;
   final String totalPrice;
   final List<ProductEntity> products;
+  final String hashId;
 
   const OrderEntity({
     required this.orderId,
@@ -20,11 +21,13 @@ class OrderEntity {
     required this.paymentMethod,
     required this.shippingAddress,
     required this.totalPrice,
+    this.hashId = '',
     this.products = const [],
   });
 
   factory OrderEntity.loading() => const OrderEntity(
         orderId: 0,
+        hashId: 'test test id',
         orderStatus: 'test test status',
         orderDate: 'test test date',
         deliveryDate: 'test test  date',

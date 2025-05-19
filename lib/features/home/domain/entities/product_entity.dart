@@ -41,7 +41,7 @@ class ProductEntity {
   OrderProducts get toOrderProductsMode {
     return OrderProducts(
       id: id,
-      type: name,
+      type: type,
       quantity: carQuantity,
       price: price.toString(),
     );

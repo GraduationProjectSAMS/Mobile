@@ -34,6 +34,7 @@ class OrderData {
     this.notes,
     this.orderedAt,
     this.deliveryDate,
+    this.orderHashId,
   });
 
   OrderData.fromJson(dynamic json) {
@@ -52,6 +53,7 @@ class OrderData {
     notes = json['notes'];
     orderedAt = json['ordered_at'];
     deliveryDate = json['delivery_date'];
+    orderHashId = json['fake_id'];
   }
 
   num? id;
@@ -60,10 +62,11 @@ class OrderData {
   String? status;
   String? shippingAddress;
   String? paymentMethod;
-  String? totalPrice;
+  num? totalPrice;
   String? notes;
   String? orderedAt;
   String? deliveryDate;
+  String? orderHashId;
 
   OrderEntity get toEntity {
     return OrderEntity(
@@ -73,7 +76,8 @@ class OrderData {
       deliveryDate: deliveryDate ?? '',
       paymentMethod: paymentMethod ?? '',
       shippingAddress: shippingAddress ?? '',
-      totalPrice: totalPrice ?? '',
+      totalPrice: totalPrice?.toString() ?? '',
+      hashId: orderHashId ?? '',
     );
   }
 }

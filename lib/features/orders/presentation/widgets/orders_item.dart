@@ -37,10 +37,10 @@ class OrdersItem extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              'Order ID: ${orderEntity.orderId}',
+              'Order ID: ${orderEntity.hashId}',
               style: AppStyles.textStyle20,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Column(
@@ -53,10 +53,14 @@ class OrdersItem extends StatelessWidget {
                     orderEntity.shippingAddress,
                   ];
                   return Padding(
-                    padding:  EdgeInsets.symmetric(vertical: 6),
+                    padding: const EdgeInsets.symmetric(vertical: 6),
                     child: Row(
                       children: [
-                        Icon(icons[index], color: colors[index],size: 20.sp,),
+                        Icon(
+                          icons[index],
+                          color: colors[index],
+                          size: 20.sp,
+                        ),
                         const SizedBox(width: 12),
                         Expanded(
                             child: Text(
@@ -77,12 +81,11 @@ class OrdersItem extends StatelessWidget {
               child: Row(
                 children: List.generate(3, (index) {
                   final titles = [
-                    ' ${orderEntity.totalPrice} EGP',
+                    ' ${num.tryParse(orderEntity.totalPrice)?.toStringAsFixed(2)} EGP',
                     formatDateTime(orderEntity.orderDate),
                     orderEntity.deliveryDate,
                   ];
                   return Expanded(
-
                       child: Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: index == 1 ? 5 : 0),
@@ -102,10 +105,8 @@ class OrdersItem extends StatelessWidget {
                         ),
                         Flexible(
                           child: Text(
-                            overflow: TextOverflow.ellipsis,
-
+                              overflow: TextOverflow.ellipsis,
                               maxLines: 2,
-
                               titles[index],
                               style: AppStyles.defaultStyle),
                         ),

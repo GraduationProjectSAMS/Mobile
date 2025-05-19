@@ -30,7 +30,6 @@ class SignUpTextFormsState extends State<SignUpTextForms> {
   Widget build(BuildContext context) {
     final cubit = context.read<SignupCubit>();
     return AutofillGroup(
-
       child: Form(
         key: cubit.formKey,
         child: Column(

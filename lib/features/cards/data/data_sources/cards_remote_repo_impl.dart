@@ -17,7 +17,7 @@ class CardsRemoteRepoImpl implements CardsRemoteRepo {
       endPoint: AppEndpoints.addToCart,
       data: {
         'item_id': productId,
-        'item_type': type,
+        'item_type': '${type}s',
         'quantity': quantity,
       },
     );

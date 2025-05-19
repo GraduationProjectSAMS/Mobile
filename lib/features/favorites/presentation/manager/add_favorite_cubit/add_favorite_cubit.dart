@@ -22,8 +22,6 @@ class AddFavoriteCubit extends Cubit<AddFavoriteStates> {
   Map<String, ProductEntity> selectedProducts = {};
 
   Future<void> getFavorites() async {
-
-
     final result = await _getFavoritesUseCase.call();
     result.fold((failure) {
       emit(GetFavoritesErrorState(failure.errorMessage));

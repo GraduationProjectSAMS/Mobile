@@ -24,8 +24,11 @@ class FavoritesBlocBuilder extends StatelessWidget {
           list: cubit.selectedProducts.values.toList(),
           isLoading: false,
           listEmptyWidget: EmptyFavoritesWidget.new,
-          listWidget: (List<ProductEntity> list, bool isLoading) =>
-              ProductList(isLoading: isLoading, productsList: list,enableHeroTag: false,),
+          listWidget: (List<ProductEntity> list, bool isLoading) => ProductList(
+            isLoading: isLoading,
+            productsList: list,
+            enableHeroTag: false,
+          ),
         );
       },
     );
