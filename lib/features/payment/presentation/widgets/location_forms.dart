@@ -28,8 +28,8 @@ class _LocationFormsState extends State<LocationForms> {
 
   late final PaymentCubit cubit;
 
-  String? _address;
 
+final _addressNotifier = ValueNotifier<String?>(null);
   @override
   void initState() {
     super.initState();
@@ -57,11 +57,15 @@ class _LocationFormsState extends State<LocationForms> {
   String _formattedAddress(Placemark selectedPlaceMark) {
     final p = selectedPlaceMark;
     final parts = [
+
+      p.street, // This is the composite 'street' with Plus Code
+      p.subThoroughfare,
       p.thoroughfare,
       p.subLocality,
-      p.locality,
-      p.administrativeArea,
-      p.country
+
+
+
+
     ];
 
     return parts.where((e) => e != null && e.trim().isNotEmpty).join(', ');
@@ -110,12 +114,12 @@ class _LocationFormsState extends State<LocationForms> {
   }
 
   void _updateTextFieldsFromPlacemark(Placemark placemark) {
-    setState(() {
-      _cityController.text = placemark.locality ?? '';
-      _streetNameController.text = placemark.street ?? '';
-      _address = _formattedAddress(placemark);
-      cubit.setAddress(_address);
-    });
+
+      _cityController.text = '${placemark.country}, ${placemark.administrativeArea}';
+      _streetNameController.text = '${placemark.locality}, ${placemark.subLocality}';
+      _addressNotifier.value = _formattedAddress(placemark);
+      cubit.setAddress(_addressNotifier.value);
+
   }
 
   @override
@@ -124,13 +128,13 @@ class _LocationFormsState extends State<LocationForms> {
       listener: (context, state) {
         if (state is GetCurrentOrderLocationState) {
           final entity = state.orderLocationEntity;
-          _address = entity.orderAddress;
+          _addressNotifier.value = entity.orderAddress;
           _cityController.text = entity.orderCity;
           _streetNameController.text = entity.orderStreetName;
           _buildingNoController.text = entity.orderBuildingNo;
           _floorNoController.text = entity.orderFloorNo;
           _apartmentNoController.text = entity.orderApartmentNo;
-          setState(() {});
+
         }
       },
       child: SingleChildScrollView(
@@ -139,27 +143,31 @@ class _LocationFormsState extends State<LocationForms> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MaterialButton(
-                color: Colors.white,
-                padding: const EdgeInsets.all(10),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                onPressed: _handleLocationSelection,
-                child: Row(
-                  children: [
-                    const Icon(Icons.location_on, color: AppColors.primary),
-                    const SizedBox(width: 3),
-                    Flexible(
-                      child: Text(
-                        _address == null || _address!.isEmpty
-                            ? AppStrings.addLocationOnMap
-                            : _address!,
-                        style: AppStyles.defaultStyle,
+              ValueListenableBuilder(
+                valueListenable: _addressNotifier,
+                builder: (BuildContext context, String? value, Widget? child) => MaterialButton(
+                  color: Colors.white,
+                  padding: const EdgeInsets.all(10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  onPressed: _handleLocationSelection,
+                  child: Row(
+                    children: [
+                      const Icon(Icons.location_on, color: AppColors.primary),
+                      const SizedBox(width: 3),
+                      Flexible(
+                        child: Text(
+                         value == null || value.isEmpty
+                              ? AppStrings.addLocationOnMap
+                              : value,
+                          style: AppStyles.defaultStyle,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
+
               ),
               const SizedBox(height: 10),
               MyTextFormField(
