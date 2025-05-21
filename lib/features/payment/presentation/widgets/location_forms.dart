@@ -28,8 +28,7 @@ class _LocationFormsState extends State<LocationForms> {
 
   late final PaymentCubit cubit;
 
-
-final _addressNotifier = ValueNotifier<String?>(null);
+  final _addressNotifier = ValueNotifier<String?>(null);
   @override
   void initState() {
     super.initState();
@@ -57,15 +56,10 @@ final _addressNotifier = ValueNotifier<String?>(null);
   String _formattedAddress(Placemark selectedPlaceMark) {
     final p = selectedPlaceMark;
     final parts = [
-
       p.street, // This is the composite 'street' with Plus Code
       p.subThoroughfare,
       p.thoroughfare,
       p.subLocality,
-
-
-
-
     ];
 
     return parts.where((e) => e != null && e.trim().isNotEmpty).join(', ');
@@ -114,12 +108,12 @@ final _addressNotifier = ValueNotifier<String?>(null);
   }
 
   void _updateTextFieldsFromPlacemark(Placemark placemark) {
-
-      _cityController.text = '${placemark.country}, ${placemark.administrativeArea}';
-      _streetNameController.text = '${placemark.locality}, ${placemark.subLocality}';
-      _addressNotifier.value = _formattedAddress(placemark);
-      cubit.setAddress(_addressNotifier.value);
-
+    _cityController.text =
+        '${placemark.country}, ${placemark.administrativeArea}';
+    _streetNameController.text =
+        '${placemark.locality}, ${placemark.subLocality}';
+    _addressNotifier.value = _formattedAddress(placemark);
+    cubit.setAddress(_addressNotifier.value);
   }
 
   @override
@@ -134,7 +128,6 @@ final _addressNotifier = ValueNotifier<String?>(null);
           _buildingNoController.text = entity.orderBuildingNo;
           _floorNoController.text = entity.orderFloorNo;
           _apartmentNoController.text = entity.orderApartmentNo;
-
         }
       },
       child: SingleChildScrollView(
@@ -145,7 +138,8 @@ final _addressNotifier = ValueNotifier<String?>(null);
             children: [
               ValueListenableBuilder(
                 valueListenable: _addressNotifier,
-                builder: (BuildContext context, String? value, Widget? child) => MaterialButton(
+                builder: (BuildContext context, String? value, Widget? child) =>
+                    MaterialButton(
                   color: Colors.white,
                   padding: const EdgeInsets.all(10),
                   shape: RoundedRectangleBorder(
@@ -158,7 +152,7 @@ final _addressNotifier = ValueNotifier<String?>(null);
                       const SizedBox(width: 3),
                       Flexible(
                         child: Text(
-                         value == null || value.isEmpty
+                          value == null || value.isEmpty
                               ? AppStrings.addLocationOnMap
                               : value,
                           style: AppStyles.defaultStyle,
@@ -167,7 +161,6 @@ final _addressNotifier = ValueNotifier<String?>(null);
                     ],
                   ),
                 ),
-
               ),
               const SizedBox(height: 10),
               MyTextFormField(

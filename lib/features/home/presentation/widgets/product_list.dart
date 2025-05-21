@@ -29,26 +29,29 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Skeletonizer(
       enabled: isLoading,
-      child: AnimationLimiter(
-        child: GridView.builder(
-          itemCount: products.length,
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: context.gridCount,
-            mainAxisExtent: 250.sp,
-            crossAxisSpacing: 5,
-            mainAxisSpacing: 5,
+      child: LayoutBuilder(builder: (context, constraints) {
+        final gridCount = constraints.maxWidth.gridCount;
+        return AnimationLimiter(
+          child: GridView.builder(
+            itemCount: products.length,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: gridCount,
+              mainAxisExtent: 250.sp,
+              crossAxisSpacing: 5,
+              mainAxisSpacing: 5,
+            ),
+            itemBuilder: (BuildContext context, int index) => GideItemAnimation(
+                index: index,
+                columnCount: gridCount,
+                child: ProductItem(
+                  enableHeroTag: enableHeroTag,
+                  isAdmin: isAdmin,
+                  entity: products[index],
+                )),
           ),
-          itemBuilder: (BuildContext context, int index) => GideItemAnimation(
-              index: index,
-              columnCount: context.gridCount,
-              child: ProductItem(
-                enableHeroTag: enableHeroTag,
-                isAdmin: isAdmin,
-                entity: products[index],
-              )),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

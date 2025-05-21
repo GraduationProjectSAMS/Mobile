@@ -21,7 +21,7 @@ class HomeOffersList extends StatelessWidget {
       enabled: isLoading,
       child: AnimationLimiter(
         child: SizedBox(
-          height: 28.hR,
+          height: 250.sp,
           child: ListView.separated(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 5),
             scrollDirection: Axis.horizontal,
@@ -29,7 +29,7 @@ class HomeOffersList extends StatelessWidget {
               index: index,
               isHorizontal: true,
               child: ProductItem(
-                width: 20.hR,
+                width: 180.sp,
                 entity: offers[index],
               ),
             ),

@@ -7,7 +7,7 @@ import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 
 import '../utilities/resources/icon_broken.dart';
 
-class MyButton extends StatelessWidget {
+class MyButton extends StatefulWidget {
   const MyButton({
     super.key,
     required this.onPressed,
@@ -15,9 +15,10 @@ class MyButton extends StatelessWidget {
     this.isLoading = false,
     this.height,
     this.width,
-    this.color,
-  });
+    this.color,  this.isShowLoadingInCenter =true,
 
+  });
+final bool isShowLoadingInCenter;
   final bool isLoading;
   final VoidCallback onPressed;
   final String text;
@@ -25,38 +26,89 @@ class MyButton extends StatelessWidget {
   final double? width;
   final Color? color;
 
-  Widget get loading => const SizedBox(
-    height: 20,
-    width: 20,
-    child: Center(
-      child: CircularProgressIndicator.adaptive(
-        backgroundColor: AppColors.white,
-        valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
-      ),
-    ),
-  );
+  @override
+  State<MyButton> createState() => _MyButtonState();
+}
 
-  Widget get textWidget => Text(
-    text,
-    style: AppStyles.textStyle18,
-  );
+class _MyButtonState extends State<MyButton> {
+  OverlayEntry? _overlayEntry;
+
+  OverlayEntry _createOverlay() {
+    return OverlayEntry(
+      builder: (context) => Positioned.fill(
+        child: Container(
+          color: Colors.black38,
+          child: const Center(
+            child: SizedBox(
+              height: 20,
+              width: 20,
+              child: CircularProgressIndicator(),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showOverlay() {
+    if (_overlayEntry != null) return;
+    _overlayEntry = _createOverlay();
+    Overlay.of(context).insert(_overlayEntry!);
+  }
+
+  void _hideOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  @override
+  void didUpdateWidget(covariant MyButton old) {
+    super.didUpdateWidget(old);
+
+    // Schedule the overlay add/remove to run _after_ this build frame:
+    if(!widget.isShowLoadingInCenter)return;
+    if (widget.isLoading && !old.isLoading) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _showOverlay());
+    } else if (!widget.isLoading && old.isLoading) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _hideOverlay());
+    }
+  }
+
+  @override
+  void dispose() {
+    _hideOverlay();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
-      width: width,
+      height: widget.height,
+      width: widget.width,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color, // Set custom background color if provided
-        ),
-        onPressed: isLoading ? () {} : onPressed,
-        child: isLoading ? loading : textWidget,
+        style: ElevatedButton.styleFrom(backgroundColor: widget.color),
+        onPressed: widget.isLoading ? (){} : widget.onPressed,
+        child: widget.isLoading
+            ? const SizedBox(
+                height: 20,
+                width: 20,
+                child: Center(
+                  child: CircularProgressIndicator.adaptive(
+                    backgroundColor: AppColors.white,
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(AppColors.primary),
+                  ),
+                ),
+              )
+            : FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(widget.text,
+                    maxLines: 1, style: AppStyles.textStyle18),
+              ),
       ),
     );
   }
 }
-
 
 class MyTextButton extends StatelessWidget {
   const MyTextButton({super.key, required this.onTap, required this.text});

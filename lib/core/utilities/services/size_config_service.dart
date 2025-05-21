@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 
 abstract class SizeConfigService   {
-  static double  width = 0, height = 0;
+  static double  width = 400, height = 400;
   static const maxMobileWidth = 550;
   static const maxTabletWidth = 1000;
 static bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMacOS;
@@ -66,13 +66,17 @@ static bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMac
 //
 //     return responsiveWidth.clamp(lowerLimit, upperLimit);
 //   }
-  static int setGridCount(BuildContext context) {
+  static int setGridCountWithContext(BuildContext context) {
     final double width = MediaQuery.sizeOf(context).width;
+    return setGridCountWithWidth(width);
+  }
+
+  static int setGridCountWithWidth(num width) {
     if (width < 600) {
       return 2;
     } else if (width < 1000) {
       return 3;
-    } if (width < 1200) {
+    } if (width < 1300) {
       return 4;
     }
     else {

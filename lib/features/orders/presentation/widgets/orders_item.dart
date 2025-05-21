@@ -81,7 +81,7 @@ class OrdersItem extends StatelessWidget {
               child: Row(
                 children: List.generate(3, (index) {
                   final titles = [
-                    ' ${num.tryParse(orderEntity.totalPrice)?.toStringAsFixed(2)} EGP',
+                    '${num.tryParse(orderEntity.totalPrice)?.toStringAsFixed(2)} EGP',
                     formatDateTime(orderEntity.orderDate),
                     orderEntity.deliveryDate,
                   ];

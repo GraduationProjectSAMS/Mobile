@@ -37,8 +37,11 @@ class _FurnitureDrawerState extends State<FurnitureDrawer> {
         color: const Color(0xFF264733),
         child: Column(
           children: [
-            const ProfileBlocBuilder(
-              textColor: AppColors.white,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
+              child: const ProfileBlocBuilder(
+                textColor: AppColors.white,
+              ),
             ),
             const SizedBox(height: 12),
             ListView.builder(
