@@ -4,6 +4,7 @@ import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/core/utilities/services/cache_service.dart';
 
 import '../core/config/routes/app_route.dart';
+import '../core/utilities/services/size_config_service.dart';
 import '../core/widgets/hghg.dart';
 
 class MyApp extends StatelessWidget {
@@ -21,14 +22,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return AppSizConfig(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        initialRoute: initialRoute,
-        onGenerateRoute: RouteGenerator.generateRoute,
-        theme: AppTheme.lightTheme,
-      ),
+    SizeConfigService.init(context);
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: initialRoute,
+      onGenerateRoute: RouteGenerator.generateRoute,
+      theme: AppTheme.lightTheme,
     );
   }
 }

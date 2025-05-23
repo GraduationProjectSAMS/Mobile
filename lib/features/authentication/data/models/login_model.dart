@@ -12,13 +12,14 @@ class LoginModel {
   Data? data;
 }
 
-class Data extends LoginEntity {
+class Data {
   Data({
     this.modeId,
     this.name,
     this.username,
     this.modelToken,
-  }) : super(token: modelToken ?? '', id: modeId?.toInt() ?? 0);
+    this.roleName,
+  });
 
   factory Data.fromJson(dynamic json) {
     return Data(
@@ -26,6 +27,14 @@ class Data extends LoginEntity {
       name: json['name'],
       username: json['username'],
       modelToken: json['token'],
+      roleName: json['role_name'],
+    );
+  }
+  LoginEntity get toEntity {
+    return LoginEntity(
+      token: modelToken ?? '',
+      id: modeId?.toInt() ?? 0,
+      roleName: roleName ?? '',
     );
   }
 
@@ -33,4 +42,5 @@ class Data extends LoginEntity {
   String? name;
   String? username;
   String? modelToken;
+  String? roleName;
 }

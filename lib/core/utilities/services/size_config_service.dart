@@ -2,23 +2,39 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 
+
 abstract class SizeConfigService   {
-  static double  width = 400, height = 400;
+  static double  width = 0, height = 0;
   static const maxMobileWidth = 550;
   static const maxTabletWidth = 1000;
 static bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMacOS;
   static void init(BuildContext context) {
-    final  orientation = MediaQuery.of(context).orientation;
-    if (orientation == Orientation.landscape && !isDesktop) {
-      height = MediaQuery.sizeOf(context).width;
-      width = MediaQuery.sizeOf(context).height;
-    } else {
-      height = MediaQuery.sizeOf(context).height;
-      width = MediaQuery.sizeOf(context).width;
-      if (isDesktop) {
-        _rebuildTree(context as Element);
+    final size = MediaQuery.sizeOf(context);
+    final newHeight = size.height;
+    final newWidth = size.width;
+    final isLandscape = MediaQuery.orientationOf(context) == Orientation.landscape;
+
+    // Store previous dimensions to detect changes
+     double? previousHeight;
+     double? previousWidth;
+
+    // Detect media query changes
+    if (newHeight != previousHeight || newWidth != previousWidth) {
+      // Update dimensions based on orientation
+      if (isLandscape && !isDesktop) {
+        height = newWidth;
+        width = newHeight;
+      } else {
+        height = newHeight;
+        width = newWidth;
       }
-     }
+      // Call rebuild tree on media query change
+      _rebuildTree(context as Element);
+      // Update previous dimensions
+      previousHeight = newHeight;
+      previousWidth = newWidth;
+      
+    }
   }
 
   static double getResponsiveFontSize(

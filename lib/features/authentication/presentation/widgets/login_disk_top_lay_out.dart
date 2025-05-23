@@ -11,10 +11,10 @@ class LoginDiskTopLayOut extends StatelessWidget {
     return const Row(
       children: [
         Expanded(
-          flex: 2,
+          flex: 3,
           child: AuthenticationLoginBanner(),
         ),
-        Expanded(child: LoginMobileDesign())
+        Expanded(flex: 2, child: LoginMobileDesign())
       ],
     );
   }

@@ -10,5 +10,9 @@ Failure appServerFailure(Object error) {
   if (error is DioException) {
     return ServerFailure.fromDioError(error);
   }
+  if (error is ServerFailure) {
+    return ServerFailure(error.errorMessage);
+  }
+
   return ServerFailure(error.toString());
 }

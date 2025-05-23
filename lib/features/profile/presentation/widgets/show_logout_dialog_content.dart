@@ -84,7 +84,10 @@ class ShowLogoutDialogContent extends StatelessWidget {
       if (!context.mounted) return;
       context.navigateAndRemoveUntil(pageName: AppRoutes.login);
     } else if (state is LogoutErrorState) {
-      myToast(msg: state.error.errorMessage, state: ToastStates.error);
+      showAdaptiveToast(
+          msg: state.error.errorMessage,
+          state: ToastStates.error,
+          context: context);
     }
   }
 

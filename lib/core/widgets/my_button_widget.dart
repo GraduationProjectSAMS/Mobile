@@ -34,15 +34,61 @@ class _MyButtonState extends State<MyButton> {
   OverlayEntry? _overlayEntry;
 
   OverlayEntry _createOverlay() {
+    const barrierColor = Colors.black54;
+    final indicatorSize = 50.0.sp;
+        const Color indicatorColor = Colors.white;
+    const double strokeWidth = 4.0;
     return OverlayEntry(
-      builder: (context) => Positioned.fill(
-        child: Container(
-          color: Colors.black38,
-          child: const Center(
-            child: SizedBox(
-              height: 20,
-              width: 20,
-              child: CircularProgressIndicator(),
+      builder: (context) => Container(
+        color: barrierColor,
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.black.withValues( alpha:  0.2),
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues( alpha:  0.2),
+                  blurRadius: 8,
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                // Gradient ring animation
+                SizedBox(
+                  height: indicatorSize,
+                  width: indicatorSize,
+                  child: const CircularProgressIndicator(
+                    strokeWidth: strokeWidth,
+                    valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
+                  ),
+                ),
+                // Pulsing center dot
+                AnimatedScale(
+                  scale: 0.5,
+                  duration: const Duration(milliseconds: 800),
+                  curve: Curves.easeInOut,
+                  child: Container(
+                    width: indicatorSize * 0.3,
+                    height: indicatorSize * 0.3,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: indicatorColor,
+                      boxShadow: [
+                        BoxShadow(
+                          color: indicatorColor.withValues( alpha: 0.4),
+                          blurRadius: 12,
+                          spreadRadius: 2,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
