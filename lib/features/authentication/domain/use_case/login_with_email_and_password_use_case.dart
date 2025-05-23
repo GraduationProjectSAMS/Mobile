@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
+import 'package:graduation_project/core/errors/server_failure.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../entity/login_entity.dart';
@@ -13,9 +16,25 @@ class LoginWithEmailAndPasswordUseCase {
     required String email,
     required String password,
   }) async {
-    return _authenticationRepo.loginWithEmailAndPassword(
+    final result = await _authenticationRepo.loginWithEmailAndPassword(
       email: email,
       password: password,
+    );
+
+    return result.fold(
+      // 1) Propagate any repo failure
+      Left.new,
+
+      // 2) On success, inspect the roleName
+      (loginEntity) {
+        if (loginEntity.roleName.toLowerCase() == 'user' &&
+            Platform.isWindows) {
+          // return a Failure if the role is admin
+          return Left(ServerFailure('Admins are not allowed to login here.'));
+        }
+        // otherwise propagate the successful entity
+        return Right(loginEntity);
+      },
     );
   }
 }

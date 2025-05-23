@@ -22,7 +22,8 @@ class CardItem extends StatelessWidget {
       hoverColor: AppColors.offPrimary,
       borderRadius: BorderRadius.circular(10),
       onTap: () {
-        context.navigateTo(pageName: AppRoutes.productDetails,
+        context.navigateTo(
+            pageName: AppRoutes.productDetails,
             arguments: (entity: model, context: context));
       },
       child: Card(

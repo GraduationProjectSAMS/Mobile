@@ -4,6 +4,7 @@ import 'package:logger/logger.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../domain/entities/pay_mob_entity.dart';
+import '../manager/payment_cubit/payment_cubit.dart';
 
 class PayMobCardScreenBody extends StatefulWidget {
   const PayMobCardScreenBody({super.key});
@@ -14,46 +15,60 @@ class PayMobCardScreenBody extends StatefulWidget {
 
 class _PayMobCardScreenBodyState extends State<PayMobCardScreenBody> {
   late final WebViewController _controller;
+  late final PaymentCubit _paymentCubit;
+  late final PayMobEntity _payMobEntity;
+  bool _hasLoaded = false;
 
   @override
   void initState() {
     super.initState();
+
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
         NavigationDelegate(
-          onPageStarted: (String url) {
-            print('Started loading: $url');
-          },
-          onPageFinished: (String url) {
-            print('Finished loading: $url');
-            _controller.runJavaScript("""
-              var payButton = document.getElementById('pay-button');
-              if (payButton) {
-                payButton.style.backgroundColor = 'green';
-                payButton.style.opacity = '1';
-                var span = payButton.querySelector('span');
-                if (span) span.innerText = 'Pay Now';
-                payButton.removeAttribute('disabled');
-              }
-            """);
-          },
+          onPageFinished: _onPageFinished,
         ),
       );
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // grab your route arguments exactly once
+    if (!_hasLoaded) {
+      final args = ModalRoute.of(context)!.settings.arguments as ({
+        PaymentCubit cubit,
+        PayMobEntity payMobEntity
+      });
+      _paymentCubit = args.cubit;
+      _payMobEntity = args.payMobEntity;
+
+      final url = _buildPayMobUrl(_payMobEntity.clientSecretKey);
+      Logger().i('Loading PayMob URL: $url');
+      _controller.loadRequest(Uri.parse(url));
+
+      _hasLoaded = true;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final arguments =
-        ModalRoute.of(context)?.settings.arguments as PayMobEntity;
-    final paymentToken = arguments.clientSecretKey;
-    final publicKey = AppEndpoints.payMobPublicKey;
-    final payMobUrl =
-        'https://accept.paymob.com/unifiedcheckout/?publicKey=$publicKey&clientSecret=$paymentToken';
-    Logger().i('PayMob URL: $payMobUrl');
-
-    _controller.loadRequest(Uri.parse(payMobUrl));
-
     return WebViewWidget(controller: _controller);
+  }
+
+  void _onPageFinished(String url) {
+    final uri = Uri.parse(url);
+    if (uri.queryParameters['success'] == 'true') {
+      _paymentCubit.createOrder();
+    }
+  }
+
+  String _buildPayMobUrl(String clientSecretKey) {
+    final publicKey = AppEndpoints.payMobPublicKey;
+    return 'https://accept.paymob.com/unifiedcheckout/'
+        '?publicKey=$publicKey'
+        '&clientSecret=$clientSecretKey';
   }
 }

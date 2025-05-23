@@ -29,7 +29,10 @@ import '../../../features/home/data/repositories/home_repo_impl.dart';
 import '../../../features/favorites/domain/use_cases/get_favorites_use_case.dart';
 import '../../../features/home/domain/use_cases/get_offers_use_case.dart';
 import '../../../features/home/domain/use_cases/get_products_use_case.dart';
+import '../../../features/orders/domain/use_cases/create_order_use_case.dart';
+import '../../../features/orders/domain/use_cases/get_current_order_location_use_case.dart';
 import '../../../features/orders/domain/use_cases/get_orders_use_case.dart';
+import '../../../features/orders/domain/use_cases/set_order_location_use_case.dart';
 import '../../../features/payment/data/data_sources/payment_remote_repo_impl.dart';
 import '../../../features/payment/data/repositories/payment_repo_impl.dart';
 import '../../../features/payment/domain/use_cases/get_pay_mob_client_key_use_case.dart';
@@ -105,5 +108,11 @@ void setupDependencies() {
           () => GetPayMobClientKeyUseCase(getIt.get<PaymentRepoImpl>()));
   getIt.registerLazySingleton<GetOrdersUseCase>(
           () => GetOrdersUseCase(getIt.get<OrdersRepoImpl>()));
+  getIt.registerLazySingleton<SetOrderLocationUseCase>(
+          () => SetOrderLocationUseCase(getIt.get<OrdersRepoImpl>()));
+  getIt.registerLazySingleton<GetCurrentOrderLocationUseCase>(
+          () => GetCurrentOrderLocationUseCase(getIt.get<OrdersRepoImpl>()));
+  getIt.registerLazySingleton<CreateOrderUseCase>(
+          () => CreateOrderUseCase(getIt.get<OrdersRepoImpl>()));
 
 }

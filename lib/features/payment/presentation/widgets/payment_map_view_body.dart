@@ -23,6 +23,7 @@ class PaymentMapViewBodyState extends State<PaymentMapViewBody> {
   LatLng? _initialLatLng;
   Placemark? _selectedPlaceMark;
   Marker? _selectedMarker;
+  bool _isLoading = false;
 
   String get _address =>
       '${_selectedPlaceMark?.street}, ${_selectedPlaceMark?.locality}, ${_selectedPlaceMark?.country}';
@@ -37,7 +38,15 @@ class PaymentMapViewBodyState extends State<PaymentMapViewBody> {
     _updateLocationInfo(_initialLatLng!);
   }
 
+  final LatLngBounds _egyptBounds = LatLngBounds(
+    southwest: const LatLng(22.0, 24.7), // Near Sudan border
+    northeast: const LatLng(31.7, 36.9), // Near Mediterranean
+  );
   Future<void> _updateLocationInfo(LatLng position) async {
+    setState(() {
+      _isLoading = true;
+    });
+
     final placeMarks = await placemarkFromCoordinates(
       position.latitude,
       position.longitude,
@@ -46,19 +55,24 @@ class PaymentMapViewBodyState extends State<PaymentMapViewBody> {
     if (placeMarks.isNotEmpty) {
       final place = placeMarks.first;
       Logger().i(place);
+      final currentZoom = await _mapController?.getZoomLevel() ?? 14;
+
       setState(() {
         _selectedPlaceMark = place;
         _selectedMarker = Marker(
           markerId: const MarkerId('picked-location'),
           position: position,
         );
-        _mapController?.animateCamera(
-          CameraUpdate.newCameraPosition(
-            CameraPosition(target: position, zoom: 14),
-          ),
-        );
       });
+
+      _mapController?.animateCamera(
+        CameraUpdate.newLatLngZoom(position, currentZoom), // ✅ keep same zoom
+      );
     }
+
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   Future<void> _goToMyLocation() async {
@@ -76,14 +90,39 @@ class PaymentMapViewBodyState extends State<PaymentMapViewBody> {
       children: [
         GoogleMap(
           initialCameraPosition: CameraPosition(
-            target: _initialLatLng!,
+            target: _initialLatLng!, // ✅ Use your dynamic position
             zoom: 14,
           ),
-          onMapCreated: (controller) => _mapController = controller,
+          onMapCreated: (controller) {
+            _mapController = controller;
+
+            // Ensure camera starts within Egypt bounds even if _initialLatLng is near edge
+            if (!_egyptBounds.contains(_initialLatLng!)) {
+              // fallback to Egypt center
+              final egyptCenter = LatLng(26.8206, 30.8025);
+              controller
+                  .moveCamera(CameraUpdate.newLatLngZoom(egyptCenter, 6.5));
+            } else {
+              controller
+                  .moveCamera(CameraUpdate.newLatLngZoom(_initialLatLng!, 14));
+            }
+          },
+          cameraTargetBounds:
+              CameraTargetBounds(_egyptBounds), // ⛔ restrict pan
+          minMaxZoomPreference:
+              const MinMaxZoomPreference(6.5, 25), // ⛔ restrict zoom out
           myLocationEnabled: true,
           myLocationButtonEnabled: false,
-          // hide default button
-          onTap: _updateLocationInfo,
+          onTap: (position) {
+            if (_egyptBounds.contains(position)) {
+              _updateLocationInfo(position);
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                    content: Text("Please select a location inside Egypt")),
+              );
+            }
+          },
           markers: _selectedMarker != null ? {_selectedMarker!} : {},
         ),
 
@@ -132,8 +171,9 @@ class PaymentMapViewBodyState extends State<PaymentMapViewBody> {
                     const SizedBox(height: 10),
                     Center(
                       child: MyButton(
+                        isLoading: _isLoading,
                         height: 40,
-                        width: 200,
+                        width: 50.wR,
                         onPressed: () {
                           context.pop(result: _selectedPlaceMark);
                         },

@@ -11,6 +11,10 @@ abstract class TextFormTheme {
     suffixIconColor: AppColors.grey,
     prefixIconColor: AppColors.grey,
     filled: true,
+    contentPadding: const EdgeInsets.symmetric(
+vertical: 5,
+      horizontal: 10,
+    ),
     fillColor: AppColors.white,
     hintStyle: TextStyle(fontSize: fontSize),
     labelStyle: AppStyles.textStyle15.copyWith(color: AppColors.black),

@@ -42,6 +42,20 @@ class OrderProducts {
       imageUrl: '',
     );
   }
+
+  OrderProducts copyWith({
+    num? id,
+    String? type,
+    num? quantity,
+    String? price,
+  }) {
+    return OrderProducts(
+      id: id ?? this.id,
+      type: type ?? this.type,
+      quantity: quantity ?? this.quantity,
+      price: price ?? this.price,
+    );
+  }
 }
 
 extension ProductsEntityMappers on List<ProductEntity>? {

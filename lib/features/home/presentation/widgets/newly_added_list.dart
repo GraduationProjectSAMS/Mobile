@@ -25,7 +25,7 @@ class NewlyAddedList extends StatelessWidget {
       enabled: isLoading,
       child: AnimationLimiter(
         child: SizedBox(
-          height: 28.hR,
+          height: 250.sp,
           child: ListView.separated(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 5),
             scrollDirection: Axis.horizontal,
@@ -33,8 +33,7 @@ class NewlyAddedList extends StatelessWidget {
               isHorizontal: true,
               index: index,
               child: ProductItem(
-                height: 29.hR,
-                width: 20.hR,
+                width: 180.sp,
                 entity: products[index],
               ),
             ),

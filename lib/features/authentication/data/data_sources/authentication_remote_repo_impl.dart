@@ -1,3 +1,4 @@
+import 'package:graduation_project/core/errors/server_failure.dart';
 import 'package:graduation_project/core/utilities/resources/app_endpoints.dart';
 import 'package:graduation_project/core/utilities/services/api_service.dart';
 import 'package:graduation_project/features/authentication/domain/entity/login_entity.dart';
@@ -36,9 +37,10 @@ class AuthenticationRemoteRepoImpl implements AuthenticationRemoteRepo {
     );
 
     final model = LoginModel.fromJson(response.data);
-    final loginEntity = model.data as LoginEntity;
+    final loginEntity = model.data?.toEntity;
 
-    return loginEntity;
+    if (loginEntity != null) return loginEntity;
+    throw ServerFailure('Sign up failed');
   }
 
   @override
@@ -53,8 +55,9 @@ class AuthenticationRemoteRepoImpl implements AuthenticationRemoteRepo {
     );
 
     final model = LoginModel.fromJson(response.data);
-    final loginEntity = model.data as LoginEntity;
-    return loginEntity;
+    final loginEntity = model.data?.toEntity;
+    if (loginEntity != null) return loginEntity;
+    throw ServerFailure('Login failed');
   }
 
   @override
@@ -68,7 +71,8 @@ class AuthenticationRemoteRepoImpl implements AuthenticationRemoteRepo {
     );
 
     final model = LoginModel.fromJson(response.data);
-    final loginEntity = model.data as LoginEntity;
-    return loginEntity;
+    final loginEntity = model.data?.toEntity;
+    if (loginEntity != null) return loginEntity;
+    throw ServerFailure('Login failed');
   }
 }

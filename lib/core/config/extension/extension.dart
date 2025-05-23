@@ -34,6 +34,10 @@ extension GetWidthRatioFromScreen on num {
   double get wR => SizeConfigService.width * this / 100;
 }
 extension GetGridAdptiveChildrenCount on BuildContext{
-  int get gridCount =>SizeConfigService.setGridCount(this);
+  int get gridCount =>SizeConfigService.setGridCountWithContext(this);
+
+}
+extension GetGridAdptiveChildrenCountWithWidth on num{
+  int get gridCount =>SizeConfigService.setGridCountWithWidth(this);
 
 }

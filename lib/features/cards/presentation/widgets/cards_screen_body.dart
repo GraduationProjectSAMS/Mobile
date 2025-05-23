@@ -19,7 +19,6 @@ class CardsScreenBody extends StatelessWidget {
           ),
           Expanded(child: CardBlocBuilder()),
           CardPayNowButton(),
-
         ],
       ),
     );

@@ -17,13 +17,13 @@ class HomeAppBar extends StatelessWidget {
     IconBroken.Notification,
     IconBroken.Heart,
     IconBroken.Buy,
-    Icons.local_shipping_outlined
+    //  Icons.local_shipping_outlined
   ];
   static const titles = [
     AppStrings.notification,
     AppStrings.favorites,
     AppStrings.myCart,
-    AppStrings.myOrders,
+    //  AppStrings.myOrders,
   ];
 
   @override

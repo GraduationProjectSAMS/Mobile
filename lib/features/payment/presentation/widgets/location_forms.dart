@@ -8,8 +8,8 @@ import 'package:graduation_project/core/utilities/resources/app_colors.dart';
 import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 import 'package:graduation_project/core/utilities/services/validator_service.dart';
-import 'package:graduation_project/core/widgets/app_cusstom_drop_down_menu.dart';
 
+import '../../../../core/widgets/my_text_form_field.dart';
 import '../manager/payment_cubit/payment_cubit.dart';
 
 class LocationForms extends StatefulWidget {
@@ -20,27 +20,49 @@ class LocationForms extends StatefulWidget {
 }
 
 class _LocationFormsState extends State<LocationForms> {
-  late final TextEditingController _countryController;
+  late final TextEditingController _cityController;
   late final TextEditingController _streetNameController;
-  Placemark? _selectedPlaceMark;
+  late final TextEditingController _buildingNoController;
+  late final TextEditingController _floorNoController;
+  late final TextEditingController _apartmentNoController;
 
+  late final PaymentCubit cubit;
+
+  final _addressNotifier = ValueNotifier<String?>(null);
   @override
   void initState() {
     super.initState();
-    _countryController = TextEditingController();
+    _cityController = TextEditingController();
     _streetNameController = TextEditingController();
+    _buildingNoController = TextEditingController();
+    _floorNoController = TextEditingController();
+    _apartmentNoController = TextEditingController();
+    cubit = context.read<PaymentCubit>();
   }
 
   @override
   void dispose() {
-    _countryController.dispose();
+    _cityController.dispose();
     _streetNameController.dispose();
+    _buildingNoController.dispose();
+    _floorNoController.dispose();
+    _apartmentNoController.dispose();
+    cubit.formKey.currentState?.dispose();
+    cubit.formKey.currentState?.reset();
+
     super.dispose();
   }
 
-  String get _formattedAddress {
-    final p = _selectedPlaceMark;
-    return '${p?.thoroughfare ?? ''}, ${p?.street ?? ''}, ${p?.locality ?? ''}, ${p?.country ?? ''}';
+  String _formattedAddress(Placemark selectedPlaceMark) {
+    final p = selectedPlaceMark;
+    final parts = [
+      p.street, // This is the composite 'street' with Plus Code
+      p.subThoroughfare,
+      p.thoroughfare,
+      p.subLocality,
+    ];
+
+    return parts.where((e) => e != null && e.trim().isNotEmpty).join(', ');
   }
 
   Future<Position> _determinePosition() async {
@@ -86,80 +108,123 @@ class _LocationFormsState extends State<LocationForms> {
   }
 
   void _updateTextFieldsFromPlacemark(Placemark placemark) {
-    setState(() {
-      _selectedPlaceMark = placemark;
-      _countryController.text = placemark.country ?? '';
-      _streetNameController.text = placemark.street ?? '';
-    });
+    _cityController.text =
+        '${placemark.country}, ${placemark.administrativeArea}';
+    _streetNameController.text =
+        '${placemark.locality}, ${placemark.subLocality}';
+    _addressNotifier.value = _formattedAddress(placemark);
+    cubit.setAddress(_addressNotifier.value);
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Form(
-        key: context.read<PaymentCubit>().formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            MaterialButton(
-              color: Colors.white,
-              padding: const EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+    return BlocListener<PaymentCubit, PaymentStates>(
+      listener: (context, state) {
+        if (state is GetCurrentOrderLocationState) {
+          final entity = state.orderLocationEntity;
+          _addressNotifier.value = entity.orderAddress;
+          _cityController.text = entity.orderCity;
+          _streetNameController.text = entity.orderStreetName;
+          _buildingNoController.text = entity.orderBuildingNo;
+          _floorNoController.text = entity.orderFloorNo;
+          _apartmentNoController.text = entity.orderApartmentNo;
+        }
+      },
+      child: SingleChildScrollView(
+        child: Form(
+          key: cubit.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ValueListenableBuilder(
+                valueListenable: _addressNotifier,
+                builder: (BuildContext context, String? value, Widget? child) =>
+                    MaterialButton(
+                  color: Colors.white,
+                  padding: const EdgeInsets.all(10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  onPressed: _handleLocationSelection,
+                  child: Row(
+                    children: [
+                      const Icon(Icons.location_on, color: AppColors.primary),
+                      const SizedBox(width: 3),
+                      Flexible(
+                        child: Text(
+                          value == null || value.isEmpty
+                              ? AppStrings.addLocationOnMap
+                              : value,
+                          style: AppStyles.defaultStyle,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              onPressed: _handleLocationSelection,
-              child: Row(
+              const SizedBox(height: 10),
+              MyTextFormField(
+                onSaved: cubit.setCity,
+                validator: ValidatorService.emptyValidator,
+                controller: _cityController,
+                labelText: AppStrings.city,
+                hintText: AppStrings.city,
+              ),
+              const SizedBox(height: 10),
+              MyTextFormField(
+                onSaved: cubit.setStreetName,
+                validator: ValidatorService.emptyValidator,
+                controller: _streetNameController,
+                labelText: AppStrings.streetName,
+                hintText: AppStrings.streetName,
+              ),
+              const SizedBox(height: 10),
+              MyTextFormField(
+                controller: _buildingNoController,
+                onSaved: cubit.setBuildingNo,
+                validator: ValidatorService.emptyValidator,
+                hintText: AppStrings.buildingNumber,
+                labelText: AppStrings.buildingNumber,
+              ),
+              const SizedBox(height: 10),
+              Row(
                 children: [
-                  const Icon(Icons.location_on, color: AppColors.primary),
-                  const SizedBox(width: 3),
-                  Flexible(
-                    child: Text(
-                      _selectedPlaceMark == null
-                          ? AppStrings.addLocationOnMap
-                          : _formattedAddress,
-                      style: AppStyles.defaultStyle,
+                  Expanded(
+                    child: MyTextFormField(
+                      controller: _floorNoController,
+                      onSaved: cubit.setFloorNumber,
+                      validator: ValidatorService.emptyValidator,
+                      hintText: AppStrings.floorNumber,
+                      keyboardType: TextInputType.number,
+                      labelText: AppStrings.floorNumber,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: MyTextFormField(
+                      controller: _apartmentNoController,
+                      onSaved: cubit.setApartmentNumber,
+                      validator: ValidatorService.emptyValidator,
+                      labelText: AppStrings.apartmentNumber,
+                      keyboardType: TextInputType.number,
+                      hintText: AppStrings.apartmentNumber,
                     ),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 10),
-            MyTextField(
-              validator: ValidatorService.emptyValidator,
-              controller: _countryController,
-              label: AppStrings.country,
-              hint: AppStrings.country,
-              fillColor: Colors.white,
-            ),
-            const SizedBox(height: 10),
-            MyTextField(
-              validator: ValidatorService.emptyValidator,
-              controller: _streetNameController,
-              hint: AppStrings.streetName,
-              label: AppStrings.streetName,
-              fillColor: Colors.white,
-            ),
-            const SizedBox(height: 10),
-            const MyTextField(
-              hint: AppStrings.buildingNumber,
-              label: AppStrings.buildingNumber,
-              fillColor: Colors.white,
-            ),
-            const SizedBox(height: 10),
-            const MyTextField(
-              hint: AppStrings.floorWithApartment,
-              label: AppStrings.floorWithApartment,
-              fillColor: Colors.white,
-            ),
-            const SizedBox(height: 10),
-            const MyTextField(
-              hint: AppStrings.notes,
-              label: AppStrings.notes,
-              maxLines: 5,
-              minLines: 3,
-              fillColor: Colors.white,
-            ),
-          ],
+              const SizedBox(height: 10),
+              MyTextFormField(
+                keyboardType: TextInputType.multiline,
+                onSaved: cubit.setNotes,
+                hintText: AppStrings.notes,
+                labelText: AppStrings.notes,
+                maxLines: 5,
+                minLines: 3,
+              ),
+            ],
+          ),
         ),
       ),
     );

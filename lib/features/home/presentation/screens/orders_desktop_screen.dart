@@ -20,15 +20,15 @@ class OrdersDesktopScreen extends StatelessWidget {
                 AppStrings.allOffers,
                 style: AppStyles.textStyle20,
               ),
-              Spacer(),
+              const Spacer(),
               OrderStatusSelector(
                 onStatusSelected: (String? value) {},
               ),
-              Spacer(),
+              const Spacer(),
             ],
           ),
         ),
-        Expanded(
+        const Expanded(
           child: GetOrdersBlocBuilder(),
         ),
       ],

@@ -44,7 +44,6 @@ class FavoritesData {
     theme = json['theme'];
     imageUrl = json['image_url'];
     maxQuantity = json['max_quantity'];
-
   }
 
   num? id;
@@ -57,14 +56,13 @@ class FavoritesData {
   String? theme;
   String? imageUrl;
 
-
   ProductEntity get toEntity {
     return ProductEntity(
       id: id?.toInt() ?? 0,
       type: type == 'offer' ? AppConstants.offers : AppConstants.products,
       description: description.toString(),
       price: double.tryParse(price.toString()) ?? 1,
-      maxQuantity:   maxQuantity?.toInt() ?? quantity?.toInt() ?? 0,
+      maxQuantity: maxQuantity?.toInt() ?? quantity?.toInt() ?? 0,
       carQuantity: quantity?.toInt() ?? 0,
       name: name.toString(),
       isFavorite: true,
