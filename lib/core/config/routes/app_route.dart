@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/features/cards/presentation/screens/cards_screen.dart';
+import 'package:graduation_project/features/home/presentation/screens/add_offer_screen.dart';
 import 'package:graduation_project/features/orders/presentation/screens/orders_screen.dart';
 import 'package:graduation_project/features/payment/presentation/screens/payment_map_view.dart';
 
@@ -25,6 +26,7 @@ abstract class AppRoutes {
   static const paymentMap = 'paymentMap';
   static const payMobCard = 'payMobCard';
   static const orders = 'orders';
+  static const addOffers = 'addOffers';
 }
 
 abstract class RouteGenerator {
@@ -60,6 +62,9 @@ abstract class RouteGenerator {
       case AppRoutes.orders:
         return MaterialPageRoute(
             settings: settings, builder: (_) => const OrdersScreen());
+        case AppRoutes.addOffers:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const AddOfferScreen());
       default:
         return _errorRoute();
     }

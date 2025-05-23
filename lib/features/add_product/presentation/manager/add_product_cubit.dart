@@ -58,7 +58,12 @@ class AddProductCubit extends Cubit<AddProductState> {
   }
 
   Future<void> addProduct() async {
+
     if (formKey.currentState!.validate()) {
+      if(pickedImage == null) {
+        emit(AddProductImageNotPicked());
+        return;
+      }
       formKey.currentState!.save();
       emit(AddProductLoading());
       final data = {
@@ -69,7 +74,7 @@ class AddProductCubit extends Cubit<AddProductState> {
         'width': widthController.text,
         'height': heightController.text,
         'category': selectedCategory,
-        'aesthetics': selectedAesthetics,
+        'aesthetic': selectedAesthetics,
         'room': selectedRoom,
         'image': await MultipartFile.fromFile(
           pickedImage!.path,

@@ -323,7 +323,14 @@ class AddProductScreenBody extends StatelessWidget {
                           ],
                         ),
                         const Spacer(),
-                          BlocBuilder<AddProductCubit, AddProductState>(
+                          BlocConsumer<AddProductCubit, AddProductState>(
+                            listener: (context, state) {
+                              if (state is AddProductImageNotPicked) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Please pick an image',),backgroundColor: Colors.red,),
+                                );
+                              }
+                            },
                             builder: (context, state) {
                               if(state is AddProductLoading){
                                 return Padding(

@@ -48,7 +48,7 @@ class OrderData {
     status = json['status'];
     shippingAddress = json['shipping_address'];
     paymentMethod = json['payment_method'];
-    totalPrice = json['total_price'];
+    totalPrice = double.parse(json['total_price'].toString()).toStringAsFixed(2);
     notes = json['notes'];
     orderedAt = json['ordered_at'];
     deliveryDate = json['delivery_date'];
