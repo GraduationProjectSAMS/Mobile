@@ -14,7 +14,10 @@ class HomeRemoteRepoImpl implements HomeRemoteRepo {
   @override
   Future<List<ProductEntity>> getProducts() async {
     final response =
-        await apiService.getData(endPoint: AppEndpoints.getProducts);
+        await apiService.getData(endPoint: AppEndpoints.getProducts,data: {
+          'page': 1,
+          'per_page': 1000,
+        });
     final model = ProductModel.fromJson(response?.data);
     final productList = model.productData.toEntityList;
     return productList;
