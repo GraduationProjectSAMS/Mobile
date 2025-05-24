@@ -5,19 +5,17 @@ import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 
 abstract class TextFormTheme {
-  static  double get fontSize => 14.sp;
   static InputDecorationTheme inputDecorationLightTheme = InputDecorationTheme(
-    floatingLabelBehavior: FloatingLabelBehavior.always,
     suffixIconColor: AppColors.grey,
     prefixIconColor: AppColors.grey,
     filled: true,
     contentPadding: const EdgeInsets.symmetric(
-vertical: 5,
+      vertical: 5,
       horizontal: 10,
     ),
     fillColor: AppColors.white,
-    hintStyle: TextStyle(fontSize: fontSize),
-    labelStyle: AppStyles.textStyle15.copyWith(color: AppColors.black),
+    hintStyle: AppStyles.defaultStyle,
+    labelStyle: AppStyles.defaultStyle.copyWith(color: AppColors.black),
     disabledBorder: TextFormTheme.setOutlineInputBorder(color: AppColors.grey),
     enabledBorder: TextFormTheme.setOutlineInputBorder(color: AppColors.grey),
     focusedBorder:

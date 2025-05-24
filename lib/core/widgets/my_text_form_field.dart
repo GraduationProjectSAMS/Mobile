@@ -1,100 +1,129 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:graduation_project/core/config/extension/extension.dart';
+
 
 class MyTextFormField extends StatelessWidget {
   const MyTextFormField({
     super.key,
-    this.hintText,
     this.labelText,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.hidePassword = false,
-    this.onChanged,
-    this.validator,
+    this.hintText,
+    this.initialValue,
     this.controller,
-    this.keyboardType = TextInputType.text,
-    this.suffixIconOnPressed,
-    this.enabled,
-    this.readOnly = false,
-    this.autofocus = false,
-    this.autofillHints,
-    this.onSaved,
-    this.focusNode,
+    this.suffixIcon,
+    this.prefixIcon,
+    this.validator,
     this.onFieldSubmitted,
-    this.textInputAction,
-    this.maxLines=1,
+    this.onChanged,
+    this.hidePassword = false,
+    this.maxLines = 1,
     this.minLines,
-    this.suffix,
+    this.style,
+    this.hintStyle,
+    this.keyboardType = TextInputType.text,
+    this.readOnly = false,
+    this.focusNode,
+    this.textInputAction,
+    this.autofillHints,
     this.inputFormatters,
+    this.onTap,
+    this.centerLabel,
+    this.contentPadding,
+    this.enabled,
+    this.enabledBorder,
+    this.focusedBorder,
+    this.disabledBorder,
+    this.errorBorder,
+    this.fillColor,
+    this.isDense,
+    this.autoValidateMode = AutovalidateMode.onUserInteraction,
+    this.autofocus = false,
+    this.suffix, this.onSaved,
   });
 
-  final String? hintText;
   final String? labelText;
-  final Widget? prefixIcon;
-  final Widget? suffixIcon;
-  final Widget? suffix;
-  final bool hidePassword;
-  final void Function(String)? onChanged;
-  final String? Function(String?)? validator;
+  final String? hintText;
+  final String? initialValue;
   final TextEditingController? controller;
-  final TextInputType keyboardType;
-  final VoidCallback? suffixIconOnPressed;
-  final bool? enabled;
-  final bool readOnly;
-  final bool autofocus;
-  final Iterable<String>? autofillHints;
-  final void Function(String?)? onSaved;
-  final FocusNode? focusNode;
-  final void Function(String)? onFieldSubmitted;
-  final TextInputAction? textInputAction;
-
-  // max min lines
+  final Widget? suffixIcon;
+  final Widget? prefixIcon;
+  final Widget? suffix;
+  final String? Function(String?)? validator;
+  final void Function(String?)? onFieldSubmitted;
+  final void Function(String?)? onChanged;
+  final bool hidePassword;
   final int maxLines;
   final int? minLines;
+  final TextStyle? style;
+  final TextStyle? hintStyle;
+  final TextInputType? keyboardType;
+  final bool readOnly;
+  final FocusNode? focusNode;
+  final TextInputAction? textInputAction;
+  final Iterable<String>? autofillHints;
   final List<TextInputFormatter>? inputFormatters;
-
+  final VoidCallback? onTap;
+  final bool? centerLabel;
+  final EdgeInsetsGeometry? contentPadding;
+  final bool? enabled;
+  final InputBorder? enabledBorder;
+  final InputBorder? focusedBorder;
+  final InputBorder? disabledBorder;
+  final InputBorder? errorBorder;
+  final Color? fillColor;
+  final bool? isDense;
+  final AutovalidateMode autoValidateMode;
+  final bool autofocus;
+final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      maxLines: maxLines,
-      minLines: minLines,
-      readOnly: readOnly,
-      autofillHints: autofillHints,
-      enabled: enabled,
-      focusNode: focusNode,
-      autofocus: autofocus,
-      onTapOutside: (event) {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      inputFormatters: inputFormatters,
-      keyboardType: keyboardType,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: controller,
+      initialValue: controller == null ? initialValue : null,
+      enabled: enabled,
+      autofocus: autofocus,
+      autovalidateMode: autoValidateMode,
       validator: validator,
-      textInputAction: textInputAction,
+      obscureText: hidePassword,
+      minLines: minLines,
+      maxLines: maxLines,
+      style: style,
+      keyboardType: maxLines>2? TextInputType.multiline: keyboardType,
+      focusNode: focusNode,
+      textInputAction:  textInputAction,
+      autofillHints: autofillHints,
+      inputFormatters: inputFormatters,
+      readOnly: readOnly,
+      onTap: onTap,
       onFieldSubmitted: onFieldSubmitted,
       onChanged: onChanged,
       onSaved: onSaved,
-      obscureText: hidePassword,
+      onTapOutside: (_) {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       decoration: InputDecoration(
+        label: labelText != null
+            ? FittedBox(child: Text(labelText!, maxLines: 1))
+            : null,
         hintText: hintText,
-        hintStyle: TextStyle(
-            overflow: TextOverflow.ellipsis,
-            fontSize: 13.sp
-        ),
-        label: Text(
-          labelText ?? '',
-          maxLines: 1,
-          style:  TextStyle(
-            overflow: TextOverflow.ellipsis,
-            fontSize: 13.sp
-          ),
-        ),
+        hintStyle: hintStyle,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
-        suffix: suffix
+        suffix: suffix,
+        fillColor: fillColor,
+
+        isDense: isDense,
+        contentPadding: contentPadding ??
+            EdgeInsets.symmetric(
+              vertical: (maxLines > 1) ? 10 : 0,
+              horizontal: 10,
+            ),
+        enabledBorder: enabledBorder,
+        focusedBorder: focusedBorder,
+        disabledBorder: disabledBorder,
+        errorBorder: errorBorder,
+        focusedErrorBorder: errorBorder,
       ),
     );
   }
 }
+
