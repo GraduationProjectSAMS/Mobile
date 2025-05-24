@@ -182,6 +182,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
   @override
   Widget build(BuildContext context) {
     return MyTextFormField(
+      enableInteractiveSelection: false,
       key: _textFieldKey,
       onTap: () {
         if (!isLoading && widget.enabled) {

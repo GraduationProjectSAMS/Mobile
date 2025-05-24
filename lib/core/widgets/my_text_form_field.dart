@@ -37,7 +37,7 @@ class MyTextFormField extends StatelessWidget {
     this.isDense,
     this.autoValidateMode = AutovalidateMode.onUserInteraction,
     this.autofocus = false,
-    this.suffix, this.onSaved,
+    this.suffix, this.onSaved, this.enableInteractiveSelection,
   });
 
   final String? labelText;
@@ -73,10 +73,12 @@ class MyTextFormField extends StatelessWidget {
   final bool? isDense;
   final AutovalidateMode autoValidateMode;
   final bool autofocus;
+  final bool? enableInteractiveSelection;
 final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enableInteractiveSelection: enableInteractiveSelection,
       controller: controller,
       initialValue: controller == null ? initialValue : null,
       enabled: enabled,

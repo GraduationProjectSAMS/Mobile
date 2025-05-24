@@ -16,10 +16,8 @@ class AddProductRepoImpl implements AddProductRepo {
     try {
       await remoteRepo.addProduct(data: data);
       return const Right(null);
-    } on Failure catch (failure) {
-      return Left(failure);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+    return Left(appServerFailure(e));
     }
   }
 
