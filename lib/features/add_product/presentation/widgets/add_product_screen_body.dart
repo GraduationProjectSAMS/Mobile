@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/utilities/resources/app_colors.dart';
@@ -151,7 +152,6 @@ class AddProductScreenBody extends StatelessWidget {
                     child: Column(
                       children: [
                         MyTextFormField(
-                          hintText: 'Product Name',
                           labelText: 'Product Name',
                           controller: cubit.productNameController,
                           validator: ValidatorService.emptyValidator,
@@ -177,6 +177,7 @@ class AddProductScreenBody extends StatelessWidget {
                                 controller: cubit.productPriceController,
                                 keyboardType: TextInputType.number,
                                 validator: ValidatorService.emptyValidator,
+                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                               ),
                             ),
                             const SizedBox(
@@ -221,6 +222,7 @@ class AddProductScreenBody extends StatelessWidget {
                                 controller: cubit.lengthController,
                                 keyboardType: TextInputType.number,
                                 validator: ValidatorService.emptyValidator,
+                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                                 suffix: Text(
                                   'Cm',
                                   style: TextStyle(
@@ -239,6 +241,7 @@ class AddProductScreenBody extends StatelessWidget {
                                 controller: cubit.widthController,
                                 keyboardType: TextInputType.number,
                                 validator: ValidatorService.emptyValidator,
+                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                                 suffix: Text(
                                   'Cm',
                                   style: TextStyle(
@@ -257,6 +260,7 @@ class AddProductScreenBody extends StatelessWidget {
                                 controller: cubit.heightController,
                                 keyboardType: TextInputType.number,
                                 validator: ValidatorService.emptyValidator,
+                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                                 suffix: Text(
                                   'Cm',
                                   style: TextStyle(
@@ -328,6 +332,17 @@ class AddProductScreenBody extends StatelessWidget {
                               if (state is AddProductImageNotPicked) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(content: Text('Please pick an image',),backgroundColor: Colors.red,),
+                                );
+                              }
+                              if(state is AddProductSuccess) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Product added successfully',),backgroundColor: Colors.green,),
+                                );
+                                Navigator.pop(context,true);
+                              }
+                              if(state is AddProductError) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(state.errorMessage),backgroundColor: Colors.red,),
                                 );
                               }
                             },

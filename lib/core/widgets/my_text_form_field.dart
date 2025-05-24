@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:graduation_project/core/config/extension/extension.dart';
 
 class MyTextFormField extends StatelessWidget {
   const MyTextFormField({
@@ -24,6 +26,7 @@ class MyTextFormField extends StatelessWidget {
     this.maxLines=1,
     this.minLines,
     this.suffix,
+    this.inputFormatters,
   });
 
   final String? hintText;
@@ -49,6 +52,7 @@ class MyTextFormField extends StatelessWidget {
   // max min lines
   final int maxLines;
   final int? minLines;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +67,7 @@ class MyTextFormField extends StatelessWidget {
       onTapOutside: (event) {
         FocusManager.instance.primaryFocus?.unfocus();
       },
+      inputFormatters: inputFormatters,
       keyboardType: keyboardType,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: controller,
@@ -74,9 +79,17 @@ class MyTextFormField extends StatelessWidget {
       obscureText: hidePassword,
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle: TextStyle(
+            overflow: TextOverflow.ellipsis,
+            fontSize: 13.sp
+        ),
         label: Text(
           labelText ?? '',
           maxLines: 1,
+          style:  TextStyle(
+            overflow: TextOverflow.ellipsis,
+            fontSize: 13.sp
+          ),
         ),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,

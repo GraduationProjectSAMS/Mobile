@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/features/home/presentation/widgets/product_item.dart';
-import 'package:logger/logger.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/utilities/functions/staggered_animations.dart';

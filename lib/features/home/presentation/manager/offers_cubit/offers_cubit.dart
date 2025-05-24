@@ -13,6 +13,8 @@ class OffersCubit extends Cubit<OffersStates> {
 
   List<ProductEntity> homeOffers = [];
 
+  static OffersCubit instance(BuildContext context) =>
+      BlocProvider.of<OffersCubit>(context);
   Future<void> getOffers() async {
     if (state is! OffersLoadingState) {
       emit(OffersLoadingState());
@@ -37,5 +39,10 @@ class OffersCubit extends Cubit<OffersStates> {
     if (state is OffersSuccessState) {
       emit(ViewAllOffersStates());
     }
+  }
+  void refreshOffers() {
+    offers = [];
+    homeOffers = [];
+    getOffers();
   }
 }

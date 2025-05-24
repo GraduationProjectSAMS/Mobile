@@ -17,7 +17,7 @@ class ProductSizeWithDescription extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 5),
           child: Text(
-            '300 x 200 cm, 100 cm Height',
+            '${arg.entity.length} x ${arg.entity.width} cm, ${arg.entity.height} cm Height',
             style: AppStyles.textStyle14.copyWith(
               color: AppColors.black.withValues(alpha: 0.6),
               fontSize: 13.sp,

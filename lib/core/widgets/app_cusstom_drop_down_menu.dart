@@ -320,6 +320,10 @@ class _MyTextField extends StatelessWidget {
         alignLabelWithHint: centerLabel,
         fillColor: fillColor,
         filled: fillColor != null,
+        labelStyle: TextStyle(
+            overflow: TextOverflow.ellipsis,
+            fontSize: 13.sp
+        ),
         label:
         label != null ? FittedBox(child: Text(label!, maxLines: 1)) : null,
         suffixIcon: suffixIcon,

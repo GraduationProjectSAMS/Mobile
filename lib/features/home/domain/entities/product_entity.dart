@@ -12,6 +12,9 @@ class ProductEntity {
   final String imageUrl;
   final int maxQuantity;
   final int carQuantity;
+  final int length;
+  final int width;
+  final int height;
   final bool isFavorite;
   final String type;
 
@@ -24,6 +27,9 @@ class ProductEntity {
     required this.maxQuantity,
     required this.isFavorite,
     required this.type,
+    this.length = 0,
+    this.width = 0,
+    this.height = 0,
     this.carQuantity = 0,
   });
 

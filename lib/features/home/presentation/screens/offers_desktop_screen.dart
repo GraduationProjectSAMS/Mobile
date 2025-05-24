@@ -3,6 +3,7 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/config/routes/app_route.dart';
 import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/widgets/add_button.dart';
+import 'package:graduation_project/features/home/presentation/manager/offers_cubit/offers_cubit.dart';
 import 'package:graduation_project/features/home/presentation/widgets/offers_bloc_builder.dart';
 
 import '../../../../core/utilities/resources/app_styles.dart';
@@ -24,7 +25,13 @@ class OffersDesktopScreen extends StatelessWidget {
                 style: AppStyles.textStyle20,
               ),
               AddButton(text: AppStrings.addOffer, onPressed: () {
-                context.navigateTo(pageName: AppRoutes.addOffers);
+                context.navigateTo(pageName: AppRoutes.addOffers).then(
+                  (value) {
+                    if (value == true) {
+                      OffersCubit.instance(context).refreshOffers();
+                    }
+                  },
+                );
               })
             ],
           ),

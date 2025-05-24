@@ -33,6 +33,9 @@ class ProductData {
     this.quantity,
     this.imageUrl,
     this.isProductInFavorite,
+    this.length,
+    this.width,
+    this.height,
   });
 
   ProductData.fromJson(dynamic json) {
@@ -45,6 +48,9 @@ class ProductData {
     price = json['price'];
     quantity = json['quantity'];
     imageUrl = json['image_url'];
+    length = json['length'];
+    width = json['width'];
+    height = json['height'];
     isProductInFavorite = json['in_wish_list'];
   }
 
@@ -56,6 +62,9 @@ class ProductData {
   String? description;
   String? price;
   num? quantity;
+  num? length;
+  num? width;
+  num? height;
   String? imageUrl;
   bool? isProductInFavorite;
 
@@ -68,5 +77,8 @@ class ProductData {
         price: double.tryParse(price.toString()) ?? 0.0,
         imageUrl: AppConstants.kNullProductImage,
         maxQuantity: quantity?.toInt() ?? 0,
+    width: width?.toInt() ?? 0,
+    length: length?.toInt() ?? 0,
+    height: height?.toInt() ?? 0,
       );
 }

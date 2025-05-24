@@ -5,16 +5,24 @@ sealed class AddOfferState {}
 
 final class AddOfferInitial extends AddOfferState {}
 
-class AddProductImagePicked extends AddOfferState {}
+class AddOfferImagePicked extends AddOfferState {}
 
-class AddProductImageTooLarge extends AddOfferState {}
+class AddOfferImageTooLarge extends AddOfferState {}
 
-class AddProductImagePickCancelled extends AddOfferState {}
+class AddOfferImagePickCancelled extends AddOfferState {}
 
-class AddProductLoading extends AddOfferState {}
+class AddOfferLoading extends AddOfferState {}
 
-class AddProductSuccess extends AddOfferState {}
+class AddOfferSuccess extends AddOfferState {}
 
-class AddProductImageNotPicked extends AddOfferState {}
+class AddOfferImageNotPicked extends AddOfferState {}
 
 class AddOfferUpdated extends AddOfferState {}
+
+class AddOfferNoProductsSelected extends AddOfferState {}
+
+class AddOfferError extends AddOfferState {
+  final String errorMessage;
+
+  AddOfferError(this.errorMessage);
+}

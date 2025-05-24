@@ -7,4 +7,8 @@ abstract class HomeRepo {
   Future<Either<Failure, List<ProductEntity>>> getProducts();
 
   Future<Either<Failure, List<ProductEntity>>> getOffers();
+
+  Future<Either<Failure, void>> addOffer({
+    required Map<String, dynamic> offerData,
+  });
 }

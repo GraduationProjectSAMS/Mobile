@@ -29,4 +29,16 @@ class HomeRepoImpl implements HomeRepo {
       return Left(appServerFailure(e));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> addOffer({
+    required Map<String, dynamic> offerData,
+  }) async {
+    try {
+      await remoteRepo.addOffer(offerData: offerData);
+      return const Right(null);
+    } catch (e) {
+      return Left(appServerFailure(e));
+    }
+  }
 }

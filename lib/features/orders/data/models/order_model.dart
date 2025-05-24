@@ -62,7 +62,7 @@ class OrderData {
   String? status;
   String? shippingAddress;
   String? paymentMethod;
-  num? totalPrice;
+  String? totalPrice;
   String? notes;
   String? orderedAt;
   String? deliveryDate;

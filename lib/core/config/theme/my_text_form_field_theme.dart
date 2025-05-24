@@ -28,7 +28,7 @@ vertical: 5,
     focusedErrorBorder:
         TextFormTheme.setOutlineInputBorder(color: AppColors.red, width: 2),
     errorStyle:
-        AppStyles.textStyle15.copyWith(color: AppColors.red, fontSize: 12.5.sp),
+        AppStyles.textStyle15.copyWith(color: AppColors.red, fontSize: 9.sp),
   );
 
   static OutlineInputBorder setOutlineInputBorder(

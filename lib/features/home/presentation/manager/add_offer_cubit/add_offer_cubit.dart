@@ -1,15 +1,17 @@
 import 'dart:io';
-
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
+
+import '../../../domain/use_cases/add_offer_use_case.dart';
 
 part 'add_offer_state.dart';
 
 class AddOfferCubit extends Cubit<AddOfferState> {
-  AddOfferCubit() : super(AddOfferInitial());
+  final AddOfferUseCase addOfferUseCase;
+  AddOfferCubit({
+    required this.addOfferUseCase,
+}) : super(AddOfferInitial());
 
   static AddOfferCubit instance(context) => BlocProvider.of(context);
 
@@ -20,6 +22,8 @@ class AddOfferCubit extends Cubit<AddOfferState> {
   TextEditingController offerDescriptionController =
       TextEditingController();
   TextEditingController offerPriceController = TextEditingController();
+  TextEditingController offerQuantityController = TextEditingController();
+  TextEditingController offerThemeController = TextEditingController();
 
   Future<void> pickSingleImage() async {
     final picker = ImagePicker();
@@ -33,18 +37,18 @@ class AddOfferCubit extends Cubit<AddOfferState> {
       // Check if image is <= 3MB
       if (imageSize <= 3 * 1024 * 1024) {
         pickedImage = imageFile;
-        emit(AddProductImagePicked());
+        emit(AddOfferImagePicked());
       } else {
-        emit(AddProductImageTooLarge());
+        emit(AddOfferImageTooLarge());
       }
     } else {
-      emit(AddProductImagePickCancelled());
+      emit(AddOfferImagePickCancelled());
     }
   }
 
   void removeImage() {
     pickedImage = null;
-    emit(AddProductImagePickCancelled());
+    emit(AddOfferImagePickCancelled());
   }
   List<String> offerIds = [];
   final TextEditingController offerIdInputController = TextEditingController();
@@ -55,4 +59,35 @@ class AddOfferCubit extends Cubit<AddOfferState> {
     emit(AddOfferUpdated());
   }
 
+  Future<void> addOffer() async {
+
+    if (formKey.currentState!.validate()) {
+      if(pickedImage == null) {
+        emit(AddOfferImageNotPicked());
+        return;
+      }
+      if(offerIds.isEmpty) {
+        emit(AddOfferNoProductsSelected());
+        return;
+      }
+      formKey.currentState!.save();
+      emit(AddOfferLoading());
+      final data = {
+        'title': offerNameController.text,
+        'description': offerDescriptionController.text,
+        'price': offerPriceController.text,
+        'quantity': offerQuantityController.text,
+        'theme': offerThemeController.text,
+        for(int i = 0; i < offerIds.length; i++)
+          'product_ids[${i + 1}]': offerIds[i],
+      };
+      final result = await addOfferUseCase(data);
+      result.fold(
+            (failure) {
+          emit(AddOfferError(failure.errorMessage));
+        },
+            (success) => emit(AddOfferSuccess()),
+      );
+    }
+  }
 }

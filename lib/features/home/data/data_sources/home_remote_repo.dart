@@ -4,4 +4,8 @@ abstract class HomeRemoteRepo {
   Future<List<ProductEntity>> getProducts();
 
   Future<List<ProductEntity>> getOffers();
+
+  Future<void> addOffer({
+    required Map<String, dynamic> offerData,
+  });
 }

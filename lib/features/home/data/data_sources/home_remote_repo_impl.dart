@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:graduation_project/features/home/data/models/offers_model.dart';
 import 'package:graduation_project/features/home/data/models/product_model.dart';
 
@@ -25,11 +26,22 @@ class HomeRemoteRepoImpl implements HomeRemoteRepo {
 
   @override
   Future<List<ProductEntity>> getOffers() async {
-    final response = await apiService.getData(endPoint: AppEndpoints.getOffers);
+    final response = await apiService.getData(endPoint: AppEndpoints.getOffers, data: {
+      'page': 1,
+      'paginate': 1000,
+    });
     final model = OffersModel.fromJson(response?.data);
     final productList = model.data.toEntityList;
     return productList;
   }
 
-// Implement methods here
+  @override
+  Future<void> addOffer({
+    required Map<String, dynamic> offerData,
+  }) async {
+    await apiService.postData(
+      endPoint: AppEndpoints.getOffers,
+      formData: FormData.fromMap(offerData),
+    );
+  }
 }
