@@ -36,7 +36,6 @@ class ProductFilterWithSearch extends StatelessWidget {
             height: 10,
           ),
           const CustomSearchBar(
-
             hintText: 'Search for products',
           ),
         ],

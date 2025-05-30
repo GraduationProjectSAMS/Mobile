@@ -54,12 +54,12 @@ class OffersData {
       isFavorite: isProductInFavorite ?? false,
       type: AppConstants.offers,
       id: id?.toInt() ?? 0,
-      name: title??'',
+      name: title ?? '',
       description: description ?? '',
       price: double.tryParse(price.toString()) ?? 1,
       imageUrl: photoUrl ==
               'https://furnisique.servehttp.com/storage/products/images/1DsaMK8LbiV2a6XysnDZw35OTa4L1ypkK9NQ5r4n.png'
           ? AppConstants.kNullProductImage
-          : photoUrl??'',
+          : photoUrl ?? '',
       maxQuantity: quantity?.toInt() ?? 0);
 }

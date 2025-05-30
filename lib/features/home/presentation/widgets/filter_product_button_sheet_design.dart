@@ -6,20 +6,14 @@ import 'filter_chip_list_screen.dart';
 
 void showFilterProductButtonSheet({
   required BuildContext context,
-
-
 }) {
   showModalBottomSheet(
     backgroundColor: AppColors.offWhite,
     context: context,
-
-    builder: (_) =>const FilterProductButtonSheetDesign(
-
-    ),
-     
-
+    builder: (_) => const FilterProductButtonSheetDesign(),
   );
 }
+
 class FilterProductButtonSheetDesign extends StatelessWidget {
   const FilterProductButtonSheetDesign({super.key});
 
@@ -27,13 +21,20 @@ class FilterProductButtonSheetDesign extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric( horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
-crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20,),
-            Text('Categories', style: AppStyles.textStyle20,),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Categories',
+              style: AppStyles.textStyle20,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             FilterChipList(
               filters: const [
                 'Dining Sets',
@@ -43,8 +44,6 @@ crossAxisAlignment: CrossAxisAlignment.start,
                 'Outdoor Furniture',
                 'Desks',
                 'Cabinets',
-
-
                 'Office Furniture',
                 'Kids\' Furniture',
                 'Accent Furniture',
@@ -59,10 +58,9 @@ crossAxisAlignment: CrossAxisAlignment.start,
                 print('Selected filter: $value');
               },
             ),
-            const SizedBox(height: 20,),
-
-
-        
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),

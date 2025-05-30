@@ -42,7 +42,6 @@ class ProductItem extends StatelessWidget {
         child: SizedBox(
           height: height,
           width: width,
-
           child: Column(
             children: [
               Expanded(

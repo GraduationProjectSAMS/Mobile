@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/core/utilities/functions/my_toast.dart';
 import 'package:graduation_project/features/home/presentation/manager/add_offer_cubit/add_offer_cubit.dart';
+
 import '../../../../core/utilities/resources/app_colors.dart';
 import '../../../../core/utilities/resources/app_strings.dart';
 import '../../../../core/utilities/resources/app_styles.dart';
+import '../../../../core/utilities/services/overlay_progress_service.dart';
 import '../../../../core/utilities/services/validator_service.dart';
 import '../../../../core/widgets/my_button_widget.dart';
 import '../../../../core/widgets/my_text_form_field.dart';
@@ -214,36 +217,39 @@ class AddOfferScreenBody extends StatelessWidget {
                         const Spacer(),
                         BlocConsumer<AddOfferCubit, AddOfferState>(
                           listener: (context, state) {
-                            if (state is AddOfferNoProductsSelected) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    'Please select at least one product Id',
-                                  ),
-                                  backgroundColor: Colors.red,
-                                ),
+                            if (state is AddOfferLoading) {
+                              OverlayProgressService.show(
+                                context,
+                                message: 'Adding offer...',
+                                progress: state.progress ?? 0.0,
                               );
+                            }
+                            if (state is AddOfferNoProductsSelected) {
+                              showAdaptiveToast(
+                                  context: context,
+                                  msg: 'Please select at least one product Id',
+                                  state: ToastStates.error);
                             }
                             if (state is AddOfferImageNotPicked) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    'Please pick an image',
-                                  ),
-                                  backgroundColor: Colors.red,
-                                ),
-                              );
+                              showAdaptiveToast(
+                                  context: context,
+                                  msg: 'Please pick an image for the offer',
+                                  state: ToastStates.error);
                             }
-                            if(state is AddOfferSuccess) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Offer added successfully',),backgroundColor: Colors.green,),
-                              );
-                              Navigator.pop(context,true);
+                            if (state is AddOfferSuccess) {
+                              OverlayProgressService.hide();
+                              showAdaptiveToast(
+                                  context: context,
+                                  msg: 'Offer added successfully',
+                                  state: ToastStates.success);
+                              Navigator.pop(context, true);
                             }
-                            if(state is AddOfferError) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text(state.errorMessage),backgroundColor: Colors.red,),
-                              );
+                            if (state is AddOfferError) {
+                              OverlayProgressService.hide();
+                              showAdaptiveToast(
+                                  context: context,
+                                  msg: state.errorMessage,
+                                  state: ToastStates.error);
                             }
                           },
                           builder: (context, state) {
@@ -370,16 +376,14 @@ class _TagFieldWidgetState extends State<TagFieldWidget> {
                     focusNode: _focusNode,
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    decoration:  InputDecoration(
+                    decoration: InputDecoration(
                       hintText: 'Enter Product ID ',
                       hintStyle: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          fontSize: 12.sp
-                      ),
+                          overflow: TextOverflow.ellipsis, fontSize: 12.sp),
                       border: InputBorder.none,
                       isDense: true,
-                      contentPadding:
-                          const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 10),
                     ),
                     style: const TextStyle(fontSize: 14),
                     onSubmitted: _addTag,

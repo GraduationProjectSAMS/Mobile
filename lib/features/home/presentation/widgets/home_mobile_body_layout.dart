@@ -64,6 +64,7 @@ class _HomeMobileBodyLayoutState extends State<HomeMobileBodyLayout> {
           ),
     );
   }
+
   Future<void> _refreshData(BuildContext context) async {
     await Future.wait([
       context.read<ProductCubit>().getProducts(),
@@ -72,6 +73,7 @@ class _HomeMobileBodyLayoutState extends State<HomeMobileBodyLayout> {
       context.read<AddFavoriteCubit>().getFavorites(),
     ]);
   }
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -83,9 +85,7 @@ class _HomeMobileBodyLayoutState extends State<HomeMobileBodyLayout> {
           backgroundColor: AppColors.offWhite,
           body: SafeArea(
             child: RefreshIndicator(
-              onRefresh: () => _refreshData(context)
-
-              ,
+              onRefresh: () => _refreshData(context),
               child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
                 child: Column(
