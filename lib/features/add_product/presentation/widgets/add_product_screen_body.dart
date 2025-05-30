@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/core/utilities/functions/my_toast.dart';
 import 'package:graduation_project/core/utilities/resources/app_colors.dart';
 import 'package:graduation_project/core/widgets/app_cusstom_drop_down_menu.dart';
 import 'package:graduation_project/core/widgets/my_text_form_field.dart';
@@ -47,97 +48,98 @@ class AddProductScreenBody extends StatelessWidget {
                     builder: (context, state) {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(50, 50, 0, 50),
-                        child: cubit.pickedImage == null ? DottedBorder(
-                          color: Colors.grey[500]!,
-                          borderType: BorderType.RRect,
-                          radius: const Radius.circular(10),
-                          dashPattern: const [5, 5, 5, 5],
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image(
-                                  image: const AssetImage(
-                                    'assets/images/gallery.png',
+                        child: cubit.pickedImage == null
+                            ? DottedBorder(
+                                color: Colors.grey[500]!,
+                                borderType: BorderType.RRect,
+                                radius: const Radius.circular(10),
+                                dashPattern: const [5, 5, 5, 5],
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image(
+                                        image: const AssetImage(
+                                          'assets/images/gallery.png',
+                                        ),
+                                        height: 65.sp,
+                                        width: 65.sp,
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Column(
+                                        children: [
+                                          Text(
+                                            '• Please add clear image of the product',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          Text(
+                                            '• The image should be in JPG or PNG format',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          Text(
+                                            '• Maximum file size is 3MB',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      FloatingActionButton(
+                                        onPressed: cubit.pickSingleImage,
+                                        mini: true,
+                                        shape: const CircleBorder(),
+                                        foregroundColor: AppColors.primary,
+                                        backgroundColor: Colors.lightGreen,
+                                        child: Icon(
+                                          Icons.add,
+                                          size: 20.sp,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  height: 65.sp,
-                                  width: 65.sp,
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Column(
+                              )
+                            : Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
-                                      '• Please add clear image of the product',
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: Colors.grey,
+                                    Container(
+                                      constraints: BoxConstraints(
+                                        maxHeight: 60.hR,
+                                      ),
+                                      child: Image.file(
+                                        cubit.pickedImage!,
                                       ),
                                     ),
-                                    Text(
-                                      '• The image should be in JPG or PNG format',
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: Colors.grey,
-                                      ),
+                                    const SizedBox(
+                                      height: 10,
                                     ),
-                                    Text(
-                                      '• Maximum file size is 3MB',
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: Colors.grey,
+                                    // remove image text button
+                                    TextButton(
+                                      onPressed: cubit.removeImage,
+                                      child: Text(
+                                        'Remove Image',
+                                        style: TextStyle(
+                                          fontSize: 12.sp,
+                                          color: Colors.red,
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                FloatingActionButton(
-                                  onPressed: cubit.pickSingleImage,
-                                  mini: true,
-                                  shape: const CircleBorder(),
-                                  foregroundColor: AppColors.primary,
-                                  backgroundColor: Colors.lightGreen,
-                                  child: Icon(
-                                    Icons.add,
-                                    size: 20.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ) : Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                constraints: BoxConstraints(
-                                  maxHeight: 60.hR,
-                                ),
-                                child: Image.file(
-                                  cubit.pickedImage!,
-
-                                ),
                               ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              // remove image text button
-                              TextButton(
-                                onPressed: cubit.removeImage,
-                                child: Text(
-                                  'Remove Image',
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       );
                     },
                   ),
@@ -177,7 +179,9 @@ class AddProductScreenBody extends StatelessWidget {
                                 controller: cubit.productPriceController,
                                 keyboardType: TextInputType.number,
                                 validator: ValidatorService.emptyValidator,
-                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
                               ),
                             ),
                             const SizedBox(
@@ -222,7 +226,9 @@ class AddProductScreenBody extends StatelessWidget {
                                 controller: cubit.lengthController,
                                 keyboardType: TextInputType.number,
                                 validator: ValidatorService.emptyValidator,
-                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
                                 suffix: Text(
                                   'Cm',
                                   style: TextStyle(
@@ -241,7 +247,9 @@ class AddProductScreenBody extends StatelessWidget {
                                 controller: cubit.widthController,
                                 keyboardType: TextInputType.number,
                                 validator: ValidatorService.emptyValidator,
-                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
                                 suffix: Text(
                                   'Cm',
                                   style: TextStyle(
@@ -260,7 +268,9 @@ class AddProductScreenBody extends StatelessWidget {
                                 controller: cubit.heightController,
                                 keyboardType: TextInputType.number,
                                 validator: ValidatorService.emptyValidator,
-                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
                                 suffix: Text(
                                   'Cm',
                                   style: TextStyle(
@@ -327,39 +337,44 @@ class AddProductScreenBody extends StatelessWidget {
                           ],
                         ),
                         const Spacer(),
-                          BlocConsumer<AddProductCubit, AddProductState>(
-                            listener: (context, state) {
-                              if (state is AddProductImageNotPicked) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Please pick an image',),backgroundColor: Colors.red,),
-                                );
-                              }
-                              if(state is AddProductSuccess) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Product added successfully',),backgroundColor: Colors.green,),
-                                );
-                                Navigator.pop(context,true);
-                              }
-                              if(state is AddProductError) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text(state.errorMessage),backgroundColor: Colors.red,),
-                                );
-                              }
-                            },
-                            builder: (context, state) {
-                              if(state is AddProductLoading){
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 8.0),
-                                  child: LinearProgressIndicator(
-                                    color: AppColors.primary,
-                                    backgroundColor: Colors.grey[300],
-                                  ),
-                                );
-                              }
-                              return const SizedBox();
-                            },
-                          ),
+                        BlocConsumer<AddProductCubit, AddProductState>(
+                          listener: (context, state) {
+                            if (state is AddProductImageNotPicked) {
+                              showAdaptiveToast(
+                                  context: context,
+                                  msg: 'Please pick an image',
+                                  state: ToastStates.error);
+                            }
+                            if (state is AddProductSuccess) {
+                              showAdaptiveToast(
+                                context: context,
+                                msg: 'Product added successfully',
+                                state: ToastStates.success,
+                              );
+                              Navigator.pop(context, true);
+                            }
+                            if (state is AddProductError) {
+                              showAdaptiveToast(
+                                context: context,
+                                msg: state.errorMessage,
+                                state: ToastStates.error,
+                              );
+                            }
+                          },
+                          builder: (context, state) {
+                            if (state is AddProductLoading) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: LinearProgressIndicator(
+                                  color: AppColors.primary,
+                                  backgroundColor: Colors.grey[300],
+                                ),
+                              );
+                            }
+                            return const SizedBox();
+                          },
+                        ),
                         ButtonWidget(
                           label: 'Add Product',
                           onPressed: cubit.addProduct,

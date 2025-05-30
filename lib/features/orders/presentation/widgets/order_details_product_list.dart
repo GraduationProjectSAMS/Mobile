@@ -4,7 +4,6 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
 
 import '../../../../core/utilities/functions/staggered_animations.dart';
-import '../../../../core/widgets/sliver_skeletonizer.dart';
 import 'order_details_product_item.dart';
 
 class OrderDetailsProductList extends StatelessWidget {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/utilities/resources/app_strings.dart';
-import 'package:graduation_project/features/cards/presentation/manager/add_to_card_cubit/add_to_card_cubit.dart';
-import 'package:graduation_project/features/favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 import 'package:graduation_project/features/home/presentation/manager/offers_cubit/offers_cubit.dart';
 import 'package:graduation_project/features/home/presentation/manager/products_cubit/product_cubit.dart';
 
