@@ -31,11 +31,12 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, void>> addOffer({
-    required Map<String, dynamic> offerData,
-  }) async {
+  Future<Either<Failure, void>> addOffer(
+      {required Map<String, dynamic> offerData,
+      void Function(int, int)? onSendProgress}) async {
     try {
-      await remoteRepo.addOffer(offerData: offerData);
+      await remoteRepo.addOffer(
+          offerData: offerData, onSendProgress: onSendProgress);
       return const Right(null);
     } catch (e) {
       return Left(appServerFailure(e));

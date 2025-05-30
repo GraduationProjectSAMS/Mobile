@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,9 +10,10 @@ part 'add_offer_state.dart';
 
 class AddOfferCubit extends Cubit<AddOfferState> {
   final AddOfferUseCase addOfferUseCase;
+
   AddOfferCubit({
     required this.addOfferUseCase,
-}) : super(AddOfferInitial());
+  }) : super(AddOfferInitial());
 
   static AddOfferCubit instance(context) => BlocProvider.of(context);
 
@@ -19,8 +21,7 @@ class AddOfferCubit extends Cubit<AddOfferState> {
 
   File? pickedImage;
   TextEditingController offerNameController = TextEditingController();
-  TextEditingController offerDescriptionController =
-      TextEditingController();
+  TextEditingController offerDescriptionController = TextEditingController();
   TextEditingController offerPriceController = TextEditingController();
   TextEditingController offerQuantityController = TextEditingController();
   TextEditingController offerThemeController = TextEditingController();
@@ -50,9 +51,9 @@ class AddOfferCubit extends Cubit<AddOfferState> {
     pickedImage = null;
     emit(AddOfferImagePickCancelled());
   }
+
   List<String> offerIds = [];
   final TextEditingController offerIdInputController = TextEditingController();
-
 
   void updateOfferIds(List<String> newIds) {
     offerIds = List.from(newIds);
@@ -60,13 +61,12 @@ class AddOfferCubit extends Cubit<AddOfferState> {
   }
 
   Future<void> addOffer() async {
-
     if (formKey.currentState!.validate()) {
-      if(pickedImage == null) {
+      if (pickedImage == null) {
         emit(AddOfferImageNotPicked());
         return;
       }
-      if(offerIds.isEmpty) {
+      if (offerIds.isEmpty) {
         emit(AddOfferNoProductsSelected());
         return;
       }
@@ -78,16 +78,21 @@ class AddOfferCubit extends Cubit<AddOfferState> {
         'price': offerPriceController.text,
         'quantity': offerQuantityController.text,
         'theme': offerThemeController.text,
-        for(int i = 0; i < offerIds.length; i++)
+        for (int i = 0; i < offerIds.length; i++)
           'product_ids[${i + 1}]': offerIds[i],
       };
-      final result = await addOfferUseCase(data);
+      final result =
+          await addOfferUseCase(offerData: data, onSendProgress: onUploadImage);
       result.fold(
-            (failure) {
+        (failure) {
           emit(AddOfferError(failure.errorMessage));
         },
-            (success) => emit(AddOfferSuccess()),
+        (success) => emit(AddOfferSuccess()),
       );
     }
+  }
+
+  void onUploadImage(progress, total) {
+    emit(AddOfferLoading(progress: progress / total));
   }
 }

@@ -10,6 +10,7 @@ class OrderEntity {
   final String paymentMethod;
   final String shippingAddress;
   final String totalPrice;
+  final String orderNotes;
   final List<ProductEntity> products;
   final String hashId;
 
@@ -22,10 +23,11 @@ class OrderEntity {
     required this.shippingAddress,
     required this.totalPrice,
     this.hashId = '',
+    this.orderNotes = '',
     this.products = const [],
   });
 
-  factory OrderEntity.loading() => const OrderEntity(
+  factory OrderEntity.loading() => OrderEntity(
         orderId: 0,
         hashId: 'test test id',
         orderStatus: 'test test status',
@@ -34,6 +36,7 @@ class OrderEntity {
         paymentMethod: 'test test method',
         shippingAddress: 'test test address',
         totalPrice: '300 EGP',
+        products: productsWaiting,
       );
 }
 

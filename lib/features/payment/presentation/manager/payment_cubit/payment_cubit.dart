@@ -13,6 +13,7 @@ import '../../../../orders/domain/use_cases/set_order_location_use_case.dart';
 import '../../../data/models/pay_mob_request_model.dart';
 import '../../../domain/entities/pay_mob_entity.dart';
 import '../../../domain/use_cases/get_pay_mob_client_key_use_case.dart';
+import '../../widgets/payment_method.dart';
 
 part 'payment_state.dart';
 
@@ -36,7 +37,18 @@ class PaymentCubit extends Cubit<PaymentStates> {
   final GetCurrentOrderLocationUseCase _getCurrentOrderLocationUseCase;
   final num paymentAmount;
   final List<OrderProducts> orderProducts;
+  OrderLocationEntity? orderPastLocationEntity;
 
+  OrderLocationEntity get orderLocationEntity =>
+      orderPastLocationEntity ??
+      OrderLocationEntity(
+        orderAddress: address ?? '',
+        orderCity: city ?? '',
+        orderBuildingNo: buildingNo ?? '',
+        orderApartmentNo: apartmentNumber ?? '',
+        orderFloorNo: floorNumber ?? '',
+        orderStreetName: streetName ?? '',
+      );
   String? address;
 
   String? city;
@@ -119,27 +131,29 @@ class PaymentCubit extends Cubit<PaymentStates> {
       (failure) {
         emit(PaymentErrorState(failure.errorMessage));
       },
-      (_) {
-        switch (paymentMethod) {
-          case PaymentMethod.cash:
-            createOrder();
-          case PaymentMethod.visa:
-            getPaymentKey();
-            break;
-        }
-      },
+      (_) => payNow(),
     );
   }
 
+  void payNow() {
+    switch (paymentMethod) {
+      case PaymentMethod.cash:
+        createOrder();
+      case PaymentMethod.visa:
+        getPaymentKey();
+        break;
+    }
+  }
+
   Future<void> createOrder() async {
-    if (state is PaymentLoadingState) {
+    if (state is! PaymentLoadingState) {
       emit(PaymentLoadingState());
     }
     final result = await _createOrderUseCase(
         createOrderModel: CreateOrderModel(
       userId: CacheService.getData(key: AppConstants.userId),
       notes: notes,
-      paymentMethod: paymentMethod.index == 0 ? 'COD' : 'CC',
+      paymentMethod: paymentMethod.value,
       orderProducts: orderProducts,
     ));
     result.fold(
@@ -153,8 +167,11 @@ class PaymentCubit extends Cubit<PaymentStates> {
   }
 
   void onTapByNow() {
-    if (formKey.currentState!.validate()) {
-      formKey.currentState!.save();
+    if (!formKey.currentState!.validate()) return;
+    formKey.currentState!.save();
+    if (orderPastLocationEntity == orderLocationEntity) {
+      payNow();
+    } else {
       setOrderLocation();
     }
   }
@@ -166,6 +183,7 @@ class PaymentCubit extends Cubit<PaymentStates> {
         emit(PaymentErrorState(failure.errorMessage));
       },
       (orderLocationEntity) {
+        orderPastLocationEntity = orderLocationEntity;
         address = orderLocationEntity.orderAddress;
         city = orderLocationEntity.orderCity;
         buildingNo = orderLocationEntity.orderBuildingNo;

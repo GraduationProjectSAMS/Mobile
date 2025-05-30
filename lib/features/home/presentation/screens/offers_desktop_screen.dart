@@ -24,15 +24,17 @@ class OffersDesktopScreen extends StatelessWidget {
                 AppStrings.allOffers,
                 style: AppStyles.textStyle20,
               ),
-              AddButton(text: AppStrings.addOffer, onPressed: () {
-                context.navigateTo(pageName: AppRoutes.addOffers).then(
-                  (value) {
-                    if (value == true) {
-                      OffersCubit.instance(context).refreshOffers();
-                    }
-                  },
-                );
-              })
+              AddButton(
+                  text: AppStrings.addOffer,
+                  onPressed: () {
+                    context.navigateTo(pageName: AppRoutes.addOffers).then(
+                      (value) {
+                        if (value == true) {
+                          OffersCubit.instance(context).refreshOffers();
+                        }
+                      },
+                    );
+                  })
             ],
           ),
         ),

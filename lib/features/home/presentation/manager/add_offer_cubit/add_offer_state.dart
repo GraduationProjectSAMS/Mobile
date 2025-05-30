@@ -11,7 +11,11 @@ class AddOfferImageTooLarge extends AddOfferState {}
 
 class AddOfferImagePickCancelled extends AddOfferState {}
 
-class AddOfferLoading extends AddOfferState {}
+class AddOfferLoading extends AddOfferState {
+  final double? progress;
+
+  AddOfferLoading({this.progress});
+}
 
 class AddOfferSuccess extends AddOfferState {}
 

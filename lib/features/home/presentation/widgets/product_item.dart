@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/core/utilities/functions/my_toast.dart';
 import 'package:graduation_project/core/utilities/resources/app_colors.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 import 'package:graduation_project/core/widgets/my_cached_network_image.dart';
@@ -29,22 +30,18 @@ class ProductItem extends StatelessWidget {
   @override
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(10),
-      onTap: () {
-        context.navigateTo(
-            pageName: AppRoutes.productDetails,
-            arguments: (entity: entity, context: context));
-      },
-      child: Card(
-        elevation: 3,
-        child: Container(
+    return Card(
+      elevation: 3,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: () {
+          context.navigateTo(
+              pageName: AppRoutes.productDetails,
+              arguments: (entity: entity, context: context));
+        },
+        child: SizedBox(
           height: height,
           width: width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: AppColors.white,
-          ),
           child: Column(
             children: [
               Expanded(
@@ -178,7 +175,15 @@ class ProductItem extends StatelessWidget {
                                     cubit.productsCards.containsKey(key);
 
                                 return InkWell(
-                                  onTap: () => cubit.updateCart(model: entity),
+                                  onTap: () {
+                                    if (entity.maxQuantity == 0) {
+                                      myToast(
+                                          msg: 'product not available ',
+                                          state: ToastStates.normal);
+                                    } else {
+                                      cubit.updateCart(model: entity);
+                                    }
+                                  },
                                   child: Container(
                                     height: 32.sp,
                                     width: 32.sp,

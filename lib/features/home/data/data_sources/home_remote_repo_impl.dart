@@ -15,10 +15,10 @@ class HomeRemoteRepoImpl implements HomeRemoteRepo {
   @override
   Future<List<ProductEntity>> getProducts() async {
     final response =
-        await apiService.getData(endPoint: AppEndpoints.getProducts,data: {
-          'page': 1,
-          'per_page': 1000,
-        });
+        await apiService.getData(endPoint: AppEndpoints.getProducts, data: {
+      'page': 1,
+      'per_page': 1000,
+    });
     final model = ProductModel.fromJson(response?.data);
     final productList = model.productData.toEntityList;
     return productList;
@@ -26,7 +26,8 @@ class HomeRemoteRepoImpl implements HomeRemoteRepo {
 
   @override
   Future<List<ProductEntity>> getOffers() async {
-    final response = await apiService.getData(endPoint: AppEndpoints.getOffers, data: {
+    final response =
+        await apiService.getData(endPoint: AppEndpoints.getOffers, data: {
       'page': 1,
       'paginate': 1000,
     });
@@ -36,10 +37,11 @@ class HomeRemoteRepoImpl implements HomeRemoteRepo {
   }
 
   @override
-  Future<void> addOffer({
-    required Map<String, dynamic> offerData,
-  }) async {
+  Future<void> addOffer(
+      {required Map<String, dynamic> offerData,
+      void Function(int, int)? onSendProgress}) async {
     await apiService.postData(
+      onSendProgress: onSendProgress,
       endPoint: AppEndpoints.getOffers,
       formData: FormData.fromMap(offerData),
     );

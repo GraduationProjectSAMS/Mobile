@@ -16,4 +16,6 @@ abstract class OrdersRepo {
 
   Future<Either<Failure, void>> createOrder(
       {required CreateOrderModel createOrderModel});
+
+  Future<Either<Failure, OrderEntity>> getOrderDetails({dynamic orderId});
 }

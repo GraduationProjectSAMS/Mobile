@@ -42,6 +42,7 @@ class PaymentMapViewBodyState extends State<PaymentMapViewBody> {
     southwest: const LatLng(22.0, 24.7), // Near Sudan border
     northeast: const LatLng(31.7, 36.9), // Near Mediterranean
   );
+
   Future<void> _updateLocationInfo(LatLng position) async {
     setState(() {
       _isLoading = true;
@@ -99,7 +100,7 @@ class PaymentMapViewBodyState extends State<PaymentMapViewBody> {
             // Ensure camera starts within Egypt bounds even if _initialLatLng is near edge
             if (!_egyptBounds.contains(_initialLatLng!)) {
               // fallback to Egypt center
-              final egyptCenter = LatLng(26.8206, 30.8025);
+              const egyptCenter = LatLng(26.8206, 30.8025);
               controller
                   .moveCamera(CameraUpdate.newLatLngZoom(egyptCenter, 6.5));
             } else {
@@ -107,10 +108,10 @@ class PaymentMapViewBodyState extends State<PaymentMapViewBody> {
                   .moveCamera(CameraUpdate.newLatLngZoom(_initialLatLng!, 14));
             }
           },
-          cameraTargetBounds:
-              CameraTargetBounds(_egyptBounds), // ⛔ restrict pan
-          minMaxZoomPreference:
-              const MinMaxZoomPreference(6.5, 25), // ⛔ restrict zoom out
+          cameraTargetBounds: CameraTargetBounds(_egyptBounds),
+          // ⛔ restrict pan
+          minMaxZoomPreference: const MinMaxZoomPreference(6.5, 25),
+          // ⛔ restrict zoom out
           myLocationEnabled: true,
           myLocationButtonEnabled: false,
           onTap: (position) {
@@ -119,7 +120,7 @@ class PaymentMapViewBodyState extends State<PaymentMapViewBody> {
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                    content: Text("Please select a location inside Egypt")),
+                    content: Text('Please select a location inside Egypt')),
               );
             }
           },

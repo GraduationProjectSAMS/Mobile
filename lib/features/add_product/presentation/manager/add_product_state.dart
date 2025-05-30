@@ -11,7 +11,11 @@ class AddProductImageTooLarge extends AddProductState {}
 
 class AddProductImagePickCancelled extends AddProductState {}
 
-class AddProductLoading extends AddProductState {}
+class AddProductLoading extends AddProductState {
+  final double? progress;
+
+  AddProductLoading({this.progress});
+}
 
 class AddProductSuccess extends AddProductState {}
 

@@ -7,5 +7,6 @@ abstract class HomeRemoteRepo {
 
   Future<void> addOffer({
     required Map<String, dynamic> offerData,
+    void Function(int, int)? onSendProgress,
   });
 }

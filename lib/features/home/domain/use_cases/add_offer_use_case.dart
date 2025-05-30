@@ -8,7 +8,10 @@ class AddOfferUseCase {
 
   AddOfferUseCase(this._homeRepo);
 
-  Future<Either<Failure, void>> call(Map<String,dynamic> offerData) async {
-    return _homeRepo.addOffer(offerData: offerData);
+  Future<Either<Failure, void>> call(
+      {required Map<String, dynamic> offerData,
+      void Function(int, int)? onSendProgress}) async {
+    return _homeRepo.addOffer(
+        offerData: offerData, onSendProgress: onSendProgress);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/favorites_screen_body.dart';
+import '../widgets/products_screen_body.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});

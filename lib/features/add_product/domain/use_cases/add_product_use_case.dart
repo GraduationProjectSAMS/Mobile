@@ -8,7 +8,10 @@ class AddProductUseCase {
 
   AddProductUseCase(this.addProductRepo);
 
-  Future<Either<Failure, void>> call(Map<String,dynamic> data) async {
-    return addProductRepo.addProduct(data: data);
+  Future<Either<Failure, void>> call(
+      {required Map<String, dynamic> data,
+      void Function(int, int)? onSendProgress}) async {
+    return addProductRepo.addProduct(
+        data: data, onSendProgress: onSendProgress);
   }
 }

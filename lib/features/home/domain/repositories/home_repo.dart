@@ -10,5 +10,6 @@ abstract class HomeRepo {
 
   Future<Either<Failure, void>> addOffer({
     required Map<String, dynamic> offerData,
+    void Function(int, int)? onSendProgress,
   });
 }

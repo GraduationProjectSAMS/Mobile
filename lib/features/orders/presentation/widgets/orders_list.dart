@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
-import 'package:graduation_project/core/utilities/services/size_config_service.dart';
 import 'package:graduation_project/features/orders/presentation/widgets/orders_item.dart';
-import 'package:logger/logger.dart';
 
 import '../../../../core/utilities/functions/staggered_animations.dart';
 import '../../domain/entities/order_entity.dart';

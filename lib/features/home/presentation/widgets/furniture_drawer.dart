@@ -37,9 +37,9 @@ class _FurnitureDrawerState extends State<FurnitureDrawer> {
         color: const Color(0xFF264733),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
-              child: const ProfileBlocBuilder(
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16, 40, 16, 0),
+              child: ProfileBlocBuilder(
                 textColor: AppColors.white,
               ),
             ),

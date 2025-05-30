@@ -33,7 +33,8 @@ class ProductsDesktopScreen extends StatelessWidget {
                     context.navigateTo(pageName: AppRoutes.addProduct).then(
                       (value) {
                         if (value == true) {
-                          final productCubit = BlocProvider.of<ProductCubit>(context);
+                          final productCubit =
+                              BlocProvider.of<ProductCubit>(context);
                           productCubit.products.clear();
                           productCubit.homeProducts.clear();
                           productCubit.getProducts();

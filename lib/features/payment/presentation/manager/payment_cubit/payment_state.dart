@@ -24,19 +24,3 @@ final class GetCurrentOrderLocationState extends PaymentStates {
 
   GetCurrentOrderLocationState(this.orderLocationEntity);
 }
-
-enum PaymentMethod {
-  cash,
-  visa,
-}
-
-PaymentMethod getPaymentMethodFromIndex(int index) {
-  switch (index) {
-    case 0:
-      return PaymentMethod.cash;
-    case 1:
-      return PaymentMethod.visa;
-    default:
-      return PaymentMethod.cash;
-  }
-}

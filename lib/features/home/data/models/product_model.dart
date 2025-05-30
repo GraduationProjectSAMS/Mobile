@@ -72,13 +72,16 @@ class ProductData {
         isFavorite: isProductInFavorite ?? false,
         type: AppConstants.products,
         id: id?.toInt() ?? 0,
-        name: name.toString(),
-        description: description.toString(),
+        name: name ?? '',
+        description: description ?? '',
         price: double.tryParse(price.toString()) ?? 0.0,
-        imageUrl: AppConstants.kNullProductImage,
+        imageUrl: imageUrl ==
+                'https://furnisique.servehttp.com/storage/products/images/1DsaMK8LbiV2a6XysnDZw35OTa4L1ypkK9NQ5r4n.png'
+            ? AppConstants.kNullProductImage
+            : imageUrl ?? '',
         maxQuantity: quantity?.toInt() ?? 0,
-    width: width?.toInt() ?? 0,
-    length: length?.toInt() ?? 0,
-    height: height?.toInt() ?? 0,
+        width: width?.toInt() ?? 0,
+        length: length?.toInt() ?? 0,
+        height: height?.toInt() ?? 0,
       );
 }

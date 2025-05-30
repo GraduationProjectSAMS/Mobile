@@ -14,32 +14,27 @@ class HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const BannerListWithIndicator(),
-                HomeTextTitle(
-                  title: AppStrings.newlyAdded,
-                  onTap: context.read<ProductCubit>().viewAllProducts,
-                ),
-                const HomeProductBlocBuilder(),
-                HomeTextTitle(
-                  title: AppStrings.offers,
-                  onTap: context.read<OffersCubit>().viewAllOffers,
-                ),
-                const HomeOffersBlocBuilder(),
-                const SizedBox(
-                  height: 20,
-                )
-              ],
-            ),
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const BannerListWithIndicator(),
+          HomeTextTitle(
+            title: AppStrings.newlyAdded,
+            onTap: context.read<ProductCubit>().viewAllProducts,
           ),
-        ),
-      ],
+          const HomeProductBlocBuilder(),
+          HomeTextTitle(
+            title: AppStrings.offers,
+            onTap: context.read<OffersCubit>().viewAllOffers,
+          ),
+          const HomeOffersBlocBuilder(),
+          const SizedBox(
+            height: 20,
+          )
+        ],
+      ),
     );
   }
 }

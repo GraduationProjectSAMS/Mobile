@@ -11,20 +11,22 @@ part 'add_product_state.dart';
 
 class AddProductCubit extends Cubit<AddProductState> {
   final AddProductUseCase addProductUseCase;
+
   AddProductCubit({
     required this.addProductUseCase,
-}) : super(AddProductInitial());
+  }) : super(AddProductInitial());
+
   static AddProductCubit instance(context) => BlocProvider.of(context);
 
   TextEditingController productNameController = TextEditingController();
-  TextEditingController productDescriptionController =
-      TextEditingController();
+  TextEditingController productDescriptionController = TextEditingController();
   TextEditingController productPriceController = TextEditingController();
   TextEditingController lengthController = TextEditingController();
   TextEditingController widthController = TextEditingController();
   TextEditingController heightController = TextEditingController();
   String? selectedCategory;
-  String? selectedAesthetics ;
+  String? selectedAesthetics;
+
   String? selectedRoom;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -58,9 +60,8 @@ class AddProductCubit extends Cubit<AddProductState> {
   }
 
   Future<void> addProduct() async {
-
     if (formKey.currentState!.validate()) {
-      if(pickedImage == null) {
+      if (pickedImage == null) {
         emit(AddProductImageNotPicked());
         return;
       }
@@ -81,7 +82,8 @@ class AddProductCubit extends Cubit<AddProductState> {
           filename: pickedImage!.path.split('/').last,
         ),
       };
-      final result = await addProductUseCase(data);
+      final result =
+          await addProductUseCase(data: data, onSendProgress: onUploadImage);
       result.fold(
         (failure) {
           emit(AddProductError(failure.errorMessage));
@@ -89,5 +91,9 @@ class AddProductCubit extends Cubit<AddProductState> {
         (success) => emit(AddProductSuccess()),
       );
     }
+  }
+
+  void onUploadImage(int sent, int total) {
+    emit(AddProductLoading(progress: ((sent / total))));
   }
 }
