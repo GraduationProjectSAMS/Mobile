@@ -56,5 +56,16 @@ class OrdersRepoImpl implements OrdersRepo {
     }
   }
 
+  @override
+  Future<Either<Failure, OrderEntity>> getOrderDetails(
+      {dynamic orderId}) async {
+    try {
+      final orderDetails = await remoteRepo.getOrderDetails(orderId: orderId);
+      return Right(orderDetails);
+    } on Exception catch (e) {
+      return Left(appServerFailure(e));
+    }
+  }
+
 // Implement repository methods here
 }

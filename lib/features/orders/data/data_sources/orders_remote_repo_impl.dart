@@ -52,24 +52,15 @@ class OrdersRemoteRepoImpl implements OrdersRemoteRepo {
     );
   }
 
+  @override
+  Future<OrderEntity> getOrderDetails({dynamic orderId}) async {
+    final response = await apiService.getData(
+      endPoint: '${AppEndpoints.orders}/$orderId',
+    );
+
+    final orderData = OrderData.fromJson(response?.data['data']);
+    return orderData.toEntity;
+  }
+
 // Implement methods here
 }
-
-final test = {
-  'user_id': 230,
-  'items': [
-    {'id': 2, 'type': 'products', 'quantity': 2, 'price': '254.14'},
-    {'id': 1, 'type': 'offers', 'quantity': 1, 'price': '604.76'}
-  ],
-  'payment_method': 'CC',
-  'notes': ''
-};
-final test2 = {
-  'user_id': 230,
-  'items': [
-    {'id': 1, 'type': 'offer', 'quantity': 4},
-    {'id': 2, 'type': 'product', 'quantity': 10}
-  ],
-  'payment_method': 'CC',
-  'notes': 'nothing new'
-};

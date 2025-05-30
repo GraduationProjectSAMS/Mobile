@@ -30,22 +30,19 @@ class ProductItem extends StatelessWidget {
   @override
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(10),
-      onTap: () {
-        context.navigateTo(
-            pageName: AppRoutes.productDetails,
-            arguments: (entity: entity, context: context));
-      },
-      child: Card(
-        elevation: 3,
-        child: Container(
+    return Card(
+      elevation: 3,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: () {
+          context.navigateTo(
+              pageName: AppRoutes.productDetails,
+              arguments: (entity: entity, context: context));
+        },
+        child: SizedBox(
           height: height,
           width: width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: AppColors.white,
-          ),
+
           child: Column(
             children: [
               Expanded(

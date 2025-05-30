@@ -41,3 +41,4 @@ Future<T?> showAppDialog<T>({
     },
   );
 }
+

@@ -23,12 +23,18 @@ abstract class AppTheme {
       },
     ),
     hoverColor: AppColors.primary.withValues( alpha: 0.1),
-    splashColor: AppColors.white,
+    splashColor: AppColors.primary.withValues(alpha: 0.1),
     primaryColor: AppColors.primary,
     navigationBarTheme: MyBottomNavigationBarTheme.light,
-    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
+    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary ),
+    canvasColor: AppColors.white,
     splashFactory: InkSplash.splashFactory,
     scaffoldBackgroundColor: AppColors.offWhite,
+    cardTheme: const CardTheme(
+      color: AppColors.white,
+
+
+    ),
     textTheme: ThemeData.light()
         .textTheme
         .copyWith(

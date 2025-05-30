@@ -12,6 +12,7 @@ import 'package:graduation_project/features/profile/presentation/screens/profile
 import 'package:nested/nested.dart';
 
 import '../../../../core/utilities/resources/app_colors.dart';
+import '../../../cards/presentation/manager/add_to_card_cubit/add_to_card_cubit.dart';
 import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 import '../screens/offers_screen.dart';
 import 'app_exit_dialog_content.dart';
@@ -63,7 +64,14 @@ class _HomeMobileBodyLayoutState extends State<HomeMobileBodyLayout> {
           ),
     );
   }
-
+  Future<void> _refreshData(BuildContext context) async {
+    await Future.wait([
+      context.read<ProductCubit>().getProducts(),
+      context.read<OffersCubit>().getOffers(),
+      context.read<AddToCardCubit>().getCards(),
+      context.read<AddFavoriteCubit>().getFavorites(),
+    ]);
+  }
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -74,19 +82,24 @@ class _HomeMobileBodyLayoutState extends State<HomeMobileBodyLayout> {
         child: Scaffold(
           backgroundColor: AppColors.offWhite,
           body: SafeArea(
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 300),
-              child: Column(
-                key: ValueKey<int>(_selectedIndex),
-                children: [
-                  if (_selectedIndex != 3)
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                      child: HomeAppBar(),
-                    ),
-                  Expanded(child: _screens[_selectedIndex])
-                ],
+            child: RefreshIndicator(
+              onRefresh: () => _refreshData(context)
+
+              ,
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: Column(
+                  key: ValueKey<int>(_selectedIndex),
+                  children: [
+                    if (_selectedIndex != 3)
+                      const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                        child: HomeAppBar(),
+                      ),
+                    Expanded(child: _screens[_selectedIndex])
+                  ],
+                ),
               ),
             ),
           ),

@@ -15,11 +15,7 @@ static bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMac
     final isLandscape = MediaQuery.orientationOf(context) == Orientation.landscape;
 
     // Store previous dimensions to detect changes
-     double? previousHeight;
-     double? previousWidth;
-
     // Detect media query changes
-    if (newHeight != previousHeight || newWidth != previousWidth) {
       // Update dimensions based on orientation
       if (isLandscape && !isDesktop) {
         height = newWidth;
@@ -31,10 +27,8 @@ static bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMac
       // Call rebuild tree on media query change
       _rebuildTree(context as Element);
       // Update previous dimensions
-      previousHeight = newHeight;
-      previousWidth = newWidth;
-      
-    }
+
+
   }
 
   static double getResponsiveFontSize(
@@ -63,7 +57,7 @@ static bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMac
 
     else {
 
-      return SizeConfigService.width / 1200;
+      return SizeConfigService.width / 1400;
     }
   }
 // static double getResponsiveHeight(double height) {

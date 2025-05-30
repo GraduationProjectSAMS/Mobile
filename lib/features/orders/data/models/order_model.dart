@@ -1,5 +1,7 @@
+import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
 import 'package:graduation_project/features/orders/domain/entities/order_entity.dart';
 
+import 'order_location_model.dart';
 import 'order_products.dart';
 
 class OrderModel {
@@ -47,9 +49,10 @@ class OrderData {
       });
     }
     status = json['status'];
-    shippingAddress = json['shipping_address'];
+    shippingAddress = OrderLocationModel.fromJson(json['shipping_address']);
     paymentMethod = json['payment_method'];
-    totalPrice = double.parse(json['total_price'].toString()).toStringAsFixed(2);
+    totalPrice =
+        double.parse(json['total_price'].toString()).toStringAsFixed(2);
     notes = json['notes'];
     orderedAt = json['ordered_at'];
     deliveryDate = json['delivery_date'];
@@ -60,7 +63,7 @@ class OrderData {
   num? userId;
   List<OrderProducts>? items;
   String? status;
-  String? shippingAddress;
+  OrderLocationModel? shippingAddress;
   String? paymentMethod;
   String? totalPrice;
   String? notes;
@@ -70,13 +73,15 @@ class OrderData {
 
   OrderEntity get toEntity {
     return OrderEntity(
+      orderNotes: notes ?? '',
+      products: items.toEntityList,
       orderId: id?.toInt() ?? 0,
       orderStatus: status ?? '',
       orderDate: orderedAt ?? '',
       deliveryDate: deliveryDate ?? '',
       paymentMethod: paymentMethod ?? '',
-      shippingAddress: shippingAddress ?? '',
-      totalPrice: totalPrice?.toString() ?? '',
+      shippingAddress: shippingAddress?.address ?? '',
+      totalPrice: totalPrice ?? '',
       hashId: orderHashId ?? '',
     );
   }

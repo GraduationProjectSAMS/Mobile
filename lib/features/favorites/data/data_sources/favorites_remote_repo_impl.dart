@@ -12,7 +12,7 @@ class FavoritesRemoteRepoImpl implements FavoritesRemoteRepo {
   @override
   Future<void> addToFavorite({required productId, required String type}) async {
     await apiService.postData(
-      endPoint: '${AppEndpoints.addToFavorite}/$type/$productId',
+      endPoint: '${AppEndpoints.addToFavorite}/${type}s/$productId',
     );
   }
 

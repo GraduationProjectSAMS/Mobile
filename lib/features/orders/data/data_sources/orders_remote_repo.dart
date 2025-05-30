@@ -13,4 +13,6 @@ abstract class OrdersRemoteRepo {
   Future<OrderLocationEntity> getOrderLocations();
 
   Future<void> createOrder({required CreateOrderModel createOrderModel});
+
+  Future<OrderEntity> getOrderDetails({dynamic orderId});
 }

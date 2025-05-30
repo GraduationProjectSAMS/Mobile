@@ -29,6 +29,7 @@ class _LocationFormsState extends State<LocationForms> {
   late final PaymentCubit cubit;
 
   final _addressNotifier = ValueNotifier<String?>(null);
+
   @override
   void initState() {
     super.initState();
@@ -179,16 +180,21 @@ class _LocationFormsState extends State<LocationForms> {
                 hintText: AppStrings.streetName,
               ),
               const SizedBox(height: 10),
-              MyTextFormField(
-                controller: _buildingNoController,
-                onSaved: cubit.setBuildingNo,
-                validator: ValidatorService.emptyValidator,
-                hintText: AppStrings.buildingNumber,
-                labelText: AppStrings.buildingNumber,
-              ),
-              const SizedBox(height: 10),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Expanded(
+                    child: MyTextFormField(
+                      controller: _buildingNoController,
+                      onSaved: cubit.setBuildingNo,
+                      validator: ValidatorService.emptyValidator,
+                      hintText: AppStrings.buildingNumber,
+                      labelText: AppStrings.buildingNumber,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
                   Expanded(
                     child: MyTextFormField(
                       controller: _floorNoController,

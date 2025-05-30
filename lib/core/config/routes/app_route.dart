@@ -3,18 +3,21 @@ import 'package:graduation_project/features/cards/presentation/screens/cards_scr
 import 'package:graduation_project/features/home/presentation/screens/add_offer_screen.dart';
 import 'package:graduation_project/features/orders/presentation/screens/orders_screen.dart';
 import 'package:graduation_project/features/payment/presentation/screens/payment_map_view.dart';
+import 'package:graduation_project/features/splash/presentation/views/splash_view.dart';
 
 import '../../../features/add_product/presentation/screens/add_product_screen.dart';
 import '../../../features/authentication/presentation/screens/login_screen.dart';
 import '../../../features/authentication/presentation/screens/sign_up_screen.dart';
 import '../../../features/favorites/presentation/screens/favorites_screen.dart';
 import '../../../features/home/presentation/screens/home_layout.dart';
+import '../../../features/orders/presentation/screens/order_details_screen.dart';
 import '../../../features/payment/presentation/screens/pay_mob_card_screen.dart';
 import '../../../features/payment/presentation/screens/payment_screen.dart';
 import '../../../features/product_details/presentation/screens/product_details_screen.dart';
 
 abstract class AppRoutes {
   static const login = '/';
+  static const splash = 'splash';
   static const onBoardingRoute = 'onBoarding';
   static const signUpRoute = 'signUp';
   static const homeLayout = 'homeLayout';
@@ -27,6 +30,7 @@ abstract class AppRoutes {
   static const payMobCard = 'payMobCard';
   static const orders = 'orders';
   static const addOffers = 'addOffers';
+  static const orderDetails = 'orderDetails';
 }
 
 abstract class RouteGenerator {
@@ -65,6 +69,12 @@ abstract class RouteGenerator {
         case AppRoutes.addOffers:
         return MaterialPageRoute(
             settings: settings, builder: (_) => const AddOfferScreen());
+       case AppRoutes.orderDetails:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const OrderDetailsScreen());
+        case AppRoutes.splash:
+        return MaterialPageRoute(
+           builder: (_) => const SplashView());
       default:
         return _errorRoute();
     }

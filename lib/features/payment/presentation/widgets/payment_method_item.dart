@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
-import 'package:graduation_project/features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
+import 'package:graduation_project/features/payment/presentation/widgets/payment_method.dart';
 
 import '../../../../core/utilities/resources/app_colors.dart';
 
@@ -37,7 +37,7 @@ class _PaymentMethodItemState extends State<PaymentMethodItem> {
             onTap: () {
               setState(() {
                 selectedIndex = index;
-                widget.onChangePaymentMethod(getPaymentMethodFromIndex(index));
+                widget.onChangePaymentMethod(PaymentMethod.fromIndex(index));
               });
             },
             child: Padding(
