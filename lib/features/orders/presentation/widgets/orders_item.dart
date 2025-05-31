@@ -3,6 +3,7 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/config/routes/app_route.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 import 'package:graduation_project/features/orders/domain/entities/order_entity.dart';
+import 'package:graduation_project/features/orders/presentation/widgets/order_details_status_bar.dart';
 import 'package:graduation_project/features/payment/presentation/widgets/payment_method.dart';
 
 import '../../../../core/utilities/functions/date_time_format.dart';
@@ -57,7 +58,7 @@ class OrdersItem extends StatelessWidget {
                   3,
                   (index) {
                     final titles = [
-                      orderEntity.orderStatus,
+                      OrderStatus.fromValue(orderEntity.orderStatus).label ,
                       PaymentMethod.fromValue(orderEntity.paymentMethod).label,
                       orderEntity.shippingAddress,
                     ];
