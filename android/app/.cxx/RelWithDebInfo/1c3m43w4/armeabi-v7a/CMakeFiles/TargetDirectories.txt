@@ -1,0 +1,2 @@
+C:/Projects/grad_project/android/app/.cxx/RelWithDebInfo/1c3m43w4/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Projects/grad_project/android/app/.cxx/RelWithDebInfo/1c3m43w4/armeabi-v7a/CMakeFiles/rebuild_cache.dir
