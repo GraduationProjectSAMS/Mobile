@@ -13,19 +13,22 @@ import '../../../../core/config/routes/app_route.dart';
 import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem(
-      {super.key,
-      this.width,
-      this.height,
-      required this.entity,
-      this.isAdmin = false,
-      this.enableHeroTag = true});
+  const ProductItem({
+    super.key,
+    this.width,
+    this.height,
+    required this.entity,
+    this.isAdmin = false,
+    this.enableHeroTag = true,
+    this.isOffer = false,
+  });
 
   final ProductEntity entity;
   final double? width;
   final double? height;
   final bool enableHeroTag;
   final bool isAdmin;
+  final bool isOffer;
 
   @override
   @override
@@ -37,7 +40,7 @@ class ProductItem extends StatelessWidget {
         onTap: () {
           context.navigateTo(
               pageName: AppRoutes.productDetails,
-              arguments: (entity: entity, context: context));
+              arguments: (entity: entity, context: context,isOffer: isOffer));
         },
         child: SizedBox(
           height: height,

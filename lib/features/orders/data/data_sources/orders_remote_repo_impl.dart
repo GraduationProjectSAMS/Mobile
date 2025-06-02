@@ -62,5 +62,15 @@ class OrdersRemoteRepoImpl implements OrdersRemoteRepo {
     return orderData.toEntity;
   }
 
+  @override
+  Future<void> updateOrderStatus({
+    required String orderId,
+    required String status,
+  }) async {
+    await apiService.updateData(
+      endPoint: '${AppEndpoints.orders}/$orderId',
+      formData: {'status': status},
+    );
+  }
 // Implement methods here
 }

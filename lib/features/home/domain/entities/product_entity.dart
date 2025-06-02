@@ -17,6 +17,10 @@ class ProductEntity {
   final int height;
   final bool isFavorite;
   final String type;
+  final String offerTheme ;
+  final String productCategory ;
+  final String productAesthetic;
+  final String productRoom;
 
   const ProductEntity({
     required this.id,
@@ -31,6 +35,10 @@ class ProductEntity {
     this.width = 0,
     this.height = 0,
     this.carQuantity = 0,
+    this.offerTheme = '',
+    this.productCategory = '',
+    this.productAesthetic = '',
+    this.productRoom = '',
   });
 
   factory ProductEntity.loading() => const ProductEntity(
@@ -42,6 +50,7 @@ class ProductEntity {
         price: 0.0,
         imageUrl: '',
         maxQuantity: 0,
+
       );
 
   OrderProducts get toOrderProductsMode {

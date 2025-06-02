@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
 
 import '../../../../core/utilities/resources/app_colors.dart';
 import '../../../../core/utilities/resources/app_styles.dart';
@@ -10,6 +11,10 @@ class ProductRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arg = context.productDetailsArgs;
+    if( arg.isOffer) {
+      return const SizedBox.shrink();
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

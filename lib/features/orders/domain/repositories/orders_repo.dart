@@ -18,4 +18,9 @@ abstract class OrdersRepo {
       {required CreateOrderModel createOrderModel});
 
   Future<Either<Failure, OrderEntity>> getOrderDetails({dynamic orderId});
+
+  Future<Either<Failure, void>> updateOrderStatus({
+    required String orderId,
+    required String status,
+  });
 }

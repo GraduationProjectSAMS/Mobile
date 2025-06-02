@@ -15,4 +15,9 @@ abstract class OrdersRemoteRepo {
   Future<void> createOrder({required CreateOrderModel createOrderModel});
 
   Future<OrderEntity> getOrderDetails({dynamic orderId});
+
+  Future<void> updateOrderStatus({
+    required String orderId,
+    required String status,
+  });
 }

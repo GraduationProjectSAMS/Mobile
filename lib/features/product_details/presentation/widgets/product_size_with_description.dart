@@ -14,6 +14,7 @@ class ProductSizeWithDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if(!arg.isOffer)
         Padding(
           padding: const EdgeInsets.only(top: 5),
           child: Text(

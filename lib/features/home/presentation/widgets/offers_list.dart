@@ -49,6 +49,7 @@ class OffersList extends StatelessWidget {
                   enableHeroTag: enableHeroTag,
                   isAdmin: isAdmin,
                   entity: products[index],
+                  isOffer: true,
                 )),
           ),
         );

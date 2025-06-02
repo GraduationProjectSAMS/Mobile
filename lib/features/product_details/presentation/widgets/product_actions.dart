@@ -13,9 +13,14 @@ class ProductActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arg = context.productDetailsArgs;
+    if (SizeConfigService.isDesktop) {
+      return const SizedBox();
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        if(!arg.isOffer)
         ProductColorSelector(
           availableColors: const [
             Color(0xFFC2C0C0),
@@ -24,7 +29,9 @@ class ProductActions extends StatelessWidget {
           ],
           initialColor: const Color(0xFFC2C0C0),
           onColorSelected: (color) {},
-        ),
+        )
+        else
+        const Spacer(),
         if (!SizeConfigService.isDesktop) const CardActionButton(),
       ],
     );
