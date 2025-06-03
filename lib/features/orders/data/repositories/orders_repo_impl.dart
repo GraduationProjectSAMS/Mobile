@@ -67,5 +67,17 @@ class OrdersRepoImpl implements OrdersRepo {
     }
   }
 
+  @override
+  Future<Either<Failure, void>> updateOrderStatus({
+    required String orderId,
+    required String status,
+  }) async {
+    try {
+      await remoteRepo.updateOrderStatus(orderId: orderId, status: status);
+      return const Right(null);
+    } on Exception catch (e) {
+      return Left(appServerFailure(e));
+    }
+  }
 // Implement repository methods here
 }

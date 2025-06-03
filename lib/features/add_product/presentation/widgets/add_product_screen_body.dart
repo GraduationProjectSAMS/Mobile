@@ -16,14 +16,14 @@ class AddProductScreenBody extends StatelessWidget {
     final cubit = context.read<AddProductCubit>();
     return Form(
       key: cubit.formKey,
-      child: Column(
+      child: const Column(
         children: [
-          const AddProductHeader(),
+          AddProductHeader(),
           Expanded(
             child: Row(
               children: [
                 Expanded(child: ImagePickerSection()),
-                const SizedBox(width: 20),
+                SizedBox(width: 20),
                 Expanded(child: ProductDetailsSection()),
               ],
             ),

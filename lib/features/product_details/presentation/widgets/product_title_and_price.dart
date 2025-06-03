@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
-
 import '../../../../core/utilities/resources/app_colors.dart';
 import '../../../../core/utilities/resources/app_styles.dart';
 import '../../../home/domain/entities/product_entity.dart';
@@ -12,7 +11,8 @@ class ProductTitleAndPrice extends StatelessWidget {
   Widget build(BuildContext context) {
     final arg = ModalRoute.of(context)?.settings.arguments as ({
       ProductEntity entity,
-      StatelessElement context
+      StatelessElement context,
+    bool isOffer,
     });
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,8 +25,31 @@ class ProductTitleAndPrice extends StatelessWidget {
         ),
         Row(
           children: [
+            if(arg.isOffer)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Theme : ${arg.entity.offerTheme}',
+                  style: AppStyles.textStyle14.copyWith(
+                    color: Colors.grey,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                  )
+                ),
+                Text(
+                  'Quantity : ${arg.entity.maxQuantity}',
+                  style: AppStyles.textStyle14.copyWith(
+                    color: Colors.grey,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                  )
+                ),
+              ],
+            )
+            else
             Text(
-              'Modern, Seats',
+              '${arg.entity.productCategory} , ${arg.entity.productAesthetic} , ${arg.entity.productRoom}',
               style: AppStyles.textStyle14.copyWith(
                 color: Colors.green.shade800,
                 fontSize: 14.sp,

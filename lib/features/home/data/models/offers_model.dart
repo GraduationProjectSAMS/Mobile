@@ -30,6 +30,7 @@ class OffersData {
     this.description,
     this.quantity,
     this.isProductInFavorite,
+    this.offerTheme,
   });
 
   OffersData.fromJson(dynamic json) {
@@ -40,6 +41,7 @@ class OffersData {
     description = json['description'];
     quantity = json['quantity'];
     isProductInFavorite = json['in_wish_list'];
+    offerTheme = json['theme'];
   }
 
   num? id;
@@ -49,6 +51,7 @@ class OffersData {
   String? description;
   num? quantity;
   bool? isProductInFavorite;
+  String? offerTheme;
 
   ProductEntity get toEntity => ProductEntity(
       isFavorite: isProductInFavorite ?? false,
@@ -61,5 +64,6 @@ class OffersData {
               'https://furnisique.servehttp.com/storage/products/images/1DsaMK8LbiV2a6XysnDZw35OTa4L1ypkK9NQ5r4n.png'
           ? AppConstants.kNullProductImage
           : photoUrl ?? '',
-      maxQuantity: quantity?.toInt() ?? 0);
+      maxQuantity: quantity?.toInt() ?? 0,
+      offerTheme: offerTheme ?? ',');
 }

@@ -32,9 +32,9 @@ class ProductDetailsScreen extends StatelessWidget {
 }
 
 extension ModalRouteArgumentsExtension on BuildContext {
-  ({ProductEntity entity, BuildContext context}) get productDetailsArgs {
+  ({ProductEntity entity, BuildContext context,bool isOffer}) get productDetailsArgs {
     final args = ModalRoute.of(this)?.settings.arguments;
-    if (args is ({ProductEntity entity, BuildContext context})) {
+    if (args is ({ProductEntity entity, BuildContext context,bool isOffer})) {
       return args;
     } else {
       throw Exception('Invalid arguments for ProductDetailsPage');

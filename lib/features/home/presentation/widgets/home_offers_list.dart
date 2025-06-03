@@ -31,6 +31,7 @@ class HomeOffersList extends StatelessWidget {
               child: ProductItem(
                 width: 180.sp,
                 entity: offers[index],
+                isOffer: true,
               ),
             ),
             separatorBuilder: (_, __) => const SizedBox(

@@ -42,7 +42,7 @@ class ProductData {
     id = json['id'];
     name = json['name'];
     category = json['category'];
-    aesthetic = json['Aesthetic'];
+    aesthetic = json['aesthetic'];
     rooms = json['rooms'];
     description = json['description'];
     price = json['price'];
@@ -83,5 +83,8 @@ class ProductData {
         width: width?.toInt() ?? 0,
         length: length?.toInt() ?? 0,
         height: height?.toInt() ?? 0,
+        productAesthetic: aesthetic ?? '',
+        productCategory: category ?? '',
+        productRoom: rooms ?? '',
       );
 }
