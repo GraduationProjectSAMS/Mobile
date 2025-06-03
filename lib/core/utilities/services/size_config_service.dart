@@ -9,6 +9,7 @@ abstract class SizeConfigService   {
   static const maxTabletWidth = 1000;
 static bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMacOS;
   static void init(BuildContext context) {
+
     final size = MediaQuery.sizeOf(context);
     final newHeight = size.height;
     final newWidth = size.width;

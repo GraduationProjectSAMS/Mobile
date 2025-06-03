@@ -33,6 +33,8 @@ class ProductList extends StatelessWidget {
         final gridCount = constraints.maxWidth.gridCount;
         return AnimationLimiter(
           child: GridView.builder(
+
+            cacheExtent: 1000,
             itemCount: products.length,
             padding: const EdgeInsets.symmetric(horizontal: 10),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -45,6 +47,7 @@ class ProductList extends StatelessWidget {
                 index: index,
                 columnCount: gridCount,
                 child: ProductItem(
+
                   enableHeroTag: enableHeroTag,
                   isAdmin: isAdmin,
                   entity: products[index],

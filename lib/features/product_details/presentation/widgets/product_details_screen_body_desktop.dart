@@ -36,30 +36,30 @@ class ProductDetailsScreenBodyDesktop extends StatelessWidget {
                   ),
                   Expanded(
                       child: CustomScrollView(
-                    slivers: [
-                      SliverFillRemaining(
-                        child: Column(
-                          children: [
-                            Expanded(
-                                child: SizedBox(
-                              height: 20,
-                            )),
-                            ProductTitleAndPrice(),
-                            ProductRating(),
-                            ProductSizeWithDescription(),
-                            ProductActions(),
-                            SizedBox(height: 20),
-                            Expanded(
-                                child: SizedBox(
-                              height: 20,
-                            )),
-                            BuyAndActionButtons(),
-                            SizedBox(height: 20),
-                          ],
-                        ),
-                      )
-                    ],
-                  )),
+                        slivers: [
+                          SliverFillRemaining(
+                            child: Column(
+                              children: [
+                                Expanded(
+                                    child: SizedBox(
+                                      height: 20,
+                                    )),
+                                ProductTitleAndPrice(),
+                                ProductRating(),
+                                ProductSizeWithDescription(),
+                                ProductActions(),
+                                SizedBox(height: 20),
+                                Expanded(
+                                    child: SizedBox(
+                                      height: 20,
+                                    )),
+
+                                SizedBox(height: 20),
+                              ],
+                            ),
+                          )
+                        ],
+                      )),
                 ],
               ),
             ),
@@ -86,7 +86,7 @@ class DiskTopProductDetailsImage extends StatelessWidget {
         Expanded(
           flex: 4,
           child: Hero(
-            tag: '${arg.entity.id}${arg.entity.type}',
+            tag: '${arg.entity.imageUrl}${arg.entity.id}${arg.entity.type}',
             child: MyCachedNetworkImage(
                 height: 60.hR, fit: BoxFit.fill, imageUrl: arg.entity.imageUrl),
           ),

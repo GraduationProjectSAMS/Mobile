@@ -27,10 +27,10 @@ class CreateOrderModel {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['user_id'] = userId;
-    if (orderProducts != null) {
-      map['items'] = orderProducts?.map((v) => v.toJson()).toList();
-    }
+    // map['user_id'] = userId;
+    // if (orderProducts != null) {
+    //   map['items'] = orderProducts?.map((v) => v.toJson()).toList();
+    // }
     map['payment_method'] = paymentMethod;
     map['notes'] = notes;
     return map;

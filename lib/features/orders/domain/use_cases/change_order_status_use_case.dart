@@ -10,12 +10,11 @@ class ChangeOrderStatusUseCase {
 
   Future<Either<Failure, void>> call({
     required String orderId,
-    required String status,
-  }) async
-   {
-  return _ordersRepo.updateOrderStatus(
+    required int statusId,
+  }) async {
+    return _ordersRepo.updateOrderStatus(
       orderId: orderId,
-      status: status,
+      statusId: statusId,
     );
   }
 }

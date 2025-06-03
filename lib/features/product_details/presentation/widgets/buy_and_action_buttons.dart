@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
+import 'package:graduation_project/features/product_details/presentation/widgets/product_actions.dart';
 
 import '../../../../core/utilities/resources/app_colors.dart';
 import '../../../../core/utilities/services/size_config_service.dart';
-import '../../../../core/widgets/my_button_widget.dart';
 import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 
 class BuyAndActionButtons extends StatelessWidget {
@@ -16,23 +17,25 @@ class BuyAndActionButtons extends StatelessWidget {
     if (SizeConfigService.isDesktop) {
       return const SizedBox();
     }
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: ButtonWidget(
-            height: 45,
-            label: 'Buy Now',
-            onPressed: () {},
-            isShowArrow: true,
-            labelFontSize: 15.sp,
-            borderRadius: 50,
-          ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      decoration: BoxDecoration(
+
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+            color: AppColors.primary
+
         ),
-        const SizedBox(width: 10),
-        const FavoriteActionIcon(),
-        const SizedBox(width: 10),
-      ],
+      ),
+      child: Row(
+
+        children: [
+          const CardActionButton(),
+          const SizedBox(width: 10),
+          const FavoriteActionIcon(),
+          const SizedBox(width: 10),
+        ],
+      ),
     );
   }
 }

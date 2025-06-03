@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -20,12 +19,13 @@ class OrderDetailsProductItem extends StatelessWidget {
         children: [
           Column(
             children: [
-              const Expanded(
+              Expanded(
                 child: Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: MyCachedNetworkImage(
-                        fit: BoxFit.fill,
-                        imageUrl: AppConstants.kNullProductImage)),
+                      fit: BoxFit.fill,
+                      imageUrl: entity.imageUrl,
+                    )),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),

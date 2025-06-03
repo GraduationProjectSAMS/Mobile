@@ -18,6 +18,6 @@ abstract class OrdersRemoteRepo {
 
   Future<void> updateOrderStatus({
     required String orderId,
-    required String status,
+    required int statusId,
   });
 }

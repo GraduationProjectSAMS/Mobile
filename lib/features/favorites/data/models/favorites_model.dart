@@ -60,13 +60,16 @@ class FavoritesData {
     return ProductEntity(
       id: id?.toInt() ?? 0,
       type: type == 'offer' ? AppConstants.offers : AppConstants.products,
-      description: description.toString(),
+      description: description??'',
       price: double.tryParse(price.toString()) ?? 1,
       maxQuantity: maxQuantity?.toInt() ?? quantity?.toInt() ?? 0,
       carQuantity: quantity?.toInt() ?? 0,
-      name: name.toString(),
+      name: name??'',
       isFavorite: true,
-      imageUrl: AppConstants.kNullProductImage,
+      imageUrl:  imageUrl ==
+          'https://furnisique.servehttp.com/storage/products/images/1DsaMK8LbiV2a6XysnDZw35OTa4L1ypkK9NQ5r4n.png'
+          ? AppConstants.kNullProductImage
+          : imageUrl ?? '',
     );
   }
 }

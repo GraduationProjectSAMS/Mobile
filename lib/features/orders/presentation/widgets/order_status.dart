@@ -1,16 +1,16 @@
 enum OrderStatus {
-  ordered(label: 'Ordered', value: 'Pending'),
-  received(label: 'Received', value: 'in Progress'),
-  onTheWay(label: 'On the Way', value: 'Shipped'),
-  delivered(label: 'Delivered', value: 'Delivered'),
+  ordered(label: 'Ordered', value: 1),
+  received(label: 'Received', value: 2),
+  onTheWay(label: 'On the Way', value: 3),
+  delivered(label: 'Delivered', value: 4),
   ;
 
-  final String value;
+  final int value;
 
   /// For displaying in the UI
   final String label;
 
-  static OrderStatus fromValue(String code) {
+  static OrderStatus fromIndex(int code) {
     return OrderStatus.values.firstWhere(
       (status) => status.value == code,
       orElse: () => OrderStatus.ordered,

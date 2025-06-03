@@ -22,18 +22,24 @@ class OrderDetailsStatusBar extends StatelessWidget {
   final OrderStatus currentStatus;
   final String orderDate;
   final String deliveryDate;
+  final String onTheWayDate;
+  final String orderReceivedDate;
 
   const OrderDetailsStatusBar(
       {super.key,
       required this.currentStatus,
       required this.orderDate,
-      required this.deliveryDate});
+      required this.deliveryDate,
+      required this.onTheWayDate,
+      required this.orderReceivedDate});
 
   List<_StepData> get _steps => [
         _StepData(OrderStatus.ordered, OrderStatus.ordered.label,
             formatWithNewline(orderDate)),
-        _StepData(OrderStatus.received, OrderStatus.received.label, ''),
-        _StepData(OrderStatus.onTheWay, OrderStatus.onTheWay.label, ''),
+        _StepData(OrderStatus.received, OrderStatus.received.label,
+            formatWithNewline(orderReceivedDate)),
+        _StepData(OrderStatus.onTheWay, OrderStatus.onTheWay.label,
+            formatWithNewline(onTheWayDate)),
         _StepData(OrderStatus.delivered, OrderStatus.delivered.label,
             formatWithNewline(deliveryDate)),
       ];

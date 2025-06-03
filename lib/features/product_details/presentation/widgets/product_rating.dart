@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
 
 import '../../../../core/utilities/resources/app_colors.dart';
@@ -12,7 +13,7 @@ class ProductRating extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final arg = context.productDetailsArgs;
-    if( arg.isOffer) {
+    if (arg.entity.type == AppConstants.offers) {
       return const SizedBox.shrink();
     }
     return Column(
@@ -22,7 +23,8 @@ class ProductRating extends StatelessWidget {
           children: [
             RatingBarIndicator(
               rating: 4.5,
-              itemBuilder: (context, index) => const Icon(
+              itemBuilder: (context, index) =>
+              const Icon(
                 Icons.star,
                 color: Colors.amber,
               ),

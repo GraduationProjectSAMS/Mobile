@@ -12,6 +12,7 @@ class OrderDetailsStatusWithDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(entity.currentStatus.label);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -30,9 +31,11 @@ class OrderDetailsStatusWithDate extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             OrderDetailsStatusBar(
+              onTheWayDate: entity.onTheWayDate,
               deliveryDate: entity.deliveryDate,
+              orderReceivedDate: entity.orderReceivedDate,
               orderDate: entity.orderDate,
-              currentStatus: OrderStatus.fromValue(entity.orderStatus),
+              currentStatus: entity.currentStatus,
             ),
           ],
         ),

@@ -15,8 +15,7 @@ final class GetOrdersError extends GetOrdersStates {
 
 final class ChangeOrderStatusLoading extends GetOrdersStates {}
 
-final class ChangeOrderStatusSuccess extends GetOrdersStates {
-}
+final class ChangeOrderStatusSuccess extends GetOrdersStates {}
 
 final class ChangeOrderStatusError extends GetOrdersStates {
   final String error;

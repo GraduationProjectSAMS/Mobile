@@ -70,10 +70,10 @@ class OrdersRepoImpl implements OrdersRepo {
   @override
   Future<Either<Failure, void>> updateOrderStatus({
     required String orderId,
-    required String status,
+    required int statusId,
   }) async {
     try {
-      await remoteRepo.updateOrderStatus(orderId: orderId, status: status);
+      await remoteRepo.updateOrderStatus(orderId: orderId, statusId: statusId);
       return const Right(null);
     } on Exception catch (e) {
       return Left(appServerFailure(e));

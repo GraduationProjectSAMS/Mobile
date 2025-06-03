@@ -21,6 +21,6 @@ abstract class OrdersRepo {
 
   Future<Either<Failure, void>> updateOrderStatus({
     required String orderId,
-    required String status,
+    required int statusId,
   });
 }

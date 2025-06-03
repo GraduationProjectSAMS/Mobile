@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:graduation_project/core/utilities/resources/app_endpoints.dart';
 import 'package:graduation_project/features/orders/data/models/create_order_model.dart';
 import 'package:graduation_project/features/orders/data/models/order_model.dart';
@@ -28,6 +29,10 @@ class OrdersRemoteRepoImpl implements OrdersRemoteRepo {
   Future<void> setOrderLocation(
       {required OrderLocationModel orderLocationModel}) async {
     await apiService.postData(
+      options: Options(
+        sendTimeout: const Duration(seconds: 60),
+        receiveTimeout: const Duration(seconds: 60),
+      ),
       endPoint: AppEndpoints.ordersSippingAddress,
       formData: orderLocationModel.toJson(),
     );
@@ -47,6 +52,10 @@ class OrdersRemoteRepoImpl implements OrdersRemoteRepo {
   @override
   Future<void> createOrder({required CreateOrderModel createOrderModel}) async {
     await apiService.postData(
+      options: Options(
+        sendTimeout: const Duration(seconds: 60),
+        receiveTimeout: const Duration(seconds: 60),
+      ),
       endPoint: AppEndpoints.orders,
       formData: createOrderModel.toJson(),
     );
@@ -65,11 +74,11 @@ class OrdersRemoteRepoImpl implements OrdersRemoteRepo {
   @override
   Future<void> updateOrderStatus({
     required String orderId,
-    required String status,
+    required int statusId,
   }) async {
     await apiService.updateData(
       endPoint: '${AppEndpoints.orders}/$orderId',
-      formData: {'status': status},
+      data: {'status_id': statusId},
     );
   }
 // Implement methods here

@@ -3,6 +3,7 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
 
 import '../../../../core/utilities/resources/app_colors.dart';
+import '../../../../core/utilities/resources/app_constants.dart';
 import '../../../../core/utilities/resources/app_styles.dart';
 
 class ProductSizeWithDescription extends StatelessWidget {
@@ -14,18 +15,19 @@ class ProductSizeWithDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(!arg.isOffer)
-        Padding(
-          padding: const EdgeInsets.only(top: 5),
-          child: Text(
-            '${arg.entity.length} x ${arg.entity.width} cm, ${arg.entity.height} cm Height',
-            style: AppStyles.textStyle14.copyWith(
-              color: AppColors.black.withValues(alpha: 0.6),
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w600,
+        if(arg.entity.type != AppConstants.offers)
+          Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: Text(
+              '${arg.entity.length} x ${arg.entity.width} cm, ${arg.entity
+                  .height} cm Height',
+              style: AppStyles.textStyle14.copyWith(
+                color: AppColors.black.withValues(alpha: 0.6),
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
-        ),
         const SizedBox(height: 5),
         Divider(
           color: AppColors.black.withValues(alpha: 0.3),

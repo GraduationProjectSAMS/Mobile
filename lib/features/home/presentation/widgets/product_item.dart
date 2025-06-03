@@ -40,7 +40,7 @@ class ProductItem extends StatelessWidget {
         onTap: () {
           context.navigateTo(
               pageName: AppRoutes.productDetails,
-              arguments: (entity: entity, context: context,isOffer: isOffer));
+              arguments: (entity: entity, context: context));
         },
         child: SizedBox(
           height: height,
@@ -54,7 +54,7 @@ class ProductItem extends StatelessWidget {
                     children: [
                       if (enableHeroTag)
                         Hero(
-                          tag: '${entity.id}${entity.type}',
+                          tag: '${entity.imageUrl}${entity.id}${entity.type}',
                           child: MyCachedNetworkImage(
                               fit: BoxFit.fill, imageUrl: entity.imageUrl),
                         )

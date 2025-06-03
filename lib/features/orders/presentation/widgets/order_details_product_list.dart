@@ -31,7 +31,7 @@ class OrderDetailsProductList extends StatelessWidget {
           ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: gridCount,
-            mainAxisExtent: 230.sp,
+            mainAxisExtent: 240.sp,
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
           ),

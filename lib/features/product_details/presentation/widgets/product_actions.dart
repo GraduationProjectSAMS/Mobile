@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/core/utilities/services/size_config_service.dart';
 import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
 import 'package:graduation_project/features/product_details/presentation/widgets/product_counter_widget.dart';
 
 import '../../../../core/utilities/resources/app_colors.dart';
 import '../../../cards/presentation/manager/add_to_card_cubit/add_to_card_cubit.dart';
+import 'buy_and_action_buttons.dart';
 import 'product_color_selector.dart';
 
 class ProductActions extends StatelessWidget {
@@ -18,21 +20,25 @@ class ProductActions extends StatelessWidget {
       return const SizedBox();
     }
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
       children: [
-        if(!arg.isOffer)
-        ProductColorSelector(
-          availableColors: const [
-            Color(0xFFC2C0C0),
-            Color(0xFF6B4F3B),
-            Color(0xFF3A3A3A),
-          ],
-          initialColor: const Color(0xFFC2C0C0),
-          onColorSelected: (color) {},
-        )
-        else
-        const Spacer(),
-        if (!SizeConfigService.isDesktop) const CardActionButton(),
+        if(arg.entity.type != AppConstants.offers)
+          ProductColorSelector(
+            availableColors: const [
+              Color(0xFFC2C0C0),
+              Color(0xFF6B4F3B),
+              Color(0xFF3A3A3A),
+            ],
+            initialColor: const Color(0xFFC2C0C0),
+            onColorSelected: (color) {},
+          ),
+
+        Spacer(),
+        ...[ const CardActionButton(),
+          SizedBox(width: 6,),
+          const FavoriteActionIcon(),
+        ]
+
       ],
     );
   }
@@ -55,7 +61,7 @@ class CardActionButton extends StatelessWidget {
           firstChild: _buildAddButton(context, cubit, entity),
           secondChild: _buildProductCounter(context, cubit, entity, key),
           crossFadeState:
-              isInCard ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          isInCard ? CrossFadeState.showSecond : CrossFadeState.showFirst,
           duration: const Duration(milliseconds: 300),
           firstCurve: Curves.easeInOut,
           secondCurve: Curves.easeInOut,
@@ -65,8 +71,8 @@ class CardActionButton extends StatelessWidget {
     );
   }
 
-  Widget _buildProductCounter(
-      BuildContext context, AddToCardCubit cubit, dynamic entity, String key) {
+  Widget _buildProductCounter(BuildContext context, AddToCardCubit cubit,
+      dynamic entity, String key) {
     return ProductCounter(
       key: ValueKey('counter_${cubit.productsCards[key]}'),
       title: '${cubit.productsCards[key]}',
@@ -75,8 +81,8 @@ class CardActionButton extends StatelessWidget {
     );
   }
 
-  Widget _buildAddButton(
-      BuildContext context, AddToCardCubit cubit, dynamic entity) {
+  Widget _buildAddButton(BuildContext context, AddToCardCubit cubit,
+      dynamic entity) {
     return Card(
       shape: const CircleBorder(),
       elevation: 4,
