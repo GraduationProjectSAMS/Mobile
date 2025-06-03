@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
-import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
-import '../../../../core/utilities/resources/app_colors.dart';
+
 import '../../../../core/utilities/resources/app_constants.dart';
 import '../../../../core/utilities/resources/app_styles.dart';
-import '../../../home/domain/entities/product_entity.dart';
 
 class ProductTitleAndPrice extends StatelessWidget {
   const ProductTitleAndPrice({super.key});
@@ -24,32 +22,27 @@ class ProductTitleAndPrice extends StatelessWidget {
         ),
         Row(
           children: [
-            if(arg.entity.type == AppConstants.offers)
+            if (arg.entity.type == AppConstants.offers)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                      'Theme : ${arg.entity.offerTheme}',
+                  Text('Theme : ${arg.entity.offerTheme}',
                       style: AppStyles.textStyle14.copyWith(
                         color: Colors.grey,
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
-                      )
-                  ),
-                  Text(
-                      'Quantity : ${arg.entity.maxQuantity}',
+                      )),
+                  Text('Quantity : ${arg.entity.maxQuantity}',
                       style: AppStyles.textStyle14.copyWith(
                         color: Colors.grey,
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
-                      )
-                  ),
+                      )),
                 ],
               )
             else
               Text(
-                '${arg.entity.productCategory} , ${arg.entity
-                    .productAesthetic} , ${arg.entity.productRoom}',
+                '${arg.entity.productCategory} , ${arg.entity.productAesthetic} , ${arg.entity.productRoom}',
                 style: AppStyles.textStyle14.copyWith(
                   color: Colors.green.shade800,
                   fontSize: 14.sp,
@@ -68,7 +61,6 @@ class ProductTitleAndPrice extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-
                 ],
               ),
             )

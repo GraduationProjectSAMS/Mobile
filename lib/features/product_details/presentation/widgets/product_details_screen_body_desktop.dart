@@ -6,7 +6,6 @@ import 'package:graduation_project/features/product_details/presentation/widgets
 import 'package:graduation_project/features/product_details/presentation/widgets/product_title_and_price.dart';
 
 import '../../../../core/widgets/my_cached_network_image.dart';
-import 'buy_and_action_buttons.dart';
 import 'product_actions.dart';
 import 'product_size_with_description.dart';
 
@@ -36,30 +35,29 @@ class ProductDetailsScreenBodyDesktop extends StatelessWidget {
                   ),
                   Expanded(
                       child: CustomScrollView(
-                        slivers: [
-                          SliverFillRemaining(
-                            child: Column(
-                              children: [
-                                Expanded(
-                                    child: SizedBox(
-                                      height: 20,
-                                    )),
-                                ProductTitleAndPrice(),
-                                ProductRating(),
-                                ProductSizeWithDescription(),
-                                ProductActions(),
-                                SizedBox(height: 20),
-                                Expanded(
-                                    child: SizedBox(
-                                      height: 20,
-                                    )),
-
-                                SizedBox(height: 20),
-                              ],
-                            ),
-                          )
-                        ],
-                      )),
+                    slivers: [
+                      SliverFillRemaining(
+                        child: Column(
+                          children: [
+                            Expanded(
+                                child: SizedBox(
+                              height: 20,
+                            )),
+                            ProductTitleAndPrice(),
+                            ProductRating(),
+                            ProductSizeWithDescription(),
+                            ProductActions(),
+                            SizedBox(height: 20),
+                            Expanded(
+                                child: SizedBox(
+                              height: 20,
+                            )),
+                            SizedBox(height: 20),
+                          ],
+                        ),
+                      )
+                    ],
+                  )),
                 ],
               ),
             ),

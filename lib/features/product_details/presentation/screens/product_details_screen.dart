@@ -22,9 +22,9 @@ class ProductDetailsScreen extends StatelessWidget {
       child: Scaffold(
         body: AppAdaptiveLayOut(
           mobileLayOut: (BuildContext context) =>
-          const ProductDetailsScreenBody(),
+              const ProductDetailsScreenBody(),
           desktopLayOut: (BuildContext context) =>
-          const ProductDetailsScreenBodyDesktop(),
+              const ProductDetailsScreenBodyDesktop(),
         ),
       ),
     );
@@ -33,10 +33,7 @@ class ProductDetailsScreen extends StatelessWidget {
 
 extension ModalRouteArgumentsExtension on BuildContext {
   ({ProductEntity entity, BuildContext context}) get productDetailsArgs {
-    final args = ModalRoute
-        .of(this)
-        ?.settings
-        .arguments;
+    final args = ModalRoute.of(this)?.settings.arguments;
     if (args is ({ProductEntity entity, BuildContext context})) {
       return args;
     } else {

@@ -20,9 +20,8 @@ class ProductActions extends StatelessWidget {
       return const SizedBox();
     }
     return Row(
-
       children: [
-        if(arg.entity.type != AppConstants.offers)
+        if (arg.entity.type != AppConstants.offers)
           ProductColorSelector(
             availableColors: const [
               Color(0xFFC2C0C0),
@@ -32,13 +31,14 @@ class ProductActions extends StatelessWidget {
             initialColor: const Color(0xFFC2C0C0),
             onColorSelected: (color) {},
           ),
-
         Spacer(),
-        ...[ const CardActionButton(),
-          SizedBox(width: 6,),
+        ...[
+          const CardActionButton(),
+          SizedBox(
+            width: 6,
+          ),
           const FavoriteActionIcon(),
         ]
-
       ],
     );
   }
@@ -61,7 +61,7 @@ class CardActionButton extends StatelessWidget {
           firstChild: _buildAddButton(context, cubit, entity),
           secondChild: _buildProductCounter(context, cubit, entity, key),
           crossFadeState:
-          isInCard ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+              isInCard ? CrossFadeState.showSecond : CrossFadeState.showFirst,
           duration: const Duration(milliseconds: 300),
           firstCurve: Curves.easeInOut,
           secondCurve: Curves.easeInOut,
@@ -71,8 +71,8 @@ class CardActionButton extends StatelessWidget {
     );
   }
 
-  Widget _buildProductCounter(BuildContext context, AddToCardCubit cubit,
-      dynamic entity, String key) {
+  Widget _buildProductCounter(
+      BuildContext context, AddToCardCubit cubit, dynamic entity, String key) {
     return ProductCounter(
       key: ValueKey('counter_${cubit.productsCards[key]}'),
       title: '${cubit.productsCards[key]}',
@@ -81,8 +81,8 @@ class CardActionButton extends StatelessWidget {
     );
   }
 
-  Widget _buildAddButton(BuildContext context, AddToCardCubit cubit,
-      dynamic entity) {
+  Widget _buildAddButton(
+      BuildContext context, AddToCardCubit cubit, dynamic entity) {
     return Card(
       shape: const CircleBorder(),
       elevation: 4,

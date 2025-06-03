@@ -15,12 +15,11 @@ class ProductSizeWithDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(arg.entity.type != AppConstants.offers)
+        if (arg.entity.type != AppConstants.offers)
           Padding(
             padding: const EdgeInsets.only(top: 5),
             child: Text(
-              '${arg.entity.length} x ${arg.entity.width} cm, ${arg.entity
-                  .height} cm Height',
+              '${arg.entity.length} x ${arg.entity.width} cm, ${arg.entity.height} cm Height',
               style: AppStyles.textStyle14.copyWith(
                 color: AppColors.black.withValues(alpha: 0.6),
                 fontSize: 13.sp,

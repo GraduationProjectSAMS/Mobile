@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/core/utilities/services/cache_service.dart';
-import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
 import 'package:graduation_project/features/orders/data/models/order_products.dart';
 
 import '../../../../orders/data/models/create_order_model.dart';
@@ -169,11 +168,7 @@ class PaymentCubit extends Cubit<PaymentStates> {
   void onTapByNow() {
     if (!formKey.currentState!.validate()) return;
     formKey.currentState!.save();
-    print(orderPastLocationEntity?.orderAddress);
-    print(orderLocationEntity?.orderAddress);
-    print(address);
     if (orderPastLocationEntity == orderLocationEntity) {
-      print("pay now location");
       payNow();
     } else {
 

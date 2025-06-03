@@ -4,7 +4,6 @@ import 'package:graduation_project/features/product_details/presentation/widgets
 import 'package:graduation_project/features/product_details/presentation/widgets/product_rating.dart';
 import 'package:graduation_project/features/product_details/presentation/widgets/product_size_with_description.dart';
 
-import 'buy_and_action_buttons.dart';
 import 'product_title_and_price.dart';
 
 class ProductDetailsScreenBody extends StatelessWidget {

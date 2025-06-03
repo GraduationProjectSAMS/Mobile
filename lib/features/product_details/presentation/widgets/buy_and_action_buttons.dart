@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
-import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
 import 'package:graduation_project/features/product_details/presentation/widgets/product_actions.dart';
 
@@ -20,15 +19,10 @@ class BuyAndActionButtons extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
-
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-            color: AppColors.primary
-
-        ),
+        border: Border.all(color: AppColors.primary),
       ),
       child: Row(
-
         children: [
           const CardActionButton(),
           const SizedBox(width: 10),
