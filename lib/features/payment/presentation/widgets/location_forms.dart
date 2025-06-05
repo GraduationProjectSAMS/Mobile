@@ -9,6 +9,7 @@ import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 import 'package:graduation_project/core/utilities/services/validator_service.dart';
 
+import '../../../../core/utilities/services/overlay_loading_service.dart';
 import '../../../../core/widgets/my_text_form_field.dart';
 import '../manager/payment_cubit/payment_cubit.dart';
 
@@ -67,6 +68,7 @@ class _LocationFormsState extends State<LocationForms> {
   }
 
   Future<Position> _determinePosition() async {
+
     LocationPermission permission = await Geolocator.checkPermission();
 
     if (permission == LocationPermission.denied) {
@@ -86,7 +88,9 @@ class _LocationFormsState extends State<LocationForms> {
 
   void _handleLocationSelection() async {
     try {
+      OverlayLoadingService().showOverlay(context);
       final position = await _determinePosition();
+      OverlayLoadingService().hideOverlay();
       if (!mounted) return;
 
       final result = await context.navigateTo(
@@ -98,6 +102,7 @@ class _LocationFormsState extends State<LocationForms> {
         _updateTextFieldsFromPlacemark(result);
       }
     } catch (error) {
+      OverlayLoadingService().hideOverlay();
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

@@ -1,7 +1,7 @@
 enum OrderStatus {
   ordered(label: 'Ordered', value: 1),
   received(label: 'Received', value: 2),
-  onTheWay(label: 'On the Way', value: 3),
+  onTheWay(label: 'Out For Delivery', value: 3),
   delivered(label: 'Delivered', value: 4),
   ;
 

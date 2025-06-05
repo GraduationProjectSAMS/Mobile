@@ -8,6 +8,8 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/utilities/functions/staggered_animations.dart';
 
 class ProductList extends StatelessWidget {
+
+
   const ProductList({
     super.key,
     required this.productsList,
@@ -33,8 +35,9 @@ class ProductList extends StatelessWidget {
         final gridCount = constraints.maxWidth.gridCount;
         return AnimationLimiter(
           child: GridView.builder(
-
-            cacheExtent: 1000,
+            cacheExtent: 500.hR, // Increased for better preloading
+            addAutomaticKeepAlives: false, // Disable keep alive for memory efficiency// Enable repaint boundaries
+            addSemanticIndexes: false, // Disable if not needed for accessibility
             itemCount: products.length,
             padding: const EdgeInsets.symmetric(horizontal: 10),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

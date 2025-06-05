@@ -16,17 +16,27 @@ class ProductSizeWithDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (arg.entity.type != AppConstants.offers)
-          Padding(
-            padding: const EdgeInsets.only(top: 5),
-            child: Text(
-              '${arg.entity.length} x ${arg.entity.width} cm, ${arg.entity.height} cm Height',
-              style: AppStyles.textStyle14.copyWith(
-                color: AppColors.black.withValues(alpha: 0.6),
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+    ...[
+      Padding(
+        padding: const EdgeInsets.only(top: 5),
+        child: Text(
+          '${arg.entity.length} x ${arg.entity.width} cm, ${arg.entity.height} cm Height',
+          style: AppStyles.textStyle14.copyWith(
+            color: AppColors.black.withValues(alpha: 0.6),
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w600,
           ),
+        ),
+      ),
+      const SizedBox(height: 5),
+      Text('Quantity : ${arg.entity.maxQuantity}',
+          style: AppStyles.textStyle14.copyWith(
+            color: Colors.grey,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w600,
+          )),
+    ],
+
         const SizedBox(height: 5),
         Divider(
           color: AppColors.black.withValues(alpha: 0.3),

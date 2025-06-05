@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/utilities/resources/app_colors.dart';
+import 'package:graduation_project/features/orders/presentation/widgets/order_details_status_bar.dart';
 
 import '../../../../core/utilities/resources/app_styles.dart';
 
@@ -13,7 +14,12 @@ class OrderStatusSelector extends StatefulWidget {
 }
 
 class _OrderStatusSelectorState extends State<OrderStatusSelector> {
-  final List<String> statuses = ['Pending', 'Delivered', 'OnTheWay'];
+  final List<String> statuses = [
+    OrderStatus.ordered.label,
+    OrderStatus.received.label,
+    OrderStatus.onTheWay.label,
+    OrderStatus.delivered.label,
+  ];
   String? selectedStatus;
 
   @override

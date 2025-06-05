@@ -125,14 +125,17 @@ class MyCachedNetworkImage extends StatelessWidget {
     }
 
     return CachedNetworkImage(
+      memCacheWidth: 300, // Resize to reasonable size
+      memCacheHeight: 200,
+      maxWidthDiskCache: 600, // Limit disk cache size
+      maxHeightDiskCache: 400,
       imageUrl: imageUrl,
       width: width ?? double.infinity,
       height: height,
       useOldImageOnUrlChange: true,
       imageBuilder: (context, imageProvider) => _buildImage(imageProvider),
       errorWidget: (context, url, error) => _buildErrorIcon(),
-      progressIndicatorBuilder: (context, url, downloadProgress) =>
-          _buildProgressIndicator(downloadProgress.progress),
+
     );
   }
 

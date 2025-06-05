@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/core/utilities/services/cache_service.dart';
 import 'package:graduation_project/features/orders/data/models/order_products.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../orders/data/models/create_order_model.dart';
 import '../../../../orders/data/models/order_location_model.dart';
@@ -113,12 +114,18 @@ class PaymentCubit extends Cubit<PaymentStates> {
   }
 
   final formKey = GlobalKey<FormState>();
-
+String get locationAddress {
+   if(address == null || address!.isEmpty) {
+     return '$city, $streetName, $buildingNo, $apartmentNumber, $floorNumber';
+   }
+   return address!;
+  }
   Future<void> setOrderLocation() async {
+    Logger().i(address);
     emit(PaymentLoadingState());
     final result = await _setOrderLocationUseCase(
         orderLocationModel: OrderLocationModel(
-      address: address,
+      address: locationAddress,
       city: city,
       buildingNo: buildingNo,
       apartmentNo: apartmentNumber,
