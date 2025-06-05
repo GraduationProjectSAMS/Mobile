@@ -3,6 +3,7 @@ import 'package:graduation_project/features/home/data/models/offers_model.dart';
 import '../../../favorites/data/models/favorites_model.dart';
 import '../../../orders/data/models/order_products.dart';
 import '../../data/models/product_model.dart';
+import 'offer_products_entity.dart';
 
 class ProductEntity {
   final int id;
@@ -21,6 +22,7 @@ class ProductEntity {
   final String productCategory ;
   final String productAesthetic;
   final String productRoom;
+  final List<OfferProductsEntity> offerProducts;
 
   const ProductEntity({
     required this.id,
@@ -39,6 +41,7 @@ class ProductEntity {
     this.productCategory = '',
     this.productAesthetic = '',
     this.productRoom = '',
+    this.offerProducts = const [],
   });
 
   factory ProductEntity.loading() => const ProductEntity(

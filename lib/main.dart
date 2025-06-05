@@ -13,7 +13,6 @@ void main() async {
   setupDependencies();
  await Future.wait([
     CacheService.init(),
-
     DesktopWindowService.init(),
     dotenv.load(),
   ]);

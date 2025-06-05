@@ -6,6 +6,7 @@ import 'package:graduation_project/core/utilities/resources/app_colors.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 
 import '../utilities/resources/icon_broken.dart';
+import '../utilities/services/overlay_loading_service.dart';
 
 class MyButton extends StatefulWidget {
   const MyButton({
@@ -31,81 +32,12 @@ final bool isShowLoadingInCenter;
 }
 
 class _MyButtonState extends State<MyButton> {
-  OverlayEntry? _overlayEntry;
 
-  OverlayEntry _createOverlay() {
-    const barrierColor = Colors.black54;
-    final indicatorSize = 50.0.sp;
-        const Color indicatorColor = Colors.white;
-    const double strokeWidth = 4.0;
-    return OverlayEntry(
-      builder: (context) => Container(
-        color: barrierColor,
-        child: Center(
-          child: Container(
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: Colors.black.withValues( alpha:  0.2),
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues( alpha:  0.2),
-                  blurRadius: 8,
-                  spreadRadius: 2,
-                ),
-              ],
-            ),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                // Gradient ring animation
-                SizedBox(
-                  height: indicatorSize,
-                  width: indicatorSize,
-                  child: const CircularProgressIndicator(
-                    strokeWidth: strokeWidth,
-                    valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
-                  ),
-                ),
-                // Pulsing center dot
-                AnimatedScale(
-                  scale: 0.5,
-                  duration: const Duration(milliseconds: 800),
-                  curve: Curves.easeInOut,
-                  child: Container(
-                    width: indicatorSize * 0.3,
-                    height: indicatorSize * 0.3,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: indicatorColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: indicatorColor.withValues( alpha: 0.4),
-                          blurRadius: 12,
-                          spreadRadius: 2,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
-  void _showOverlay() {
-    if (_overlayEntry != null) return;
-    _overlayEntry = _createOverlay();
-    Overlay.of(context).insert(_overlayEntry!);
-  }
 
-  void _hideOverlay() {
-    _overlayEntry?.remove();
-    _overlayEntry = null;
-  }
+
+
+
 
   @override
   void didUpdateWidget(covariant MyButton old) {
@@ -114,15 +46,15 @@ class _MyButtonState extends State<MyButton> {
     // Schedule the overlay add/remove to run _after_ this build frame:
     if(!widget.isShowLoadingInCenter)return;
     if (widget.isLoading && !old.isLoading) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _showOverlay());
+      WidgetsBinding.instance.addPostFrameCallback((_) => OverlayLoadingService().showOverlay(context));
     } else if (!widget.isLoading && old.isLoading) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _hideOverlay());
+      WidgetsBinding.instance.addPostFrameCallback((_) =>  OverlayLoadingService().hideOverlay());
     }
   }
 
   @override
   void dispose() {
-    _hideOverlay();
+    OverlayLoadingService().hideOverlay();
     super.dispose();
   }
 

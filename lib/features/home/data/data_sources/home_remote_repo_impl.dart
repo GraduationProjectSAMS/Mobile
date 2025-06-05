@@ -46,4 +46,23 @@ class HomeRemoteRepoImpl implements HomeRemoteRepo {
       formData: FormData.fromMap(offerData),
     );
   }
+
+  @override
+  Future<ProductEntity> getOfferById(int id) async{
+    final response = await apiService.getData(
+      endPoint: '${AppEndpoints.getOffers}/$id',
+    );
+    final model = OffersData.fromJson(response?.data['data']);
+   return model.toEntity;
+
+  }
+
+  @override
+  Future<ProductEntity> getProductById(int id) async{
+    final response = await apiService.getData(
+      endPoint: '${AppEndpoints.getProducts}/$id',
+    );
+    final model = ProductData.fromJson(response?.data['data']);
+    return model.toEntity;
+  }
 }

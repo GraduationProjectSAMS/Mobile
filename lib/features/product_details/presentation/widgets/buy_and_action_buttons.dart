@@ -22,12 +22,12 @@ class BuyAndActionButtons extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: AppColors.primary),
       ),
-      child: Row(
+      child: const Row(
         children: [
-          const CardActionButton(),
-          const SizedBox(width: 10),
-          const FavoriteActionIcon(),
-          const SizedBox(width: 10),
+          CardActionButton(),
+          SizedBox(width: 10),
+          FavoriteActionIcon(),
+          SizedBox(width: 10),
         ],
       ),
     );

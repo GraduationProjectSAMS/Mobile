@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -78,8 +79,12 @@ class AddOfferCubit extends Cubit<AddOfferState> {
         'price': offerPriceController.text,
         'quantity': offerQuantityController.text,
         'theme': offerThemeController.text,
+        'photo':await MultipartFile.fromFile(
+          pickedImage!.path,
+          filename: pickedImage!.path.split('/').last,
+        ),
         for (int i = 0; i < offerIds.length; i++)
-          'product_ids[${i + 1}]': offerIds[i],
+          'product_ids[$i]': offerIds[i],
       };
       final result =
           await addOfferUseCase(offerData: data, onSendProgress: onUploadImage);

@@ -20,36 +20,44 @@ class ProductTitleAndPrice extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
+        const SizedBox(height: 5),
         Row(
           children: [
             if (arg.entity.type == AppConstants.offers)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Theme : ${arg.entity.offerTheme}',
-                      style: AppStyles.textStyle14.copyWith(
-                        color: Colors.grey,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w600,
-                      )),
-                  Text('Quantity : ${arg.entity.maxQuantity}',
-                      style: AppStyles.textStyle14.copyWith(
-                        color: Colors.grey,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w600,
-                      )),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Theme : ${arg.entity.offerTheme}',
+                        style: AppStyles.textStyle14.copyWith(
+                          color: Colors.grey,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                        )),
+                    const SizedBox(height: 5),
+                    Text('Quantity : ${arg.entity.maxQuantity}',
+                        style: AppStyles.textStyle14.copyWith(
+                          color: Colors.grey,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                        )),
+                  ],
+                ),
               )
             else
-              Text(
-                '${arg.entity.productCategory} , ${arg.entity.productAesthetic} , ${arg.entity.productRoom}',
-                style: AppStyles.textStyle14.copyWith(
-                  color: Colors.green.shade800,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
+              Expanded(
+                child: Text(
+                  '${arg.entity.productCategory} , ${arg.entity.productAesthetic} , ${arg.entity.productRoom}',
+                  style: AppStyles.textStyle14.copyWith(
+                    color: Colors.green.shade800,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-            const Spacer(),
+            const SizedBox(
+              width: 15,
+            ),
             RichText(
               text: TextSpan(
                 children: [

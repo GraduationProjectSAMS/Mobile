@@ -14,27 +14,36 @@ class ProductDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final arg = context.productDetailsArgs;
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider.value(value: arg.context.read<AddToCardCubit>()),
-        BlocProvider.value(value: arg.context.read<AddFavoriteCubit>()),
-      ],
-      child: Scaffold(
-        body: AppAdaptiveLayOut(
-          mobileLayOut: (BuildContext context) =>
-              const ProductDetailsScreenBody(),
-          desktopLayOut: (BuildContext context) =>
-              const ProductDetailsScreenBodyDesktop(),
-        ),
-      ),
+
+    return Scaffold(
+      body: arg.context != null
+          ? MultiBlocProvider(
+              providers: [
+                BlocProvider.value(value: arg.context!.read<AddToCardCubit>()),
+                BlocProvider.value(
+                    value: arg.context!.read<AddFavoriteCubit>()),
+              ],
+              child: AppAdaptiveLayOut(
+                mobileLayOut: (BuildContext context) =>
+                    const ProductDetailsScreenBody(),
+                desktopLayOut: (BuildContext context) =>
+                    const ProductDetailsScreenBodyDesktop(),
+              ),
+            )
+          : AppAdaptiveLayOut(
+              mobileLayOut: (BuildContext context) =>
+                  const ProductDetailsScreenBody(),
+              desktopLayOut: (BuildContext context) =>
+                  const ProductDetailsScreenBodyDesktop(),
+            ),
     );
   }
 }
 
 extension ModalRouteArgumentsExtension on BuildContext {
-  ({ProductEntity entity, BuildContext context}) get productDetailsArgs {
+  ({ProductEntity entity, BuildContext? context}) get productDetailsArgs {
     final args = ModalRoute.of(this)?.settings.arguments;
-    if (args is ({ProductEntity entity, BuildContext context})) {
+    if (args is ({ProductEntity entity, BuildContext? context})) {
       return args;
     } else {
       throw Exception('Invalid arguments for ProductDetailsPage');

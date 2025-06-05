@@ -42,4 +42,23 @@ class HomeRepoImpl implements HomeRepo {
       return Left(appServerFailure(e));
     }
   }
+
+  @override
+  Future<Either<Failure, ProductEntity>> getOfferById(int id) async{
+    try {
+      final offer = await remoteRepo.getOfferById(id);
+      return Right(offer);
+    } catch (e) {
+      return Left(appServerFailure(e));
+    }
+  }
+  @override
+  Future<Either<Failure, ProductEntity>> getProductById(int id) async{
+    try {
+      final product = await remoteRepo.getProductById(id);
+      return Right(product);
+    } catch (e) {
+      return Left(appServerFailure(e));
+    }
+  }
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/utilities/functions/list_methods.dart';
 import 'package:graduation_project/core/widgets/app_api_error_widget.dart';
 import 'package:graduation_project/features/orders/presentation/manager/get_orders_cubit/get_orders_cubit.dart';
+import 'package:graduation_project/features/orders/presentation/widgets/empty_order_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../domain/entities/order_entity.dart';
 import 'orders_list.dart';
 
 class GetOrdersBlocBuilder extends StatelessWidget {
@@ -20,9 +23,14 @@ class GetOrdersBlocBuilder extends StatelessWidget {
           return AppApiErrorWidget(errorMessage: state.error);
         }
 
-        return Skeletonizer(
-          enabled: isLoading,
-          child: OrdersList(ordersList: cubit.orders),
+        return buildListOrEmptyItem<OrderEntity>(
+          list: [],
+          isLoading: false,
+          listEmptyWidget: EmptyOrderWidget.new,
+          listWidget: (List<OrderEntity> list, bool isLoading) => Skeletonizer(
+            enabled: isLoading,
+            child: OrdersList(ordersList: list),
+          ),
         );
       },
     );

@@ -1,6 +1,8 @@
 import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
 
+import '../../domain/entities/offer_products_entity.dart';
+
 class OffersModel {
   OffersModel({
     this.message,
@@ -42,6 +44,12 @@ class OffersData {
     quantity = json['quantity'];
     isProductInFavorite = json['in_wish_list'];
     offerTheme = json['theme'];
+    if (json['products'] != null) {
+      products = [];
+      json['products'].forEach((v) {
+        products?.add(OffersProductModel.fromJson(v));
+      });
+    }
   }
 
   num? id;
@@ -52,6 +60,7 @@ class OffersData {
   num? quantity;
   bool? isProductInFavorite;
   String? offerTheme;
+  List<OffersProductModel>? products;
 
   ProductEntity get toEntity => ProductEntity(
       isFavorite: isProductInFavorite ?? false,
@@ -65,5 +74,34 @@ class OffersData {
           ? AppConstants.kNullProductImage
           : photoUrl ?? '',
       maxQuantity: quantity?.toInt() ?? 0,
+     offerProducts: products.toEntityList,
       offerTheme: offerTheme ?? ',');
+}
+
+class OffersProductModel {
+  final int id;
+  final String name;
+  final String imageUrl;
+  final double price;
+
+  OffersProductModel({
+    required this.id,
+    required this.name,
+    required this.imageUrl,
+    required this.price,
+  });
+  OfferProductsEntity get toEntity => OfferProductsEntity(
+        id: id,
+        name: name,
+        imageUrl: imageUrl,
+        price: price,
+      );
+  factory OffersProductModel.fromJson(Map<String, dynamic> json) {
+    return OffersProductModel(
+      id: json['id'],
+      name: json['name'],
+      imageUrl: json['image_url'],
+      price: double.parse(json['price']),
+    );
+  }
 }

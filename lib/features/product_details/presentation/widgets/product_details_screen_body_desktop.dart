@@ -6,7 +6,7 @@ import 'package:graduation_project/features/product_details/presentation/widgets
 import 'package:graduation_project/features/product_details/presentation/widgets/product_title_and_price.dart';
 
 import '../../../../core/widgets/my_cached_network_image.dart';
-import 'product_actions.dart';
+import 'offers_product_item.dart';
 import 'product_size_with_description.dart';
 
 class ProductDetailsScreenBodyDesktop extends StatelessWidget {
@@ -46,7 +46,7 @@ class ProductDetailsScreenBodyDesktop extends StatelessWidget {
                             ProductTitleAndPrice(),
                             ProductRating(),
                             ProductSizeWithDescription(),
-                            ProductActions(),
+                            OffersProductItem(),
                             SizedBox(height: 20),
                             Expanded(
                                 child: SizedBox(

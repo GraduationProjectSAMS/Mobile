@@ -9,4 +9,6 @@ abstract class HomeRemoteRepo {
     required Map<String, dynamic> offerData,
     void Function(int, int)? onSendProgress,
   });
+  Future<ProductEntity> getOfferById(int id);
+  Future <ProductEntity > getProductById(int id);
 }

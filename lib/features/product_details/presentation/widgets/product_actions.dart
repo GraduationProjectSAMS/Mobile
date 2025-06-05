@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/utilities/resources/app_constants.dart';
-import 'package:graduation_project/core/utilities/services/size_config_service.dart';
 import 'package:graduation_project/features/product_details/presentation/screens/product_details_screen.dart';
 import 'package:graduation_project/features/product_details/presentation/widgets/product_counter_widget.dart';
 
@@ -16,9 +15,7 @@ class ProductActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final arg = context.productDetailsArgs;
-    if (SizeConfigService.isDesktop) {
-      return const SizedBox();
-    }
+
     return Row(
       children: [
         if (arg.entity.type != AppConstants.offers)
@@ -31,13 +28,16 @@ class ProductActions extends StatelessWidget {
             initialColor: const Color(0xFFC2C0C0),
             onColorSelected: (color) {},
           ),
-        Spacer(),
-        ...[
+        const Spacer(),
+        if (arg.context != null) ...[
           const CardActionButton(),
-          SizedBox(
-            width: 6,
+          const SizedBox(
+            width: 10,
           ),
           const FavoriteActionIcon(),
+          const SizedBox(
+            width: 6,
+          ),
         ]
       ],
     );

@@ -25,9 +25,10 @@ import '../../../features/cards/domain/use_cases/delete_card_use_case.dart';
 import '../../../features/cards/domain/use_cases/get_cards_use_case.dart';
 import '../../../features/favorites/domain/use_cases/add_to_favorites_use_case.dart';
 import '../../../features/home/data/repositories/home_repo_impl.dart';
-
 import '../../../features/favorites/domain/use_cases/get_favorites_use_case.dart';
+import '../../../features/home/domain/use_cases/get_offer_by_id_use_case.dart';
 import '../../../features/home/domain/use_cases/get_offers_use_case.dart';
+import '../../../features/home/domain/use_cases/get_product_by_id_use_case.dart';
 import '../../../features/home/domain/use_cases/get_products_use_case.dart';
 import '../../../features/orders/domain/use_cases/create_order_use_case.dart';
 import '../../../features/orders/domain/use_cases/get_current_order_location_use_case.dart';
@@ -89,6 +90,10 @@ void setupDependencies() {
       () => GetProductsUseCase(getIt.get<HomeRepoImpl>()));
   getIt.registerLazySingleton<GetOffersUseCase>(
       () => GetOffersUseCase(getIt.get<HomeRepoImpl>()));
+  getIt.registerLazySingleton<GetOfferByIdUseCase>(
+      () => GetOfferByIdUseCase(getIt.get<HomeRepoImpl>()));
+  getIt.registerLazySingleton<GetProductByIdUseCase>(
+      () => GetProductByIdUseCase(getIt.get<HomeRepoImpl>()));
   getIt.registerLazySingleton<AddToFavoritesUseCase>(
           () => AddToFavoritesUseCase(getIt.get<FavoritesRepoImpl>()));
   getIt.registerLazySingleton<GetFavoritesUseCase>(
