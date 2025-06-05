@@ -33,7 +33,7 @@ class EmptyOrderWidget extends StatelessWidget {
             Icon(
               icon,
               size: iconSize,
-              color: iconColor ?? theme.colorScheme.outline.withOpacity(0.6),
+              color: iconColor ?? theme.colorScheme.outline.withValues( alpha: 0.6),
             ),
             const SizedBox(height: 24),
             Text(
@@ -48,7 +48,7 @@ class EmptyOrderWidget extends StatelessWidget {
             Text(
               subtitle,
               style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
               textAlign: TextAlign.center,
             ),

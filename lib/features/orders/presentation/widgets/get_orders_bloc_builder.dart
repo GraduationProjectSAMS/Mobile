@@ -24,8 +24,8 @@ class GetOrdersBlocBuilder extends StatelessWidget {
         }
 
         return buildListOrEmptyItem<OrderEntity>(
-          list: [],
-          isLoading: false,
+          list: cubit.orders,
+          isLoading: isLoading,
           listEmptyWidget: EmptyOrderWidget.new,
           listWidget: (List<OrderEntity> list, bool isLoading) => Skeletonizer(
             enabled: isLoading,
