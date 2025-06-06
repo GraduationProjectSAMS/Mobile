@@ -15,7 +15,7 @@ class OrdersRepoImpl implements OrdersRepo {
 
   @override
   Future<Either<Failure, List<OrderEntity>>> getOrders(
-      {String? orderType}) async {
+      {dynamic orderType}) async {
     try {
       final orders = await remoteRepo.getOrders(orderType: orderType);
       return Right(orders);

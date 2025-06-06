@@ -15,9 +15,12 @@ class OrdersRemoteRepoImpl implements OrdersRemoteRepo {
   OrdersRemoteRepoImpl(this.apiService);
 
   @override
-  Future<List<OrderEntity>> getOrders({String? orderType}) async {
+  Future<List<OrderEntity>> getOrders({dynamic orderType}) async {
     final response = await apiService.getData(
       endPoint: AppEndpoints.orders,
+      data: {
+        if (orderType != null) 'status_id': orderType,
+      },
     );
 
     final orderModel = OrderModel.fromJson(response?.data);

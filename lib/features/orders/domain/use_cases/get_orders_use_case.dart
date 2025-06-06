@@ -9,7 +9,7 @@ class GetOrdersUseCase {
 
   GetOrdersUseCase(this._ordersRepo);
 
-  Future<Either<Failure, List<OrderEntity>>> call({String? orderType}) async {
+  Future<Either<Failure, List<OrderEntity>>> call({dynamic orderType}) async {
     return _ordersRepo.getOrders(orderType: orderType);
   }
 }

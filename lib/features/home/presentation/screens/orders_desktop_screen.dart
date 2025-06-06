@@ -4,6 +4,7 @@ import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 
 import '../../../orders/presentation/widgets/get_orders_bloc_builder.dart';
 import '../../../orders/presentation/widgets/order_status_selector.dart';
+import '../../../orders/presentation/widgets/order_status_selector_bloc_builder.dart';
 
 class OrdersDesktopScreen extends StatelessWidget {
   const OrdersDesktopScreen({super.key});
@@ -21,8 +22,8 @@ class OrdersDesktopScreen extends StatelessWidget {
                 style: AppStyles.textStyle20,
               ),
               const Spacer(),
-              OrderStatusSelector(
-                onStatusSelected: (String? value) {},
+            OrderStatusSelectorBlocBuilder(
+
               ),
               const Spacer(),
             ],

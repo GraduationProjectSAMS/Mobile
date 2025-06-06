@@ -5,23 +5,42 @@ import 'package:graduation_project/features/orders/presentation/widgets/order_de
 import '../../../../core/utilities/resources/app_styles.dart';
 
 class OrderStatusSelector extends StatefulWidget {
-  final Function(String?) onStatusSelected; // String? to allow null
+  final Function(OrderStatus?) onStatusSelected; // OrderStatus? to allow null
+  final OrderStatus? initialStatus; // Initial status can be null
 
-  const OrderStatusSelector({super.key, required this.onStatusSelected});
+  const OrderStatusSelector({
+    super.key,
+    required this.onStatusSelected,
+    this.initialStatus,
+  });
 
   @override
   State<OrderStatusSelector> createState() => _OrderStatusSelectorState();
 }
 
 class _OrderStatusSelectorState extends State<OrderStatusSelector> {
-  final List<String> statuses = [
-    OrderStatus.ordered.label,
-    OrderStatus.received.label,
-    OrderStatus.onTheWay.label,
-    OrderStatus.delivered.label,
+  final List<OrderStatus> statuses = [
+    OrderStatus.ordered,
+    OrderStatus.received,
+    OrderStatus.onTheWay,
+    OrderStatus.delivered,
   ];
-  String? selectedStatus;
+  OrderStatus? selectedStatus;
 
+  @override
+  void initState() {
+    super.initState();
+    selectedStatus = widget.initialStatus;
+  }
+@override
+  void didUpdateWidget(covariant OrderStatusSelector oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.initialStatus != widget.initialStatus) {
+
+        selectedStatus = widget.initialStatus;
+
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -39,7 +58,7 @@ class _OrderStatusSelectorState extends State<OrderStatusSelector> {
               labelStyle: AppStyles.textStyle15.copyWith(
                 color: isSelected ? AppColors.white : AppColors.black,
               ),
-              label: Text(status),
+              label: Text(status.label),
               selected: isSelected,
               onSelected: (_) {
                 setState(() {

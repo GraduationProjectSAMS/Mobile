@@ -5,7 +5,7 @@ import '../models/create_order_model.dart';
 import '../models/order_location_model.dart';
 
 abstract class OrdersRemoteRepo {
-  Future<List<OrderEntity>> getOrders({String? orderType});
+  Future<List<OrderEntity>> getOrders({dynamic orderType});
 
   Future<void> setOrderLocation(
       {required OrderLocationModel orderLocationModel});

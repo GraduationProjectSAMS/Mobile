@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/features/orders/domain/use_cases/change_order_status_use_case.dart';
 import 'package:graduation_project/features/orders/domain/use_cases/get_orders_use_case.dart';
+import 'package:graduation_project/features/orders/presentation/widgets/order_details_status_bar.dart';
 
 import '../../../domain/entities/order_entity.dart';
 
@@ -20,11 +21,17 @@ class GetOrdersCubit extends Cubit<GetOrdersStates> {
 
   // Store orders as a class variable
   List<OrderEntity> orders = ordersWaiting;
-
+  OrderStatus ? selectedStatus;
+void onChangeOrderStatus(OrderStatus? status) {
+    selectedStatus = status;
+    // You can add logic here to filter or update the orders based on the selected status
+    // For example, you might want to fetch orders with the selected status
+     getOrders();
+  }
   Future<void> getOrders() async {
     orders = ordersWaiting; // Reset orders to initial state
     emit(GetOrdersLoading());
-    final result = await _getOrdersUseCase();
+    final result = await _getOrdersUseCase(orderType: selectedStatus?.value);
     result.fold(
       (failure) => emit(GetOrdersError(failure.errorMessage)),
       (fetchedOrders) {

@@ -135,6 +135,8 @@ class MyCachedNetworkImage extends StatelessWidget {
       useOldImageOnUrlChange: true,
       imageBuilder: (context, imageProvider) => _buildImage(imageProvider),
       errorWidget: (context, url, error) => _buildErrorIcon(),
+      progressIndicatorBuilder: (context, url, progress) =>
+          _buildProgressIndicator(progress.progress),
 
     );
   }

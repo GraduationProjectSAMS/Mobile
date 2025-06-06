@@ -4,6 +4,7 @@ import 'package:graduation_project/core/widgets/my_app_bar.dart';
 
 import 'get_orders_bloc_builder.dart';
 import 'order_status_selector.dart';
+import 'order_status_selector_bloc_builder.dart';
 
 class OrdersScreenBody extends StatelessWidget {
   const OrdersScreenBody({super.key});
@@ -19,12 +20,7 @@ class OrdersScreenBody extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          OrderStatusSelector(
-            onStatusSelected: (status) {
-              print('Selected status: $status');
-              // Trigger filtering logic here
-            },
-          ),
+          OrderStatusSelectorBlocBuilder(),
           const SizedBox(
             height: 10,
           ),
