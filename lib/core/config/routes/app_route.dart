@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/features/authentication/presentation/screens/forget_password_otp_screen.dart';
+import 'package:graduation_project/features/authentication/presentation/screens/forget_password_screen.dart';
 import 'package:graduation_project/features/cards/presentation/screens/cards_screen.dart';
 import 'package:graduation_project/features/home/presentation/screens/add_offer_screen.dart';
 import 'package:graduation_project/features/orders/presentation/screens/orders_screen.dart';
@@ -20,6 +22,7 @@ abstract class AppRoutes {
   static const splash = 'splash';
   static const onBoardingRoute = 'onBoarding';
   static const signUpRoute = 'signUp';
+  static const forgotPasswordRoute = 'forgotPassword';
   static const homeLayout = 'homeLayout';
   static const productDetails = 'productDetails';
   static const addProduct = 'addProduct';
@@ -31,6 +34,7 @@ abstract class AppRoutes {
   static const orders = 'orders';
   static const addOffers = 'addOffers';
   static const orderDetails = 'orderDetails';
+  static const forgetPasswordOtp = 'forgetPasswordOtp';
 }
 
 abstract class RouteGenerator {
@@ -66,15 +70,22 @@ abstract class RouteGenerator {
       case AppRoutes.orders:
         return MaterialPageRoute(
             settings: settings, builder: (_) => const OrdersScreen());
-        case AppRoutes.addOffers:
+      case AppRoutes.addOffers:
         return MaterialPageRoute(
             settings: settings, builder: (_) => const AddOfferScreen());
-       case AppRoutes.orderDetails:
+      case AppRoutes.orderDetails:
         return MaterialPageRoute(
             settings: settings, builder: (_) => const OrderDetailsScreen());
-        case AppRoutes.splash:
+      case AppRoutes.splash:
+        return MaterialPageRoute(builder: (_) => const SplashView());
+      case AppRoutes.forgotPasswordRoute:
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+      case AppRoutes.forgetPasswordOtp:
+        // Assuming you have a screen for handling the OTP for forget password
         return MaterialPageRoute(
-           builder: (_) => const SplashView());
+          settings: settings,
+            builder: (_) => const ForgetPasswordOtpScreen()); // Replace with actual OTP screen
+
       default:
         return _errorRoute();
     }

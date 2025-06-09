@@ -15,4 +15,14 @@ abstract class AuthenticationRemoteRepo {
   Future<String> loginWithGoogle();
 
   Future<LoginEntity> sendGoogleTokenToBackEnd({required String googleToken});
+
+  Future<void> setForgetPasswordOtp({
+    required String email,
+  });
+
+  Future<LoginEntity> resetPassword({
+    required String email,
+    required String otp,
+    required String newPassword,
+  });
 }

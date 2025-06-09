@@ -75,4 +75,34 @@ class AuthenticationRemoteRepoImpl implements AuthenticationRemoteRepo {
     if (loginEntity != null) return loginEntity;
     throw ServerFailure('Login failed');
   }
+
+  @override
+  Future<void> setForgetPasswordOtp({required String email}) async {
+    await _apiService.postData(
+      endPoint: AppEndpoints.sendForgetPasswordOtp,
+      data: {
+        'email': email,
+      },
+    );
+  }
+
+  @override
+  Future<LoginEntity> resetPassword(
+      {required String email,
+      required String otp,
+      required String newPassword}) async {
+    final response = await _apiService.postData(
+      endPoint: AppEndpoints.resetPassword,
+      data: {
+        'email': email,
+        'otp': otp,
+        'new_password': newPassword,
+      },
+    );
+
+    final model = LoginModel.fromJson(response.data);
+    final loginEntity = model.data?.toEntity;
+    if (loginEntity != null) return loginEntity;
+    throw ServerFailure('Reset password failed');
+  }
 }

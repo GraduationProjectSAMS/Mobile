@@ -30,6 +30,7 @@ class Data {
       roleName: json['role_name'],
     );
   }
+
   LoginEntity get toEntity {
     return LoginEntity(
       token: modelToken ?? '',

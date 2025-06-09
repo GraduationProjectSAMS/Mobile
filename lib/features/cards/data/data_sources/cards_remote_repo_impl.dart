@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:graduation_project/core/utilities/resources/app_endpoints.dart';
 import 'package:graduation_project/features/favorites/data/models/favorites_model.dart';
 
@@ -15,6 +16,10 @@ class CardsRemoteRepoImpl implements CardsRemoteRepo {
       {required productId, required String type, int quantity = 1}) async {
     await apiService.postData(
       endPoint: AppEndpoints.addToCart,
+      options: Options(
+        receiveTimeout: const Duration(seconds: 4),
+        sendTimeout: const Duration(seconds: 4),
+      ),
       data: {
         'item_id': productId,
         'item_type': '${type}s',
@@ -28,7 +33,7 @@ class CardsRemoteRepoImpl implements CardsRemoteRepo {
     final response = await apiService.getData(
       endPoint: AppEndpoints.addToCart,
     );
-    final model = FavoritesModel.fromJson(response?.data);
+    final model = FavoritesModel.fromJson(response?.data['data'] ?? {});
     final products = model.favoritesData.toEntityList;
     return products;
   }

@@ -17,7 +17,9 @@ import '../../../features/add_product/data/repositories/add_product_repo_impl.da
 import '../../../features/authentication/data/data_sources/authentication_remote_repo_impl.dart';
 import '../../../features/authentication/data/repo/authentication_repo_impl.dart';
 import '../../../features/authentication/domain/use_case/login_with_email_and_password_use_case.dart';
+import '../../../features/authentication/domain/use_case/reset_password_use_case.dart';
 import '../../../features/authentication/domain/use_case/send_google_token_to_back_end_use_case.dart';
+import '../../../features/authentication/domain/use_case/send_reset_password_otp_use_case.dart';
 import '../../../features/authentication/domain/use_case/sign_in_with_google_use_case.dart';
 import '../../../features/authentication/domain/use_case/signup_with_gmail_use_case.dart';
 import '../../../features/cards/domain/use_cases/add_to_card_use_case.dart';
@@ -86,6 +88,10 @@ void setupDependencies() {
       LoginWithEmailAndPasswordUseCase(getIt.get<AuthenticationRepoImpl>()));
   getIt.registerLazySingleton<SendGoogleTokenToBackEndUseCase>(() =>
       SendGoogleTokenToBackEndUseCase(getIt.get<AuthenticationRepoImpl>()));
+  getIt.registerLazySingleton<SendResetPasswordOtpUseCase>(() =>
+      SendResetPasswordOtpUseCase(getIt.get<AuthenticationRepoImpl>()));
+  getIt.registerLazySingleton<ResetPasswordUseCase>(() =>
+      ResetPasswordUseCase(getIt.get<AuthenticationRepoImpl>()));
   getIt.registerLazySingleton<GetProductsUseCase>(
       () => GetProductsUseCase(getIt.get<HomeRepoImpl>()));
   getIt.registerLazySingleton<GetOffersUseCase>(

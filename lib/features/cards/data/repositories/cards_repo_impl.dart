@@ -27,7 +27,7 @@ class CardsRepoImpl implements CardsRepo {
     try {
       final cards = await remoteRepo.getCards();
       return Right(cards);
-    } catch (e) {
+    } on Exception catch  (e) {
       return Left(appServerFailure(e));
     }
   }

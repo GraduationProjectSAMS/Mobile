@@ -39,7 +39,7 @@ class ServerFailure extends Failure {
     if (errorNumber == 400 ||
         errorNumber == 401 ||
         errorNumber == 403 ||
-        errorNumber == 422) {
+        errorNumber == 502) {
       return ServerFailure(response['error']??response['message'].toString(),
           statusCode: errorNumber);
     } else if (errorNumber == 404) {
@@ -47,6 +47,7 @@ class ServerFailure extends Failure {
     } else if (errorNumber == 500) {
       return ServerFailure(AppStrings.internalServerError);
     } else {
+
       return ServerFailure(AppStrings.oopsTryAgain);
     }
   }

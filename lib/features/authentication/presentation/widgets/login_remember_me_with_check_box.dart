@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/config/extension/extension.dart';
+import 'package:graduation_project/core/config/routes/app_route.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 
 import '../../../../core/utilities/resources/app_strings.dart';
@@ -20,7 +22,7 @@ class LoginRememberMeWithCheckBox extends StatelessWidget {
         const Spacer(),
         MyTextButton(
           onTap: () {
-            // Handle forgot password
+            context.navigateTo(pageName: AppRoutes.forgotPasswordRoute);
           },
           text: AppStrings.forgotPassword,
         ),

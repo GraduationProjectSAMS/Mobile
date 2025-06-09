@@ -35,6 +35,7 @@ class MyTextFormField extends StatelessWidget {
     this.errorBorder,
     this.fillColor,
     this.isDense,
+    this.textAlign = TextAlign.start,
     this.autoValidateMode = AutovalidateMode.onUserInteraction,
     this.autofocus = false,
     this.suffix, this.onSaved, this.enableInteractiveSelection,
@@ -74,7 +75,8 @@ class MyTextFormField extends StatelessWidget {
   final AutovalidateMode autoValidateMode;
   final bool autofocus;
   final bool? enableInteractiveSelection;
-final void Function(String?)? onSaved;
+  final TextAlign textAlign;
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -95,6 +97,7 @@ final void Function(String?)? onSaved;
       autofillHints: autofillHints,
       inputFormatters: inputFormatters,
       readOnly: readOnly,
+      textAlign: textAlign,
       onTap: onTap,
       onFieldSubmitted: onFieldSubmitted,
       onChanged: onChanged,

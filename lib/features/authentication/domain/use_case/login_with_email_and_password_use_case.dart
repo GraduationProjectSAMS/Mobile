@@ -30,7 +30,7 @@ class LoginWithEmailAndPasswordUseCase {
         if (loginEntity.roleName.toLowerCase() == 'user' &&
             Platform.isWindows) {
           // return a Failure if the role is admin
-          return Left(ServerFailure('Admins are not allowed to login here.'));
+          return Left(ServerFailure('users are not allowed to login here.'));
         }
         // otherwise propagate the successful entity
         return Right(loginEntity);

@@ -22,7 +22,7 @@ class OrdersDesktopScreen extends StatelessWidget {
                 style: AppStyles.textStyle20,
               ),
               const Spacer(),
-            OrderStatusSelectorBlocBuilder(
+            const OrderStatusSelectorBlocBuilder(
 
               ),
               const Spacer(),

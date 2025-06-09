@@ -11,20 +11,20 @@ class OrdersScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
         child: Padding(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       child: Column(
         children: [
-          const MyAppBar(title: AppStrings.myOrders),
-          const SizedBox(
+          MyAppBar(title: AppStrings.myOrders),
+          SizedBox(
             height: 10,
           ),
           OrderStatusSelectorBlocBuilder(),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
-          const Expanded(child: GetOrdersBlocBuilder()),
+          Expanded(child: GetOrdersBlocBuilder()),
         ],
       ),
     ));

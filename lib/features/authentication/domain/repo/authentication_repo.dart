@@ -20,4 +20,14 @@ abstract class AuthenticationRepo {
   Future<Either<Failure, LoginEntity>> sendGoogleTokenToBackEnd({
     required String googleToken,
   });
+
+  Future<Either<Failure, void>> setForgetPasswordOtp({
+    required String email,
+  });
+
+  Future<Either<Failure, LoginEntity>> resetPassword({
+    required String email,
+    required String otp,
+    required String newPassword,
+  });
 }

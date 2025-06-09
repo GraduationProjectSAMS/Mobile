@@ -64,4 +64,32 @@ class AuthenticationRepoImpl implements AuthenticationRepo {
       return Left(appServerFailure(e));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> setForgetPasswordOtp(
+      {required String email}) async {
+    try {
+      await _authenticationRemoteRepo.setForgetPasswordOtp(email: email);
+      return const Right(null);
+    } on Exception catch (e) {
+      return Left(appServerFailure(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, LoginEntity>> resetPassword(
+      {required String email,
+      required String otp,
+      required String newPassword}) async {
+    try {
+      final response = await _authenticationRemoteRepo.resetPassword(
+        email: email,
+        otp: otp,
+        newPassword: newPassword,
+      );
+      return Right(response);
+    } on Exception catch (e) {
+      return Left(appServerFailure(e));
+    }
+  }
 }

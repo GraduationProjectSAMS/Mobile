@@ -11,6 +11,7 @@ class LoginPasswordTextForm extends StatefulWidget {
   final Widget? suffixIcon; // Custom suffix icon
   final Widget? prefixIcon; // Custom prefix icon
   final String? hintText; // Hint text for the text field
+  final String? labelText; // Label text for the text field
   final ValueChanged<String?>? onSaved; // Callback for text changes
   final Iterable<String>? autofillHints;
   final TextEditingController? controller;
@@ -23,13 +24,14 @@ class LoginPasswordTextForm extends StatefulWidget {
     this.hidePassword = true, // Default to hiding password
     this.suffixIcon,
     this.prefixIcon,
-    this.hintText,
+    this.hintText = AppStrings.passwordHintText,
     this.onSaved,
     this.autofillHints,
     this.controller,
     this.focusNode,
     this.onFieldSubmitted,
     this.textInputAction,
+    this.labelText = AppStrings.passwordLabelText,
   });
 
   @override
@@ -58,8 +60,8 @@ class MyTextFormFieldState extends State<LoginPasswordTextForm> {
       autofillHints: widget.autofillHints,
       validator: ValidatorService.passwordValidator,
       prefixIcon: const Icon(Icons.lock_outline),
-      labelText: AppStrings.passwordLabelText,
-      hintText: AppStrings.passwordHintText,
+      labelText: widget.labelText,
+      hintText: widget.hintText,
       hidePassword: widget.hidePassword ? !_isPasswordVisible : false,
       //
       suffixIcon: widget.hidePassword
