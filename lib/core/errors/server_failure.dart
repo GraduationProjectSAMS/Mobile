@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:logger/logger.dart';
@@ -14,7 +13,8 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromDioError(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerFailure(AppStrings.connectionTimeoutFromApiServer,statusCode: AppConstants.connectionTimeoutCode);
+        return ServerFailure(AppStrings.connectionTimeoutFromApiServer,
+            statusCode: AppConstants.connectionTimeoutCode);
       case DioExceptionType.receiveTimeout:
         return ServerFailure(AppStrings.receiveTimeoutFromApiServer);
       case DioExceptionType.badCertificate:
@@ -35,19 +35,19 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int errorNumber, dynamic response) {
-    Logger().e(response);
+    Logger().e(errorNumber);
     if (errorNumber == 400 ||
         errorNumber == 401 ||
         errorNumber == 403 ||
+        errorNumber == 422 ||
         errorNumber == 502) {
-      return ServerFailure(response['error']??response['message'].toString(),
+      return ServerFailure(response['error'] ?? response['message'].toString(),
           statusCode: errorNumber);
     } else if (errorNumber == 404) {
       return ServerFailure(AppStrings.methodNotFound);
     } else if (errorNumber == 500) {
       return ServerFailure(AppStrings.internalServerError);
     } else {
-
       return ServerFailure(AppStrings.oopsTryAgain);
     }
   }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/features/home/presentation/manager/offers_cubit/offers_cubit.dart';
 import 'package:graduation_project/features/home/presentation/manager/products_cubit/product_cubit.dart';
+import 'package:graduation_project/features/home/presentation/widgets/recommended_products_widget.dart';
 
 import 'banner_list_with_indicator.dart';
 import 'home_offers_bloc_builder.dart';
@@ -20,6 +21,7 @@ class HomeScreenBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const BannerListWithIndicator(),
+
           HomeTextTitle(
             title: AppStrings.newlyAdded,
             onTap: context.read<ProductCubit>().viewAllProducts,

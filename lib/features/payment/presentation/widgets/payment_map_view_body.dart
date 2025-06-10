@@ -172,6 +172,7 @@ class PaymentMapViewBodyState extends State<PaymentMapViewBody> {
                     const SizedBox(height: 10),
                     Center(
                       child: MyButton(
+                        isShowLoadingInCenter: false,
                         isLoading: _isLoading,
                         height: 40,
                         width: 50.wR,

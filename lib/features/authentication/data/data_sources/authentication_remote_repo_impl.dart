@@ -93,10 +93,10 @@ class AuthenticationRemoteRepoImpl implements AuthenticationRemoteRepo {
       required String newPassword}) async {
     final response = await _apiService.postData(
       endPoint: AppEndpoints.resetPassword,
-      data: {
+      formData: {
         'email': email,
         'otp': otp,
-        'new_password': newPassword,
+        'password': newPassword,
       },
     );
 

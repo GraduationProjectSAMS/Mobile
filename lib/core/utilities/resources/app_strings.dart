@@ -74,7 +74,7 @@ static const newlyAdded= 'Newly Added';
   static const setting = 'Setting';
   static const helpCenter = 'HelpCenter';
   static const signUpMassage =
-      'Complete your details or continue with social media';
+      'Complete your details or continue with Google to create an account';
   static const forgotPasswordMassage =
       'Please enter your email and we will send you a link to return to your account';
   static const noInternet = 'NO INTERNET CONNECTION';

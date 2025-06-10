@@ -5,6 +5,7 @@ import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/config/routes/app_route.dart';
 import 'package:graduation_project/core/utilities/functions/date_time_format.dart';
 import 'package:graduation_project/core/utilities/functions/my_toast.dart';
+import 'package:graduation_project/core/utilities/resources/app_constants.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 import 'package:graduation_project/core/utilities/services/size_config_service.dart';
 import 'package:graduation_project/features/orders/domain/entities/order_entity.dart';
@@ -108,7 +109,7 @@ class OrdersItem extends StatelessWidget {
                       child: Row(
                         children: List.generate(3, (index) {
                           final titles = [
-                            '${num.tryParse(orderEntity.totalPrice)?.toStringAsFixed(2)} EGP',
+                            '${((num.tryParse(orderEntity.totalPrice)??0)+AppConstants.shippingCost).toStringAsFixed(2)} EGP',
                             formatDateTime(orderEntity.orderDate),
                             orderEntity.deliveryDate,
                           ];

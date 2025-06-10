@@ -10,7 +10,7 @@ abstract class AppEndpoints {
   static const getOffers = 'offers';
   static const addToFavorite = 'wishlists';
   static const addToCart = 'carts';
-  static const profile ='users';
+  static const profile ='userProfile';
   static const logout ='auth/logout';
   static final baseUrl = dotenv.env[AppConstants.baseUrlKey]??'';
   static final payMobSecretKey = dotenv.env[AppConstants.payMobSecretKey]??'';
