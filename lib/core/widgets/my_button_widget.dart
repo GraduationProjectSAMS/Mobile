@@ -48,13 +48,13 @@ class _MyButtonState extends State<MyButton> {
     if (widget.isLoading && !old.isLoading) {
       WidgetsBinding.instance.addPostFrameCallback((_) => OverlayLoadingService().showOverlay(context));
     } else if (!widget.isLoading && old.isLoading) {
-      WidgetsBinding.instance.addPostFrameCallback((_) =>  OverlayLoadingService().hideOverlay());
+      WidgetsBinding.instance.addPostFrameCallback((_) =>  OverlayLoadingService().hideOverlay(context));
     }
   }
 
   @override
   void dispose() {
-    OverlayLoadingService().hideOverlay();
+    OverlayLoadingService().hideOverlay(context);
     super.dispose();
   }
 

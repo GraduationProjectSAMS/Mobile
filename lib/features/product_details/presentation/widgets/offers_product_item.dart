@@ -36,14 +36,14 @@ class _OffersProductItemState extends State<OffersProductItem> {
     final result = await _getProductByIdUseCase.call(id);
     result.fold(
       (failure) {
-        OverlayLoadingService().hideOverlay();
+        OverlayLoadingService().hideOverlay(context);
         showAdaptiveToast(
             context: context,
             msg: failure.errorMessage,
             state: ToastStates.error);
       },
       (product) {
-        OverlayLoadingService().hideOverlay();
+        OverlayLoadingService().hideOverlay(context);
         context.navigateTo(
             pageName: AppRoutes.productDetails,
             arguments: (entity: product, context: null));

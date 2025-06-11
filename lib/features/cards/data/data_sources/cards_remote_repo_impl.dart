@@ -42,7 +42,7 @@ class CardsRemoteRepoImpl implements CardsRemoteRepo {
   Future<void> removeFromCard(
       {required productId, required String type}) async {
     await apiService.deleteData(
-      endPoint: '${AppEndpoints.addToCart}/$type/$productId',
+      endPoint: '${AppEndpoints.addToCart}/${type}s/$productId',
     );
   }
 

@@ -9,7 +9,11 @@ class GetFavoritesUseCase {
 
   GetFavoritesUseCase(this._favoritesRepo);
 
-  Future<Either<Failure, List<ProductEntity>>> call() {
-    return _favoritesRepo.getFavorites();
+  Future<Either<Failure, List<ProductEntity>>> call() async{
+    final result =await _favoritesRepo.getFavorites();
+    return result.fold(
+      Left.new,
+      (products) => Right(products.reversed.toList()),
+    );
   }
 }

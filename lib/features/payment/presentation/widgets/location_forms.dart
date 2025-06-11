@@ -51,7 +51,7 @@ class _LocationFormsState extends State<LocationForms> {
     _apartmentNoController.dispose();
     cubit.formKey.currentState?.dispose();
     cubit.formKey.currentState?.reset();
-
+    OverlayLoadingService().hideOverlay(context);
     super.dispose();
   }
 
@@ -90,9 +90,9 @@ class _LocationFormsState extends State<LocationForms> {
     try {
       OverlayLoadingService().showOverlay(context);
       final position = await _determinePosition();
-      OverlayLoadingService().hideOverlay();
-      if (!mounted) return;
 
+      if (!mounted) return;
+      OverlayLoadingService().hideOverlay(context);
       final result = await context.navigateTo(
         pageName: AppRoutes.paymentMap,
         arguments: position,
@@ -102,8 +102,9 @@ class _LocationFormsState extends State<LocationForms> {
         _updateTextFieldsFromPlacemark(result);
       }
     } catch (error) {
-      OverlayLoadingService().hideOverlay();
       if (!mounted) return;
+      OverlayLoadingService().hideOverlay(context);
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.red,
