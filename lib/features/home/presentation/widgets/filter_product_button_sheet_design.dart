@@ -58,7 +58,7 @@ final String? initialSelected;
                 ],
                 initialSelected: 'Office',
                 onSelectionChanged: (value) {
-                  print('Selected filter: $value');
+
                 },
               ),
               const SizedBox(

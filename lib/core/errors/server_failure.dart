@@ -35,13 +35,13 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int errorNumber, dynamic response) {
-    Logger().e(errorNumber);
+    Logger().e(response);
     if (errorNumber == 400 ||
         errorNumber == 401 ||
         errorNumber == 403 ||
         errorNumber == 422 ||
         errorNumber == 502) {
-      return ServerFailure(response['error'] ?? response['message'].toString(),
+      return ServerFailure((response['error'] ?? response['message']).toString(),
           statusCode: errorNumber);
     } else if (errorNumber == 404) {
       return ServerFailure(AppStrings.methodNotFound);

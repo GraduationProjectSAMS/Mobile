@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/features/profile/presentation/widgets/show_logout_dialog_content.dart';
 
-import 'change_password_dialog.dart';
-import 'change_username_dialog.dart';
+import '../../../../core/utilities/functions/my_toast.dart';
 
 class ProfileMenuList extends StatelessWidget {
   static List<String> menuItems = [
@@ -50,10 +49,11 @@ class ProfileMenuList extends StatelessWidget {
               title: menuItems[index],
               color: menuColors[index],
               onTap: () async {
-                if (index == 0) {
-                  changeUserNameDialog(context);
-                } else if (index == 1) {
-                  showChangePasswordDialog(context);
+                if (index == 0 || index == 1) {
+                  myToast(
+                    msg: 'coming soon',
+                    state: ToastStates.warning,
+                  );
                 } else if (index == 2) {
                   showLogoutDialog(context);
                 }

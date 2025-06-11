@@ -129,8 +129,10 @@ class OverlayLoadingService {
 
   void hideOverlay(BuildContext context) {
     if (!_isVisible) return;
-
     _isVisible = false;
-    Navigator.of(context).pop();
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
+
   }
 }
