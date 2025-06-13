@@ -4,12 +4,12 @@ import '../../../../core/errors/failure.dart';
 import '../entities/product_entity.dart';
 import '../repositories/home_repo.dart';
 
-class GetOfferByIdUseCase {
+class GetProductRecommendationsUseCase {
   final HomeRepo _homeRepo;
 
-  GetOfferByIdUseCase(this._homeRepo);
+  GetProductRecommendationsUseCase(this._homeRepo);
 
-  Future<Either<Failure, ProductEntity>> call(int id) {
-    return _homeRepo.getOfferById(id);
+  Future<Either<Failure, List<ProductEntity>>> call() {
+    return _homeRepo.getProductRecommendations();
   }
 }

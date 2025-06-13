@@ -18,10 +18,14 @@ class ProductEntity {
   final int height;
   final bool isFavorite;
   final String type;
-  final String offerTheme ;
-  final String productCategory ;
+  final String offerTheme;
+
+  final String productCategory;
+
   final String productAesthetic;
   final String productRoom;
+  final double
+      compatibilityPercentage; // Assuming percentage is always 0.0 in ProductEntity
   final List<OfferProductsEntity> offerProducts;
 
   const ProductEntity({
@@ -42,6 +46,7 @@ class ProductEntity {
     this.productAesthetic = '',
     this.productRoom = '',
     this.offerProducts = const [],
+    this.compatibilityPercentage = 0.0,
   });
 
   factory ProductEntity.loading() => const ProductEntity(
@@ -53,7 +58,6 @@ class ProductEntity {
         price: 0.0,
         imageUrl: '',
         maxQuantity: 0,
-
       );
 
   OrderProducts get toOrderProductsMode {

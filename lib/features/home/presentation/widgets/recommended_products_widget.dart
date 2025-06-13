@@ -23,47 +23,56 @@ class RecommendedProductsWidget extends StatelessWidget {
       title: "Modern Accent Chair",
       description: "Comfortable velvet upholstered chair with gold metal legs",
       compatibility: 96,
-      imageUrl: "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=200&h=200&fit=crop",
+      imageUrl:
+          "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=200&h=200&fit=crop",
       price: 289.99,
     ),
     Product(
       title: "Scandinavian Coffee Table",
-      description: "Minimalist oak wood coffee table with clean geometric lines",
+      description:
+          "Minimalist oak wood coffee table with clean geometric lines",
       compatibility: 94,
-      imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&h=200&fit=crop",
+      imageUrl:
+          "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&h=200&fit=crop",
       price: 429.99,
     ),
     Product(
       title: "Industrial Bookshelf",
-      description: "5-tier metal and wood bookshelf with rustic industrial design",
+      description:
+          "5-tier metal and wood bookshelf with rustic industrial design",
       compatibility: 91,
-      imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+      imageUrl:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
       price: 199.99,
     ),
     Product(
       title: "Luxury Dining Table",
       description: "Solid walnut dining table seats 6 people comfortably",
       compatibility: 89,
-      imageUrl: "https://images.unsplash.com/photo-1549497538-303791108f95?w=200&h=200&fit=crop",
+      imageUrl:
+          "https://images.unsplash.com/photo-1549497538-303791108f95?w=200&h=200&fit=crop",
       price: 849.99,
     ),
     Product(
       title: "Memory Foam Mattress",
-      description: "Queen size gel-infused memory foam mattress with cooling technology",
+      description:
+          "Queen size gel-infused memory foam mattress with cooling technology",
       compatibility: 97,
-      imageUrl: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=200&h=200&fit=crop",
+      imageUrl:
+          "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=200&h=200&fit=crop",
       price: 599.99,
     ),
     Product(
       title: "Vintage Leather Sofa",
       description: "3-seater genuine leather sofa with distressed finish",
       compatibility: 93,
-      imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&h=200&fit=crop",
+      imageUrl:
+          "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&h=200&fit=crop",
       price: 1299.99,
     ),
   ];
 
-   RecommendedProductsWidget({super.key});
+  RecommendedProductsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +82,10 @@ class RecommendedProductsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 15),
-          Text(
-            'Recommended For You',
-            style: AppStyles.textStyle18.copyWith(fontWeight: FontWeight.w600, )
-          ),
+          Text('Recommended For You',
+              style: AppStyles.textStyle18.copyWith(
+                fontWeight: FontWeight.w600,
+              )),
           const SizedBox(height: 2),
           SizedBox(
             height: 260,
@@ -103,7 +112,6 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 185,
- 
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(8),
@@ -115,7 +123,6 @@ class ProductCard extends StatelessWidget {
                 height: 120,
                 width: double.infinity,
                 decoration: BoxDecoration(
-
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.grey.shade300),
                 ),
@@ -138,7 +145,7 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-        
+
               // Product Title
               Text(
                 product.title,
@@ -151,7 +158,7 @@ class ProductCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 4),
-        
+
               // Product Description
               Text(
                 product.description,
@@ -162,8 +169,8 @@ class ProductCard extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 8),
-        
+              const SizedBox(height: 4),
+
               // Price
               Row(
                 children: [
@@ -185,7 +192,7 @@ class ProductCard extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-        
+
               // Compatibility
 
               Text.rich(
@@ -193,14 +200,13 @@ class ProductCard extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: 'EGP ',
-                      style: AppStyles
-                          .textStyle14, // Smaller font for EGP
+                      style: AppStyles.textStyle14, // Smaller font for EGP
                     ),
                     TextSpan(
                       text: '${product.price}',
                       style: AppStyles.textStyle18.copyWith(
-                          fontWeight: FontWeight
-                              .w600), // Original font for price
+                          fontWeight:
+                              FontWeight.w600), // Original font for price
                     ),
                   ],
                 ),

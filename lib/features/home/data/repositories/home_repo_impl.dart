@@ -44,7 +44,7 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, ProductEntity>> getOfferById(int id) async{
+  Future<Either<Failure, ProductEntity>> getOfferById(int id) async {
     try {
       final offer = await remoteRepo.getOfferById(id);
       return Right(offer);
@@ -52,11 +52,23 @@ class HomeRepoImpl implements HomeRepo {
       return Left(appServerFailure(e));
     }
   }
+
   @override
-  Future<Either<Failure, ProductEntity>> getProductById(int id) async{
+  Future<Either<Failure, ProductEntity>> getProductById(int id) async {
     try {
       final product = await remoteRepo.getProductById(id);
       return Right(product);
+    } catch (e) {
+      return Left(appServerFailure(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ProductEntity>>>
+      getProductRecommendations() async {
+    try {
+      final recommendations = await remoteRepo.getProductRecommendations();
+      return Right(recommendations);
     } catch (e) {
       return Left(appServerFailure(e));
     }

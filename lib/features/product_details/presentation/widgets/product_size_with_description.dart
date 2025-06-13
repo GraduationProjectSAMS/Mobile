@@ -17,6 +17,7 @@ class ProductSizeWithDescription extends StatelessWidget {
       children: [
         if (arg.entity.type != AppConstants.offers)
     ...[
+      if(arg.entity.length!=0)
       Padding(
         padding: const EdgeInsets.only(top: 5),
         child: Text(

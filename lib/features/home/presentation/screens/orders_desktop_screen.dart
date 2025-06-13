@@ -3,7 +3,6 @@ import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/utilities/resources/app_styles.dart';
 
 import '../../../orders/presentation/widgets/get_orders_bloc_builder.dart';
-
 import '../../../orders/presentation/widgets/order_status_selector_bloc_builder.dart';
 
 class OrdersDesktopScreen extends StatelessWidget {
@@ -22,9 +21,7 @@ class OrdersDesktopScreen extends StatelessWidget {
                 style: AppStyles.textStyle20,
               ),
               const Spacer(),
-            const OrderStatusSelectorBlocBuilder(
-
-              ),
+              const OrderStatusSelectorBlocBuilder(),
               const Spacer(),
             ],
           ),

@@ -4,6 +4,7 @@ import 'package:graduation_project/core/utilities/services/dependency_injection_
 import 'package:graduation_project/features/cards/presentation/manager/add_to_card_cubit/add_to_card_cubit.dart';
 import 'package:graduation_project/features/home/domain/use_cases/get_offers_use_case.dart';
 import 'package:graduation_project/features/home/presentation/manager/offers_cubit/offers_cubit.dart';
+import 'package:graduation_project/features/home/presentation/manager/product_recommendations_cubit/product_recommendations_cubit.dart';
 import 'package:graduation_project/features/profile/presentation/manager/profile_cubit/profile_cubit.dart';
 
 import '../../../cards/domain/use_cases/add_to_card_use_case.dart';
@@ -56,9 +57,15 @@ class HomeLayout extends StatelessWidget {
               ProfileCubit(getIt.get<GetProfileDataUseCase>())..getUserData(),
         ),
         BlocProvider(
-          create: (context) =>
-              GetOrdersCubit(getOrdersUseCase: getIt.get(),changeOrderStatusUseCase:
-    ChangeOrderStatusUseCase(getIt.get<OrdersRepoImpl>()))..getOrders()),
+            create: (context) => GetOrdersCubit(
+                getOrdersUseCase: getIt.get(),
+                changeOrderStatusUseCase:
+                    ChangeOrderStatusUseCase(getIt.get<OrdersRepoImpl>()))
+              ..getOrders()),
+        BlocProvider(
+            create: (context) => ProductRecommendationsCubit(
+                getProductRecommendationsUseCase: getIt.get())
+              ..getProductRecommendations()),
       ],
       child: HomeAdaptiveLayOut(
         mobileLayOut: (BuildContext context) => const HomeMobileBodyLayout(),

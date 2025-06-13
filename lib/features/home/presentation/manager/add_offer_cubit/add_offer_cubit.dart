@@ -79,7 +79,7 @@ class AddOfferCubit extends Cubit<AddOfferState> {
         'price': offerPriceController.text,
         'quantity': offerQuantityController.text,
         'theme': offerThemeController.text,
-        'photo':await MultipartFile.fromFile(
+        'photo': await MultipartFile.fromFile(
           pickedImage!.path,
           filename: pickedImage!.path.split('/').last,
         ),

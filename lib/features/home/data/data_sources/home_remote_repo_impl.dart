@@ -48,21 +48,29 @@ class HomeRemoteRepoImpl implements HomeRemoteRepo {
   }
 
   @override
-  Future<ProductEntity> getOfferById(int id) async{
+  Future<ProductEntity> getOfferById(int id) async {
     final response = await apiService.getData(
       endPoint: '${AppEndpoints.getOffers}/$id',
     );
     final model = OffersData.fromJson(response?.data['data']);
-   return model.toEntity;
-
+    return model.toEntity;
   }
 
   @override
-  Future<ProductEntity> getProductById(int id) async{
+  Future<ProductEntity> getProductById(int id) async {
     final response = await apiService.getData(
       endPoint: '${AppEndpoints.getProducts}/$id',
     );
     final model = ProductData.fromJson(response?.data['data']);
     return model.toEntity;
+  }
+
+  @override
+  Future<List<ProductEntity>> getProductRecommendations() async {
+    final response = await apiService.getData(
+      endPoint: AppEndpoints.getRecommendations,
+    );
+    final list = (response?.data as List).map(ProductData.fromJson).toList();
+    return list.toEntityList;
   }
 }

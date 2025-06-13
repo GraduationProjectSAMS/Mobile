@@ -13,6 +13,14 @@ import '../../../../core/config/routes/app_route.dart';
 import '../../../favorites/presentation/manager/add_favorite_cubit/add_favorite_cubit.dart';
 
 class ProductItem extends StatelessWidget {
+  final ProductEntity entity;
+  final double? width;
+  final double? height;
+  final bool enableHeroTag;
+  final bool isAdmin;
+  final bool isOffer;
+  final bool _isRecommendations;
+
   const ProductItem({
     super.key,
     this.width,
@@ -21,16 +29,18 @@ class ProductItem extends StatelessWidget {
     this.isAdmin = false,
     this.enableHeroTag = true,
     this.isOffer = false,
-  });
+  }) : _isRecommendations = false;
 
-  final ProductEntity entity;
-  final double? width;
-  final double? height;
-  final bool enableHeroTag;
-  final bool isAdmin;
-  final bool isOffer;
+  const ProductItem.recommendations({
+    super.key,
+    this.width,
+    this.height,
+    required this.entity,
+    this.isAdmin = false,
+    this.enableHeroTag = true,
+    this.isOffer = false,
+  }) : _isRecommendations = true;
 
-  @override
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -131,11 +141,36 @@ class ProductItem extends StatelessWidget {
                     if (entity.description.isNotEmpty)
                       Text(
                         entity.description,
-                        maxLines: 2,
+                        maxLines: _isRecommendations ? 1 : 2,
                         overflow: TextOverflow.ellipsis,
                         style: AppStyles.textStyle12
                             .copyWith(color: AppColors.grey),
                       ),
+                    if (_isRecommendations) ...[
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Compatibility: ',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey.shade600,
+                            ),
+                          ),
+                          Text(
+                            '${entity.compatibilityPercentage}%',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: _getCompatibilityColor(
+                                  entity.compatibilityPercentage.toInt()),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                     const SizedBox(
                       height: 5,
                     ),
@@ -240,5 +275,11 @@ class ProductItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color _getCompatibilityColor(int compatibility) {
+    if (compatibility >= 95) return Colors.green.shade600;
+    if (compatibility >= 90) return Colors.orange.shade600;
+    return Colors.red.shade600;
   }
 }

@@ -5,6 +5,7 @@ import 'package:graduation_project/core/utilities/resources/app_strings.dart';
 import 'package:graduation_project/core/utilities/resources/icon_broken.dart';
 import 'package:graduation_project/features/home/domain/entities/product_entity.dart';
 import 'package:graduation_project/features/home/presentation/manager/offers_cubit/offers_cubit.dart';
+import 'package:graduation_project/features/home/presentation/manager/product_recommendations_cubit/product_recommendations_cubit.dart';
 import 'package:graduation_project/features/home/presentation/manager/products_cubit/product_cubit.dart';
 import 'package:graduation_project/features/home/presentation/screens/home_screen.dart';
 import 'package:graduation_project/features/home/presentation/screens/products_screen.dart';
@@ -66,6 +67,7 @@ class _HomeMobileBodyLayoutState extends State<HomeMobileBodyLayout> {
   }
 
   Future<void> _refreshData(BuildContext context) async {
+    context.read<ProductRecommendationsCubit>().getProductRecommendations();
     await Future.wait([
       context.read<ProductCubit>().getProducts(),
       context.read<OffersCubit>().getOffers(),

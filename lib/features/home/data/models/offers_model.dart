@@ -74,7 +74,7 @@ class OffersData {
           ? AppConstants.kNullProductImage
           : photoUrl ?? '',
       maxQuantity: quantity?.toInt() ?? 0,
-     offerProducts: products.toEntityList,
+      offerProducts: products.toEntityList,
       offerTheme: offerTheme ?? ',');
 }
 
@@ -90,12 +90,14 @@ class OffersProductModel {
     required this.imageUrl,
     required this.price,
   });
+
   OfferProductsEntity get toEntity => OfferProductsEntity(
         id: id,
         name: name,
         imageUrl: imageUrl,
         price: price,
       );
+
   factory OffersProductModel.fromJson(Map<String, dynamic> json) {
     return OffersProductModel(
       id: json['id'],

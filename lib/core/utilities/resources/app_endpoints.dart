@@ -22,6 +22,7 @@ static const ordersSippingAddress='user/shipping-addresses';
 static const geOrdersSippingAddress='user/current-shipping-address';
 static const sendForgetPasswordOtp ='forgot-password';
 static const resetPassword = 'reset-password';
+static const getRecommendations= 'recommendations';
 
 
 

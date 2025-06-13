@@ -16,7 +16,8 @@ void showFilterProductButtonSheet({
 
 class FilterProductButtonSheetDesign extends StatelessWidget {
   const FilterProductButtonSheetDesign({super.key, this.initialSelected});
-final String? initialSelected;
+
+  final String? initialSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +58,7 @@ final String? initialSelected;
                   'Sofas & Couches',
                 ],
                 initialSelected: 'Office',
-                onSelectionChanged: (value) {
-
-                },
+                onSelectionChanged: (value) {},
               ),
               const SizedBox(
                 height: 20,

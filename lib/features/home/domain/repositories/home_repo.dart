@@ -12,6 +12,10 @@ abstract class HomeRepo {
     required Map<String, dynamic> offerData,
     void Function(int, int)? onSendProgress,
   });
+
   Future<Either<Failure, ProductEntity>> getOfferById(int id);
+
   Future<Either<Failure, ProductEntity>> getProductById(int id);
+
+  Future<Either<Failure, List<ProductEntity>>> getProductRecommendations();
 }

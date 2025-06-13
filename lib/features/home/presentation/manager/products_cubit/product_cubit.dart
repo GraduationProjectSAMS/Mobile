@@ -24,10 +24,8 @@ class ProductCubit extends Cubit<ProductStates> {
       (products) {
         this.products = products;
 
-          homeProducts = products.sublist(
-              0, this.products.length > 5 ? 5 : this.products.length);
-
-
+        homeProducts = products.sublist(
+            0, this.products.length > 5 ? 5 : this.products.length);
 
         emit(ProductSuccessStates(products));
       },

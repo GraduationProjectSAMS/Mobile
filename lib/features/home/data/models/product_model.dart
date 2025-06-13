@@ -36,6 +36,7 @@ class ProductData {
     this.length,
     this.width,
     this.height,
+    this.percentage,
   });
 
   ProductData.fromJson(dynamic json) {
@@ -52,6 +53,7 @@ class ProductData {
     width = json['width'];
     height = json['height'];
     isProductInFavorite = json['in_wish_list'];
+    percentage = json['percentage'];
   }
 
   num? id;
@@ -67,6 +69,7 @@ class ProductData {
   num? height;
   String? imageUrl;
   bool? isProductInFavorite;
+  String? percentage;
 
   ProductEntity get toEntity => ProductEntity(
         isFavorite: isProductInFavorite ?? false,
@@ -86,5 +89,7 @@ class ProductData {
         productAesthetic: aesthetic ?? '',
         productCategory: category ?? '',
         productRoom: rooms ?? '',
+        compatibilityPercentage:
+            double.tryParse(percentage?.replaceAll('%', '') ?? '') ?? 0.0,
       );
 }
