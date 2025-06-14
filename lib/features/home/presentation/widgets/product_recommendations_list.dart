@@ -24,7 +24,7 @@ class ProductRecommendationsList extends StatelessWidget {
             index: index,
             child: ProductItem.recommendations(
               width: 180.sp,
-              index: index,
+
               entity: products[index],
             ),
           ),

@@ -92,4 +92,38 @@ class ProductData {
         compatibilityPercentage:
             double.tryParse(percentage?.replaceAll('%', '') ?? '') ?? 0.0,
       );
+
+  ProductData copyWith({
+    num? id,
+    String? name,
+    String? category,
+    String? aesthetic,
+    String? rooms,
+    String? description,
+    String? price,
+    num? quantity,
+    num? length,
+    num? width,
+    num? height,
+    String? imageUrl,
+    bool? isProductInFavorite,
+    String? percentage,
+  }) {
+    return ProductData(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      category: category ?? this.category,
+      aesthetic: aesthetic ?? this.aesthetic,
+      rooms: rooms ?? this.rooms,
+      description: description ?? this.description,
+      price: price ?? this.price,
+      quantity: quantity ?? this.quantity,
+      length: length ?? this.length,
+      width: width ?? this.width,
+      height: height ?? this.height,
+      imageUrl: imageUrl ?? this.imageUrl,
+      isProductInFavorite: isProductInFavorite ?? this.isProductInFavorite,
+      percentage: percentage ?? this.percentage,
+    );
+  }
 }

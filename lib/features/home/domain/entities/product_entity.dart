@@ -68,6 +68,49 @@ class ProductEntity {
       price: price.toString(),
     );
   }
+
+  ProductEntity copyWith({
+    int? id,
+    String? name,
+    String? description,
+    double? price,
+    String? imageUrl,
+    int? maxQuantity,
+    int? carQuantity,
+    int? length,
+    int? width,
+    int? height,
+    bool? isFavorite,
+    String? type,
+    String? offerTheme,
+    String? productCategory,
+    String? productAesthetic,
+    String? productRoom,
+    double? compatibilityPercentage,
+    List<OfferProductsEntity>? offerProducts,
+  }) {
+    return ProductEntity(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      price: price ?? this.price,
+      imageUrl: imageUrl ?? this.imageUrl,
+      maxQuantity: maxQuantity ?? this.maxQuantity,
+      carQuantity: carQuantity ?? this.carQuantity,
+      length: length ?? this.length,
+      width: width ?? this.width,
+      height: height ?? this.height,
+      isFavorite: isFavorite ?? this.isFavorite,
+      type: type ?? this.type,
+      offerTheme: offerTheme ?? this.offerTheme,
+      productCategory: productCategory ?? this.productCategory,
+      productAesthetic: productAesthetic ?? this.productAesthetic,
+      productRoom: productRoom ?? this.productRoom,
+      compatibilityPercentage:
+          compatibilityPercentage ?? this.compatibilityPercentage,
+      offerProducts: offerProducts ?? this.offerProducts,
+    );
+  }
 }
 
 final productsWaiting = List.filled(10, ProductEntity.loading());

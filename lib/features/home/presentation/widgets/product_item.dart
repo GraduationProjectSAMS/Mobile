@@ -22,8 +22,8 @@ class ProductItem extends StatelessWidget {
   final bool isAdmin;
   final bool isOffer;
   final bool _isRecommendations;
-  final int ?index ;
-static final random=generateRandomNumbers(10);
+
+
   const ProductItem({
     super.key,
     this.width,
@@ -32,7 +32,7 @@ static final random=generateRandomNumbers(10);
     this.isAdmin = false,
     this.enableHeroTag = true,
     this.isOffer = false,
-    this.index,
+
   }) : _isRecommendations = false;
 
   const ProductItem.recommendations({
@@ -43,7 +43,7 @@ static final random=generateRandomNumbers(10);
     this.isAdmin = false,
     this.enableHeroTag = true,
     this.isOffer = false,
-    this.index,
+
   }) : _isRecommendations = true;
 
   @override
@@ -165,12 +165,12 @@ static final random=generateRandomNumbers(10);
                             ),
                           ),
                           Text(
-                            '${random[index!]}%',
+                            '${entity.compatibilityPercentage}%',
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                               color: _getCompatibilityColor(
-                                  random[index!]),
+                                  entity.compatibilityPercentage.toInt()),
                             ),
                           ),
                         ],
@@ -286,15 +286,4 @@ static final random=generateRandomNumbers(10);
     if (compatibility >= 80) return Colors.orange.shade600;
     return Colors.red.shade600;
   }
-}
-List<int> generateRandomNumbers(int count) {
-  final random = Random();
-  Set<int> randomNumbers = <int>{};
-
-  while (randomNumbers.length < count) {
-    int randomNum = random.nextInt(17) + 80; // Range: 80-96
-    randomNumbers.add(randomNum); // Set automatically prevents duplicates
-  }
-
-  return randomNumbers.toList();
 }
