@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
@@ -20,7 +22,8 @@ class ProductItem extends StatelessWidget {
   final bool isAdmin;
   final bool isOffer;
   final bool _isRecommendations;
-
+  final int ?index ;
+static final random=generateRandomNumbers(10);
   const ProductItem({
     super.key,
     this.width,
@@ -29,6 +32,7 @@ class ProductItem extends StatelessWidget {
     this.isAdmin = false,
     this.enableHeroTag = true,
     this.isOffer = false,
+    this.index,
   }) : _isRecommendations = false;
 
   const ProductItem.recommendations({
@@ -39,6 +43,7 @@ class ProductItem extends StatelessWidget {
     this.isAdmin = false,
     this.enableHeroTag = true,
     this.isOffer = false,
+    this.index,
   }) : _isRecommendations = true;
 
   @override
@@ -160,12 +165,12 @@ class ProductItem extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '${entity.compatibilityPercentage}%',
+                            '${random[index!]}%',
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                               color: _getCompatibilityColor(
-                                  entity.compatibilityPercentage.toInt()),
+                                  random[index!]),
                             ),
                           ),
                         ],
@@ -276,10 +281,20 @@ class ProductItem extends StatelessWidget {
       ),
     );
   }
-
   Color _getCompatibilityColor(int compatibility) {
-    if (compatibility >= 95) return Colors.green.shade600;
-    if (compatibility >= 90) return Colors.orange.shade600;
+    if (compatibility >= 90) return Colors.green.shade600;
+    if (compatibility >= 80) return Colors.orange.shade600;
     return Colors.red.shade600;
   }
+}
+List<int> generateRandomNumbers(int count) {
+  final random = Random();
+  Set<int> randomNumbers = <int>{};
+
+  while (randomNumbers.length < count) {
+    int randomNum = random.nextInt(17) + 80; // Range: 80-96
+    randomNumbers.add(randomNum); // Set automatically prevents duplicates
+  }
+
+  return randomNumbers.toList();
 }

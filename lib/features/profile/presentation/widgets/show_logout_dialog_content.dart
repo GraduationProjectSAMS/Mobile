@@ -99,7 +99,8 @@ class ShowLogoutDialogContent extends StatelessWidget {
     if (state is LogoutErrorState) {
       final statusCode = state.error.statusCode;
       return statusCode == AppConstants.unAuthorizedCode ||
-          statusCode == AppConstants.connectionTimeoutCode;
+          statusCode == AppConstants.connectionTimeoutCode ||
+          statusCode == 500;
     }
 
     return false;

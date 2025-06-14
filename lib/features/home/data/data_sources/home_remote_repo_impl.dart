@@ -70,7 +70,7 @@ class HomeRemoteRepoImpl implements HomeRemoteRepo {
     final response = await apiService.getData(
       endPoint: AppEndpoints.getRecommendations,
     );
-    final list = (response?.data as List).map(ProductData.fromJson).toList();
+    final list = (response?.data['data'] as List).map(ProductData.fromJson).toList();
     return list.toEntityList;
   }
 }

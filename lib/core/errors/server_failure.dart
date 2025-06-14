@@ -46,7 +46,7 @@ class ServerFailure extends Failure {
     } else if (errorNumber == 404) {
       return ServerFailure(AppStrings.methodNotFound);
     } else if (errorNumber == 500) {
-      return ServerFailure(AppStrings.internalServerError);
+      return ServerFailure(AppStrings.internalServerError,statusCode: errorNumber);
     } else {
       return ServerFailure(AppStrings.oopsTryAgain);
     }

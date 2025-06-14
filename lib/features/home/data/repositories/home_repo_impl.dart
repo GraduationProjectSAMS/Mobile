@@ -69,7 +69,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       final recommendations = await remoteRepo.getProductRecommendations();
       return Right(recommendations);
-    } catch (e) {
+    } on Exception catch (e) {
       return Left(appServerFailure(e));
     }
   }
