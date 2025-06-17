@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -15,7 +14,6 @@ class SliverSkeletonizer extends StatelessWidget {
     super.key,
     required this.enabled,
     required this.sliver,
-
     this.highlightDuration,
     this.highlightColor,
   });
@@ -28,8 +26,6 @@ class SliverSkeletonizer extends StatelessWidget {
     // so that Skeletonizer can walk its widget tree.
     return SliverToBoxAdapter(
       child: Skeletonizer(
-
-
         child: CustomScrollView(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -39,4 +35,3 @@ class SliverSkeletonizer extends StatelessWidget {
     );
   }
 }
-

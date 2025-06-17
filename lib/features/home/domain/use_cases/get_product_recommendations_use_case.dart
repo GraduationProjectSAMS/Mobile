@@ -1,12 +1,8 @@
-import 'dart:math';
-
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../entities/product_entity.dart';
 import '../repositories/home_repo.dart';
-
-import 'dart:math';
 
 class GetProductRecommendationsUseCase {
   final HomeRepo homeRepo;
@@ -14,29 +10,28 @@ class GetProductRecommendationsUseCase {
   GetProductRecommendationsUseCase(this.homeRepo);
 
   Future<Either<Failure, List<ProductEntity>>> call() async {
+    // Get the original product recommendations
+    final result = await homeRepo.getProductRecommendations();
 
-      // Get the original product recommendations
-      final result = await homeRepo.getProductRecommendations();
+    return result.fold(
+      Left.new,
+      (products) {
+        if (products.isEmpty) return const Right([]);
 
-      return result.fold(
-        Left.new,
-            (products) {
-          if (products.isEmpty) return const Right([]);
+        // Override compatibility percentages with random numbers
+        final updatedProducts = _overrideCompatibilityPercentages(products);
 
-          // Override compatibility percentages with random numbers
-          final updatedProducts = _overrideCompatibilityPercentages(products);
+        // Sort by highest compatibility percentage (descending order)
+        updatedProducts.sort((a, b) =>
+            b.compatibilityPercentage.compareTo(a.compatibilityPercentage));
 
-          // Sort by highest compatibility percentage (descending order)
-          updatedProducts.sort((a, b) =>
-              b.compatibilityPercentage.compareTo(a.compatibilityPercentage));
-
-          return Right(updatedProducts);
-        },
-      );
-
+        return Right(updatedProducts);
+      },
+    );
   }
 
-  List<ProductEntity> _overrideCompatibilityPercentages(List<ProductEntity> products) {
+  List<ProductEntity> _overrideCompatibilityPercentages(
+      List<ProductEntity> products) {
     if (products.isEmpty) return products;
 
     // Generate random numbers for the products
@@ -55,11 +50,10 @@ class GetProductRecommendationsUseCase {
 
   // FIXED VERSION - Allows duplicates to prevent infinite loop
 
-
   // ALTERNATIVE: If you want unique numbers with fallback
   List<int> generateRandomNumbers(int count) {
     if (count > 47) {
-      return List.generate(count, (index) =>index);
+      return List.generate(count, (index) => index);
     }
 
     // Create list of all possible values (50-96)
@@ -72,6 +66,5 @@ class GetProductRecommendationsUseCase {
     return allValues.take(count).toList();
   }
 
-  // ALTERNATIVE: If you want to expand the range for more unique numbers
-
+// ALTERNATIVE: If you want to expand the range for more unique numbers
 }

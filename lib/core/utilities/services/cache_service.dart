@@ -10,11 +10,10 @@ import '../../config/routes/app_route.dart';
 class CacheService {
   static late SharedPreferences _sharedPreferences;
   static String? token;
-  static int ? userId;
+  static int? userId;
 
   static Future<void> init() async {
     _sharedPreferences = await SharedPreferences.getInstance();
-
   }
 
   static dynamic getData({required String key}) {
@@ -47,11 +46,10 @@ class CacheService {
   }
 
   static void cacheDataThenGoHome(BuildContext context, LoginEntity entity) {
-    Future.wait([setData(key: AppConstants.token, value: entity.token),
+    Future.wait([
+      setData(key: AppConstants.token, value: entity.token),
       setData(key: AppConstants.userId, value: entity.id)
-
-    ])
-        .then((value) {
+    ]).then((value) {
       if (value.every((element) => element == true) && context.mounted) {
         TextInput.finishAutofillContext();
         context.navigateAndRemoveUntil(pageName: AppRoutes.homeLayout);

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/widgets/my_text_form_field.dart';
 
-
 class CustomDropDownMenu extends StatefulWidget {
   const CustomDropDownMenu({
     super.key,
@@ -57,7 +56,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
   void _showPopupMenu(BuildContext context) {
     final isRtl = Directionality.of(context) == TextDirection.rtl;
     final RenderBox renderBox =
-    _textFieldKey.currentContext!.findRenderObject() as RenderBox;
+        _textFieldKey.currentContext!.findRenderObject() as RenderBox;
     final Offset offset = renderBox.localToGlobal(Offset.zero);
     final Size size = renderBox.size;
 
@@ -73,21 +72,19 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       color: const Color(0xFFf3f3f2),
-      position:
-      !isRtl
+      position: !isRtl
           ? RelativeRect.fromLTRB(
-        offset.dx,
-        offset.dy + size.height,
-        offset.dx,
-        offset.dy,
-      )
+              offset.dx,
+              offset.dy + size.height,
+              offset.dx,
+              offset.dy,
+            )
           : RelativeRect.fromLTRB(
-        offset.dx - (isRtl ? menuWidth - size.width : 0),
-        offset.dy + size.height,
-        offset.dx + (isRtl ? menuWidth : size.width),
-        offset.dy,
-      ),
-
+              offset.dx - (isRtl ? menuWidth - size.width : 0),
+              offset.dy + size.height,
+              offset.dx + (isRtl ? menuWidth : size.width),
+              offset.dy,
+            ),
       items: [
         PopupMenuItem<String>(
           value: '',
@@ -104,10 +101,8 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
                   mainAxisSize: MainAxisSize.min,
                   children: List.generate(
                     widget.dropdownItems.length,
-                        (index) => PopupMenuItem<String>(
-
+                    (index) => PopupMenuItem<String>(
                       value: widget.dropdownItems[index],
-
                       child: Text(
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -126,7 +121,6 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
       ],
       elevation: 20.0,
       shadowColor: Colors.blueGrey,
-
       constraints: BoxConstraints(
         minWidth: menuWidth,
         maxWidth: menuWidth,
@@ -220,4 +214,3 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
     }
   }
 }
-

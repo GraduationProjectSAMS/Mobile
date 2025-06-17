@@ -7,7 +7,7 @@ extension NavigateToExtension on BuildContext {
 }
 
 extension NavigatorPopExtension on BuildContext {
-  pop({ result = false}) => Navigator.of(this).pop(result);
+  pop({result = false}) => Navigator.of(this).pop(result);
 }
 
 extension NavigateReplacementExtension on BuildContext {
@@ -33,11 +33,11 @@ extension GetHeightRatioFromScreen on num {
 extension GetWidthRatioFromScreen on num {
   double get wR => SizeConfigService.width * this / 100;
 }
-extension GetGridAdptiveChildrenCount on BuildContext{
-  int get gridCount =>SizeConfigService.setGridCountWithContext(this);
 
+extension GetGridAdptiveChildrenCount on BuildContext {
+  int get gridCount => SizeConfigService.setGridCountWithContext(this);
 }
-extension GetGridAdptiveChildrenCountWithWidth on num{
-  int get gridCount =>SizeConfigService.setGridCountWithWidth(this);
 
+extension GetGridAdptiveChildrenCountWithWidth on num {
+  int get gridCount => SizeConfigService.setGridCountWithWidth(this);
 }

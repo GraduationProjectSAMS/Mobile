@@ -61,11 +61,11 @@ abstract class AppStrings {
   static const profile = 'Profile';
   static const offers = 'Offers';
   static const goodDay = 'Good Day For Shopping';
-static const newlyAdded= 'Newly Added';
+  static const newlyAdded = 'Newly Added';
   static const popularCategorises = 'Popular Categorises';
   static const popularProducts = 'Popular Products';
   static const viewAll = 'View all';
-  static const exitApp='Are you sure you want to exit the app?';
+  static const exitApp = 'Are you sure you want to exit the app?';
   static const no = 'No';
   static const yes = 'Yes';
   static const myAccount = 'My Account';
@@ -90,7 +90,8 @@ static const newlyAdded= 'Newly Added';
   static const myOrders = 'My Orders';
 
   static const orderSubtotal = 'Order Subtotal';
-/// payment
+
+  /// payment
   static const discount = 'Discount';
   static const shipping = 'Shipping';
   static const payNow = 'Pay Now';
@@ -98,7 +99,7 @@ static const newlyAdded= 'Newly Added';
   static const visa = 'Visa';
   static const cash = 'Cash';
   static const thankYou = 'Thank you';
-static const maxQuantity = 'You have reached the maximum quantity';
+  static const maxQuantity = 'You have reached the maximum quantity';
   static const transactionSuccessful = 'Your transaction was successful';
   static const city = 'City';
   static const streetName = 'Street Name';
@@ -108,11 +109,9 @@ static const maxQuantity = 'You have reached the maximum quantity';
   static const addLocationOnMap = 'Add Location on Map';
   static const apartment = 'Apartment';
   static const notes = 'Notes';
-static const addProduct = 'Add Product';
-static const addOffer = 'Add Offer';
-static const allProducts = 'All Products';
-static const allOffers = 'All Offers';
+  static const addProduct = 'Add Product';
+  static const addOffer = 'Add Offer';
+  static const allProducts = 'All Products';
+  static const allOffers = 'All Offers';
   static const allOrders = 'All Orders';
-
-
 }

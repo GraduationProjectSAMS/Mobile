@@ -21,13 +21,15 @@ class GetOrdersCubit extends Cubit<GetOrdersStates> {
 
   // Store orders as a class variable
   List<OrderEntity> orders = ordersWaiting;
-  OrderStatus ? selectedStatus;
-void onChangeOrderStatus(OrderStatus? status) {
+  OrderStatus? selectedStatus;
+
+  void onChangeOrderStatus(OrderStatus? status) {
     selectedStatus = status;
     // You can add logic here to filter or update the orders based on the selected status
     // For example, you might want to fetch orders with the selected status
-     getOrders();
+    getOrders();
   }
+
   Future<void> getOrders() async {
     orders = ordersWaiting; // Reset orders to initial state
     emit(GetOrdersLoading());

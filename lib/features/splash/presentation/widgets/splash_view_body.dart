@@ -17,7 +17,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
     super.initState();
-    _startSplashDelay();  // call your extracted method
+    _startSplashDelay(); // call your extracted method
   }
 
   void _startSplashDelay() {
@@ -26,10 +26,9 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void _goToNext() {
     CacheService.token = CacheService.getData(key: AppConstants.token);
-    final pageName = CacheService.token != null
-        ? AppRoutes.homeLayout
-        : AppRoutes.login;
-   context.navigateAndRemoveUntil(pageName: pageName);
+    final pageName =
+        CacheService.token != null ? AppRoutes.homeLayout : AppRoutes.login;
+    context.navigateAndRemoveUntil(pageName: pageName);
     // or: Navigator.of(context).pushReplacementNamed('/home');
   }
 

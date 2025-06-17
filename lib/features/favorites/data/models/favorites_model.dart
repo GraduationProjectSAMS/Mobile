@@ -79,19 +79,19 @@ class FavoritesData {
       height: height?.toInt() ?? 0,
       width: width?.toInt() ?? 0,
       length: length?.toInt() ?? 0,
-productRoom: rooms ?? '',
+      productRoom: rooms ?? '',
       productCategory: category ?? '',
       productAesthetic: aesthetic ?? '',
       id: id?.toInt() ?? 0,
       type: type == 'offer' ? AppConstants.offers : AppConstants.products,
-      description: description??'',
+      description: description ?? '',
       price: double.tryParse(price.toString()) ?? 1,
       maxQuantity: maxQuantity?.toInt() ?? quantity?.toInt() ?? 0,
       carQuantity: quantity?.toInt() ?? 0,
-      name: name??'',
+      name: name ?? '',
       isFavorite: true,
-      imageUrl:  imageUrl ==
-          'https://furnisique.servehttp.com/storage/products/images/1DsaMK8LbiV2a6XysnDZw35OTa4L1ypkK9NQ5r4n.png'
+      imageUrl: imageUrl ==
+              'https://furnisique.servehttp.com/storage/products/images/1DsaMK8LbiV2a6XysnDZw35OTa4L1ypkK9NQ5r4n.png'
           ? AppConstants.kNullProductImage
           : imageUrl ?? '',
     );

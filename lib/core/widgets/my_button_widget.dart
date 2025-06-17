@@ -16,10 +16,11 @@ class MyButton extends StatefulWidget {
     this.isLoading = false,
     this.height,
     this.width,
-    this.color,  this.isShowLoadingInCenter =true,
-
+    this.color,
+    this.isShowLoadingInCenter = true,
   });
-final bool isShowLoadingInCenter;
+
+  final bool isShowLoadingInCenter;
   final bool isLoading;
   final VoidCallback onPressed;
   final String text;
@@ -32,23 +33,18 @@ final bool isShowLoadingInCenter;
 }
 
 class _MyButtonState extends State<MyButton> {
-
-
-
-
-
-
-
   @override
   void didUpdateWidget(covariant MyButton old) {
     super.didUpdateWidget(old);
 
     // Schedule the overlay add/remove to run _after_ this build frame:
-    if(!widget.isShowLoadingInCenter)return;
+    if (!widget.isShowLoadingInCenter) return;
     if (widget.isLoading && !old.isLoading) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => OverlayLoadingService().showOverlay(context));
+      WidgetsBinding.instance.addPostFrameCallback(
+          (_) => OverlayLoadingService().showOverlay(context));
     } else if (!widget.isLoading && old.isLoading) {
-      WidgetsBinding.instance.addPostFrameCallback((_) =>  OverlayLoadingService().hideOverlay(context));
+      WidgetsBinding.instance.addPostFrameCallback(
+          (_) => OverlayLoadingService().hideOverlay(context));
     }
   }
 
@@ -65,7 +61,7 @@ class _MyButtonState extends State<MyButton> {
       width: widget.width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(backgroundColor: widget.color),
-        onPressed: widget.isLoading ? (){} : widget.onPressed,
+        onPressed: widget.isLoading ? () {} : widget.onPressed,
         child: widget.isLoading
             ? const SizedBox(
                 height: 20,

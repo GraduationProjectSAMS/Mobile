@@ -5,12 +5,13 @@ import '../utilities/resources/app_colors.dart';
 
 class AddButton extends StatelessWidget {
   const AddButton({super.key, required this.text, required this.onPressed});
-final String text;
+
+  final String text;
   final VoidCallback onPressed;
+
   @override
   Widget build(BuildContext context) {
-    return  TextButton.icon(
-
+    return TextButton.icon(
       style: TextButton.styleFrom(
         backgroundColor: AppColors.white, // Light background
         shape: RoundedRectangleBorder(
@@ -18,7 +19,7 @@ final String text;
         ),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
-      onPressed:onPressed,
+      onPressed: onPressed,
       icon: Icon(
         Icons.add,
         color: AppColors.primary,

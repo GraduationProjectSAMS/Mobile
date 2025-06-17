@@ -19,8 +19,10 @@ class ProductRecommendationsCubit extends Cubit<ProductRecommendationsState> {
     final result = await _getProductRecommendationsUseCase.call();
     result.fold(
       (failure) => emit(ProductRecommendationsError(failure.errorMessage)),
-      (recommendations) => emit(ProductRecommendationsSuccess(recommendations.length>10?
-          recommendations.sublist(0, 10) : recommendations)),
+      (recommendations) => emit(ProductRecommendationsSuccess(
+          recommendations.length > 10
+              ? recommendations.sublist(0, 10)
+              : recommendations)),
     );
   }
 }

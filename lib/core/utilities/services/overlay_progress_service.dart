@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
 import 'package:graduation_project/core/utilities/resources/app_colors.dart';
@@ -10,9 +8,11 @@ class OverlayProgressService {
   static _OverlayProgressWidgetState? _progressState;
 
   /// Show or update the progress overlay
-  static void show(BuildContext context, {double progress = 0.0, String? message}) {
+  static void show(BuildContext context,
+      {double progress = 0.0, String? message}) {
     if (_currentEntry == null) {
-      final overlayWidget = _OverlayProgressWidget(progress: progress, message: message);
+      final overlayWidget =
+          _OverlayProgressWidget(progress: progress, message: message);
       _currentEntry = OverlayEntry(builder: (_) => overlayWidget);
       Overlay.of(context, rootOverlay: true).insert(_currentEntry!);
     } else {
@@ -34,7 +34,7 @@ class _OverlayProgressWidget extends StatefulWidget {
   final double progress;
   final String? message;
 
-  const _OverlayProgressWidget({ required this.progress, this.message});
+  const _OverlayProgressWidget({required this.progress, this.message});
 
   @override
   _OverlayProgressWidgetState createState() => _OverlayProgressWidgetState();
@@ -69,10 +69,8 @@ class _OverlayProgressWidgetState extends State<_OverlayProgressWidget> {
 
   @override
   Widget build(BuildContext context) {
-
-
 // (If you use ScreenUtil or similar for .sp, keep it; otherwise, replace 100.sp with 100.0)
-  return  Stack(
+    return Stack(
       children: [
         // Frosted glass dark background
         const Positioned.fill(
@@ -108,7 +106,8 @@ class _OverlayProgressWidgetState extends State<_OverlayProgressWidget> {
                     width: 140.sp,
                     height: 140.sp,
                     child: TweenAnimationBuilder<double>(
-                      tween: Tween<double>(begin: 0, end: _progress), // <-- provide _progress [0.0..1.0]
+                      tween: Tween<double>(begin: 0, end: _progress),
+                      // <-- provide _progress [0.0..1.0]
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.easeOutCubic,
                       builder: (context, value, child) {
@@ -118,12 +117,13 @@ class _OverlayProgressWidgetState extends State<_OverlayProgressWidget> {
                             // Green gradient ring
                             CircularProgressIndicator(
                               value: value.clamp(0.0, 1.0),
-                              constraints:  BoxConstraints.tightFor(width: 100.sp, height: 100.sp),
+                              constraints: BoxConstraints.tightFor(
+                                  width: 100.sp, height: 100.sp),
                               strokeWidth: 14,
-
-
-                              backgroundColor: Colors.white.withValues(alpha: 0.10),
-                              valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+                              backgroundColor:
+                                  Colors.white.withValues(alpha: 0.10),
+                              valueColor: const AlwaysStoppedAnimation<Color>(
+                                  Colors.white),
                             ),
                             Container(
                               width: 94.sp,
@@ -133,7 +133,8 @@ class _OverlayProgressWidgetState extends State<_OverlayProgressWidget> {
                                 shape: BoxShape.circle,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.greenAccent.withValues(alpha: 0.15),
+                                    color: Colors.greenAccent
+                                        .withValues(alpha: 0.15),
                                     blurRadius: 14,
                                     spreadRadius: 1,
                                   ),
@@ -142,7 +143,8 @@ class _OverlayProgressWidgetState extends State<_OverlayProgressWidget> {
                               alignment: Alignment.center,
                               child: Text(
                                 '${(value * 100).toInt()}%',
-                                style: AppStyles.textStyle20.copyWith(color: AppColors.primary),
+                                style: AppStyles.textStyle20
+                                    .copyWith(color: AppColors.primary),
                               ),
                             ),
                           ],
@@ -154,7 +156,8 @@ class _OverlayProgressWidgetState extends State<_OverlayProgressWidget> {
                     const SizedBox(height: 26),
                     Text(
                       _message!,
-                      style: AppStyles.textStyle20.copyWith(color: AppColors.white),
+                      style: AppStyles.textStyle20
+                          .copyWith(color: AppColors.white),
                       textAlign: TextAlign.center,
                     ),
                   ]
@@ -165,8 +168,5 @@ class _OverlayProgressWidgetState extends State<_OverlayProgressWidget> {
         ),
       ],
     );
-
-
-
   }
 }

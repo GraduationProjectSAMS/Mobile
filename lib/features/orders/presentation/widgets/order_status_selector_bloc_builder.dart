@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/features/orders/presentation/manager/get_orders_cubit/get_orders_cubit.dart';
-
-
 import 'order_status_selector.dart';
 
 class OrderStatusSelectorBlocBuilder extends StatelessWidget {
@@ -11,9 +9,8 @@ class OrderStatusSelectorBlocBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<GetOrdersCubit>(context);
-    return  OrderStatusSelector(
+    return OrderStatusSelector(
         initialStatus: cubit.selectedStatus,
-        onStatusSelected: cubit.onChangeOrderStatus
-    );
+        onStatusSelected: cubit.onChangeOrderStatus);
   }
 }

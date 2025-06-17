@@ -83,8 +83,9 @@ abstract class RouteGenerator {
       case AppRoutes.forgetPasswordOtp:
         // Assuming you have a screen for handling the OTP for forget password
         return MaterialPageRoute(
-          settings: settings,
-            builder: (_) => const ForgetPasswordOtpScreen()); // Replace with actual OTP screen
+            settings: settings,
+            builder: (_) =>
+                const ForgetPasswordOtpScreen()); // Replace with actual OTP screen
 
       default:
         return _errorRoute();

@@ -6,6 +6,7 @@ abstract class Failure {
 
   const Failure(this.errorMessage);
 }
+
 Failure appServerFailure(Object error) {
   if (error is DioException) {
     return ServerFailure.fromDioError(error);

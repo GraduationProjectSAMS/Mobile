@@ -32,15 +32,15 @@ class _OrderStatusSelectorState extends State<OrderStatusSelector> {
     super.initState();
     selectedStatus = widget.initialStatus;
   }
-@override
+
+  @override
   void didUpdateWidget(covariant OrderStatusSelector oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.initialStatus != widget.initialStatus) {
-
-        selectedStatus = widget.initialStatus;
-
+      selectedStatus = widget.initialStatus;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

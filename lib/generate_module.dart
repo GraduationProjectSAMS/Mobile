@@ -1,12 +1,12 @@
 // ignore_for_file: type=lint
 import 'dart:developer';
-
 import 'dart:io';
+
 void main() {
   stdout.write('Enter module name (e.g., chat_logs): ');
   final String? moduleName = stdin.readLineSync();
   if (moduleName == null || moduleName.isEmpty) {
-   log('❌ Module name cannot be empty.');
+    log('❌ Module name cannot be empty.');
     return;
   }
 
@@ -98,14 +98,13 @@ class ${formattedClassName}ScreenBody extends StatelessWidget {
   generateFiles(files);
   updateDependencyInjection(formattedClassName, formattedFileName);
 
- log(
-      '✅ Module "$moduleName" structure has been generated and registered successfully!');
+  log('✅ Module "$moduleName" structure has been generated and registered successfully!');
 }
 
 void createFolders(List<String> folders) {
   for (var folder in folders) {
     Directory(folder).createSync(recursive: true);
-   log('📂 Created folder: $folder');
+    log('📂 Created folder: $folder');
   }
 }
 
@@ -115,9 +114,9 @@ void generateFiles(Map<String, String> files) {
     if (!file.existsSync()) {
       file.createSync();
       file.writeAsStringSync(content);
-     log('📝 Created: $filePath');
+      log('📝 Created: $filePath');
     } else {
-     log('⚠️ File already exists: $filePath');
+      log('⚠️ File already exists: $filePath');
     }
   });
 }
@@ -138,7 +137,7 @@ void updateDependencyInjection(String className, String fileName) {
   final file = File(filePath);
 
   if (!file.existsSync()) {
-   log('⚠️ dependency_injection.dart not found, skipping registration.');
+    log('⚠️ dependency_injection.dart not found, skipping registration.');
     return;
   }
 
@@ -146,7 +145,7 @@ void updateDependencyInjection(String className, String fileName) {
 
   // Check if the repository is already registered
   if (content.contains('${className}RepoImpl')) {
-   log('⚠️ Repository already registered in dependency_injection.dart.');
+    log('⚠️ Repository already registered in dependency_injection.dart.');
     return;
   }
 
@@ -164,7 +163,8 @@ import 'package:learnovia_mobile/features/$fileName/data/repositories/${fileName
   // Find the last `getIt.registerLazySingleton` statement
   final RegExp lastRepoRegistration =
       RegExp(r'getIt\.registerLazySingleton<.*>\(.*\);');
-  final Iterable<RegExpMatch> matches = lastRepoRegistration.allMatches(content);
+  final Iterable<RegExpMatch> matches =
+      lastRepoRegistration.allMatches(content);
 
   if (matches.isNotEmpty) {
     final RegExpMatch lastMatch = matches.last;
@@ -187,6 +187,5 @@ import 'package:learnovia_mobile/features/$fileName/data/repositories/${fileName
   }
 
   file.writeAsStringSync(content);
- log(
-      '🔗 Registered ${className}RepoImpl and added imports in dependency_injection.dart');
+  log('🔗 Registered ${className}RepoImpl and added imports in dependency_injection.dart');
 }

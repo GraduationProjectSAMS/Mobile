@@ -33,7 +33,8 @@ class EmptyOrderWidget extends StatelessWidget {
             Icon(
               icon,
               size: iconSize,
-              color: iconColor ?? theme.colorScheme.outline.withValues( alpha: 0.6),
+              color:
+                  iconColor ?? theme.colorScheme.outline.withValues(alpha: 0.6),
             ),
             const SizedBox(height: 24),
             Text(

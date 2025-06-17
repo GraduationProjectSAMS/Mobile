@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 
 import '../resources/app_endpoints.dart';
 
-class PaymentApiService{
+class PaymentApiService {
   final Dio _dio;
 
-  PaymentApiService(this._dio){
+  PaymentApiService(this._dio) {
     _dio.options.headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -13,8 +13,8 @@ class PaymentApiService{
     _dio.options.baseUrl = AppEndpoints.paymentBaseUrl;
     _dio.options.receiveTimeout = const Duration(seconds: 25);
     _dio.options.connectTimeout = const Duration(seconds: 25);
-
   }
+
   Future<Response> postData({
     required String endPoint,
     Object? formData,

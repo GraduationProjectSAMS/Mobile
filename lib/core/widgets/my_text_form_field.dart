@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class MyTextFormField extends StatelessWidget {
   const MyTextFormField({
     super.key,
@@ -38,7 +37,9 @@ class MyTextFormField extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.autoValidateMode = AutovalidateMode.onUserInteraction,
     this.autofocus = false,
-    this.suffix, this.onSaved, this.enableInteractiveSelection,
+    this.suffix,
+    this.onSaved,
+    this.enableInteractiveSelection,
   });
 
   final String? labelText;
@@ -77,6 +78,7 @@ class MyTextFormField extends StatelessWidget {
   final bool? enableInteractiveSelection;
   final TextAlign textAlign;
   final void Function(String?)? onSaved;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -91,9 +93,9 @@ class MyTextFormField extends StatelessWidget {
       minLines: minLines,
       maxLines: maxLines,
       style: style,
-      keyboardType: maxLines>2? TextInputType.multiline: keyboardType,
+      keyboardType: maxLines > 2 ? TextInputType.multiline : keyboardType,
       focusNode: focusNode,
-      textInputAction:  textInputAction,
+      textInputAction: textInputAction,
       autofillHints: autofillHints,
       inputFormatters: inputFormatters,
       readOnly: readOnly,
@@ -115,7 +117,6 @@ class MyTextFormField extends StatelessWidget {
         suffixIcon: suffixIcon,
         suffix: suffix,
         fillColor: fillColor,
-
         isDense: isDense,
         contentPadding: contentPadding ??
             EdgeInsets.symmetric(
@@ -131,4 +132,3 @@ class MyTextFormField extends StatelessWidget {
     );
   }
 }
-

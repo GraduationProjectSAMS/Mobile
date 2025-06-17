@@ -58,7 +58,7 @@ class _PaymentMethodItemState extends State<PaymentMethodItem> {
                     boxShadow: selectedIndex == index
                         ? [
                             BoxShadow(
-                              color: AppColors.primary.withValues( alpha: 0.3),
+                              color: AppColors.primary.withValues(alpha: 0.3),
                               blurRadius: 10,
                               offset: const Offset(0, 4),
                             )

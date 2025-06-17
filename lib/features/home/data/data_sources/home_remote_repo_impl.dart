@@ -1,5 +1,3 @@
-
-
 import 'package:dio/dio.dart';
 import 'package:graduation_project/features/home/data/models/offers_model.dart';
 import 'package:graduation_project/features/home/data/models/product_model.dart';
@@ -72,7 +70,8 @@ class HomeRemoteRepoImpl implements HomeRemoteRepo {
     final response = await apiService.getData(
       endPoint: AppEndpoints.getRecommendations,
     );
-    final list = (response?.data['data'] as List).map(ProductData.fromJson).toList();
+    final list =
+        (response?.data['data'] as List).map(ProductData.fromJson).toList();
     return list.toEntityList;
   }
 }

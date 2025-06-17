@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter/widgets.dart';
 
 class ScreenScaler with WidgetsBindingObserver {
   static final ScreenScaler _instance = ScreenScaler._internal();
+
   factory ScreenScaler() => _instance;
 
   ScreenScaler._internal();
@@ -12,6 +12,7 @@ class ScreenScaler with WidgetsBindingObserver {
   MediaQueryData? _lastData;
 
   double _scaleFactor = 1.0;
+
   double get scale => _scaleFactor;
 
   void init(BuildContext context) {
@@ -47,5 +48,3 @@ class ScreenScaler with WidgetsBindingObserver {
     _context = null;
   }
 }
-
-

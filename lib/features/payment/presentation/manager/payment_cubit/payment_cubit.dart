@@ -40,8 +40,7 @@ class PaymentCubit extends Cubit<PaymentStates> {
   final List<OrderProducts> orderProducts;
   OrderLocationEntity? orderPastLocationEntity;
 
-  OrderLocationEntity get orderLocationEntity =>
-      OrderLocationEntity(
+  OrderLocationEntity get orderLocationEntity => OrderLocationEntity(
         orderAddress: address ?? '',
         orderCity: city ?? '',
         orderBuildingNo: buildingNo ?? '',
@@ -92,6 +91,9 @@ class PaymentCubit extends Cubit<PaymentStates> {
   }
 
   Future<void> getPaymentKey() async {
+    if (state is! PaymentLoadingState) {
+      emit(PaymentLoadingState());
+    }
     final result = await _getPayMobClientKeyUseCase(
         payMobRequestModel: PayMobRequestModel(
             amount: ((paymentAmount + AppConstants.shippingCost) * 100).toInt(),
@@ -114,12 +116,14 @@ class PaymentCubit extends Cubit<PaymentStates> {
   }
 
   final formKey = GlobalKey<FormState>();
-String get locationAddress {
-   if(address == null || address!.isEmpty) {
-     return '$city, $streetName, $buildingNo, $apartmentNumber, $floorNumber';
-   }
-   return address!;
+
+  String get locationAddress {
+    if (address == null || address!.isEmpty) {
+      return '$city, $streetName, $buildingNo, $apartmentNumber, $floorNumber';
+    }
+    return address!;
   }
+
   Future<void> setOrderLocation() async {
     Logger().i(address);
     emit(PaymentLoadingState());
@@ -141,7 +145,7 @@ String get locationAddress {
     );
   }
 
-  Future<void> payNow() async{
+  Future<void> payNow() async {
     switch (paymentMethod) {
       case PaymentMethod.cash:
         createOrder();
@@ -178,7 +182,6 @@ String get locationAddress {
     if (orderPastLocationEntity == orderLocationEntity) {
       payNow();
     } else {
-
       setOrderLocation();
     }
   }

@@ -41,12 +41,14 @@ class ServerFailure extends Failure {
         errorNumber == 403 ||
         errorNumber == 422 ||
         errorNumber == 502) {
-      return ServerFailure((response['error'] ?? response['message']).toString(),
+      return ServerFailure(
+          (response['error'] ?? response['message']).toString(),
           statusCode: errorNumber);
     } else if (errorNumber == 404) {
       return ServerFailure(AppStrings.methodNotFound);
     } else if (errorNumber == 500) {
-      return ServerFailure(AppStrings.internalServerError,statusCode: errorNumber);
+      return ServerFailure(AppStrings.internalServerError,
+          statusCode: errorNumber);
     } else {
       return ServerFailure(AppStrings.oopsTryAgain);
     }

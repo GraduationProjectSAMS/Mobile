@@ -8,17 +8,17 @@ import 'package:graduation_project/core/utilities/services/cache_service.dart';
 import '../core/config/routes/app_route.dart';
 import '../core/utilities/services/size_config_service.dart';
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-static final  navigatorKey = GlobalKey<NavigatorState>();
+
+  static final navigatorKey = GlobalKey<NavigatorState>();
+
   String get initialRoute {
     CacheService.token = CacheService.getData(key: AppConstants.token);
     CacheService.userId = CacheService.getData(key: AppConstants.userId);
-    if(Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-   return AppRoutes.splash;
-    }
-    else if (CacheService.token != null) {
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      return AppRoutes.splash;
+    } else if (CacheService.token != null) {
       return AppRoutes.homeLayout;
     } else {
       return AppRoutes.login;

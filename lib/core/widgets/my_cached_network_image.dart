@@ -125,9 +125,11 @@ class MyCachedNetworkImage extends StatelessWidget {
     }
 
     return CachedNetworkImage(
-      memCacheWidth: 300, // Resize to reasonable size
+      memCacheWidth: 300,
+      // Resize to reasonable size
       memCacheHeight: 200,
-      maxWidthDiskCache: 600, // Limit disk cache size
+      maxWidthDiskCache: 600,
+      // Limit disk cache size
       maxHeightDiskCache: 400,
       imageUrl: imageUrl,
       width: width ?? double.infinity,
@@ -137,7 +139,6 @@ class MyCachedNetworkImage extends StatelessWidget {
       errorWidget: (context, url, error) => _buildErrorIcon(),
       progressIndicatorBuilder: (context, url, progress) =>
           _buildProgressIndicator(progress.progress),
-
     );
   }
 
@@ -178,9 +179,16 @@ class MyCachedNetworkImage extends StatelessWidget {
   }
 
   Widget _buildProgressIndicator(double? progress) {
-    if (progress == null) return const SizedBox.shrink();
-    return Center(
-      child: CircularProgressIndicator(value: progress),
+    return FutureBuilder(
+      future: Future.delayed(const Duration(milliseconds: 400)),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SizedBox.shrink();
+        }
+        return Center(
+          child: CircularProgressIndicator(value: progress),
+        );
+      },
     );
   }
 }

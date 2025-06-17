@@ -9,9 +9,9 @@ class AppSizConfig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-if(SizeConfigService.isDesktop){
-  MediaQuery.sizeOf(context);
-}
+    if (SizeConfigService.isDesktop) {
+      MediaQuery.sizeOf(context);
+    }
     SizeConfigService.init(context);
     return child;
   }

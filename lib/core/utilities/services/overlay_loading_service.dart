@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/config/extension/extension.dart';
 
 // Custom route that looks like an overlay but acts like a page
 class LoadingOverlayRoute extends PageRoute {
@@ -8,11 +7,10 @@ class LoadingOverlayRoute extends PageRoute {
   @override
   final Color barrierColor;
 
-  LoadingOverlayRoute({
-    required this.indicatorSize ,
-    required this.indicatorColor ,
-    required this.barrierColor
-  });
+  LoadingOverlayRoute(
+      {required this.indicatorSize,
+      required this.indicatorColor,
+      required this.barrierColor});
 
   @override
   bool get opaque => false; // Makes background visible
@@ -93,19 +91,16 @@ class LoadingOverlayRoute extends PageRoute {
 }
 
 class OverlayLoadingService {
-  // Singleton instance
   static final OverlayLoadingService _instance =
       OverlayLoadingService._internal();
 
-  // Factory constructor to return the singleton instance
   factory OverlayLoadingService() => _instance;
 
-  // Private internal constructor
   OverlayLoadingService._internal();
 
   bool _isVisible = false;
+  LoadingOverlayRoute? _currentRoute;
 
-  // Getter to check if overlay is visible
   bool get isVisible => _isVisible;
 
   void showOverlay(
@@ -117,22 +112,20 @@ class OverlayLoadingService {
     if (_isVisible) return;
 
     _isVisible = true;
-
-    Navigator.of(context).push(
-      LoadingOverlayRoute(
-        indicatorSize: indicatorSize ?? 50.0.sp,
-        indicatorColor: indicatorColor ?? Colors.white,
-        barrierColor: barrierColor ?? Colors.black45,
-      ),
+    _currentRoute = LoadingOverlayRoute(
+      indicatorSize: indicatorSize ?? 50.0,
+      indicatorColor: indicatorColor ?? Colors.white,
+      barrierColor: barrierColor ?? Colors.black45,
     );
+
+    Navigator.of(context).push(_currentRoute!);
   }
 
   void hideOverlay(BuildContext context) {
-    if (!_isVisible) return;
+    if (!_isVisible || _currentRoute == null) return;
     _isVisible = false;
-      if (Navigator.of(context).canPop()) {
-        Navigator.of(context).pop();
-      }
 
+    Navigator.of(context).removeRoute(_currentRoute!);
+    _currentRoute = null;
   }
 }

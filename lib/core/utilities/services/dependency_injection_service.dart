@@ -12,6 +12,7 @@ import 'package:graduation_project/features/orders/data/data_sources/orders_remo
 import 'package:graduation_project/features/orders/data/repositories/orders_repo_impl.dart';
 import 'package:graduation_project/features/profile/data/data_sources/profile_remote_repo_impl.dart';
 import 'package:graduation_project/features/profile/data/repositories/profile_repo_impl.dart';
+
 import '../../../features/add_product/data/data_sources/add_product_remote_repo_impl.dart';
 import '../../../features/add_product/data/repositories/add_product_repo_impl.dart';
 import '../../../features/authentication/data/data_sources/authentication_remote_repo_impl.dart';
@@ -26,8 +27,8 @@ import '../../../features/cards/domain/use_cases/add_to_card_use_case.dart';
 import '../../../features/cards/domain/use_cases/delete_card_use_case.dart';
 import '../../../features/cards/domain/use_cases/get_cards_use_case.dart';
 import '../../../features/favorites/domain/use_cases/add_to_favorites_use_case.dart';
-import '../../../features/home/data/repositories/home_repo_impl.dart';
 import '../../../features/favorites/domain/use_cases/get_favorites_use_case.dart';
+import '../../../features/home/data/repositories/home_repo_impl.dart';
 import '../../../features/home/domain/use_cases/get_offer_by_id_use_case.dart';
 import '../../../features/home/domain/use_cases/get_offers_use_case.dart';
 import '../../../features/home/domain/use_cases/get_product_by_id_use_case.dart';
@@ -53,7 +54,8 @@ void setupDependencies() {
   getIt.registerLazySingleton<GoogleSignInService>(
       () => GoogleSignInService(GoogleSignIn()));
   getIt.registerLazySingleton<ApiService>(() => ApiService(Dio()));
-  getIt.registerLazySingleton<PaymentApiService>(() => PaymentApiService(Dio()));
+  getIt
+      .registerLazySingleton<PaymentApiService>(() => PaymentApiService(Dio()));
 
   /// Repositories
   getIt.registerLazySingleton<AuthenticationRepoImpl>(() =>
@@ -62,24 +64,21 @@ void setupDependencies() {
 
   getIt.registerLazySingleton<HomeRepoImpl>(
       () => HomeRepoImpl(HomeRemoteRepoImpl(getIt.get<ApiService>())));
-  getIt.registerLazySingleton<FavoritesRepoImpl>(
-      () => FavoritesRepoImpl(
-          FavoritesRemoteRepoImpl(getIt.get<ApiService>())));
+  getIt.registerLazySingleton<FavoritesRepoImpl>(() =>
+      FavoritesRepoImpl(FavoritesRemoteRepoImpl(getIt.get<ApiService>())));
 
   getIt.registerLazySingleton<CardsRepoImpl>(
-          () => CardsRepoImpl(
-              CardsRemoteRepoImpl(getIt.get<ApiService>())));
+      () => CardsRepoImpl(CardsRemoteRepoImpl(getIt.get<ApiService>())));
   getIt.registerLazySingleton<AddProductRepoImpl>(() =>
       AddProductRepoImpl(AddProductRemoteRepoImpl(getIt.get<ApiService>())));
-  getIt.registerLazySingleton<ProfileRepoImpl>(
-          () => ProfileRepoImpl(
-          ProfileRemoteRepoImpl(getIt.get<ApiService>(),getIt.get<GoogleSignInService>())));
-  getIt.registerLazySingleton<PaymentRepoImpl>(
-          () => PaymentRepoImpl(
-          PaymentRemoteRepoImpl(getIt.get<PaymentApiService>())));
+  getIt.registerLazySingleton<ProfileRepoImpl>(() => ProfileRepoImpl(
+      ProfileRemoteRepoImpl(
+          getIt.get<ApiService>(), getIt.get<GoogleSignInService>())));
+  getIt.registerLazySingleton<PaymentRepoImpl>(() =>
+      PaymentRepoImpl(PaymentRemoteRepoImpl(getIt.get<PaymentApiService>())));
   getIt.registerLazySingleton<OrdersRepoImpl>(
-          () => OrdersRepoImpl(
-          OrdersRemoteRepoImpl(getIt.get<ApiService>())));
+      () => OrdersRepoImpl(OrdersRemoteRepoImpl(getIt.get<ApiService>())));
+
   /// Use Cases
   getIt.registerLazySingleton<SignInWithGoogleUseCase>(
       () => SignInWithGoogleUseCase(getIt.get<AuthenticationRepoImpl>()));
@@ -89,10 +88,10 @@ void setupDependencies() {
       LoginWithEmailAndPasswordUseCase(getIt.get<AuthenticationRepoImpl>()));
   getIt.registerLazySingleton<SendGoogleTokenToBackEndUseCase>(() =>
       SendGoogleTokenToBackEndUseCase(getIt.get<AuthenticationRepoImpl>()));
-  getIt.registerLazySingleton<SendResetPasswordOtpUseCase>(() =>
-      SendResetPasswordOtpUseCase(getIt.get<AuthenticationRepoImpl>()));
-  getIt.registerLazySingleton<ResetPasswordUseCase>(() =>
-      ResetPasswordUseCase(getIt.get<AuthenticationRepoImpl>()));
+  getIt.registerLazySingleton<SendResetPasswordOtpUseCase>(
+      () => SendResetPasswordOtpUseCase(getIt.get<AuthenticationRepoImpl>()));
+  getIt.registerLazySingleton<ResetPasswordUseCase>(
+      () => ResetPasswordUseCase(getIt.get<AuthenticationRepoImpl>()));
   getIt.registerLazySingleton<GetProductsUseCase>(
       () => GetProductsUseCase(getIt.get<HomeRepoImpl>()));
   getIt.registerLazySingleton<GetOffersUseCase>(
@@ -104,32 +103,31 @@ void setupDependencies() {
   getIt.registerLazySingleton<GetProductRecommendationsUseCase>(
       () => GetProductRecommendationsUseCase(getIt.get<HomeRepoImpl>()));
   getIt.registerLazySingleton<AddToFavoritesUseCase>(
-          () => AddToFavoritesUseCase(getIt.get<FavoritesRepoImpl>()));
+      () => AddToFavoritesUseCase(getIt.get<FavoritesRepoImpl>()));
   getIt.registerLazySingleton<GetFavoritesUseCase>(
-          () => GetFavoritesUseCase(getIt.get<FavoritesRepoImpl>()));
+      () => GetFavoritesUseCase(getIt.get<FavoritesRepoImpl>()));
   getIt.registerLazySingleton<AddToCardUseCase>(
-          () => AddToCardUseCase(getIt.get<CardsRepoImpl>()));
+      () => AddToCardUseCase(getIt.get<CardsRepoImpl>()));
   getIt.registerLazySingleton<GetCardsUseCase>(
-          () => GetCardsUseCase(getIt.get<CardsRepoImpl>()));
+      () => GetCardsUseCase(getIt.get<CardsRepoImpl>()));
   getIt.registerLazySingleton<DeleteCardUseCase>(
-          () => DeleteCardUseCase(getIt.get<CardsRepoImpl>()));
+      () => DeleteCardUseCase(getIt.get<CardsRepoImpl>()));
   getIt.registerLazySingleton<GetProfileDataUseCase>(
-          () => GetProfileDataUseCase(getIt.get<ProfileRepoImpl>()));
+      () => GetProfileDataUseCase(getIt.get<ProfileRepoImpl>()));
   getIt.registerLazySingleton<LogoutFormGoogleUseCase>(
-          () => LogoutFormGoogleUseCase(getIt.get<ProfileRepoImpl>()));
+      () => LogoutFormGoogleUseCase(getIt.get<ProfileRepoImpl>()));
   getIt.registerLazySingleton<LogoutUseCase>(
-          () => LogoutUseCase(getIt.get<ProfileRepoImpl>()));
+      () => LogoutUseCase(getIt.get<ProfileRepoImpl>()));
   getIt.registerLazySingleton<GetPayMobClientKeyUseCase>(
-          () => GetPayMobClientKeyUseCase(getIt.get<PaymentRepoImpl>()));
+      () => GetPayMobClientKeyUseCase(getIt.get<PaymentRepoImpl>()));
   getIt.registerLazySingleton<GetOrdersUseCase>(
-          () => GetOrdersUseCase(getIt.get<OrdersRepoImpl>()));
+      () => GetOrdersUseCase(getIt.get<OrdersRepoImpl>()));
   getIt.registerLazySingleton<SetOrderLocationUseCase>(
-          () => SetOrderLocationUseCase(getIt.get<OrdersRepoImpl>()));
+      () => SetOrderLocationUseCase(getIt.get<OrdersRepoImpl>()));
   getIt.registerLazySingleton<GetCurrentOrderLocationUseCase>(
-          () => GetCurrentOrderLocationUseCase(getIt.get<OrdersRepoImpl>()));
+      () => GetCurrentOrderLocationUseCase(getIt.get<OrdersRepoImpl>()));
   getIt.registerLazySingleton<CreateOrderUseCase>(
-          () => CreateOrderUseCase(getIt.get<OrdersRepoImpl>()));
+      () => CreateOrderUseCase(getIt.get<OrdersRepoImpl>()));
   getIt.registerLazySingleton<GetOrderDetailsUseCase>(
-          () => GetOrderDetailsUseCase(getIt.get<OrdersRepoImpl>()));
-
+      () => GetOrderDetailsUseCase(getIt.get<OrdersRepoImpl>()));
 }

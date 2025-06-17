@@ -68,7 +68,6 @@ class _LocationFormsState extends State<LocationForms> {
   }
 
   Future<Position> _determinePosition() async {
-
     LocationPermission permission = await Geolocator.checkPermission();
 
     if (permission == LocationPermission.denied) {

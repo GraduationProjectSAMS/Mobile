@@ -40,11 +40,11 @@ class _OTPInputState extends State<OTPInput> {
     super.initState();
     _controllers = List.generate(
       widget.length,
-          (index) => TextEditingController(),
+      (index) => TextEditingController(),
     );
     _focusNodes = List.generate(
       widget.length,
-          (index) => FocusNode(),
+      (index) => FocusNode(),
     );
   }
 
@@ -82,8 +82,11 @@ class _OTPInputState extends State<OTPInput> {
     // Remove non-digit characters and limit to remaining fields
     final digitsOnly = pastedText.replaceAll(RegExp(r'[^0-9]'), '');
     final remainingFields = widget.length - startIndex;
-    final textToDistribute = digitsOnly.substring(0,
-        digitsOnly.length > remainingFields ? remainingFields : digitsOnly.length);
+    final textToDistribute = digitsOnly.substring(
+        0,
+        digitsOnly.length > remainingFields
+            ? remainingFields
+            : digitsOnly.length);
 
     // Clear all fields from start index
     for (int i = startIndex; i < widget.length; i++) {
@@ -137,7 +140,7 @@ class _OTPInputState extends State<OTPInput> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: List.generate(
         widget.length,
-            (index) => SizedBox(
+        (index) => SizedBox(
           width: widget.fieldWidth,
           height: widget.fieldHeight,
           child: KeyboardListener(
@@ -152,7 +155,8 @@ class _OTPInputState extends State<OTPInput> {
               hidePassword: widget.obscureText,
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(widget.length), // Allow multiple digits temporarily
+                LengthLimitingTextInputFormatter(widget.length),
+                // Allow multiple digits temporarily
               ],
               onChanged: (value) => _onChanged(value ?? '', index),
             ),

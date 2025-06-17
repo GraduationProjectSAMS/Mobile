@@ -20,7 +20,6 @@ class AppApiErrorWidget extends StatelessWidget {
           children: [
             const Icon(Icons.error_outline, size: 48, color: Colors.red),
             const SizedBox(height: 16),
-
             const SizedBox(height: 8),
             Text(
               errorMessage,

@@ -10,7 +10,7 @@ class GetCardsUseCase {
   GetCardsUseCase(this._cardsRepo);
 
   Future<Either<Failure, List<ProductEntity>>> call() async {
-    final result= await _cardsRepo.getCards();
+    final result = await _cardsRepo.getCards();
     return result.fold(
       Left.new,
       (products) => Right(products.reversed.toList()),

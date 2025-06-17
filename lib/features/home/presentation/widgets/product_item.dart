@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/config/extension/extension.dart';
@@ -23,7 +21,6 @@ class ProductItem extends StatelessWidget {
   final bool isOffer;
   final bool _isRecommendations;
 
-
   const ProductItem({
     super.key,
     this.width,
@@ -32,7 +29,6 @@ class ProductItem extends StatelessWidget {
     this.isAdmin = false,
     this.enableHeroTag = true,
     this.isOffer = false,
-
   }) : _isRecommendations = false;
 
   const ProductItem.recommendations({
@@ -43,7 +39,6 @@ class ProductItem extends StatelessWidget {
     this.isAdmin = false,
     this.enableHeroTag = true,
     this.isOffer = false,
-
   }) : _isRecommendations = true;
 
   @override
@@ -281,6 +276,7 @@ class ProductItem extends StatelessWidget {
       ),
     );
   }
+
   Color _getCompatibilityColor(int compatibility) {
     if (compatibility >= 90) return Colors.green.shade600;
     if (compatibility >= 80) return Colors.orange.shade600;
